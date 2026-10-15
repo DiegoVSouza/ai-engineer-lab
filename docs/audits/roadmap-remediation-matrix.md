@@ -1,0 +1,17 @@
+# Roadmap remediation evidence matrix
+
+Evidence current on 2026-10-15. PASS refers only to a named local gate; it does not imply service-backed acceptance. INCOMPLETE means a required gate was not run or depends on unavailable services/tools. PENDING means no valid replay/live evaluation evidence exists.
+
+| Roadmap block / project | Local behavior and evidence | Status | Remaining gate |
+| --- | --- | --- | --- |
+| 1 - P01 orchestration | Six adapters compared against all 60 P00 golden cases; separate run/checkpoint identity; framework-native limitations documented; local wheel 0.1.1 consumer fixture. Evidence: projects/p01/artifacts/evidence/check-full.txt. | PASS (local) | Quality, cost, latency and real-model comparison PENDING; fake fixtures are not a model benchmark. |
+| 2 - P02 toolkit | Full local gate: 24 tests, 10 fake regression cases, 35 adversarial cases. Ambiguous side-effect timeouts fail closed; call-path step/time limits and JSON boundaries tested. Wheel 0.2.0 provenance recorded. Evidence: projects/p02/artifacts/evidence/phase-002-check-full.txt. | PASS (local) | Token accounting is reported at caller LLM boundary; comparable cost/latency and model quality PENDING. |
+| 3 - P03 observability | Source commits 58a7d8d, e191f17; wheel/provenance 6b5ccec, checksum correction 774b159; v0.3.1 SHA-256 82b3a79aacd0ac4faa1082087c0237487264b2a6497d9b77b79c1d6bb86f66a8. Full suite 29 passed; focused NonRecordingSpan regression suite 13 passed. | PASS (local); full gate INCOMPLETE | Full gate returned exit 1, incomplete=2; promtool and service dashboard/alert E2E unavailable. Production metrics PENDING. |
+| 4 - P04 durable processing | Lease renewal implemented; 27 local focused tests passed, 2 service tests skipped; wheel 0.1.2 isolated install/smoke passed; Compose configuration parsed. | PASS (local); service gate INCOMPLETE | PostgreSQL/LocalStack recovery, idempotency, retry/DLQ, image runtime and Terraform validation/plan need services/tools. No universal exactly-once claim. |
+| 5 - P05 platform | API compatibility v0.3.0 with ADR-005; approved P00-P04 wheel consumer tests; pgvector/hybrid adapter contract and fake retrieval fixture; verified-token MCP Streamable HTTP contract over in-process ASGI. Evidence: projects/p05/artifacts/evidence/remediation-full-gate.txt and phase 007 state. | PASS (local contracts); product gate INCOMPLETE | PostgreSQL/pgvector, Redis, LocalStack, TCP-hosted MCP, dashboards/alerts and full durable API-to-worker-to-agent E2E were not run. Hashed embeddings are fake; semantic and replay/model evaluation PENDING. |
+| 6 - interview/system-design learning | Software commits do not establish this roadmap block. | PENDING / separate human work | Requires separately recorded learning and practice. |
+| 7 - LinkedIn/networking | Software commits do not establish this roadmap block. No networking activity was performed. | PENDING / separate human work | Requires separate human authorization and activity. |
+
+## Portfolio gates
+
+Each project has its own phase SPEC/PLAN/VERIFY, Git history, evidence directory, and local commits. Approved integrations use local wheels with source commit and SHA-256 recorded by the consumer. No sibling-source imports, live/paid LLM calls, push, deployment, publication, PR, merge, or Terraform apply were performed. Confirm all six repositories clean on main at handoff. The pre-existing root roadmap file is intentionally outside this matrix.
