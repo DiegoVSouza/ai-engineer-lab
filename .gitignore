@@ -1,0 +1,11 @@
+/projects/
+**/__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+/artifacts/evidence/harness-kit/positive/
+/artifacts/evidence/harness-kit/trifecta/

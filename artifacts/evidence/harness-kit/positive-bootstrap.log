@@ -1,0 +1,3 @@
+harness-init: OK
+modules: agent-evals, agent-runtime, ci-gates, instructions, long-running, observability, permissions, prompts, reviewer, scripts-core, skills-base, tool-specs, trace-loop
+new-project: OK: C:\estudo\Golpe\lab\artifacts\evidence\harness-kit\positive\ticket-triage

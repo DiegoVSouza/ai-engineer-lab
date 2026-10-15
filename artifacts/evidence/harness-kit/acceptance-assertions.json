@@ -1,0 +1,8 @@
+{
+  "kit_version": "2.1.0",
+  "has_agent": true,
+  "has_evals": true,
+  "has_lock": true,
+  "overwrite_preserved": true,
+  "trifecta_has_metadata": false
+}
