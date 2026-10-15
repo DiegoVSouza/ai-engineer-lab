@@ -1,0 +1,8 @@
+COMMAND: PowerShell section, whitespace, and scope validation for docs/audits/roadmap-remediation-spec.md
+EXIT_CODE: 0
+OUTPUT:
+required_sections=12
+missing_sections=0
+trailing_whitespace_lines=0
+roadmap_blocks_1_to_5=specified
+blocks_6_and_7=explicitly_not_claimed
