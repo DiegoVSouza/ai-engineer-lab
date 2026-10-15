@@ -28,6 +28,10 @@ def main() -> int:
     destination.mkdir(parents=True, exist_ok=True)
     config_path = destination / "harness.yaml"
     if not config_path.exists():
+        unexpected = [path for path in destination.iterdir() if path.name != ".git"]
+        if unexpected:
+            print(f"new-project: FAIL: destination has files but no harness.yaml; preserving: {destination}", file=sys.stderr)
+            return 1
         text = profile.read_text(encoding="utf-8")
         text = re.sub(r"(?m)^(  name:) .*$", rf"\1 {args.name}", text, count=1)
         config_path.write_text(text, encoding="utf-8")
@@ -43,8 +47,12 @@ def main() -> int:
     ignore = destination / '.gitignore'
     if not ignore.exists():
         ignore.write_text('__pycache__/\n*.py[cod]\n.venv/\n.env\n.env.*\n!.env.example\n*.pem\n*.key\n.pytest_cache/\n.ruff_cache/\n', encoding='utf-8')
-    subprocess.run(['git', '-C', str(destination), 'add', '.'], check=True)
-    subprocess.run(['git', '-C', str(destination), 'commit', '-m', 'chore(harness): initialize project repository'], check=True)
+    head = subprocess.run(['git', 'rev-parse', '--verify', 'HEAD'], cwd=destination, capture_output=True, text=True)
+    if head.returncode != 0:
+        subprocess.run(['git', 'add', '-A'], cwd=destination, check=True)
+        subprocess.run(['git', 'commit', '-m', 'chore(harness): initialize project repository'], cwd=destination, check=True)
+    else:
+        print('new-project: existing history preserved; no files staged automatically')
     print(f"new-project: OK: {destination}")
     return 0
 

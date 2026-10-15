@@ -7,5 +7,7 @@
 !.env.example
 *.pem
 *.key
+.pytest_cache/
+.ruff_cache/
 /artifacts/evidence/harness-kit/positive/
 /artifacts/evidence/harness-kit/trifecta/

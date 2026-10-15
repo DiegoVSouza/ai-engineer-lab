@@ -7,7 +7,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 
 
 def git(root, *args):
-    return subprocess.run(['git', '-C', str(root), *args], check=True, capture_output=True, text=True).stdout.strip()
+    return subprocess.run(['git', *args], cwd=root, check=True, capture_output=True, text=True).stdout.strip()
 
 
 def configure(root):
@@ -15,14 +15,23 @@ def configure(root):
     if not (root / '.git').exists():
         git(root, 'init', '-b', 'main')
     else:
-        # A partial setup may have initialized the repository before failing.
-        # Preserve its history and normalize only the branch when it is unborn.
-        branch = subprocess.run(['git', '-C', str(root), 'symbolic-ref', '--short', 'HEAD'], capture_output=True, text=True)
+        # A partial setup may have initialized an empty repository on Git's
+        # default branch. Normalize it to the required branch without touching
+        # files or history.
+        branch = subprocess.run(['git', 'symbolic-ref', '--short', 'HEAD'], cwd=root, capture_output=True, text=True)
         if branch.returncode == 0 and branch.stdout.strip() != 'main':
-            raise RuntimeError(f'Repository already has branch {branch.stdout.strip()!r}; refusing to rename it')
+            head = subprocess.run(['git', 'rev-parse', '--verify', 'HEAD'], cwd=root, capture_output=True, text=True)
+            if head.returncode == 0:
+                existing_main = subprocess.run(['git', 'show-ref', '--verify', '--quiet', 'refs/heads/main'], cwd=root)
+                if existing_main.returncode == 0:
+                    raise RuntimeError(f'Cannot rename {branch.stdout.strip()!r} to main because a main branch already exists: {root}')
+                git(root, 'branch', '-M', 'main')
+            else:
+                git(root, 'symbolic-ref', 'HEAD', 'refs/heads/main')
     if pathlib.Path(git(root, 'rev-parse', '--show-toplevel')).resolve() != root:
         raise RuntimeError(f'Wrong repository root: {root}')
-    if git(root, 'config', '--local', '--get', 'core.hooksPath') if subprocess.run(['git', '-C', str(root), 'config', '--local', '--get', 'core.hooksPath'], capture_output=True).returncode == 0 else False:
+    configured_hooks = subprocess.run(['git', 'config', '--local', '--get', 'core.hooksPath'], cwd=root, capture_output=True, text=True)
+    if configured_hooks.returncode == 0 and configured_hooks.stdout.strip() not in ('.githooks',):
         raise RuntimeError(f'Existing hooksPath needs review: {root}')
     for relative, source in [('.githooks/commit-msg', ROOT / 'harness-kit/git/commit-msg'), ('scripts/validate_commit.py', ROOT / 'harness-kit/git/validate_commit.py'), ('.agents/skills/lab-commits/SKILL.md', ROOT / 'harness/skills/lab-commits/SKILL.md')]:
         destination = root / relative
@@ -36,10 +45,13 @@ def configure(root):
     if root == ROOT:
         ignore = root / '.gitignore'
         lines = ignore.read_text(encoding='utf-8').splitlines() if ignore.exists() else []
-        if 'projects/' not in lines:
+        if not any(line.lstrip('/') == 'projects/' for line in lines):
             lines.append('projects/')
             ignore.write_text('\n'.join(lines) + '\n', encoding='utf-8')
-    print(root, git(root, 'config', 'user.name'), 'hooks=.githooks')
+    identity = subprocess.run(['git', 'var', 'GIT_AUTHOR_IDENT'], cwd=root, capture_output=True, text=True)
+    if identity.returncode:
+        raise RuntimeError(f'Git author identity is not configured for {root}: {identity.stderr.strip()}')
+    print(root, identity.stdout.strip(), 'hooks=.githooks')
 
 
 if __name__ == '__main__':
