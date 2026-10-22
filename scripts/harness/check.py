@@ -26,7 +26,8 @@ for f in (R/"specs").glob("P0*.md"):
 # links relativos em markdown
 LINK = re.compile(r"\]\((?!https?:|#|mailto:)([^)\s]+)\)")
 for f in R.rglob("*.md"):
-    if any(x in f.parts for x in (".git","node_modules",".agents",".claude",".codex","lab-wt")): continue
+    if any(x in f.parts for x in (".git", ".venv", "venv", "node_modules", ".agents", ".claude", ".codex", "lab-wt")):
+        continue
     for l in LINK.findall(f.read_text(encoding="utf-8")):
         tgt = (f.parent / l.split("#")[0]).resolve()
         if l.split("#")[0] and not tgt.exists(): errs.append(f"link quebrado {f.relative_to(R)} -> {l}")
@@ -35,7 +36,7 @@ if a.docs and a.project:
     rd = R/"projects"/a.project/"README.md"
     if not rd.exists(): errs.append(f"README ausente: {rd.relative_to(R)}")
     else:
-        t = rd.read_text()
+        t = rd.read_text(encoding="utf-8")
         for s in ["## Problem","## Architecture","## Quickstart","## Results","## Design decisions","## Limitations","## Testing"]:
             if s not in t: errs.append(f"README sem seção {s}")
         if re.search(r"\b(p50|p95|cost|latency)[^\n]*\d", t) and "PENDING" not in t and not (R/"artifacts/runs").exists():
