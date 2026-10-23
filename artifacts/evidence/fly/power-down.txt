@@ -1,0 +1,248 @@
+**********************
+PowerShell transcript start
+Start time: 20261023160129
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference='Stop'; $log='artifacts/evidence/fly/power-down.txt'; Start-Transcript -Path $log -Force | Out-Null; $apps=@('supportops-lab-p04','supportops-lab-p05','supportops-lab-mcp','supportops-lab-idp','supportops-lab-db','supportops-lab-redis','supportops-lab-sns','supportops-lab-jaeger'); try { foreach($app in $apps){ Write-Output "=== stop $app ==="; $machines=@(& fly machine list --app $app --json | ConvertFrom-Json); if($LASTEXITCODE -ne 0){throw "machine list failed for $app"}; foreach($machine in $machines){ if($machine.state -eq 'started'){ & fly machine stop $machine.id --app $app; if($LASTEXITCODE -ne 0){throw "stop failed for $app/$($machine.id)"} } } }; foreach($app in $apps){ Write-Output "=== verify $app ==="; & fly status --app $app 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw "status failed for $app"} }; Write-Output '=== persistent volumes ==='; foreach($app in @('supportops-lab-db','supportops-lab-redis','supportops-lab-p05')){ & fly volumes list --app $app 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw "volume list failed for $app"} }; Write-Output '=== snapshots ==='; foreach($pair in @(@('supportops-lab-db','vol_vjy78odkqoe3d1pv'),@('supportops-lab-redis','vol_45859pj32dn31m84'),@('supportops-lab-p05','vol_v3gxjkngoznzn0l4'))){ & fly volumes snapshots list $pair[1] --app $pair[0] 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw 'snapshot list failed'} } } finally { Stop-Transcript | Out-Null };
+Process ID: 12596
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+=== stop supportops-lab-p04 ===
+
+=== stop supportops-lab-p05 ===
+
+=== stop supportops-lab-mcp ===
+=== stop supportops-lab-idp ===
+
+=== stop supportops-lab-db ===
+
+=== stop supportops-lab-redis ===
+
+=== stop supportops-lab-sns ===
+
+=== stop supportops-lab-jaeger ===
+
+=== verify supportops-lab-p04 ===
+App
+ Name     │ supportops-lab-p04
+ Owner    │ personal
+ Hostname │ supportops-lab-p04.fly.dev
+ Image    │ supportops-lab-p04:deployment-01M5MZN74G79N5S0SXW0Y7CXWY
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 78452edf349568 │ 2       │ iad    │ stopped │      │ 1 total, 1 warning │ 2026-10-23T18:54:42Z
+ worker  │ 2879390f917e38 │ 2       │ iad    │ stopped │      │                    │ 2026-10-23T19:01:34Z
+
+=== verify supportops-lab-p05 ===
+App
+ Name     │ supportops-lab-p05
+ Owner    │ personal
+ Hostname │ supportops-lab-p05.fly.dev
+ Image    │ supportops-lab-p05:deployment-01M5N1R9GJWNB1ZSB66JKSJQXD
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 830374f76154d8 │ 2       │ iad    │ stopped │      │ 1 total, 1 warning │ 2026-10-23T18:59:57Z
+ worker  │ 9080ee506ad508 │ 2       │ iad    │ stopped │      │                    │ 2026-10-23T19:01:37Z
+
+=== verify supportops-lab-mcp ===
+App
+ Name     │ supportops-lab-mcp
+ Owner    │ personal
+ Hostname │ supportops-lab-mcp.fly.dev
+ Image    │ supportops-lab-mcp:deployment-01M5MYM2NSTY0EBCNTNK3N1F98
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS │ LAST UPDATED
+ app     │ 2870421c554548 │ 1       │ iad    │ stopped │      │        │ 2026-10-23T19:00:08Z
+
+=== verify supportops-lab-idp ===
+App
+ Name     │ supportops-lab-idp
+ Owner    │ personal
+ Hostname │ supportops-lab-idp.fly.dev
+ Image    │ supportops-lab-idp:deployment-01M5N1H0K38TE384J3H1YHZDJ5
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 851d7dc426de58 │ 3       │ iad    │ stopped │      │ 1 total, 1 warning │ 2026-10-23T19:01:43Z
+
+=== verify supportops-lab-db ===
+App
+ Name     │ supportops-lab-db
+ Owner    │ personal
+ Hostname │ supportops-lab-db.fly.dev
+ Image    │ supportops-lab-db:deployment-01M5N1D9CX488HF6N9KYEWAVH1
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 897915b6697578 │ 3       │ iad    │ stopped │      │ 1 total, 1 warning │ 2026-10-23T19:01:45Z
+
+=== verify supportops-lab-redis ===
+App
+ Name     │ supportops-lab-redis
+ Owner    │ personal
+ Hostname │ supportops-lab-redis.fly.dev
+ Image    │ supportops-lab-redis:deployment-01M5MXTTWJRMS2ES7FQ01VHQNG
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 82d69df0799d98 │ 1       │ iad    │ stopped │      │ 1 total, 1 warning │ 2026-10-23T19:01:52Z
+
+=== verify supportops-lab-sns ===
+App
+ Name     │ supportops-lab-sns
+ Owner    │ personal
+ Hostname │ supportops-lab-sns.fly.dev
+ Image    │ supportops-lab-sns:deployment-01M5MZKZP1EYFM0S7SC9A68BFT
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 85777d4a23e348 │ 2       │ iad    │ stopped │      │ 1 total, 1 warning │ 2026-10-23T19:01:54Z
+
+=== verify supportops-lab-jaeger ===
+App
+ Name     │ supportops-lab-jaeger
+ Owner    │ personal
+ Hostname │ supportops-lab-jaeger.fly.dev
+ Image    │ supportops-lab-jaeger:deployment-01M5MYG8S7A0R19QDKAMX962MH
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS │ LAST UPDATED
+ app     │ 83d59dfd799058 │ 1       │ iad    │ stopped │      │        │ 2026-10-23T19:01:55Z
+
+=== persistent volumes ===
+ ID                   │ STATE   │ NAME    │ SIZE │ REGION │ ZONE │ ENCRYPTED │ ATTACHED VM    │ CREATED AT
+ vol_vjy78odkqoe3d1pv │ created │ pg_data │ 10GB │ iad    │ 8a14 │ true      │ 897915b6697578 │ 1 hour ago
+
+ ID                   │ STATE   │ NAME       │ SIZE │ REGION │ ZONE │ ENCRYPTED │ ATTACHED VM    │ CREATED AT
+ vol_45859pj32dn31m84 │ created │ redis_data │ 1GB  │ iad    │ cd8e │ true      │ 82d69df0799d98 │ 1 hour ago
+
+ ID                   │ STATE   │ NAME      │ SIZE │ REGION │ ZONE │ ENCRYPTED │ ATTACHED VM    │ CREATED AT
+ vol_v3gxjkngoznzn0l4 │ created │ p05_graph │ 1GB  │ iad    │ c716 │ true      │ 9080ee506ad508 │ 1 hour ago
+
+=== snapshots ===
+Snapshots
+ ID                         │ STATUS  │ STORED SIZE │ VOL SIZE │ CREATED AT     │ RETENTION DAYS
+ vs_709bL6VO3JnyUxDGqOA7lgV │ created │     291 MiB │   10 GiB │ 52 minutes ago │             14
+ vs_8YXjoaV53RnKHNlGp95qP9b │ created │      41 MiB │   10 GiB │ 16 minutes ago │             14
+
+Total stored size: 332 MiB
+Snapshots
+ ID                         │ STATUS  │ STORED SIZE │ VOL SIZE │ CREATED AT     │ RETENTION DAYS
+ vs_6jw1Dmka4v9t4GYmDGP4Jb4 │ created │      34 MiB │  1.0 GiB │ 51 minutes ago │             14
+
+Total stored size: 34 MiB
+Snapshots
+ ID                  │ STATUS  │ STORED SIZE │ VOL SIZE │ CREATED AT     │ RETENTION DAYS
+ vs_Ma1vgPLebnpYtY8Z │ created │      34 MiB │  1.0 GiB │ 52 minutes ago │             14
+
+Total stored size: 34 MiB
+**********************
+PowerShell transcript end
+End time: 20261023160224
+**********************
+**********************
+PowerShell transcript start
+Start time: 20261023160355
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$p='docs/harness/lab-stack/fly-deployment.md'; $t=Get-Content -Raw $p; $t=$t.Replace('./ops/fly/power.ps1 -Action Start','`./ops/fly/power.ps1 -Action Start`').Replace('./ops/fly/power.ps1 -Action Stop','`./ops/fly/power.ps1 -Action Stop`'); Set-Content -Path $p -Value ($t.TrimEnd()+"`n") -NoNewline -Encoding utf8; $p='docs/harness/lab-stack/progress.md'; Add-Content -Path $p -Value "`n`nThe ten Fly Machines are currently stopped at the user's request. The three persistent volumes and their snapshots remain intact; the public endpoints are offline until the power script starts the stack." -Encoding utf8; $parseErrors=$null; $tokens=$null; [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path 'ops/fly/power.ps1'),[ref]$tokens,[ref]$parseErrors)|Out-Null; if($parseErrors.Count -gt 0){$parseErrors|ForEach-Object{Write-Error $_};exit 1}; $log='artifacts/evidence/fly/power-down.txt'; Start-Transcript -Path $log -Append | Out-Null; try { Write-Output '=== idempotent stop command ==='; & ops/fly/power.ps1 -Action Stop; if($LASTEXITCODE -ne 0){throw 'power script stop failed'}; foreach($app in @('supportops-lab-db','supportops-lab-redis','supportops-lab-idp','supportops-lab-sns','supportops-lab-jaeger','supportops-lab-mcp','supportops-lab-p04','supportops-lab-p05')){ $machines=@(& fly machine list --app $app --json | ConvertFrom-Json); if($LASTEXITCODE -ne 0){throw "machine list failed for $app"}; foreach($machine in $machines){Write-Output "$app/$($machine.config.metadata.fly_process_group)=$($machine.state)"; if($machine.state -ne 'stopped'){throw "machine still running: $app/$($machine.id)"}} } } finally {Stop-Transcript|Out-Null};
+Process ID: 32740
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+=== idempotent stop command ===
+Stopping supportops-lab-p04/app
+Stopping supportops-lab-p05/app
+Stopping supportops-lab-mcp/app
+Stopping supportops-lab-p04/worker
+Stopping supportops-lab-p05/worker
+Stopping supportops-lab-idp/app
+Stopping supportops-lab-sns/app
+Stopping supportops-lab-jaeger/app
+Stopping supportops-lab-redis/app
+Stopping supportops-lab-db/app
+supportops-lab-db/app=stopped
+supportops-lab-redis/app=stopped
+supportops-lab-idp/app=stopped
+supportops-lab-sns/app=stopped
+supportops-lab-jaeger/app=stopped
+supportops-lab-mcp/app=stopped
+supportops-lab-p04/worker=stopped
+supportops-lab-p04/app=stopped
+supportops-lab-p05/worker=stopped
+supportops-lab-p05/app=stopped
+**********************
+PowerShell transcript end
+End time: 20261023160422
+**********************
+**********************
+PowerShell transcript start
+Start time: 20261023160615
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$parseErrors=$null;$tokens=$null;[System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path 'ops/fly/power.ps1'),[ref]$tokens,[ref]$parseErrors)|Out-Null;if($parseErrors.Count){$parseErrors|ForEach-Object{Write-Error $_};exit 1};$log='artifacts/evidence/fly/power-down.txt';Start-Transcript -Path $log -Append|Out-Null;try{Write-Output '=== stop and disable public autostart ===';& ops/fly/power.ps1 -Action Stop;if($LASTEXITCODE -ne 0){throw 'power stop failed'};foreach($app in @('supportops-lab-db','supportops-lab-redis','supportops-lab-idp','supportops-lab-sns','supportops-lab-jaeger','supportops-lab-mcp','supportops-lab-p04','supportops-lab-p05')){$machines=@(& fly machine list --app $app --json|ConvertFrom-Json);if($LASTEXITCODE -ne 0){throw "machine list failed for $app"};foreach($m in $machines){$group=$m.config.metadata.fly_process_group;if(-not $group){$group='app'};$autostart='n/a';if($app -in @('supportops-lab-p04','supportops-lab-p05','supportops-lab-mcp') -and $group -eq 'app'){$autostart=[string]$m.config.services[0].autostart};Write-Output "$app/$group state=$($m.state) autostart=$autostart";if($m.state -ne 'stopped'){throw "machine still running: $app/$($m.id)"};if($autostart -eq 'True'){throw "public autostart still enabled: $app/$($m.id)"}}}}finally{Stop-Transcript|Out-Null}
+Process ID: 31124
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+=== stop and disable public autostart ===
+Stopping supportops-lab-p04/app
+Stopping supportops-lab-p05/app
+
+Stopping supportops-lab-mcp/app
+
+Stopping supportops-lab-p04/worker
+Stopping supportops-lab-p05/worker
+Stopping supportops-lab-idp/app
+Stopping supportops-lab-sns/app
+Stopping supportops-lab-jaeger/app
+Stopping supportops-lab-redis/app
+Stopping supportops-lab-db/app
+supportops-lab-db/app state=stopped autostart=n/a
+supportops-lab-redis/app state=stopped autostart=n/a
+supportops-lab-idp/app state=stopped autostart=n/a
+supportops-lab-sns/app state=stopped autostart=n/a
+supportops-lab-jaeger/app state=stopped autostart=n/a
+supportops-lab-mcp/app state=stopped autostart=False
+supportops-lab-p04/worker state=stopped autostart=n/a
+supportops-lab-p04/app state=stopped autostart=False
+supportops-lab-p05/app state=stopped autostart=False
+supportops-lab-p05/worker state=stopped autostart=n/a
+**********************
+PowerShell transcript end
+End time: 20261023160648
+**********************

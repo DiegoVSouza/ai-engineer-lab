@@ -20,3 +20,6 @@ Fly docs were reviewed for Fly Proxy autostop, process group machine sizing, IAD
 
 
 After correcting the Fly price reference, PostgreSQL was reduced to 256 MB, Keycloak to 1 GB and the P05 worker to 256 MB. Database readiness, OIDC password grant, authenticated P05 reads and Redis task processing passed after the reductions. Current idle baseline is about USD 23.14/month before stopped root filesystems and traffic. PostgreSQL remains our Dockerized server on a Fly Machine, not the Fly Managed Postgres product. Its 10 GB volume stays in place because shrinking requires a logical migration.
+
+
+The ten Fly Machines are currently stopped at the user's request, and public API/MCP autostart is disabled. The three persistent volumes and their snapshots remain intact; public endpoints stay offline until the power script starts the stack.

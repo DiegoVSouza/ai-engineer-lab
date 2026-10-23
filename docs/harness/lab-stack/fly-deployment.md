@@ -23,6 +23,12 @@ The API and MCP process groups use shared 1x/256 MB machines and Fly Proxy autos
 
 Using Fly's official list prices checked on 2026-10-23, the always-running machines total about USD 21.34 per 30 days at the current sizes. The three volumes total 12 GB, about USD 1.80 per month, giving an idle baseline near USD 23.14 before stopped root filesystems and network traffic; API/MCP runtime adds compute while active. The earlier estimate of USD 28.93 was wrong: it used outdated machine prices and understated the baseline. Actual billing depends on usage. The 10 GB PostgreSQL volume currently holds about 84 MB; Fly volumes cannot be shrunk in place. Moving it to 1 GB requires a logical database migration and would save about USD 1.35/month.
 
+## Power state and stopped cost
+
+At the user's request, all ten Fly Machines are currently stopped, and autostart is disabled on the public APIs and MCP so outside requests cannot wake them. The endpoints stay offline until the stack is started again. Use `.\ops\fly\power.ps1 -Action Start` before a demo and `.\ops\fly\power.ps1 -Action Stop` afterward; let active jobs finish before stopping. The script starts data services and the IdP before the workers and APIs, re-enables public autostart, then disables it again when stopping.
+
+While stopped, the 12 GB of persistent volumes cost about USD 1.80 per month. Current snapshots total about 400 MiB, below Fly's first 10 GB monthly snapshot allowance. The ten stopped machine root filesystems are about 1.2 GB based on deployed image sizes, roughly USD 0.18 per month at Fly's stopped-rootfs price. The estimated idle floor is therefore about USD 2 per month, plus any account-specific usage. Actual billing appears in the Fly dashboard.
+
 ## Backups and restore
 
 The local checkpoint at `artifacts/checkpoints/pre-fly-final-20261023/` contains a verified PostgreSQL cluster dump, Redis RDB, all 12 local Compose volume archives and Git bundles. It is excluded from Git and protected by a Windows ACL. Fly's Postgres, Redis and P05 graph volumes use daily snapshots with 14-day retention; manual acceptance snapshots are also created after deployment checks.
