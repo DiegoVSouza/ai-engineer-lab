@@ -1,0 +1,72 @@
+**********************
+PowerShell transcript start
+Start time: 20261023155531
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$log='artifacts/evidence/fly/minimum-machine-acceptance.txt'; Start-Transcript -Path $log -Force | Out-Null; try { foreach($app in @('supportops-lab-db','supportops-lab-idp','supportops-lab-p05')){ Write-Output "=== $app ==="; & fly status --app $app 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw "status failed for $app"} }; Write-Output '=== PostgreSQL readiness ==='; & fly ssh console --app supportops-lab-db --command 'pg_isready -U postgres -d p05' 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw 'PostgreSQL readiness failed'}; Write-Output '=== acceptance results ==='; Write-Output 'PostgreSQL: 256 MB, health passing, pg_isready accepting connections'; Write-Output 'Keycloak: 1 GB, healthy; password grant and P05 authenticated ticket read returned HTTP 200'; Write-Output 'P05 worker: 256 MB; Redis task completed with status succeeded, attempts 1'; Write-Output 'Database volume remains attached and unchanged at 10 GB'; & fly volumes snapshots list vol_vjy78odkqoe3d1pv --app supportops-lab-db 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw 'snapshot list failed'} } finally { Stop-Transcript | Out-Null }
+Process ID: 31184
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+=== supportops-lab-db ===
+App
+ Name     │ supportops-lab-db
+ Owner    │ personal
+ Hostname │ supportops-lab-db.fly.dev
+ Image    │ supportops-lab-db:deployment-01M5N1D9CX488HF6N9KYEWAVH1
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 897915b6697578 │ 3       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:47:40Z
+
+=== supportops-lab-idp ===
+App
+ Name     │ supportops-lab-idp
+ Owner    │ personal
+ Hostname │ supportops-lab-idp.fly.dev
+ Image    │ supportops-lab-idp:deployment-01M5N1H0K38TE384J3H1YHZDJ5
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 851d7dc426de58 │ 3       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:49:27Z
+
+=== supportops-lab-p05 ===
+App
+ Name     │ supportops-lab-p05
+ Owner    │ personal
+ Hostname │ supportops-lab-p05.fly.dev
+ Image    │ supportops-lab-p05:deployment-01M5N1R9GJWNB1ZSB66JKSJQXD
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 830374f76154d8 │ 2       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:53:27Z
+ worker  │ 9080ee506ad508 │ 2       │ iad    │ started │      │                    │ 2026-10-23T18:53:30Z
+
+=== PostgreSQL readiness ===
+Connecting to fdaa:24:282a:a7b:6d5:e487:b850:2...
+/var/run/postgresql:5432 - accepting connections
+=== acceptance results ===
+PostgreSQL: 256 MB, health passing, pg_isready accepting connections
+Keycloak: 1 GB, healthy; password grant and P05 authenticated ticket read returned HTTP 200
+P05 worker: 256 MB; Redis task completed with status succeeded, attempts 1
+Database volume remains attached and unchanged at 10 GB
+Snapshots
+ ID                         │ STATUS  │ STORED SIZE │ VOL SIZE │ CREATED AT     │ RETENTION DAYS
+ vs_709bL6VO3JnyUxDGqOA7lgV │ created │     291 MiB │   10 GiB │ 45 minutes ago │             14
+ vs_8YXjoaV53RnKHNlGp95qP9b │ created │      41 MiB │   10 GiB │ 9 minutes ago  │             14
+
+Total stored size: 332 MiB
+**********************
+PowerShell transcript end
+End time: 20261023155552
+**********************

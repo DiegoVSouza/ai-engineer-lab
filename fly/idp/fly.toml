@@ -23,7 +23,7 @@ primary_region = "iad"
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
-  memory = "2gb"
+  memory = "1gb"
 
 [env]
   KC_BOOTSTRAP_ADMIN_USERNAME = "lab-admin"
