@@ -1,4 +1,4 @@
-# PLAN — Unified local stack
+# PLAN â€” Unified local stack
 
 allowed_write_paths: `docker-compose.yml`; `ops/stack/**`; `scripts/stack.py`; `.env.example`; `.gitignore`; `README.md`; `docs/knowledge/self-hosted-stack.md`; `docs/harness/lab-stack/**`; `.planning/projects/lab-stack/**`; `.planning/decisions.md`; `artifacts/evidence/lab-stack/**`.
 

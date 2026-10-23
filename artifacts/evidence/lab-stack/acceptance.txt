@@ -1,0 +1,16 @@
+COMMAND=python scripts/stack.py check
+EXIT_CODE=0
+OUTPUT:
+time="2026-10-22T21:56:38-03:00" level=warning msg="No services to build"
+ Volume supportops-lab_acceptance-data Creating
+ Volume supportops-lab_acceptance-data Created
+time="2026-10-22T21:56:38-03:00" level=warning msg="No services to build"
+ Container supportops-lab-tools-run-15b8b07f5d16 Creating
+ Container supportops-lab-tools-run-15b8b07f5d16 Created
+PASS P05: OIDC API -> durable queue -> P01 agent -> pgvector RAG -> signed MCP -> persisted result
+PASS tenant isolation: API denies cross-tenant ticket; MCP denies cross-tenant invoice
+PASS HITL: separate OIDC approver resumes the original bounded authorization snapshot
+PASS P04: independent API, PostgreSQL store, SQS broker and worker
+PASS persistent self-hosted Keycloak: issued token, verified HTTPS introspection, API/MCP revocation denial
+PASS P03: healthy metric targets, provisioned dashboards and correlated API/worker/MCP trace
+ACCEPTANCE PASS; LLM_MODE=fake; model quality PENDING

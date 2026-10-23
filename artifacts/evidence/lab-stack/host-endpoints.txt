@@ -1,0 +1,9 @@
+COMMAND=Python urllib HTTPS/HTTP checks against published loopback endpoints
+EXIT_CODE=0
+OUTPUT:
+http://localhost:48000/docs: HTTP 200
+http://localhost:48004/docs: HTTP 200
+https://localhost:38443/admin/: HTTP 200
+http://localhost:43000/login: HTTP 200
+http://localhost:49090/-/ready: HTTP 200
+http://localhost:46686/: HTTP 200

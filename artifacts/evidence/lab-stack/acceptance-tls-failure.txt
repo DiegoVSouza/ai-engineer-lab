@@ -1,0 +1,8 @@
+COMMAND=python scripts/stack.py check
+EXIT_CODE=1
+OUTPUT:
+time="2026-10-22T21:52:34-03:00" level=warning msg="No services to build"
+time="2026-10-22T21:52:34-03:00" level=warning msg="No services to build"
+ Container supportops-lab-tools-run-859b82a03d60 Creating
+ Container supportops-lab-tools-run-859b82a03d60 Created
+STACK CHECK FAILED: ConnectError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Authority Key Identifier (_ssl.c:1032)

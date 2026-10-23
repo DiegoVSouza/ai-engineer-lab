@@ -1,0 +1,68 @@
+{
+  "grafana/grafana:12.4.11": {
+    "id": "sha256:3ea272e5cab64a4a62240c682e2c62433b25614d956d44c299a10cb6994f6f2e",
+    "repo_digests": [
+      "grafana/grafana@sha256:3ea272e5cab64a4a62240c682e2c62433b25614d956d44c299a10cb6994f6f2e"
+    ]
+  },
+  "jaegertracing/jaeger:2.18.0": {
+    "id": "sha256:d2cbd047e44b50c11454820f84fd5f34c24a435e5301cf94fe026bf055db80b3",
+    "repo_digests": [
+      "jaegertracing/jaeger@sha256:d2cbd047e44b50c11454820f84fd5f34c24a435e5301cf94fe026bf055db80b3"
+    ]
+  },
+  "localstack/localstack:4.14.0": {
+    "id": "sha256:3ebc37595918b8accb852f8048fef2aff047d465167edd655528065b07bc364a",
+    "repo_digests": [
+      "localstack/localstack@sha256:3ebc37595918b8accb852f8048fef2aff047d465167edd655528065b07bc364a"
+    ]
+  },
+  "otel/opentelemetry-collector-contrib:0.161.0": {
+    "id": "sha256:fd328de2552466ad78385e1b1289c3f2402b1c45f265b252aab1955b42845ac1",
+    "repo_digests": [
+      "otel/opentelemetry-collector-contrib@sha256:fd328de2552466ad78385e1b1289c3f2402b1c45f265b252aab1955b42845ac1"
+    ]
+  },
+  "pgvector/pgvector:0.8.7-pg16": {
+    "id": "sha256:7b822b0aac60967beb1ea5e576b8602c94c300a157d187f385ae3e0da199b90a",
+    "repo_digests": [
+      "pgvector/pgvector@sha256:7b822b0aac60967beb1ea5e576b8602c94c300a157d187f385ae3e0da199b90a"
+    ]
+  },
+  "prom/prometheus:v3.14.0": {
+    "id": "sha256:5ce7540c3c00ef4ab0c9d2c995c6a5b9c421f44b4a115d97a2c7af3b1c21cbb0",
+    "repo_digests": [
+      "prom/prometheus@sha256:5ce7540c3c00ef4ab0c9d2c995c6a5b9c421f44b4a115d97a2c7af3b1c21cbb0"
+    ]
+  },
+  "quay.io/keycloak/keycloak:26.8.1": {
+    "id": "sha256:79c623a22abacf3fe6c00a5fb30f5b7843d717b234033b80995891c06116d244",
+    "repo_digests": [
+      "quay.io/keycloak/keycloak@sha256:79c623a22abacf3fe6c00a5fb30f5b7843d717b234033b80995891c06116d244"
+    ]
+  },
+  "redis@sha256:becdda6c7f4b3fb42e42fd7f120bbf5c54c4caaaf16f26da24e4563d2c1f0576": {
+    "id": "sha256:becdda6c7f4b3fb42e42fd7f120bbf5c54c4caaaf16f26da24e4563d2c1f0576",
+    "repo_digests": [
+      "redis@sha256:becdda6c7f4b3fb42e42fd7f120bbf5c54c4caaaf16f26da24e4563d2c1f0576"
+    ]
+  },
+  "supportops-lab-async:local": {
+    "id": "sha256:f42fa3befeff41cbc63a24cf885624d20ed9b0f293677e425d3e7b9cc59e1815",
+    "repo_digests": [
+      "supportops-lab-async@sha256:f42fa3befeff41cbc63a24cf885624d20ed9b0f293677e425d3e7b9cc59e1815"
+    ]
+  },
+  "supportops-lab-init:local": {
+    "id": "sha256:405a4b1d886c9183683cc36a4fc39bd1142cb24c4a8ab0e57c3f10cd2bd37cb5",
+    "repo_digests": [
+      "supportops-lab-init@sha256:405a4b1d886c9183683cc36a4fc39bd1142cb24c4a8ab0e57c3f10cd2bd37cb5"
+    ]
+  },
+  "supportops-lab-platform:local": {
+    "id": "sha256:e9a09c2f4737c45931d8db08d52f294d2091bb1d36412432db2354f62ee90042",
+    "repo_digests": [
+      "supportops-lab-platform@sha256:e9a09c2f4737c45931d8db08d52f294d2091bb1d36412432db2354f62ee90042"
+    ]
+  }
+}

@@ -11,3 +11,5 @@
 .ruff_cache/
 /artifacts/evidence/harness-kit/positive/
 /artifacts/evidence/harness-kit/trifecta/
+/artifacts/stack-ca.crt
+/artifacts/evidence/lab-stack/pre-existing-containers.txt

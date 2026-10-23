@@ -1,0 +1,9 @@
+COMMAND=python scripts/stack.py checkout
+EXIT_CODE=0
+OUTPUT:
+p00: pinned checkout verified
+p01: pinned checkout verified
+p02: pinned checkout verified
+p03: pinned checkout verified
+p04: pinned checkout verified
+p05: pinned checkout verified

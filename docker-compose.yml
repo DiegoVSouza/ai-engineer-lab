@@ -1,0 +1,265 @@
+name: supportops-lab
+
+x-product: &product
+  image: supportops-lab-platform:local
+  pull_policy: never
+  entrypoint: [python, /ops/entrypoint.py]
+  volumes: &product-volumes
+    - ./ops/stack:/ops:ro
+    - p05-secrets:/run/lab:ro
+  environment: &product-env
+    LLM_MODE: fake
+    P05_RUNTIME: services
+    MCP_URL: http://mcp:8000/mcp
+    MCP_ISSUER: http://mcp:8000/issuer
+    P05_REDIS_URL: redis://redis:6379/0
+    P05_LOCALSTACK_ENDPOINT: http://localstack:4566
+    P05_QUEUE_NAME: lab-p05-tasks
+    OTEL_EXPORTER_OTLP_ENDPOINT: http://otel:4317
+    SUPPORTOPS_LANGGRAPH_DB: /app/artifacts/langgraph-checkpoints.sqlite
+  restart: unless-stopped
+
+x-async: &async
+  image: supportops-lab-async:local
+  pull_policy: never
+  entrypoint: [python, /ops/entrypoint.py]
+  volumes:
+    - ./ops/stack:/ops:ro
+    - p04-secrets:/run/lab:ro
+  environment: &async-env
+    LLM_MODE: fake
+    AWS_REGION: us-east-1
+    AWS_ACCESS_KEY_ID: test
+    AWS_SECRET_ACCESS_KEY: test
+    AWS_ENDPOINT_URL: http://localstack:4566
+    P04_QUEUE_NAME: lab-p04-tasks
+    P04_DLQ_NAME: lab-p04-tasks-dlq
+    P04_TASK_CREATED_TOPIC_ARN: arn:aws:sns:us-east-1:000000000000:lab-task-created
+    P04_TASK_COMPLETED_TOPIC_ARN: arn:aws:sns:us-east-1:000000000000:lab-task-completed
+    P04_TASK_FAILED_TOPIC_ARN: arn:aws:sns:us-east-1:000000000000:lab-task-failed
+  restart: unless-stopped
+
+services:
+  secrets-init:
+    build:
+      context: ./ops/stack
+      dockerfile: Dockerfile.init
+    image: supportops-lab-init:local
+    environment:
+      LAB_IDP_URL: https://localhost:${LAB_IDP_PORT:-38443}
+      LAB_API_PORT: ${LAB_API_PORT:-48000}
+    volumes:
+      - db-secrets:/secrets/db
+      - keycloak-secrets:/secrets/keycloak
+      - p05-secrets:/secrets/p05
+      - p04-secrets:/secrets/p04
+      - grafana-secrets:/secrets/grafana
+      - operator-secrets:/secrets/credentials
+    restart: "no"
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg16
+    environment:
+      POSTGRES_USER: lab_admin
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD_FILE: /docker-entrypoint-initdb.d/admin-password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - db-secrets:/docker-entrypoint-initdb.d:ro
+    depends_on:
+      secrets-init: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U lab_admin -d postgres]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    restart: unless-stopped
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.8.1
+    entrypoint: [/bin/sh, -c]
+    command:
+      - . /run/lab/runtime.env; exec /opt/keycloak/bin/kc.sh start --import-realm
+    environment:
+      KC_HOSTNAME: https://localhost:${LAB_IDP_PORT:-38443}
+      KC_HTTP_ENABLED: "false"
+      KC_HTTPS_CERTIFICATE_FILE: /run/lab/tls.crt
+      KC_HTTPS_CERTIFICATE_KEY_FILE: /run/lab/tls.key
+      KC_HEALTH_ENABLED: "true"
+      KC_HTTP_MANAGEMENT_SCHEME: http
+      KC_CACHE: local
+    volumes:
+      - keycloak-secrets:/run/lab:ro
+      - keycloak-secrets:/opt/keycloak/data/import:ro
+    ports: ["127.0.0.1:${LAB_IDP_PORT:-38443}:8443"]
+    depends_on:
+      postgres: {condition: service_healthy}
+    healthcheck:
+      test: [CMD-SHELL, "bash -c \"{ printf 'HEAD /health/ready HTTP/1.0\\r\\n\\r\\n' >&0; grep 'HTTP/1.0 200'; } 0<>/dev/tcp/localhost/9000\""]
+      interval: 5s
+      timeout: 3s
+      retries: 60
+      start_period: 30s
+    restart: unless-stopped
+  redis:
+    image: redis@sha256:becdda6c7f4b3fb42e42fd7f120bbf5c54c4caaaf16f26da24e4563d2c1f0576
+    command: [redis-server, --appendonly, "yes"]
+    volumes: [redis-data:/data]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 3s
+      retries: 30
+    restart: unless-stopped
+  localstack:
+    image: localstack/localstack:4.14.0
+    environment:
+      SERVICES: sqs,sns
+      SQS_ENDPOINT_STRATEGY: dynamic
+      AWS_DEFAULT_REGION: us-east-1
+    healthcheck:
+      test: [CMD, curl, -fsS, http://localhost:4566/_localstack/health]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+    restart: unless-stopped
+  broker-init:
+    image: supportops-lab-async:local
+    pull_policy: never
+    entrypoint: [python, /ops/broker.py]
+    volumes: [./ops/stack:/ops:ro]
+    depends_on:
+      localstack: {condition: service_healthy}
+    restart: "no"
+  packages:
+    image: supportops-lab-platform:local
+    pull_policy: never
+    command: [python, /ops/packages.py]
+    volumes:
+      - ./ops/stack:/ops:ro
+      - ./projects/p05/docs/harness/sources.lock.json:/app/docs/harness/sources.lock.json:ro
+    restart: "no"
+  api:
+    <<: *product
+    build: ./projects/p05
+    command: [python, -m, uvicorn, supportops_platform.api.app:app, --host, 0.0.0.0, --port, "8000"]
+    ports: ["127.0.0.1:${LAB_API_PORT:-48000}:8000"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      localstack: {condition: service_healthy}
+      keycloak: {condition: service_healthy}
+      packages: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/healthz')"]
+      interval: 5s
+      timeout: 3s
+      retries: 40
+  worker:
+    <<: *product
+    command: [python, -m, supportops_platform.service_runtime]
+    environment:
+      <<: *product-env
+      OTEL_SERVICE_NAME: p05-worker
+      P05_METRICS_PORT: "8001"
+    volumes:
+      - ./ops/stack:/ops:ro
+      - p05-secrets:/run/lab:ro
+      - graph-data:/app/artifacts
+    depends_on:
+      api: {condition: service_healthy}
+      mcp: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8001')"]
+      interval: 5s
+      retries: 30
+  mcp:
+    <<: *product
+    command: [python, -m, uvicorn, supportops_platform.mcp.runtime:create_mcp_app, --factory, --host, 0.0.0.0, --port, "8000"]
+    environment:
+      <<: *product-env
+      OTEL_SERVICE_NAME: p05-mcp
+    depends_on:
+      secrets-init: {condition: service_completed_successfully}
+      keycloak: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, python, -c, "import socket; socket.create_connection(('localhost',8000),3).close()"]
+      interval: 5s
+      retries: 30
+  p04-api:
+    <<: *async
+    build: ./projects/p04
+    command: [uvicorn, supportops_async.api.runtime:app, --host, 0.0.0.0, --port, "8000"]
+    ports: ["127.0.0.1:${LAB_ASYNC_PORT:-48004}:8000"]
+    depends_on:
+      postgres: {condition: service_healthy}
+      broker-init: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/openapi.json')"]
+      interval: 5s
+      retries: 30
+  p04-worker:
+    <<: *async
+    command: [python, -m, supportops_async.worker.cli]
+    depends_on:
+      p04-api: {condition: service_healthy}
+  otel:
+    image: otel/opentelemetry-collector-contrib:0.161.0
+    command: [--config=/etc/otelcol/config.yaml]
+    volumes: [./projects/p05/infra/otel.yaml:/etc/otelcol/config.yaml:ro]
+    restart: unless-stopped
+  jaeger:
+    image: jaegertracing/jaeger:2.18.0
+    ports: ["127.0.0.1:${LAB_TRACES_PORT:-46686}:16686"]
+    restart: unless-stopped
+  prometheus:
+    image: prom/prometheus:v3.14.0
+    volumes:
+      - ./ops/stack/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./projects/p05/infra/alerts.yml:/etc/prometheus/p05-alerts.yml:ro
+      - ./projects/p03/alerts:/etc/prometheus/p03-rules:ro
+      - prometheus-data:/prometheus
+    ports: ["127.0.0.1:${LAB_METRICS_PORT:-49090}:9090"]
+    restart: unless-stopped
+  grafana:
+    image: grafana/grafana:12.4.11
+    environment:
+      GF_SECURITY_ADMIN_USER: lab-admin
+      GF_SECURITY_ADMIN_PASSWORD__FILE: /run/lab/admin-password
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-secrets:/run/lab:ro
+      - grafana-data:/var/lib/grafana
+      - ./ops/stack/grafana:/etc/grafana/provisioning:ro
+      - ./projects/p03/dashboards:/dashboards/p03:ro
+      - ./projects/p05/infra/dashboards:/dashboards/p05:ro
+    ports: ["127.0.0.1:${LAB_DASHBOARD_PORT:-43000}:3000"]
+    depends_on:
+      secrets-init: {condition: service_completed_successfully}
+    restart: unless-stopped
+  tools:
+    <<: *product
+    user: "0:0"
+    profiles: [tools]
+    entrypoint: [python, /ops/tools.py]
+    command: [check]
+    environment:
+      <<: *product-env
+      LAB_IDP_URL: https://localhost:${LAB_IDP_PORT:-38443}
+    volumes:
+      - ./ops/stack:/ops:ro
+      - p05-secrets:/run/lab:ro
+      - operator-secrets:/run/operator:ro
+      - acceptance-data:/run/acceptance
+    restart: "no"
+
+volumes:
+  db-secrets:
+  keycloak-secrets:
+  p05-secrets:
+  p04-secrets:
+  grafana-secrets:
+  operator-secrets:
+  acceptance-data:
+  postgres-data:
+  redis-data:
+  graph-data:
+  prometheus-data:
+  grafana-data:

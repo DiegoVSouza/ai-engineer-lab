@@ -1,0 +1,5 @@
+COMMAND=Compare staged blobs against generated credential values and private-key/bearer patterns
+EXIT_CODE=0
+OUTPUT:
+PASS: 44 staged files inspected against 12 generated secrets; no secret, private key or bearer token detected.
+PASS: unrelated untracked user files are excluded from the staged task.

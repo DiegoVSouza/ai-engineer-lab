@@ -1,0 +1,397 @@
+COMMAND=docker compose up -d --build --wait --wait-timeout 300
+EXIT_CODE=0
+OUTPUT:
+ Image supportops-lab-platform:local Building
+ Image supportops-lab-init:local Building
+ Image supportops-lab-async:local Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.48kB 0.0s done
+#1 DONE 0.0s
+
+#2 [secrets-init internal] load build definition from Dockerfile.init
+#2 transferring dockerfile: 168B done
+#2 DONE 0.0s
+
+#3 [p04-api internal] load build definition from Dockerfile
+#3 transferring dockerfile: 684B done
+#3 DONE 0.0s
+
+#4 [api internal] load build definition from Dockerfile
+#4 transferring dockerfile: 720B done
+#4 DONE 0.0s
+
+#5 [api internal] load metadata for docker.io/library/python:3.13.12-slim
+#5 DONE 0.1s
+
+#6 [api internal] load .dockerignore
+#6 transferring context:
+#6 transferring context: 129B done
+#6 DONE 0.0s
+
+#7 [secrets-init internal] load .dockerignore
+#7 transferring context: 2B done
+#7 DONE 0.0s
+
+#8 [secrets-init internal] load build context
+#8 transferring context: 29B done
+#8 DONE 0.0s
+
+#9 [secrets-init 1/3] FROM docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8
+#9 resolve docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8 0.0s done
+#9 CACHED
+
+#10 [api internal] load build context
+#10 transferring context: 7.80kB 0.0s done
+#10 DONE 0.0s
+
+#11 [api build 2/9] WORKDIR /app
+#11 CACHED
+
+#12 [api build 4/9] COPY pyproject.toml uv.lock ./
+#12 CACHED
+
+#13 [api build 5/9] COPY artifacts/packages ./artifacts/packages
+#13 CACHED
+
+#14 [api stage-1 3/5] RUN groupadd --gid 10001 app && useradd --uid 10001 --gid app --home /app app
+#14 CACHED
+
+#15 [api build 8/9] COPY supportops_platform ./supportops_platform
+#15 CACHED
+
+#16 [api build 3/9] RUN pip install --no-cache-dir uv==0.12.7
+#16 CACHED
+
+#17 [api stage-1 4/5] COPY --from=build --chown=app:app /app /app
+#17 CACHED
+
+#18 [api build 9/9] RUN uv sync --locked --no-dev
+#18 CACHED
+
+#19 [api build 6/9] COPY migrations ./migrations
+#19 CACHED
+
+#20 [api build 7/9] COPY scripts ./scripts
+#20 CACHED
+
+#21 [api stage-1 5/5] RUN mkdir -p /app/artifacts && chown app:app /app/artifacts
+#21 CACHED
+
+#22 [api] exporting to image
+#22 exporting layers 0.0s done
+#22 exporting manifest sha256:57f0f2bb0127d675d239cb7ff22eaedda414f27ea894683727f1bdcb2d7d1ece 0.0s done
+#22 exporting config sha256:bd50db82f349d167b199f2a66341817ce0738ef959319732c4501e4e92385369 0.0s done
+#22 exporting attestation manifest sha256:612b8079511475723d200cb62cbaa0f45ed4387069bc8416020c162744b0acd3
+#22 ...
+
+#23 [p04-api internal] load metadata for ghcr.io/astral-sh/uv:0.12.7
+#23 DONE 0.4s
+
+#22 [api] exporting to image
+#22 exporting attestation manifest sha256:612b8079511475723d200cb62cbaa0f45ed4387069bc8416020c162744b0acd3 0.1s done
+#22 exporting manifest list sha256:78eb211698dd8991952adc30154644614f9690da556f6badfacc7e086db569c3 0.0s done
+#22 naming to docker.io/library/supportops-lab-platform:local done
+#22 unpacking to docker.io/library/supportops-lab-platform:local
+#22 unpacking to docker.io/library/supportops-lab-platform:local 0.0s done
+#22 DONE 0.3s
+
+#9 [p04-api 1/3] FROM docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8
+#9 resolve docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8 0.0s done
+#9 CACHED
+
+#24 [p04-api internal] load .dockerignore
+#24 transferring context: 102B done
+#24 DONE 0.0s
+
+#25 [p04-api uv-bin 1/1] FROM ghcr.io/astral-sh/uv:0.12.7@sha256:95f2aa1fe59274951cfe9b0cbc7972e879ff1004bc8945d130a32eb0dbd85945
+#25 resolve ghcr.io/astral-sh/uv:0.12.7@sha256:95f2aa1fe59274951cfe9b0cbc7972e879ff1004bc8945d130a32eb0dbd85945 0.1s done
+#25 DONE 0.1s
+
+#26 [p04-api internal] load build context
+#26 transferring context: 8.76kB 0.0s done
+#26 DONE 0.0s
+
+#27 [p04-api builder 2/6] COPY --from=uv-bin /uv /uvx /bin/
+#27 CACHED
+
+#28 [p04-api builder 3/6] WORKDIR /app
+#28 CACHED
+
+#29 [p04-api builder 4/6] COPY pyproject.toml uv.lock README.md ./
+#29 DONE 0.2s
+
+#30 [secrets-init 2/3] RUN pip install --no-cache-dir cryptography==46.0.5
+#30 ...
+
+#31 [api] resolving provenance for metadata file
+#31 DONE 0.0s
+
+#32 [p04-api builder 5/6] COPY supportops_async ./supportops_async
+#32 DONE 0.1s
+
+#33 [p04-api builder 6/6] RUN uv sync --locked --no-dev
+#33 1.086 Using CPython 3.13.12 interpreter at: /usr/local/bin/python3
+#33 1.088 Creating virtual environment at: .venv
+#33 1.166 Resolved 34 packages in 40ms
+#33 1.215    Building supportops-async @ file:///app
+#33 1.479 Downloading psycopg-binary (4.2MiB)
+#33 1.482 Downloading botocore (15.3MiB)
+#33 1.484 Downloading pydantic-core (2.1MiB)
+#33 2.537  Downloaded pydantic-core
+#33 3.351  Downloaded psycopg-binary
+#33 5.084  Downloaded botocore
+#33 5.881       Built supportops-async @ file:///app
+#33 5.888 Prepared 24 packages in 4.70s
+#33 ...
+
+#30 [secrets-init 2/3] RUN pip install --no-cache-dir cryptography==46.0.5
+#30 5.259 Collecting cryptography==46.0.5
+#30 5.380   Downloading cryptography-46.0.5-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (5.7 kB)
+#30 5.725 Collecting cffi>=2.0.0 (from cryptography==46.0.5)
+#30 5.747   Downloading cffi-2.1.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#30 5.776 Collecting pycparser (from cffi>=2.0.0->cryptography==46.0.5)
+#30 5.795   Downloading pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+#30 5.826 Downloading cryptography-46.0.5-cp311-abi3-manylinux_2_34_x86_64.whl (4.5 MB)
+#30 6.207    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 12.6 MB/s  0:00:00
+#30 6.232 Downloading cffi-2.1.1-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+#30 6.266 Downloading pycparser-3.12-py3-none-any.whl (62 kB)
+#30 6.321 Installing collected packages: pycparser, cffi, cryptography
+#30 6.908
+#30 6.911 Successfully installed cffi-2.1.1 cryptography-46.0.5 pycparser-3.12
+#30 6.911 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#30 7.070
+#30 7.070 [notice] A new release of pip is available: 25.3 -> 26.2.2
+#30 7.070 [notice] To update, run: pip install --upgrade pip
+#30 DONE 7.6s
+
+#33 [p04-api builder 6/6] RUN uv sync --locked --no-dev
+#33 6.610 Installed 24 packages in 722ms
+#33 6.611  + annotated-doc==0.0.5
+#33 6.611  + annotated-types==0.8.0
+#33 6.611  + anyio==4.15.1
+#33 6.611  + boto3==1.43.114
+#33 6.611  + botocore==1.43.114
+#33 6.611  + click==8.5.0
+#33 6.611  + fastapi==0.142.4
+#33 6.611  + h11==0.16.0
+#33 6.611  + idna==3.20
+#33 6.611  + jmespath==1.1.0
+#33 6.611  + opentelemetry-api==1.45.1
+#33 6.611  + psycopg==3.2.10
+#33 6.611  + psycopg-binary==3.2.10
+#33 6.611  + pydantic==2.14.1
+#33 6.611  + pydantic-core==2.50.1
+#33 6.611  + python-dateutil==2.9.0.post0
+#33 6.611  + s3transfer==0.19.2
+#33 6.611  + six==1.17.0
+#33 6.611  + starlette==1.8.0
+#33 6.611  + supportops-async==0.1.3 (from file:///app)
+#33 6.612  + typing-extensions==4.16.0
+#33 6.612  + typing-inspection==0.4.4
+#33 6.612  + urllib3==2.8.0
+#33 6.612  + uvicorn==0.46.0
+#33 DONE 6.9s
+
+#34 [secrets-init 3/3] COPY init.py /init.py
+#34 DONE 0.1s
+
+#35 [secrets-init] exporting to image
+#35 exporting layers
+#35 ...
+
+#11 [p04-api build 2/9] WORKDIR /app
+#11 CACHED
+
+#36 [p04-api runtime 3/4] RUN groupadd --system --gid 10001 app && useradd --system --uid 10001 --gid app --home-dir /app app
+#36 CACHED
+
+#35 [secrets-init] exporting to image
+#35 exporting layers 2.1s done
+#35 exporting manifest sha256:bb4eb7a8eed6e8599a7198de47bc2bc15e1d047ca364766a56433fc413d805af 0.0s done
+#35 exporting config sha256:d6294ab55ceba4ac823b4dc48a8d163e6768d41b10b10726558483dcb70558f9 0.0s done
+#35 exporting attestation manifest sha256:4950e210a0015f0f535d86635718375fe40882058455a17afd0be45db67d55ec 0.1s done
+#35 exporting manifest list sha256:05224b208c1cad49ee9ef35ae80107d5a13c0160067394bc1b5c564d232aa6f7
+#35 exporting manifest list sha256:05224b208c1cad49ee9ef35ae80107d5a13c0160067394bc1b5c564d232aa6f7 0.0s done
+#35 naming to docker.io/library/supportops-lab-init:local 0.0s done
+#35 unpacking to docker.io/library/supportops-lab-init:local
+#35 unpacking to docker.io/library/supportops-lab-init:local 0.7s done
+#35 DONE 3.0s
+
+#37 [p04-api runtime 4/4] COPY --from=builder --chown=app:app /app /app
+#37 ...
+
+#38 [secrets-init] resolving provenance for metadata file
+#38 DONE 0.1s
+
+#37 [p04-api runtime 4/4] COPY --from=builder --chown=app:app /app /app
+#37 DONE 3.1s
+
+#39 [p04-api] exporting to image
+#39 exporting layers 2.9s done
+#39 exporting manifest sha256:18cddeb500ee729bea55d317dc83aff2a4e0150ead9e1249864ea5698d1745e2 0.0s done
+#39 exporting config sha256:03e0b218c3c865f4d7b6cd1bac0c763991bea50de57510e6681599efca001ee2 0.0s done
+#39 exporting attestation manifest sha256:897fe13843154cdaca705e5fbaad4795e1737d353c5f6f184b59c9582c728f9a 0.1s done
+#39 exporting manifest list sha256:54f21d1fb10507de816fbae6bef4723495f14613fa2a06596206308ed371f5da
+#39 exporting manifest list sha256:54f21d1fb10507de816fbae6bef4723495f14613fa2a06596206308ed371f5da 0.0s done
+#39 naming to docker.io/library/supportops-lab-async:local done
+#39 unpacking to docker.io/library/supportops-lab-async:local
+#39 unpacking to docker.io/library/supportops-lab-async:local 2.5s done
+#39 DONE 5.6s
+
+#40 [p04-api] resolving provenance for metadata file
+#40 DONE 0.0s
+ Image supportops-lab-init:local Built
+ Image supportops-lab-async:local Built
+ Image supportops-lab-platform:local Built
+ Network supportops-lab_default Creating
+ Network supportops-lab_default Created
+ Volume supportops-lab_p04-secrets Creating
+ Volume supportops-lab_p04-secrets Created
+ Volume supportops-lab_prometheus-data Creating
+ Volume supportops-lab_prometheus-data Created
+ Volume supportops-lab_graph-data Creating
+ Volume supportops-lab_graph-data Created
+ Volume supportops-lab_keycloak-secrets Creating
+ Volume supportops-lab_keycloak-secrets Created
+ Volume supportops-lab_redis-data Creating
+ Volume supportops-lab_redis-data Created
+ Volume supportops-lab_grafana-secrets Creating
+ Volume supportops-lab_grafana-secrets Created
+ Volume supportops-lab_db-secrets Creating
+ Volume supportops-lab_db-secrets Created
+ Volume supportops-lab_operator-secrets Creating
+ Volume supportops-lab_operator-secrets Created
+ Volume supportops-lab_p05-secrets Creating
+ Volume supportops-lab_p05-secrets Created
+ Volume supportops-lab_grafana-data Creating
+ Volume supportops-lab_grafana-data Created
+ Volume supportops-lab_postgres-data Creating
+ Volume supportops-lab_postgres-data Created
+ Container supportops-lab-localstack-1 Creating
+ Container supportops-lab-redis-1 Creating
+ Container supportops-lab-prometheus-1 Creating
+ Container supportops-lab-secrets-init-1 Creating
+ Container supportops-lab-otel-1 Creating
+ Container supportops-lab-jaeger-1 Creating
+ Container supportops-lab-packages-1 Creating
+ Container supportops-lab-otel-1 Created
+ Container supportops-lab-packages-1 Created
+ Container supportops-lab-prometheus-1 Created
+ Container supportops-lab-jaeger-1 Created
+ Container supportops-lab-secrets-init-1 Created
+ Container supportops-lab-postgres-1 Creating
+ Container supportops-lab-grafana-1 Creating
+ Container supportops-lab-localstack-1 Created
+ Container supportops-lab-broker-init-1 Creating
+ Container supportops-lab-redis-1 Created
+ Container supportops-lab-broker-init-1 Created
+ Container supportops-lab-grafana-1 Created
+ Container supportops-lab-postgres-1 Created
+ Container supportops-lab-p04-api-1 Creating
+ Container supportops-lab-keycloak-1 Creating
+ Container supportops-lab-p04-api-1 Created
+ Container supportops-lab-p04-worker-1 Creating
+ Container supportops-lab-keycloak-1 Created
+ Container supportops-lab-api-1 Creating
+ Container supportops-lab-mcp-1 Creating
+ Container supportops-lab-p04-worker-1 Created
+ Container supportops-lab-api-1 Created
+ Container supportops-lab-mcp-1 Created
+ Container supportops-lab-worker-1 Creating
+ Container supportops-lab-worker-1 Created
+ Container supportops-lab-redis-1 Starting
+ Container supportops-lab-otel-1 Starting
+ Container supportops-lab-jaeger-1 Starting
+ Container supportops-lab-secrets-init-1 Starting
+ Container supportops-lab-packages-1 Starting
+ Container supportops-lab-prometheus-1 Starting
+ Container supportops-lab-localstack-1 Starting
+ Container supportops-lab-localstack-1 Started
+ Container supportops-lab-localstack-1 Waiting
+ Container supportops-lab-redis-1 Started
+ Container supportops-lab-secrets-init-1 Started
+ Container supportops-lab-secrets-init-1 Waiting
+ Container supportops-lab-secrets-init-1 Waiting
+ Container supportops-lab-jaeger-1 Started
+ Container supportops-lab-prometheus-1 Started
+ Container supportops-lab-otel-1 Started
+ Container supportops-lab-packages-1 Started
+ Container supportops-lab-secrets-init-1 Exited
+ Container supportops-lab-grafana-1 Starting
+ Container supportops-lab-secrets-init-1 Exited
+ Container supportops-lab-postgres-1 Starting
+ Container supportops-lab-postgres-1 Started
+ Container supportops-lab-postgres-1 Waiting
+ Container supportops-lab-grafana-1 Started
+ Container supportops-lab-localstack-1 Healthy
+ Container supportops-lab-broker-init-1 Starting
+ Container supportops-lab-broker-init-1 Started
+ Container supportops-lab-postgres-1 Waiting
+ Container supportops-lab-broker-init-1 Waiting
+ Container supportops-lab-postgres-1 Healthy
+ Container supportops-lab-postgres-1 Healthy
+ Container supportops-lab-keycloak-1 Starting
+ Container supportops-lab-keycloak-1 Started
+ Container supportops-lab-keycloak-1 Waiting
+ Container supportops-lab-secrets-init-1 Waiting
+ Container supportops-lab-postgres-1 Waiting
+ Container supportops-lab-redis-1 Waiting
+ Container supportops-lab-localstack-1 Waiting
+ Container supportops-lab-keycloak-1 Waiting
+ Container supportops-lab-packages-1 Waiting
+ Container supportops-lab-postgres-1 Healthy
+ Container supportops-lab-redis-1 Healthy
+ Container supportops-lab-localstack-1 Healthy
+ Container supportops-lab-secrets-init-1 Exited
+ Container supportops-lab-packages-1 Exited
+ Container supportops-lab-broker-init-1 Exited
+ Container supportops-lab-p04-api-1 Starting
+ Container supportops-lab-p04-api-1 Started
+ Container supportops-lab-p04-api-1 Waiting
+ Container supportops-lab-p04-api-1 Healthy
+ Container supportops-lab-p04-worker-1 Starting
+ Container supportops-lab-p04-worker-1 Started
+ Container supportops-lab-keycloak-1 Healthy
+ Container supportops-lab-mcp-1 Starting
+ Container supportops-lab-keycloak-1 Healthy
+ Container supportops-lab-api-1 Starting
+ Container supportops-lab-api-1 Started
+ Container supportops-lab-mcp-1 Started
+ Container supportops-lab-mcp-1 Waiting
+ Container supportops-lab-api-1 Waiting
+ Container supportops-lab-mcp-1 Healthy
+ Container supportops-lab-api-1 Healthy
+ Container supportops-lab-worker-1 Starting
+ Container supportops-lab-worker-1 Started
+ Container supportops-lab-secrets-init-1 Waiting
+ Container supportops-lab-prometheus-1 Waiting
+ Container supportops-lab-otel-1 Waiting
+ Container supportops-lab-redis-1 Waiting
+ Container supportops-lab-p04-worker-1 Waiting
+ Container supportops-lab-p04-api-1 Waiting
+ Container supportops-lab-postgres-1 Waiting
+ Container supportops-lab-broker-init-1 Waiting
+ Container supportops-lab-localstack-1 Waiting
+ Container supportops-lab-worker-1 Waiting
+ Container supportops-lab-packages-1 Waiting
+ Container supportops-lab-api-1 Waiting
+ Container supportops-lab-jaeger-1 Waiting
+ Container supportops-lab-mcp-1 Waiting
+ Container supportops-lab-keycloak-1 Waiting
+ Container supportops-lab-grafana-1 Waiting
+ Container supportops-lab-prometheus-1 Healthy
+ Container supportops-lab-packages-1 Exited
+ Container supportops-lab-p04-api-1 Healthy
+ Container supportops-lab-keycloak-1 Healthy
+ Container supportops-lab-otel-1 Healthy
+ Container supportops-lab-mcp-1 Healthy
+ Container supportops-lab-p04-worker-1 Healthy
+ Container supportops-lab-broker-init-1 Exited
+ Container supportops-lab-postgres-1 Healthy
+ Container supportops-lab-localstack-1 Healthy
+ Container supportops-lab-secrets-init-1 Exited
+ Container supportops-lab-redis-1 Healthy
+ Container supportops-lab-jaeger-1 Healthy
+ Container supportops-lab-grafana-1 Healthy
+ Container supportops-lab-api-1 Healthy
+ Container supportops-lab-worker-1 Healthy

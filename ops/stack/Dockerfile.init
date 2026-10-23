@@ -1,0 +1,5 @@
+FROM python:3.13.12-slim
+COPY requirements-init.lock /requirements-init.lock
+RUN pip install --no-cache-dir -r /requirements-init.lock
+COPY init.py /init.py
+CMD ["python", "/init.py"]

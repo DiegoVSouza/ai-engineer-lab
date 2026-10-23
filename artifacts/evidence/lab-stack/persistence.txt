@@ -1,0 +1,8 @@
+COMMAND=python scripts/stack.py persistence (after force-recreating all root containers)
+EXIT_CODE=0
+OUTPUT:
+time="2026-10-22T21:59:35-03:00" level=warning msg="No services to build"
+time="2026-10-22T21:59:35-03:00" level=warning msg="No services to build"
+ Container supportops-lab-tools-run-f65836fb727d Creating
+ Container supportops-lab-tools-run-f65836fb727d Created
+PERSISTENCE PASS: same credentials/CA, Keycloak realm/users, P04 and P05 completed records survived container recreation.

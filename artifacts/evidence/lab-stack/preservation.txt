@@ -1,0 +1,5 @@
+COMMAND=Compare Docker running inventory and pinned product Git revisions/status
+EXIT_CODE=0
+OUTPUT:
+PASS: all 34 pre-existing containers remain running.
+PASS: all six product repositories retain their pinned HEAD and clean worktree.

@@ -1,0 +1,57 @@
+COMMAND=docker compose build secrets-init; docker compose run --rm --no-deps secrets-init; docker compose restart keycloak
+EXIT_CODE=0
+OUTPUT:
+ Image supportops-lab-init:local Building
+#1 [internal] load local bake definitions
+#1 reading from stdin 562B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.init
+#2 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile.init
+#2 transferring dockerfile: 168B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.13.12-slim
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 9.60kB 0.0s done
+#5 DONE 0.0s
+
+#6 [1/3] FROM docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8
+#6 resolve docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8 0.1s done
+#6 DONE 0.1s
+
+#7 [2/3] RUN pip install --no-cache-dir cryptography==46.0.5
+#7 CACHED
+
+#8 [3/3] COPY init.py /init.py
+#8 DONE 0.1s
+
+#9 exporting to image
+#9 exporting layers 0.1s done
+#9 exporting manifest sha256:220ac78fdc5319ff86fcbaf60b08ca4099b94c32ea1a3829b8b89c987d922269 0.0s done
+#9 exporting config sha256:b027809f4444ee2061d36fda030e54629875915ce82c6b1bf63748a61f54892d 0.0s done
+#9 exporting attestation manifest sha256:a1493f5196325ec41fc597892c3157adef165d0db0ae28e6591e1b10c5f4668c 0.0s done
+#9 exporting manifest list sha256:2dda1f448f71ca49ddfe443a9622f43e3b015d21fd3b767f207b870ed6ccf072
+#9 exporting manifest list sha256:2dda1f448f71ca49ddfe443a9622f43e3b015d21fd3b767f207b870ed6ccf072 0.0s done
+#9 naming to docker.io/library/supportops-lab-init:local done
+#9 unpacking to docker.io/library/supportops-lab-init:local 0.0s done
+#9 DONE 0.3s
+
+#10 resolving provenance for metadata file
+#10 DONE 0.0s
+ Image supportops-lab-init:local Built
+time="2026-10-22T21:53:12-03:00" level=warning msg="No services to build"
+time="2026-10-22T21:53:12-03:00" level=warning msg="No services to build"
+ Container supportops-lab-secrets-init-run-e70f2e965c1a Creating
+ Container supportops-lab-secrets-init-run-e70f2e965c1a Created
+Generated stable service credentials, database initialization, tenant realm and HTTPS certificate; secret values omitted.
+ Container supportops-lab-keycloak-1 Restarting
+ Container supportops-lab-keycloak-1 Started

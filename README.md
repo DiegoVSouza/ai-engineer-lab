@@ -30,3 +30,33 @@ python scripts/harness/check.py --root .
 python scripts/harness/new-project.py --help
 python harness-kit/bootstrap/harness_init.py --help
 ```
+
+## Run the SupportOps projects together
+
+With the six project repositories checked out under `projects/` and Docker Compose installed, run from this directory:
+
+```powershell
+python scripts/stack.py checkout
+docker compose up -d --build --wait --wait-timeout 300
+python scripts/stack.py credentials
+python scripts/stack.py check
+```
+
+`checkout` clones missing product repositories at the commits in `ops/stack/projects.lock.json` and verifies existing checkouts without changing them. Access to those Git repositories is required.
+
+The root Compose application runs P04 and P05 APIs/workers, P03 observability, and a persistent HTTPS Keycloak server. The package gate executes the installed P00 foundation, P01 orchestrator, and P02 toolkit before P05 starts. Each product keeps its own repository; the integration uses pinned wheels and existing Dockerfiles.
+
+| Service | Local URL |
+| --- | --- |
+| P05 API / Swagger | http://localhost:48000/docs |
+| P04 async API / Swagger | http://localhost:48004/docs |
+| Keycloak admin | https://localhost:38443/admin/ |
+| Grafana | http://localhost:43000 |
+| Prometheus | http://localhost:49090 |
+| Jaeger | http://localhost:46686 |
+
+Credentials and TLS keys are generated once in Docker volumes. `credentials` shows the local account passwords only when requested. P05 validates Keycloak tokens over verified internal HTTPS; its worker delegates to MCP with short-lived internal tokens. All published ports bind to loopback. P04's independent demo API has no identity layer and stays local.
+
+This stack uses `LLM_MODE=fake` and local SQS/SNS emulation. PostgreSQL, Keycloak identity, Redis, Grafana, and Prometheus data persist in named volumes. LocalStack broker messages and Jaeger traces are ephemeral; drain jobs before stopping the broker. Completed tasks remain in PostgreSQL. Model quality is PENDING.
+
+The initial Keycloak certificate uses a generated local CA. Export the public CA with `python scripts/stack.py ca` and trust it in your browser if needed. See the [Portuguese operator guide](docs/knowledge/self-hosted-stack.md) for login, tokens, port changes, persistence, and backup boundaries.

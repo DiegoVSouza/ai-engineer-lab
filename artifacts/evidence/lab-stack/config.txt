@@ -1,0 +1,4 @@
+COMMAND=docker compose config --quiet; inspect rendered port bindings
+EXIT_CODE=0
+OUTPUT:
+PASS: valid Compose application; every published port binds to 127.0.0.1.

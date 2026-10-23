@@ -1,0 +1,19 @@
+COMMAND=docker compose ps --all
+EXIT_CODE=0
+OUTPUT:
+supportops-lab-api-1 running healthy 0
+supportops-lab-broker-init-1 exited  0
+supportops-lab-grafana-1 running  0
+supportops-lab-jaeger-1 running  0
+supportops-lab-keycloak-1 running healthy 0
+supportops-lab-localstack-1 running healthy 0
+supportops-lab-mcp-1 running healthy 0
+supportops-lab-otel-1 running  0
+supportops-lab-p04-api-1 running healthy 0
+supportops-lab-p04-worker-1 running  0
+supportops-lab-packages-1 exited  0
+supportops-lab-postgres-1 running healthy 0
+supportops-lab-prometheus-1 running  0
+supportops-lab-redis-1 running healthy 0
+supportops-lab-secrets-init-1 exited  0
+supportops-lab-worker-1 running healthy 0

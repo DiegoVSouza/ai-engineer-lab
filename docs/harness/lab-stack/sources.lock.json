@@ -1,0 +1,32 @@
+{
+  "runtime": {
+    "docker_engine": "29.1.3",
+    "docker_compose": "5.0.1"
+  },
+  "images": {
+    "python": "python:3.13.12-slim",
+    "keycloak": "quay.io/keycloak/keycloak:26.8.1",
+    "postgres": "pgvector/pgvector:0.8.7-pg16",
+    "localstack": "localstack/localstack:4.14.0",
+    "collector": "otel/opentelemetry-collector-contrib:0.161.0",
+    "jaeger": "jaegertracing/jaeger:2.18.0",
+    "prometheus": "prom/prometheus:v3.14.0",
+    "grafana": "grafana/grafana:12.4.11"
+  },
+  "bootstrap_cryptography": "46.0.5",
+  "package_provenance": "projects/p05/docs/harness/sources.lock.json",
+  "references": [
+    "https://docs.docker.com/compose/how-tos/startup-order/",
+    "https://www.keycloak.org/server/containers",
+    "https://www.keycloak.org/server/hostname",
+    "https://www.keycloak.org/server/importExport",
+    "https://docs.localstack.cloud/user-guide/state-management/persistence/",
+    "https://www.keycloak.org/observability/health"
+  ],
+  "scope": "Existing approved pins reused; no claim that these are the latest available versions. Verified local startup and acceptance evidence is recorded separately.",
+  "bootstrap_dependencies": {
+    "cffi": "2.1.1",
+    "cryptography": "46.0.5",
+    "pycparser": "3.12"
+  }
+}
