@@ -13,7 +13,6 @@ x-product: &product
     MCP_URL: http://mcp:8000/mcp
     MCP_ISSUER: http://mcp:8000/issuer
     P05_REDIS_URL: redis://redis:6379/0
-    P05_LOCALSTACK_ENDPOINT: http://localstack:4566
     P05_QUEUE_NAME: lab-p05-tasks
     OTEL_EXPORTER_OTLP_ENDPOINT: http://otel:4317
     SUPPORTOPS_LANGGRAPH_DB: /app/artifacts/langgraph-checkpoints.sqlite
@@ -33,7 +32,9 @@ x-async: &async
     AWS_SECRET_ACCESS_KEY: test
     AWS_ENDPOINT_URL: http://localstack:4566
     P04_QUEUE_NAME: lab-p04-tasks
-    P04_DLQ_NAME: lab-p04-tasks-dlq
+    P04_DLQ_NAME: lab-p04-tasks:dlq
+    P04_REDIS_URL: redis://redis:6379/1
+    P04_VISIBILITY_TIMEOUT: "30"
     P04_TASK_CREATED_TOPIC_ARN: arn:aws:sns:us-east-1:000000000000:lab-task-created
     P04_TASK_COMPLETED_TOPIC_ARN: arn:aws:sns:us-east-1:000000000000:lab-task-completed
     P04_TASK_FAILED_TOPIC_ARN: arn:aws:sns:us-east-1:000000000000:lab-task-failed
@@ -107,12 +108,12 @@ services:
       test: [CMD, redis-cli, ping]
       interval: 3s
       retries: 30
+    ports: ["127.0.0.1:${LAB_REDIS_PORT:-46379}:6379"]
     restart: unless-stopped
   localstack:
     image: localstack/localstack:4.14.0
     environment:
-      SERVICES: sqs,sns
-      SQS_ENDPOINT_STRATEGY: dynamic
+      SERVICES: sns
       AWS_DEFAULT_REGION: us-east-1
     healthcheck:
       test: [CMD, curl, -fsS, http://localhost:4566/_localstack/health]
@@ -144,7 +145,6 @@ services:
     depends_on:
       postgres: {condition: service_healthy}
       redis: {condition: service_healthy}
-      localstack: {condition: service_healthy}
       keycloak: {condition: service_healthy}
       packages: {condition: service_completed_successfully}
     healthcheck:
@@ -190,6 +190,7 @@ services:
     ports: ["127.0.0.1:${LAB_ASYNC_PORT:-48004}:8000"]
     depends_on:
       postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
       broker-init: {condition: service_completed_successfully}
     healthcheck:
       test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8000/openapi.json')"]

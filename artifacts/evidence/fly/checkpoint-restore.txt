@@ -1,0 +1,9 @@
+Checkpoint directory: artifacts/checkpoints/pre-fly-final-20261023/ (local-only; Git-excluded; restricted ACL)
+
+Post-upgrade backup validation:
+- PostgreSQL cluster dump restored with exit code 0 in disposable pgvector/PostgreSQL 16; databases keycloak, p04, p05, postgres and template1 were present.
+- Redis RDB loaded with exit code 0 in a disposable Redis container; both logical databases loaded and the queue had no pending keys at capture time.
+- All 12 read-only Docker volume archives passed gzip/tar integrity checks.
+- Git bundles for P00-P05 passed `git bundle verify`.
+- SHA-256 manifest is maintained alongside the backup files.
+- Temporary restore containers were removed; the live local stack and its volumes remain running.

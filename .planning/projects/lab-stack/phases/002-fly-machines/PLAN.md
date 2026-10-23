@@ -1,6 +1,6 @@
 # PLAN — Fly.io portfolio deployment
 
-allowed_write_paths: `.planning/projects/lab-stack/**`; `docs/harness/lab-stack/**`; `docs/knowledge/**`; `fly/**`; `ops/fly/**`; `.gitignore`; `README.md`; project deployment files and product queue adapters explicitly owned by their own plans; `artifacts/evidence/fly/**`.
+allowed_write_paths: `.planning/projects/lab-stack/**`; `docs/harness/lab-stack/**`; `docs/knowledge/**`; `fly/**`; `ops/fly/**`; `ops/stack/tools.py`; `.gitignore`; `README.md`; project deployment files and product queue adapters explicitly owned by their own plans; `artifacts/evidence/fly/**`.
 
 forbidden: credentials in Git; public database/Redis ports; setting a fake monthly-cost claim; live paid model calls; deleting Docker volumes before verified backups; changing unrelated lab stacks.
 

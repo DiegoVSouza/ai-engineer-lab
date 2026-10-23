@@ -112,7 +112,7 @@ def check():
         require(p04.status_code==202,'P04 submission failed')
         p04_task=p04.json()['task_id']
         wait_task(client,'http://p04-api:8000/tasks/'+p04_task,{},'done')
-        print('PASS P04: independent API, PostgreSQL store, SQS broker and worker',flush=True)
+        print('PASS P04: independent API, PostgreSQL store, Redis Streams and worker',flush=True)
 
         response=client.post(BASE+'/revoke',data={'client_id':'supportops-api','client_secret':CREDENTIALS['client_secret'],
                                                  'token':own_token,'token_type_hint':'access_token'})
