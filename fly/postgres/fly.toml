@@ -1,0 +1,28 @@
+app = "supportops-lab-db"
+primary_region = "iad"
+
+[build]
+  dockerfile = "../../ops/fly/postgres/Dockerfile"
+
+[[mounts]]
+  source = "pg_data"
+  destination = "/data"
+  initial_size = "10gb"
+  snapshot_retention = 14
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory = "512mb"
+
+[env]
+  POSTGRES_USER = "postgres"
+  POSTGRES_DB = "postgres"
+  PGDATA = "/data/pgdata"
+
+[checks.postgres-ready]
+  type = "tcp"
+  port = 5432
+  interval = "15s"
+  timeout = "5s"
+  grace_period = "60s"

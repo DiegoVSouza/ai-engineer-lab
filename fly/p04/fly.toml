@@ -1,0 +1,48 @@
+app = "supportops-lab-p04"
+primary_region = "iad"
+
+[build]
+  dockerfile = "../../projects/p04/Dockerfile"
+
+[processes]
+  app = "uvicorn supportops_async.api.runtime:app --host 0.0.0.0 --port 8000"
+  worker = "python -m supportops_async.worker.cli"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  processes = ["app"]
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[http_service.checks]]
+  method = "GET"
+  path = "/openapi.json"
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "30s"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory = "256mb"
+  processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory = "256mb"
+  processes = ["worker"]
+
+[env]
+  LLM_MODE = "fake"
+  AWS_REGION = "us-east-1"
+  AWS_ENDPOINT_URL = "http://supportops-lab-sns.internal:4566"
+  P04_QUEUE_NAME = "supportops-p04-tasks"
+  P04_DLQ_NAME = "supportops-p04-tasks:dlq"
+  P04_VISIBILITY_TIMEOUT = "30"
+  P04_REDIS_URL = "redis://supportops-lab-redis.internal:6379/1"
+  P04_TASK_CREATED_TOPIC_ARN = "arn:aws:sns:us-east-1:000000000000:lab-task-created"
+  P04_TASK_COMPLETED_TOPIC_ARN = "arn:aws:sns:us-east-1:000000000000:lab-task-completed"
+  P04_TASK_FAILED_TOPIC_ARN = "arn:aws:sns:us-east-1:000000000000:lab-task-failed"

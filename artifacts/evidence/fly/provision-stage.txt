@@ -1,0 +1,71 @@
+**********************
+PowerShell transcript start
+Start time: 20261023143641
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+& ops/fly/deploy.ps1 -Action Stage
+Process ID: 18100
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+
+
+
+
+
+
+
+
+
+
+
+Staged 4 secrets for supportops-lab-db. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 1 secrets for supportops-lab-redis. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 6 secrets for supportops-lab-idp. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 2 secrets for supportops-lab-p04. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 9 secrets for supportops-lab-p05. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 6 secrets for supportops-lab-mcp. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+**********************
+PowerShell transcript end
+End time: 20261023143747
+**********************
+**********************
+PowerShell transcript start
+Start time: 20261023144310
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$tokens=$null; $errors=$null; [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path 'ops/fly/deploy.ps1'),[ref]$tokens,[ref]$errors) | Out-Null; if($errors.Count){$errors|Out-String|Write-Error;exit 1}; & ops/fly/deploy.ps1 -Action Stage
+Process ID: 32636
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Staged 4 secrets for supportops-lab-db. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 1 secrets for supportops-lab-redis. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 6 secrets for supportops-lab-idp. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 4 secrets for supportops-lab-p04. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 9 secrets for supportops-lab-p05. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 6 secrets for supportops-lab-mcp. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+**********************
+PowerShell transcript end
+End time: 20261023144337
+**********************

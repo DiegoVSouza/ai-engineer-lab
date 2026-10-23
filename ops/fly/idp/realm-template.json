@@ -1,0 +1,125 @@
+{
+  "realm": "supportops",
+  "enabled": true,
+  "sslRequired": "all",
+  "accessTokenLifespan": 300,
+  "roles": {
+    "realm": [
+      { "name": "agent" },
+      { "name": "approver" }
+    ]
+  },
+  "clientScopes": [
+    { "name": "ticket:read", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "ticket:write", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "task:read", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "task:write", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "triage:run", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "billing:read", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "crm:read", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "refund:request", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "feedback:write", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } },
+    { "name": "approval:decide", "protocol": "openid-connect", "attributes": { "include.in.token.scope": "true" } }
+  ],
+  "clients": [
+    {
+      "clientId": "supportops-api",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "secret": "__CLIENT_SECRET__",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": true,
+      "fullScopeAllowed": true,
+      "redirectUris": [ "https://supportops-lab-p05.fly.dev/*" ],
+      "optionalClientScopes": [
+        "ticket:read", "ticket:write", "task:read", "task:write", "triage:run",
+        "billing:read", "crm:read", "refund:request", "feedback:write", "approval:decide"
+      ],
+      "protocolMappers": [
+        {
+          "name": "mcp-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.custom.audience": "https://supportops-lab-mcp.fly.dev/mcp",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "tenant",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "config": {
+            "user.attribute": "tenant_id",
+            "claim.name": "tenant_id",
+            "jsonType.label": "String",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "roles",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "config": {
+            "claim.name": "roles",
+            "multivalued": "true",
+            "user.realmRole": "true",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        },
+        {
+          "name": "api-audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": {
+            "included.client.audience": "supportops-api",
+            "access.token.claim": "true",
+            "introspection.token.claim": "true"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "agent-a",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "agent-a@example.test",
+      "firstName": "Lab",
+      "lastName": "agent",
+      "requiredActions": [],
+      "attributes": { "tenant_id": [ "tenant-a" ] },
+      "realmRoles": [ "agent" ],
+      "credentials": [ { "type": "password", "value": "__AGENT_A_PASSWORD__", "temporary": false } ]
+    },
+    {
+      "username": "agent-b",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "agent-b@example.test",
+      "firstName": "Lab",
+      "lastName": "agent",
+      "requiredActions": [],
+      "attributes": { "tenant_id": [ "tenant-b" ] },
+      "realmRoles": [ "agent" ],
+      "credentials": [ { "type": "password", "value": "__AGENT_B_PASSWORD__", "temporary": false } ]
+    },
+    {
+      "username": "approver-a",
+      "enabled": true,
+      "emailVerified": true,
+      "email": "approver-a@example.test",
+      "firstName": "Lab",
+      "lastName": "approver",
+      "requiredActions": [],
+      "attributes": { "tenant_id": [ "tenant-a" ] },
+      "realmRoles": [ "approver" ],
+      "credentials": [ { "type": "password", "value": "__APPROVER_PASSWORD__", "temporary": false } ]
+    }
+  ]
+}

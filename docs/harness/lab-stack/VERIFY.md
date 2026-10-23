@@ -1,6 +1,6 @@
 # VERIFY â€” Unified local stack
 
-Status: PASS_LOCAL_SELF_HOSTED. The root stack remains running; model quality is PENDING.
+Status: PASS_LOCAL_AND_FLY. The root stack remains running; model quality is PENDING.
 
 | Gate | Command | Exit | Evidence |
 | --- | --- | ---: | --- |
@@ -15,4 +15,4 @@ Status: PASS_LOCAL_SELF_HOSTED. The root stack remains running; model quality is
 | Root harness | `python scripts/harness/check.py --root .` | 0 | `artifacts/evidence/lab-stack/harness.txt` |
 | Staged secret and key review | Compare staged blobs with generated credential values and private-key/bearer patterns | 0 | `artifacts/evidence/lab-stack/staged-review.txt` |
 
-The first acceptance exposed missing CA/leaf key identifier extensions required by Python 3.13 strict TLS. The generator now includes SKI/AKI; HTTPS verification remains enabled. Keycloak readiness now checks `/health/ready` rather than a listening socket. The local database and identity state survive full container recreation. LocalStack queues and Jaeger traces are ephemeral; no live model or public-hosting claim follows from these checks.
+The first acceptance exposed missing CA/leaf key identifier extensions required by Python 3.13 strict TLS. The generator now includes SKI/AKI; HTTPS verification remains enabled. Keycloak readiness now checks `/health/ready` rather than a listening socket. The local database and identity state survive full container recreation. LocalStack queues and Jaeger traces are ephemeral. Fly deployment, public endpoint, OIDC, queue, autostart and snapshot evidence is recorded in `.planning/projects/lab-stack/phases/002-fly-machines/VERIFY.md` and `artifacts/evidence/fly/`. Model evaluation remains PENDING.

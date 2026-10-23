@@ -1,0 +1,27 @@
+**********************
+PowerShell transcript start
+Start time: 20261023151005
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference='Stop'; $log='artifacts/evidence/fly/manual-volume-snapshots.txt'; Start-Transcript -Path $log -Force | Out-Null; try { $volumes=@(@('supportops-lab-db','vol_vjy78odkqoe3d1pv'),@('supportops-lab-redis','vol_45859pj32dn31m84'),@('supportops-lab-p05','vol_v3gxjkngoznzn0l4')); foreach($volume in $volumes){ $output=& fly volumes snapshots create $volume[1] --app $volume[0] 2>&1; $output|ForEach-Object{Write-Output $_.ToString()}; if($LASTEXITCODE -ne 0){throw "snapshot failed for $($volume[0])"} } } finally { Stop-Transcript | Out-Null }
+Process ID: 16088
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Scheduled to snapshot volume vol_vjy78odkqoe3d1pv
+Scheduled to snapshot volume vol_45859pj32dn31m84
+Scheduled to snapshot volume vol_v3gxjkngoznzn0l4
+**********************
+PowerShell transcript end
+End time: 20261023151011
+**********************

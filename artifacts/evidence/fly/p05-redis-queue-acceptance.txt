@@ -1,0 +1,4 @@
+initial_task_status=failed (test token omitted crm:read; MCP authorization correctly denied lookup_customer)
+retry_http=202
+retry_task_status=succeeded
+retry_attempts=1

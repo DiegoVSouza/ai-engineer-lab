@@ -22,15 +22,16 @@
     "pricing_docs": "https://docs.fly.io/about/pricing/",
     "pricing_checked": "2026-10-23",
     "iad_reference_usd_per_30_days": {
-      "shared-cpu-1x-256mb": 2.19,
-      "shared-cpu-1x-512mb": 3.69,
-      "shared-cpu-1x-1gb": 6.70,
+      "shared-cpu-1x-256mb": 2.02,
+      "shared-cpu-1x-512mb": 3.32,
+      "shared-cpu-1x-1gb": 5.92,
+      "shared-cpu-1x-2gb": 11.11,
       "volume_per_gb": 0.15,
       "volume_snapshots_per_stored_gb": 0.08,
       "volume_snapshot_free_stored_gb": 10
     },
     "autostop_finding": "Only Fly Proxy routed services can use request-based autostop/autostart; stopped/suspended Machines do not bill CPU/RAM, but rootfs, attached volumes, and snapshots may still incur charges. Workers and databases have no safe scale-to-zero path in the current design.",
-    "backup_finding": "New volumes have daily snapshots with five-day retention by default; database restore is still required for acceptance."
+    "backup_finding": "New volumes have daily snapshots with five-day retention by default. The lab sets 14-day retention and still needs an application-level restore drill."
   },
   "bootstrap_cryptography": "46.0.5",
   "package_provenance": "projects/p05/docs/harness/sources.lock.json",

@@ -1,0 +1,21 @@
+app = "supportops-lab-sns"
+primary_region = "iad"
+
+[build]
+  dockerfile = "../../ops/fly/sns/Dockerfile"
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory = "512mb"
+
+[env]
+  SERVICES = "sns"
+  AWS_DEFAULT_REGION = "us-east-1"
+
+[checks.localstack-ready]
+  type = "tcp"
+  port = 4566
+  interval = "15s"
+  timeout = "5s"
+  grace_period = "60s"

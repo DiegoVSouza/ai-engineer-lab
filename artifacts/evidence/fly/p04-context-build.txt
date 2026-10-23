@@ -1,0 +1,63 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 684B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.13.12-slim
+#2 DONE 0.1s
+
+#3 [internal] load metadata for ghcr.io/astral-sh/uv:0.12.7
+#3 DONE 1.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 118B done
+#4 DONE 0.0s
+
+#5 [builder 1/6] FROM docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8
+#5 resolve docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8 0.0s done
+#5 DONE 0.0s
+
+#6 [uv-bin 1/1] FROM ghcr.io/astral-sh/uv:0.12.7@sha256:95f2aa1fe59274951cfe9b0cbc7972e879ff1004bc8945d130a32eb0dbd85945
+#6 resolve ghcr.io/astral-sh/uv:0.12.7@sha256:95f2aa1fe59274951cfe9b0cbc7972e879ff1004bc8945d130a32eb0dbd85945 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 2.98kB done
+#7 DONE 0.0s
+
+#8 [builder 4/6] COPY pyproject.toml uv.lock README.md ./
+#8 CACHED
+
+#9 [builder 6/6] RUN uv sync --locked --no-dev
+#9 CACHED
+
+#10 [runtime 2/4] WORKDIR /app
+#10 CACHED
+
+#11 [runtime 3/4] RUN groupadd --system --gid 10001 app && useradd --system --uid 10001 --gid app --home-dir /app app
+#11 CACHED
+
+#12 [builder 3/6] WORKDIR /app
+#12 CACHED
+
+#13 [builder 2/6] COPY --from=uv-bin /uv /uvx /bin/
+#13 CACHED
+
+#14 [builder 5/6] COPY supportops_async ./supportops_async
+#14 CACHED
+
+#15 [runtime 4/4] COPY --from=builder --chown=app:app /app /app
+#15 CACHED
+
+#16 exporting to image
+#16 exporting layers done
+#16 exporting manifest sha256:c13c1dcc08019756eeb5a0b68c1960c0a914d301806508ba47e980cacdddb504 done
+#16 exporting config sha256:ba485bc2eaf6523bf767110b39133754ec1e20188119dfb7f47c7d4597e43550 done
+#16 exporting attestation manifest sha256:5fc92360a171658bcd6095edbcdbfb2decef5c4e6d34f97856db2b2c2ec154c2
+#16 exporting attestation manifest sha256:5fc92360a171658bcd6095edbcdbfb2decef5c4e6d34f97856db2b2c2ec154c2 0.0s done
+#16 exporting manifest list sha256:c2e66ee53126ae662719413c61f77945139188a971ebe3db95f911f3e3b28a21 0.0s done
+#16 naming to docker.io/library/supportops-p04:fly-context done
+#16 unpacking to docker.io/library/supportops-p04:fly-context done
+#16 DONE 0.2s
+exit_code=0

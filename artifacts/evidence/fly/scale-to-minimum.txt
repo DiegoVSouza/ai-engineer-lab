@@ -1,0 +1,28 @@
+**********************
+PowerShell transcript start
+Start time: 20261023145911
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$log='artifacts/evidence/fly/scale-to-minimum.txt'; Start-Transcript -Path $log -Force | Out-Null; try { $targets=@(@('supportops-lab-sns','app'),@('supportops-lab-jaeger','app'),@('supportops-lab-p04','app'),@('supportops-lab-p04','worker')); foreach($target in $targets){ fly scale count 1 --process-group $target[1] --app $target[0] --yes; if($LASTEXITCODE -ne 0){throw "scale count failed for $($target -join '/')"} } } finally { Stop-Transcript | Out-Null }
+Process ID: 25488
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+
+
+
+
+**********************
+PowerShell transcript end
+End time: 20261023145938
+**********************

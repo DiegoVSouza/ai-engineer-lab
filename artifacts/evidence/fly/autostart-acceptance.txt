@@ -1,0 +1,3 @@
+p04_wakeup_http=200
+p05_wakeup_http=200
+mcp_wakeup_http=200

@@ -1,0 +1,58 @@
+**********************
+PowerShell transcript start
+Start time: 20261023143749
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+& ops/fly/deploy.ps1 -Action Build
+Process ID: 19368
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+
+PS>TerminatingError(): "fly deploy C:\estudo\Golpe\lab\ops\fly\postgres --config C:\estudo\Golpe\lab\fly\postgres\fly.toml --app supportops-lab-db --remote-only --build-only --yes failed with exit code 1"
+**********************
+PowerShell transcript end
+End time: 20261023143755
+**********************
+**********************
+PowerShell transcript start
+Start time: 20261023143806
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+& ops/fly/deploy.ps1 -Action Build
+Process ID: 5628
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+
+
+
+
+
+
+
+
+**********************
+PowerShell transcript end
+End time: 20261023144226
+**********************

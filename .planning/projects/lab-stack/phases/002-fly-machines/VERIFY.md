@@ -1,17 +1,22 @@
 # VERIFY — Fly.io portfolio deployment
 
-Status: IN_PROGRESS; local Redis Streams acceptance and checkpoint restoration passed. Fly authentication is available; public apps have not been created or deployed yet.
+Status: PASS_FLY_DEPLOYED. Public and private app acceptance, local stack, and checkpoint restore gates passed. Model quality remains PENDING.
 
-The Fly Agent guide was fetched successfully on 2026-10-23 and directs deployment/public URLs to Machines, says to inspect existing apps first, keep credentials in Fly secrets, and verify deployment via status/logs. `fly auth whoami` exits 0. `fly apps list` showed nine existing personal apps; none are part of this lab and none were changed. No lab Fly app, machine, or volume has been created yet.
+The Fly Agent guide was fetched on 2026-10-23 and directs deployment to Machines, inspection of existing apps, secret storage, and verification through status/logs. `fly auth whoami` exited 0. Existing personal apps were inventoried and left untouched. Eight lab apps now run in `iad`, one machine per process group.
 
-The local unified Compose stack was rebuilt without removing its named volumes. P04 0.1.4 and P05 0.4.3 now use Redis Streams for delivery. `python scripts/stack.py check` exits 0 with OIDC API/MCP, tenant isolation, HITL, P04 Redis Streams worker, Keycloak revocation and P03 telemetry acceptance. Evidence: `artifacts/evidence/fly/local-compose-gate.txt`.
+P04/P05 public endpoints, OIDC tenant checks, MCP tenant authorization, Redis queue completion and request-based cold autostart passed. DB, Redis, SNS and Jaeger are private-only. PostgreSQL, Redis and P05 graph volumes have manual 14-day snapshots; daily snapshots are configured. The local checkpoint and Docker stack remain available for rollback. See `docs/harness/lab-stack/fly-deployment.md` for machine layout, approximate cost and recovery limits. The deployed mode is fake; no model-quality claim is made.
 
-The local-only checkpoint is `artifacts/checkpoints/pre-fly-final-20261023/`. It includes Git bundles, a full PostgreSQL cluster dump, Redis RDB and read-only archives of all 12 Compose volumes. The PostgreSQL dump restored successfully into a disposable pgvector/PostgreSQL 16 instance; Redis RDB loaded in a disposable Redis instance; all volume archives passed tar integrity checks. SHA-256 manifest and restricted Windows ACLs are present. Restore evidence: `artifacts/evidence/fly/checkpoint-restore.txt`. This checkpoint is excluded from Git.
+The local unified Compose stack was rebuilt without removing its named volumes. P04 0.1.4 and P05 0.4.3 use Redis Streams for delivery. `python scripts/stack.py check` exits 0 with local OIDC API/MCP, tenant isolation, HITL, durable workers and telemetry acceptance. Evidence: `artifacts/evidence/fly/local-compose-gate.txt`.
 
-No public data services, Fly machines, volumes or billable Fly resources have been created. Remaining gates: render/validate deployment configs, deploy only the new lab apps in `iad`, inspect health and public endpoints, and check Fly volume snapshots and persistence before considering cleanup of any lab Docker stack.
+The local-only checkpoint at `artifacts/checkpoints/pre-fly-final-20261023/` contains Git bundles, PostgreSQL dump, Redis RDB and archives of all 12 Compose volumes. Restore checks passed in disposable services; the checkpoint is excluded from Git and has restricted Windows ACLs. Evidence: `artifacts/evidence/fly/checkpoint-restore.txt`.
 
 | Gate | Command | Exit | Evidence |
 | --- | --- | ---: | --- |
-| Fly CLI identity | `fly auth whoami` | 0 | Interactive login approved; existing account apps inventoried |
 | Local Compose Redis Streams stack | `python scripts/stack.py check` | 0 | `artifacts/evidence/fly/local-compose-gate.txt` |
 | Checkpoint restore and volume archive integrity | Disposable PostgreSQL/Redis restores and tar checks | 0 | `artifacts/evidence/fly/checkpoint-restore.txt` |
+| Fly config/build/deploy | `ops/fly/deploy.ps1`; `fly config validate --strict` | 0 | `artifacts/evidence/fly/preflight-configs-builds.txt`; `provision-build.txt`; `provision-deploy.txt` |
+| OIDC, tenant separation, MCP authorization and queues | Public HTTP acceptance | 0 | `artifacts/evidence/fly/oidc-acceptance.txt`; `mcp-oidc-acceptance.txt`; `p04-redis-queue-acceptance.txt`; `p05-redis-queue-acceptance.txt` |
+| Cold autostart and machine inventory | Public wake-up checks; `fly machine list` | 0 | `artifacts/evidence/fly/autostart-acceptance.txt`; `final-resource-inventory.txt` |
+| Manual regional recovery points | `fly volumes snapshots create/list` for PostgreSQL, Redis and P05 | 0 | `artifacts/evidence/fly/manual-volume-snapshots.txt` |
+
+The local stack and old volumes were preserved. No live model evaluation ran; keep model-quality metrics PENDING until an evaluation run is recorded.

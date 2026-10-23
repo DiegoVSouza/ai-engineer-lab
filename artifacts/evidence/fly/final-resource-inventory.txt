@@ -1,0 +1,138 @@
+**********************
+PowerShell transcript start
+Start time: 20261023151732
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$log='artifacts/evidence/fly/final-resource-inventory.txt'; Start-Transcript -Path $log -Force | Out-Null; try { foreach($app in @('supportops-lab-db','supportops-lab-redis','supportops-lab-idp','supportops-lab-sns','supportops-lab-jaeger','supportops-lab-mcp','supportops-lab-p04','supportops-lab-p05')) { Write-Output "=== $app ==="; & fly status --app $app 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw "fly status failed for $app"} }; foreach($pair in @(@('supportops-lab-db','vol_vjy78odkqoe3d1pv'),@('supportops-lab-redis','vol_45859pj32dn31m84'),@('supportops-lab-p05','vol_v3gxjkngoznzn0l4'))){Write-Output "=== snapshots $($pair[0]) ==="; & fly volumes snapshots list $pair[1] --app $pair[0] 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw 'snapshot inventory failed'}}; Write-Output '=== public endpoints ==='; foreach($uri in @('https://supportops-lab-p04.fly.dev/openapi.json','https://supportops-lab-p05.fly.dev/healthz','https://supportops-lab-idp.fly.dev/realms/supportops/.well-known/openid-configuration')) { try { $response=Invoke-WebRequest -Uri $uri -TimeoutSec 120; Write-Output "$($response.StatusCode) $uri" } catch { Write-Output "FAILED $uri $($_.Exception.Message)"; throw } }; Write-Output '=== harness ==='; & python scripts/harness/check.py --root . 2>&1 | ForEach-Object { Write-Output $_.ToString() }; if($LASTEXITCODE -ne 0){throw 'harness check failed'} } finally { Stop-Transcript | Out-Null };
+Process ID: 32036
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+=== supportops-lab-db ===
+App
+ Name     │ supportops-lab-db
+ Owner    │ personal
+ Hostname │ supportops-lab-db.fly.dev
+ Image    │ supportops-lab-db:deployment-01M5MZE6AFT6KZAC80N3T3XKEF
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 897915b6697578 │ 2       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:13:17Z
+
+=== supportops-lab-redis ===
+App
+ Name     │ supportops-lab-redis
+ Owner    │ personal
+ Hostname │ supportops-lab-redis.fly.dev
+ Image    │ supportops-lab-redis:deployment-01M5MXTTWJRMS2ES7FQ01VHQNG
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 82d69df0799d98 │ 1       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T17:44:59Z
+
+=== supportops-lab-idp ===
+App
+ Name     │ supportops-lab-idp
+ Owner    │ personal
+ Hostname │ supportops-lab-idp.fly.dev
+ Image    │ supportops-lab-idp:deployment-01M5MZ39EJY3B1GCSEYD8H7P8F
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 851d7dc426de58 │ 2       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:07:19Z
+
+=== supportops-lab-sns ===
+App
+ Name     │ supportops-lab-sns
+ Owner    │ personal
+ Hostname │ supportops-lab-sns.fly.dev
+ Image    │ supportops-lab-sns:deployment-01M5MZKZP1EYFM0S7SC9A68BFT
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 85777d4a23e348 │ 2       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:16:39Z
+
+=== supportops-lab-jaeger ===
+App
+ Name     │ supportops-lab-jaeger
+ Owner    │ personal
+ Hostname │ supportops-lab-jaeger.fly.dev
+ Image    │ supportops-lab-jaeger:deployment-01M5MYG8S7A0R19QDKAMX962MH
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS │ LAST UPDATED
+ app     │ 83d59dfd799058 │ 1       │ iad    │ started │      │        │ 2026-10-23T17:56:40Z
+
+=== supportops-lab-mcp ===
+App
+ Name     │ supportops-lab-mcp
+ Owner    │ personal
+ Hostname │ supportops-lab-mcp.fly.dev
+ Image    │ supportops-lab-mcp:deployment-01M5MYM2NSTY0EBCNTNK3N1F98
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS │ LAST UPDATED
+ app     │ 2870421c554548 │ 1       │ iad    │ stopped │      │        │ 2026-10-23T18:16:56Z
+
+=== supportops-lab-p04 ===
+App
+ Name     │ supportops-lab-p04
+ Owner    │ personal
+ Hostname │ supportops-lab-p04.fly.dev
+ Image    │ supportops-lab-p04:deployment-01M5MZN74G79N5S0SXW0Y7CXWY
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 78452edf349568 │ 2       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:17:00Z
+ worker  │ 2879390f917e38 │ 2       │ iad    │ started │      │                    │ 2026-10-23T18:16:50Z
+
+=== supportops-lab-p05 ===
+App
+ Name     │ supportops-lab-p05
+ Owner    │ personal
+ Hostname │ supportops-lab-p05.fly.dev
+ Image    │ supportops-lab-p05:deployment-01M5MYN74QQF1R2FEB9Y0ZMT1E
+
+Machines
+ PROCESS │ ID             │ VERSION │ REGION │ STATE   │ ROLE │ CHECKS             │ LAST UPDATED
+ app     │ 830374f76154d8 │ 1       │ iad    │ started │      │ 1 total, 1 passing │ 2026-10-23T18:11:11Z
+ worker  │ 9080ee506ad508 │ 1       │ iad    │ started │      │                    │ 2026-10-23T18:01:36Z
+
+=== snapshots supportops-lab-db ===
+Snapshots
+ ID                         │ STATUS  │ STORED SIZE │ VOL SIZE │ CREATED AT    │ RETENTION DAYS
+ vs_709bL6VO3JnyUxDGqOA7lgV │ created │     291 MiB │   10 GiB │ 7 minutes ago │             14
+
+Total stored size: 291 MiB
+=== snapshots supportops-lab-redis ===
+Snapshots
+ ID                         │ STATUS  │ STORED SIZE │ VOL SIZE │ CREATED AT    │ RETENTION DAYS
+ vs_6jw1Dmka4v9t4GYmDGP4Jb4 │ created │      34 MiB │  1.0 GiB │ 7 minutes ago │             14
+
+Total stored size: 34 MiB
+=== snapshots supportops-lab-p05 ===
+Snapshots
+ ID                  │ STATUS  │ STORED SIZE │ VOL SIZE │ CREATED AT    │ RETENTION DAYS
+ vs_Ma1vgPLebnpYtY8Z │ created │      34 MiB │  1.0 GiB │ 7 minutes ago │             14
+
+Total stored size: 34 MiB
+=== public endpoints ===
+200 https://supportops-lab-p04.fly.dev/openapi.json
+200 https://supportops-lab-p05.fly.dev/healthz
+200 https://supportops-lab-idp.fly.dev/realms/supportops/.well-known/openid-configuration
+=== harness ===
+check: OK (0 erros, 0 avisos)
+**********************
+PowerShell transcript end
+End time: 20261023151810
+**********************

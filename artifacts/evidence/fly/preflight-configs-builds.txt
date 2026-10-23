@@ -1,0 +1,81 @@
+**********************
+PowerShell transcript start
+Start time: 20261023143559
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference='Stop'; $out = 'artifacts/evidence/fly'; New-Item -ItemType Directory -Force $out | Out-Null; $log = Join-Path $out 'preflight-configs-builds.txt'; Start-Transcript -Path $log -Force | Out-Null; try { $files = Get-ChildItem fly -Recurse -Filter fly.toml; foreach ($file in $files) { Write-Output "Validating $($file.FullName)"; fly config validate --strict --config $file.FullName; if ($LASTEXITCODE -ne 0) { throw "Fly config validation failed: $($file.FullName)" } }; $scripts = @('ops/fly/deploy.ps1','ops/fly/prepare-secrets.ps1'); foreach ($script in $scripts) { $tokens=$null; $errors=$null; [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $script),[ref]$tokens,[ref]$errors) | Out-Null; if ($errors.Count) { throw ($errors | Out-String) } }; & ops/fly/prepare-secrets.ps1 -Action Prepare; if ($LASTEXITCODE -ne 0) { throw 'Secret preparation failed' }; $builds = @(@('postgres','ops/fly/postgres'),@('redis','ops/fly/redis'),@('idp','ops/fly/idp'),@('sns','ops/fly/sns'),@('jaeger','ops/fly/jaeger')); foreach ($item in $builds) { docker build -t "supportops-fly-$($item[0]):preflight" $item[1]; if ($LASTEXITCODE -ne 0) { throw "Docker preflight failed for $($item[0])" } }; Write-Output 'Strict Fly config, PowerShell parser, private secret preparation, and all infra image builds passed.' } finally { Stop-Transcript | Out-Null }
+Process ID: 31544
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Validating C:\estudo\Golpe\lab\fly\idp\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\jaeger\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\mcp\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\p04\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\p05\fly.toml
+
+**********************
+PowerShell transcript end
+End time: 20261023143606
+**********************
+**********************
+PowerShell transcript start
+Start time: 20261023143617
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name:
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -Command try { [Console]::OutputEncoding=[System.Text.Encoding]::UTF8 } catch {}
+$ErrorActionPreference='Stop'; $out = 'artifacts/evidence/fly'; $log = Join-Path $out 'preflight-configs-builds.txt'; Start-Transcript -Path $log -Append | Out-Null; try { $files = Get-ChildItem fly -Recurse -Filter fly.toml; foreach ($file in $files) { Write-Output "Validating $($file.FullName)"; fly config validate --strict --config $file.FullName; if ($LASTEXITCODE -ne 0) { throw "Fly config validation failed: $($file.FullName)" } }; $scripts = @('ops/fly/deploy.ps1','ops/fly/prepare-secrets.ps1'); foreach ($script in $scripts) { $tokens=$null; $errors=$null; [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $script),[ref]$tokens,[ref]$errors) | Out-Null; if ($errors.Count) { throw ($errors | Out-String) } }; & ops/fly/prepare-secrets.ps1 -Action Prepare; $builds = @(@('postgres','ops/fly/postgres'),@('redis','ops/fly/redis'),@('idp','ops/fly/idp'),@('sns','ops/fly/sns'),@('jaeger','ops/fly/jaeger')); foreach ($item in $builds) { docker build -t "supportops-fly-$($item[0]):preflight" $item[1]; if ($LASTEXITCODE -ne 0) { throw "Docker preflight failed for $($item[0])" } }; Write-Output 'Strict Fly config, PowerShell parser, private secret preparation, and all infra image builds passed.' } finally { Stop-Transcript | Out-Null }
+Process ID: 9412
+PSVersion: 7.6.6
+PSEdition: Core
+GitCommitId: 7.6.6
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Validating C:\estudo\Golpe\lab\fly\idp\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\jaeger\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\mcp\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\p04\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\p05\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\postgres\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\redis\fly.toml
+
+Validating C:\estudo\Golpe\lab\fly\sns\fly.toml
+
+Created private Fly secrets and demo credentials in the local checkpoint directory. Values were not printed.
+
+
+
+
+
+Strict Fly config, PowerShell parser, private secret preparation, and all infra image builds passed.
+**********************
+PowerShell transcript end
+End time: 20261023143636
+**********************
