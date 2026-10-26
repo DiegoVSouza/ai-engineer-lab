@@ -1,5 +1,7 @@
 # Live readiness implementation status
 
+> Superseding update, 2026-10-26: use the [Luna correction handoff](luna-corrections/README.pt-BR.md), [SPEC](luna-corrections/SPEC.md), [PLAN](luna-corrections/PLAN.md) and [VERIFY](luna-corrections/VERIFY.md). The sections below are historical and superseded where they say the shared guard or P00 real adapter is absent. Both are implemented; root sanitized diagnostics commit is `8e5c82b2a8f2983a563b6bd1b920519090059783`. P00's preserved pilot attempted four requests: three graded failures and one operational failure. Phase 016 is planned, not implemented. P01–P05 real broad integrations, protected stage allocation, human review and final promotion gates remain incomplete. Paid authorization is USD 0; human review is deferred and pending. Do not resume the failed pilot after source changes. See the new handoff for authoritative next steps and actual usage.
+
 Overall status: **INCOMPLETE**. This coordination checklist references project-owned evidence; it does not authorize generation or replace project ledgers/reports. Small historical provider smoke tests do not constitute the broad campaign.
 
 ## Implemented preparation
