@@ -1,0 +1,10 @@
+command=PowerShell Test-Path each local Markdown link in .planning/llm-live-readiness/STATUS.md
+resolved_local_links=6
+exit_code=0
+command=git -C projects/p00 rev-parse HEAD
+p00_commit=eacec0086ad9ee484393085553cad0cef0822c14
+exit_code=0
+command=git -C projects/p05 rev-parse HEAD
+p05_commit=7d9c10d6d26c547455093e4e3c4a3407ef53d5f5
+exit_code=0
+live_campaign_status=INCOMPLETE; generation_not_authorized; no new Groq calls
