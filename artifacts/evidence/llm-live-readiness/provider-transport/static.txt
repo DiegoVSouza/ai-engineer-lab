@@ -1,0 +1,3 @@
+3 files already formatted
+format_exit_code=0
+command=python -S -m py_compile scripts/harness/live_provider_transport.py scripts/harness/test_live_provider_transport.py scripts/harness/live_free_account.py; exit_code=0

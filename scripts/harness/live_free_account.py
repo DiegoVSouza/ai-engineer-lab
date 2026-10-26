@@ -220,7 +220,13 @@ class SharedAccount:
                 if (row["event"] == "reserved" and row["status"] is not None) or (
                     row["event"] == "completed"
                     and row["status"]
-                    not in {"ok", "provider_error", "transport_error", "quota"}
+                    not in {
+                        "ok",
+                        "provider_error",
+                        "transport_error",
+                        "quota",
+                        "model_mismatch",
+                    }
                 ):
                     raise AccountBlocked("invalid_usage_event_status")
                 integer(row["ordinal"], 1)
@@ -327,6 +333,8 @@ class SharedAccount:
         limits = dict(self.policy["free_limits"])
         for row in rows:
             actual = self.usage(row)
+            if row["status"] == "model_mismatch":
+                raise AccountBlocked("provider_model_mismatch_requires_review")
             if (
                 actual["input_tokens"] > row["reserved_input"]
                 or actual["output_tokens"] > row["reserved_output"]
@@ -454,7 +462,13 @@ class SharedAccount:
         status="ok",
         feedback=None,
     ):
-        if status not in {"ok", "provider_error", "transport_error", "quota"}:
+        if status not in {
+            "ok",
+            "provider_error",
+            "transport_error",
+            "quota",
+            "model_mismatch",
+        }:
             raise AccountBlocked("invalid_sanitized_provider_status")
         for value in (input_tokens, output_tokens):
             if value is not None:
@@ -487,7 +501,9 @@ class SharedAccount:
             price = self.policy["pricing_per_million"]
             cost = (
                 None
-                if input_tokens is None or output_tokens is None
+                if input_tokens is None
+                or output_tokens is None
+                or status == "model_mismatch"
                 else str(
                     (
                         input_tokens * money(price["input_usd"])
@@ -547,8 +563,8 @@ def numbered_keys(root):
     return keys
 
 
-def catalog_preflight(root, *, request=urlopen):
-    keys = numbered_keys(root)
+def catalog_preflight(root, *, request=urlopen, keys=None):
+    keys = numbered_keys(root) if keys is None else keys
     valid = 0
     failures = {}
     for key in keys:

@@ -1,0 +1,18 @@
+test_accounted_single_attempt_reconciles_usage_without_content_logs (__main__.ProviderTests.test_accounted_single_attempt_reconciles_usage_without_content_logs) ... ok
+test_actual_usage_over_input_bound_is_retained_and_stops (__main__.ProviderTests.test_actual_usage_over_input_bound_is_retained_and_stops) ... ok
+test_authentication_failure_does_not_rotate_or_expose_response (__main__.ProviderTests.test_authentication_failure_does_not_rotate_or_expose_response) ... ok
+test_header_normalization_keeps_only_numeric_scope_correct_metadata (__main__.ProviderTests.test_header_normalization_keeps_only_numeric_scope_correct_metadata) ... ok
+test_invalid_usage_is_not_credited_as_zero (__main__.ProviderTests.test_invalid_usage_is_not_credited_as_zero) ... ok
+test_observed_model_mismatch_stops_all_later_attempts (__main__.ProviderTests.test_observed_model_mismatch_stops_all_later_attempts) ... ok
+test_output_caps_and_builtin_tools_cannot_be_enabled (__main__.ProviderTests.test_output_caps_and_builtin_tools_cannot_be_enabled) ... ok
+test_owner_opt_in_and_explicit_live_mode_precede_keys_or_writes (__main__.ProviderTests.test_owner_opt_in_and_explicit_live_mode_precede_keys_or_writes) ... ok
+test_provider_quota_never_rotates_keys_or_retries (__main__.ProviderTests.test_provider_quota_never_rotates_keys_or_retries) ... ok
+test_schema_tools_and_multibyte_text_are_in_full_input_bound (__main__.ProviderTests.test_schema_tools_and_multibyte_text_are_in_full_input_bound) ... ok
+test_semantic_output_and_truncation_are_returned_once_for_product_grading (__main__.ProviderTests.test_semantic_output_and_truncation_are_returned_once_for_product_grading) ... ok
+test_transport_timeout_keeps_full_reservation (__main__.ProviderTests.test_transport_timeout_keeps_full_reservation) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.562s
+
+OK
+command=python -S scripts/harness/test_live_provider_transport.py -v; exit_code=0
