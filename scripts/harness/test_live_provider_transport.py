@@ -9,7 +9,13 @@ from pathlib import Path
 from urllib.error import HTTPError, URLError
 
 from live_free_account import MODEL, AccountBlocked, SharedAccount
-from live_provider_transport import ProviderSession, duration, encode_payload, feedback
+from live_provider_transport import (
+    ProviderSession,
+    duration,
+    encode_payload,
+    error_diagnostic,
+    feedback,
+)
 
 POLICY = json.loads(
     (
@@ -212,6 +218,66 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual(result["reason"], "credential")
         self.assertEqual(len(self.posts), 1)
         self.assertNotIn("private", json.dumps(result))
+
+    def test_json_generation_failure_keeps_categorical_code_without_failed_content(
+        self,
+    ):
+        session = self.session()
+        body = {
+            "error": {
+                "code": "json_validate_failed",
+                "message": "PRIVATE_DIAGNOSTIC",
+                "failed_generation": "PRIVATE_GENERATION",
+            }
+        }
+        self.failure = HTTPError(
+            "https://api.groq.com/openai/v1/chat/completions",
+            400,
+            "private error",
+            {},
+            io.BytesIO(json.dumps(body).encode()),
+        )
+        result = session.complete(self.envelope)
+        self.assertEqual(
+            (result["reason"], result["http_status"], result["provider_error_code"]),
+            ("output_schema", 400, "json_validate_failed"),
+        )
+        self.assertNotIn("PRIVATE", json.dumps(result))
+        self.assertEqual(len(self.posts), 1)
+        self.assertEqual(
+            session.account.snapshot()["cumulative_accounted_usage"]["output_tokens"],
+            "256",
+        )
+
+    def test_error_taxonomy_preserves_only_allowlisted_codes(self):
+        examples = [
+            (400, "tool_use_failed", "tool_selection"),
+            (400, "context_length_exceeded", "request_schema"),
+            (401, "invalid_api_key", "credential"),
+            (403, "model_permission_blocked", "model_access"),
+            (429, "insufficient_quota", "quota"),
+            (429, "rate_limit_exceeded", "rate_limit"),
+            (503, None, "transport"),
+            (408, None, "transport"),
+            (409, None, "transport"),
+            (400, "PRIVATE_SECRET_CODE", "request_schema"),
+        ]
+        for status, code, category in examples:
+            with self.subTest(status=status, code=code):
+                diagnostic = error_diagnostic(
+                    status,
+                    json.dumps(
+                        {
+                            "error": {
+                                "code": code,
+                                "message": "PRIVATE_DIAGNOSTIC",
+                                "failed_generation": "PRIVATE_BODY",
+                            }
+                        }
+                    ).encode(),
+                )
+                self.assertEqual(diagnostic[0], category)
+                self.assertNotIn("PRIVATE", json.dumps(diagnostic))
 
     def test_semantic_output_and_truncation_are_returned_once_for_product_grading(self):
         session = self.session()

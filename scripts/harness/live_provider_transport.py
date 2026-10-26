@@ -25,6 +25,62 @@ from live_free_account import (
 )
 
 MAX_PROTOCOL_BYTES = 131072
+PROVIDER_ERROR_CODES = {
+    "json_validate_failed": "output_schema",
+    "tool_use_failed": "tool_selection",
+    "context_length_exceeded": "request_schema",
+    "invalid_request_error": "request_schema",
+    "invalid_api_key": "credential",
+    "authentication_error": "credential",
+    "model_not_found": "model_access",
+    "model_permission_blocked": "model_access",
+    "rate_limit_exceeded": "rate_limit",
+    "insufficient_quota": "quota",
+    "billing_hard_limit_reached": "quota",
+    "blocked_api_access": "quota",
+}
+
+
+def error_diagnostic(status, raw):
+    try:
+        parsed = json.loads(raw)
+        error = parsed.get("error", {}) if isinstance(parsed, dict) else {}
+    except (ValueError, TypeError):
+        error = {}
+    code = error.get("code") if isinstance(error, dict) else None
+    code = code if isinstance(code, str) and code in PROVIDER_ERROR_CODES else "OTHER"
+    message = (
+        error.get("message", "")
+        if isinstance(error, dict)
+        else raw.decode("utf-8", errors="replace")
+    )
+    message = message.lower() if isinstance(message, str) else ""
+    if status in {401, 403}:
+        category = (
+            "model_access" if code == "model_permission_blocked" else "credential"
+        )
+    elif code in {
+        "insufficient_quota",
+        "billing_hard_limit_reached",
+        "blocked_api_access",
+    } or (
+        status == 429
+        and any(term in message for term in ("per day", "daily", "insufficient_quota"))
+    ):
+        category = "quota"
+    elif status == 429:
+        category = "rate_limit"
+    elif code in PROVIDER_ERROR_CODES:
+        category = PROVIDER_ERROR_CODES[code]
+    elif status == 404:
+        category = "model_access"
+    else:
+        category = (
+            "transport"
+            if status in {408, 409, 499} or status >= 500
+            else "request_schema"
+        )
+    return category, code
 
 
 class NoRedirect(HTTPRedirectHandler):
@@ -251,32 +307,20 @@ class ProviderSession:
         except HTTPError as exc:
             observed_limits = feedback(exc.headers or {})
             status = exc.code
-            # Classify quota without persisting body, exception text or headers.
-            body = exc.read(65536).lower()
-            is_quota = status == 429 and any(
-                term in body for term in (b"per day", b"daily", b"insufficient_quota")
-            )
+            # Only whitelisted categorical codes survive this boundary.
+            category, code = error_diagnostic(status, exc.read(65536))
             exc.close()
             self.account.complete(
                 self.project,
                 attempt,
-                status="quota" if is_quota else "provider_error",
+                status="quota" if category == "quota" else "provider_error",
                 feedback=observed_limits,
-            )
-            category = (
-                "quota"
-                if is_quota
-                else {
-                    401: "credential",
-                    403: "credential",
-                    429: "rate_limit",
-                    404: "model_access",
-                }.get(status, "request_schema" if status < 500 else "transport")
             )
             return {
                 "status": "INCOMPLETE",
                 "reason": category,
                 "http_status": status,
+                "provider_error_code": code,
                 "attempt_id": attempt,
             }
         except (URLError, OSError, TimeoutError):
