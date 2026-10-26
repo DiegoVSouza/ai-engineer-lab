@@ -1,0 +1,20 @@
+test_live_campaign_dryrun (unittest.loader._FailedTest.test_live_campaign_dryrun) ... ERROR
+
+======================================================================
+ERROR: test_live_campaign_dryrun (unittest.loader._FailedTest.test_live_campaign_dryrun)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_live_campaign_dryrun
+Traceback (most recent call last):
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\unittest\loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_campaign_dryrun.py", line 6, in <module>
+    from live_campaign_dryrun import summarize_project, validate_payload
+ModuleNotFoundError: No module named 'live_campaign_dryrun'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+exit_code=1
+Note: invocation form was incorrect for this script import layout; direct script invocation passed all five tests (tests.txt).

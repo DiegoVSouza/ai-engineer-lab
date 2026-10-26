@@ -12,21 +12,14 @@
     "primary_max_calls": 3150
   },
   "planned_tokens": {
-    "confirmation_input": null,
-    "confirmation_output": null,
-    "primary_input": null,
-    "primary_output": null
+    "confirmation_input": 2826240,
+    "confirmation_output": 353280,
+    "primary_input": 11182080,
+    "primary_output": 1397760
   },
   "project_count": 6,
   "provider_accessed": false,
-  "reservation_gaps": [
-    "p00.confirmation_input token ceiling missing from project dry-run contract",
-    "p00.confirmation_output token ceiling missing from project dry-run contract",
-    "p05.primary_input token ceiling missing from project dry-run contract",
-    "p05.primary_output token ceiling missing from project dry-run contract",
-    "p05.confirmation_input token ceiling missing from project dry-run contract",
-    "p05.confirmation_output token ceiling missing from project dry-run contract"
-  ],
+  "reservation_gaps": [],
   "shared_blockers": [
     "Groq account free-tier quota evidence: PENDING",
     "Shared cumulative request/input/output/spend ceilings: PENDING",
@@ -37,3 +30,5 @@
   "status": "INCOMPLETE",
   "unique_semantic_cases": 390
 }
+exit_code=0
+P05 token contract source commit: 52bd868d99169eff4df2acf084832a71ab32d8bf

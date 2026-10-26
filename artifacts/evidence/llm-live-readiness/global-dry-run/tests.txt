@@ -1,5 +1,11 @@
-.....
+test_accepts_p05_legacy_plan_names (__main__.AggregateDryRunTests.test_accepts_p05_legacy_plan_names) ... ok
+test_all_six_project_plan_shapes_normalize (__main__.AggregateDryRunTests.test_all_six_project_plan_shapes_normalize) ... ok
+test_missing_confirmation_is_not_reported_as_zero (__main__.AggregateDryRunTests.test_missing_confirmation_is_not_reported_as_zero) ... ok
+test_normalizes_supported_project_reservation_shapes (__main__.AggregateDryRunTests.test_normalizes_supported_project_reservation_shapes) ... ok
+test_payload_validation_rejects_failure_malformed_flags_and_missing_caps (__main__.AggregateDryRunTests.test_payload_validation_rejects_failure_malformed_flags_and_missing_caps) ... ok
+
 ----------------------------------------------------------------------
 Ran 5 tests in 0.001s
 
 OK
+exit_code=0

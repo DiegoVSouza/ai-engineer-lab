@@ -15,7 +15,9 @@ Projects: 6/6; unique semantic cases: 390.
 
 Aggregate planned calls: pilot 84, primary 3150, confirmation 840, all additive 4074.
 
-Token ceilings: primary input=PENDING, primary output=PENDING, confirmation input=PENDING, confirmation output=PENDING.
+Token ceilings: primary input=11182080, primary output=1397760, confirmation input=2826240, confirmation output=353280.
+
+If confirmation is additive after primary, total reserved ceiling is input=14008320 and output=1751040 tokens. Project token reservation contracts are complete (`reservation_gaps=[]`). These are conservative maxima, not approved account quota or budget.
 
 Shared blockers:
 
@@ -24,11 +26,5 @@ Shared blockers:
 - Cross-project account-wide ledger and lease enforcement: PENDING
 - Independent reviewer approval and human review capacity: PENDING
 - Authenticated model catalog preflight: REQUIRED BEFORE GENERATION
-- Reservation gap: p00.confirmation_input token ceiling missing from project dry-run contract.
-- Reservation gap: p00.confirmation_output token ceiling missing from project dry-run contract.
-- Reservation gap: p05.primary_input token ceiling missing from project dry-run contract.
-- Reservation gap: p05.primary_output token ceiling missing from project dry-run contract.
-- Reservation gap: p05.confirmation_input token ceiling missing from project dry-run contract.
-- Reservation gap: p05.confirmation_output token ceiling missing from project dry-run contract.
 
 No provider or Docker access occurred.
