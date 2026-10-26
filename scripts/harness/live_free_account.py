@@ -390,7 +390,7 @@ class SharedAccount:
             ):
                 raise AccountBlocked(f"free_token_{suffix}_checkpoint")
 
-    def reserve(
+    def _prepare_reservation(
         self, project, campaign, case_id, trial, call_index, input_tokens, output_tokens
     ):
         caps = self.policy["projects"].get(project)
@@ -412,21 +412,83 @@ class SharedAccount:
             input_tokens * money(price["input_usd"])
             + output_tokens * money(price["output_usd"])
         ) / 1000000
+        return cost
+
+    def _approve(
+        self,
+        project,
+        campaign,
+        case_id,
+        trial,
+        call_index,
+        input_tokens,
+        output_tokens,
+        cost,
+    ):
+        rows = self._history()
+        if project not in self._references():
+            raise AccountBlocked("owning_project_not_initialized")
+        if any(row["event"] == "reserved" for row in rows):
+            raise AccountBlocked("uncertain_attempt_requires_reconciliation")
+        if any(
+            row["project"] == project
+            and (row["campaign"], row["case_id"], row["trial"], row["call_index"])
+            == (campaign, case_id, trial, call_index)
+            for row in rows
+        ):
+            raise AccountBlocked("attempt_already_reserved_or_completed")
+        self._check(
+            rows,
+            project,
+            {
+                "requests": 1,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "estimated_cost_usd": cost,
+            },
+        )
+        return rows
+
+    def preview(
+        self, project, campaign, case_id, trial, call_index, input_tokens, output_tokens
+    ):
+        cost = self._prepare_reservation(
+            project, campaign, case_id, trial, call_index, input_tokens, output_tokens
+        )
         with machine_lease(self.lock):
-            rows = self._history()
-            if project not in self._references():
-                raise AccountBlocked("owning_project_not_initialized")
-            if any(row["event"] == "reserved" for row in rows):
-                raise AccountBlocked("uncertain_attempt_requires_reconciliation")
-            self._check(
-                rows,
+            self._approve(
                 project,
-                {
-                    "requests": 1,
-                    "input_tokens": input_tokens,
-                    "output_tokens": output_tokens,
-                    "estimated_cost_usd": cost,
-                },
+                campaign,
+                case_id,
+                trial,
+                call_index,
+                input_tokens,
+                output_tokens,
+                cost,
+            )
+        return {
+            "status": "approved",
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens,
+            "estimated_cost_usd": str(cost),
+        }
+
+    def reserve(
+        self, project, campaign, case_id, trial, call_index, input_tokens, output_tokens
+    ):
+        cost = self._prepare_reservation(
+            project, campaign, case_id, trial, call_index, input_tokens, output_tokens
+        )
+        with machine_lease(self.lock):
+            rows = self._approve(
+                project,
+                campaign,
+                case_id,
+                trial,
+                call_index,
+                input_tokens,
+                output_tokens,
+                cost,
             )
             attempt = uuid.uuid4().hex
             try:

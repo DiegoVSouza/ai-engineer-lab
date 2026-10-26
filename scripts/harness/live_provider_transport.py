@@ -186,6 +186,19 @@ class ProviderSession:
             raise AccountBlocked("authenticated_model_catalog_incomplete")
         self.account.register(project)
 
+    def preview(self, envelope):
+        caps = self.account.policy["projects"][self.project]
+        _, input_bound, output_bound = encode_payload(envelope.get("payload"), caps)
+        return self.account.preview(
+            self.project,
+            envelope["campaign_id"],
+            envelope["case_id"],
+            envelope["trial"],
+            envelope["call_index"],
+            input_bound,
+            output_bound,
+        )
+
     def complete(self, envelope):
         if not isinstance(envelope, dict) or set(envelope) - {
             "campaign_id",
@@ -375,7 +388,15 @@ def main(argv=None):
             if len(line) > MAX_PROTOCOL_BYTES or not line.endswith(b"\n"):
                 raise AccountBlocked("invalid_protocol_frame")
             try:
-                response = session.complete(json.loads(line))
+                envelope = json.loads(line)
+                operation = envelope.pop("operation", "complete")
+                if operation not in {"preview", "complete"}:
+                    raise AccountBlocked("unknown_protocol_operation")
+                response = (
+                    session.preview(envelope)
+                    if operation == "preview"
+                    else session.complete(envelope)
+                )
             except AccountBlocked as exc:
                 response = {"status": "INCOMPLETE", "reason": str(exc)}
             print(json.dumps(response, ensure_ascii=False), flush=True)

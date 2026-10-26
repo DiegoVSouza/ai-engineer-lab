@@ -7,12 +7,13 @@ test_observed_model_mismatch_stops_all_later_attempts (__main__.ProviderTests.te
 test_output_caps_and_builtin_tools_cannot_be_enabled (__main__.ProviderTests.test_output_caps_and_builtin_tools_cannot_be_enabled) ... ok
 test_owner_opt_in_and_explicit_live_mode_precede_keys_or_writes (__main__.ProviderTests.test_owner_opt_in_and_explicit_live_mode_precede_keys_or_writes) ... ok
 test_provider_quota_never_rotates_keys_or_retries (__main__.ProviderTests.test_provider_quota_never_rotates_keys_or_retries) ... ok
+test_reservation_preview_checks_limits_without_consuming_or_dispatching (__main__.ProviderTests.test_reservation_preview_checks_limits_without_consuming_or_dispatching) ... ok
 test_schema_tools_and_multibyte_text_are_in_full_input_bound (__main__.ProviderTests.test_schema_tools_and_multibyte_text_are_in_full_input_bound) ... ok
 test_semantic_output_and_truncation_are_returned_once_for_product_grading (__main__.ProviderTests.test_semantic_output_and_truncation_are_returned_once_for_product_grading) ... ok
 test_transport_timeout_keeps_full_reservation (__main__.ProviderTests.test_transport_timeout_keeps_full_reservation) ... ok
 
 ----------------------------------------------------------------------
-Ran 12 tests in 0.562s
+Ran 13 tests in 0.629s
 
 OK
 command=python -S scripts/harness/test_live_provider_transport.py -v; exit_code=0

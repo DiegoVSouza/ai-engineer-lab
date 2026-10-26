@@ -20,7 +20,7 @@ test_unknown_usage_keeps_reservation_and_blocks_until_reconciled (__main__.Accou
 test_usage_is_append_only_and_logs_contain_no_provider_content (__main__.AccountTests.test_usage_is_append_only_and_logs_contain_no_provider_content) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 2.140s
+Ran 20 tests in 2.038s
 
 OK
 command=python -S scripts/harness/test_live_free_account.py -v; exit_code=0

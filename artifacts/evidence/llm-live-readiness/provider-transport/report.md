@@ -2,7 +2,9 @@
 
 Offline transport result: PASS. Real campaign/project integration: INCOMPLETE.
 
-`python -S scripts/harness/test_live_provider_transport.py -v`: exit 0, 12 tests passed. `python -S scripts/harness/test_live_free_account.py -v`: exit 0, 20 guard regressions passed. Lint, format and compilation passed; initial import-order lint failure remains preserved.
+`python -S scripts/harness/test_live_provider_transport.py -v`: exit 0, 13 tests passed. `python -S scripts/harness/test_live_free_account.py -v`: exit 0, 20 guard regressions passed. Lint, format and compilation passed; initial import-order lint failure remains preserved.
+
+A read-only preview operation validates the full rendered reservation against all project logs before a launcher reserves a logical trial. Preview never grants a consumable token or increments usage; actual reservation rechecks atomically. Capacity exhaustion can therefore stop a chunk before creating an unnecessary uncertain local trial.
 
 Tests prove opt-in/live mode precede credentials/storage, a full durable input/output reservation exists before POST, rendered schemas/tools and Unicode bytes count toward input limits, original output caps and fixed model cannot be overridden, hidden reasoning is excluded, failed/unknown usage remains charged, and quota/credential/transport/model mismatch/usage overrun stop without retry. A truncated/semantically wrong observation returns once for the owning product grader rather than resampling.
 

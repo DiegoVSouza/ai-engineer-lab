@@ -121,6 +121,18 @@ class ProviderTests(unittest.TestCase):
         self.assertNotIn(b"never store", content)
         self.assertNotIn(b"synthetic-a", content)
 
+    def test_reservation_preview_checks_limits_without_consuming_or_dispatching(self):
+        self.policy["campaign_caps"]["requests"] = 1
+        session = self.session()
+        for _ in range(3):
+            self.assertEqual(session.preview(self.envelope)["status"], "approved")
+        self.assertEqual(session.account.snapshot()["accounted_attempts"], 0)
+        self.assertEqual(self.posts, [])
+        session.complete(self.envelope)
+        self.envelope["case_id"] = "case-2"
+        with self.assertRaisesRegex(AccountBlocked, "cumulative_account"):
+            session.preview(self.envelope)
+
     def test_owner_opt_in_and_explicit_live_mode_precede_keys_or_writes(self):
         (self.root / ".env").unlink()
         with self.assertRaisesRegex(AccountBlocked, "explicit_live"):

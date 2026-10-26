@@ -1,6 +1,6 @@
 # Plan
 
-- allowed_write_paths: `.planning/llm-live-readiness/phases/003-accounted-provider-transport/**`, `scripts/harness/live_provider_transport.py`, `scripts/harness/test_live_provider_transport.py`, `scripts/harness/live_free_account.py` (catalog over the same in-memory numbered key set), `artifacts/evidence/llm-live-readiness/provider-transport/**`.
+- allowed_write_paths: `.planning/llm-live-readiness/phases/003-accounted-provider-transport/**`, `scripts/harness/live_provider_transport.py`, `scripts/harness/test_live_provider_transport.py`, `scripts/harness/live_free_account.py` (catalog over the same in-memory numbered key set, model-mismatch stop and read-only reservation preview), `artifacts/evidence/llm-live-readiness/provider-transport/**`.
 - llm_mode: fake for simulated HTTP; the live protocol requires explicit live mode and a project-owned enabled/synthetic execution manifest. No production project writes/generation in this foundation phase.
 - forbidden_changes: `.env`, product sources/artifacts/configs, account caps/policy, existing services, datasets/rubrics, public effects, paid usage and raw provider logs/cassettes.
 - Validation: tests for reservation-before-request, exact full-payload bounds, model/usage/schema failures, transport/quota, no automatic retries, sanitized headers/errors, owner opt-in and metadata-only session startup; run prior guard regressions plus lint/format/compile.

@@ -5,6 +5,6 @@
 - [x] Known usage reconciles, unknown usage stays charged, observed bound overrun and model mismatch prevent later attempts across projects.
 - [x] Quota/transport/permanent errors never retry or expose content/credentials/raw headers; generation redirects are refused.
 - [x] JSON-lines protocol carries only transient synthetic output; artifacts contain sanitized evidence. No production project opt-in exists in this phase and no generation was performed.
-- [x] Twelve transport tests and twenty prior guard tests pass, exit 0. Lint, format and compilation pass; initial import-order lint failure was retained.
+- [x] Thirteen transport tests and twenty prior guard tests pass, exit 0. Read-only account preview rejects exhausted capacity before a launcher reserves its logical trial; actual provider reservation rechecks atomically. Lint, format and compilation pass; initial import-order lint failure was retained.
 - [x] Staged implementation paths and evidence reviewed for local commit.
 - [ ] Independent clean-context verification remains pending.
