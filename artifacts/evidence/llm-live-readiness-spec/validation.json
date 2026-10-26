@@ -1,0 +1,18 @@
+{
+  "command": "C:\\estudo\\Golpe\\lab\\projects\\p00\\.venv\\Scripts\\python.exe -c \"from pathlib import Path\nimport re,sys,subprocess,json\nroot=Path.cwd(); folder=root/\\\".planning/llm-live-readiness\\\"\nchecks={}\nrequired=[\\\"SPEC.md\\\",\\\"PLAN.md\\\",\\\"VERIFY.md\\\",\\\"README.pt-BR.md\\\"]\nchecks[\\\"required_documents\\\"]=all((folder/n).is_file() for n in required)\nrows=[(12,28,40,1),(18,42,60,4),(24,56,80,1),(9,21,30,1),(18,42,60,3),(36,84,120,4)]\nchecks[\\\"split_arithmetic\\\"]=all(a+b==c for a,b,c,_ in rows) and sum(a for a,_,_,_ in rows)==117 and sum(b for _,b,_,_ in rows)==273\nchecks[\\\"campaign_arithmetic\\\"]=sum(c for _,_,c,_ in rows)==390 and sum(c*3 for _,_,c,_ in rows)==1170 and sum(c*3*n for _,_,c,n in rows)==3150\nchecks[\\\"local_links\\\"]=all((folder/target).is_file() for name in required for target in re.findall(r\\\"\\]\\(([^)#]+)\\)\\\",(folder/name).read_text(encoding=\\\"utf-8\\\")) if not target.startswith(\\\"http\\\"))\nanchors={\\\"p00\\\":\\\"scripts/smoke_groq.py\\\",\\\"p01\\\":\\\"scripts/run_live_groq_eval.py\\\",\\\"p02\\\":\\\"scripts/run_live_groq_eval.py\\\",\\\"p03\\\":\\\"scripts/run_live_groq_eval.py\\\",\\\"p04\\\":\\\"scripts/run_live_service_eval.py\\\",\\\"p05\\\":\\\"scripts/check_live_services.py\\\"}\nchecks[\\\"existing_live_entrypoints\\\"]=all((root/\\\"projects\\\"/p/f).is_file() for p,f in anchors.items())\ntext=\\\"\\n\\\".join((folder/n).read_text(encoding=\\\"utf-8\\\") for n in required)\nchecks[\\\"no_key_literals\\\"]=not bool(re.search(r\\\"gsk_[A-Za-z0-9]{20,}|sk-proj-[A-Za-z0-9]{20,}\\\",text))\nchecks[\\\"no_product_changes\\\"]=not bool(subprocess.check_output([\\\"git\\\",\\\"diff\\\",\\\"--name-only\\\"],text=True).strip())\nchecks[\\\"spec_covers_all_products\\\"]=all(p in (folder/\\\"SPEC.md\\\").read_text() for p in anchors)\nassert all(checks.values()),checks\nout=root/\\\"artifacts/evidence/llm-live-readiness-spec\\\";out.mkdir(parents=True,exist_ok=True)\nreport={\\\"command\\\":subprocess.list2cmdline(sys.orig_argv),\\\"exit_code\\\":0,\\\"checks\\\":checks,\\\"delivery\\\":\\\"documentation only\\\",\\\"provider_calls\\\":0,\\\"docker_mutations\\\":0,\\\"campaign_status\\\":\\\"PENDING implementation\\\"}\n(out/\\\"validation.json\\\").write_bytes((json.dumps(report,indent=2)+\\\"\\n\\\").encode())\nprint(json.dumps({k:v for k,v in report.items() if k!=\\\"command\\\"},indent=2))\n\"",
+  "exit_code": 0,
+  "checks": {
+    "required_documents": true,
+    "split_arithmetic": true,
+    "campaign_arithmetic": true,
+    "local_links": true,
+    "existing_live_entrypoints": true,
+    "no_key_literals": true,
+    "no_product_changes": true,
+    "spec_covers_all_products": true
+  },
+  "delivery": "documentation only",
+  "provider_calls": 0,
+  "docker_mutations": 0,
+  "campaign_status": "PENDING implementation"
+}
