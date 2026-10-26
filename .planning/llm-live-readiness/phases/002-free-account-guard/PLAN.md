@@ -1,6 +1,6 @@
 # Plan
 
-- allowed_write_paths: `.planning/llm-live-readiness/phases/002-free-account-guard/**`, `.planning/llm-live-readiness/AUTHORIZATION.md`, `scripts/harness/live_free_account.py`, `scripts/harness/test_live_free_account.py`, `shared/policies/groq-free-campaign.json`, `artifacts/evidence/llm-live-readiness/free-account-guard/**`.
+- allowed_write_paths: `.planning/llm-live-readiness/phases/002-free-account-guard/**`, `.planning/llm-live-readiness/AUTHORIZATION.md`, `.gitignore` (ignore only runtime coordination metadata), `scripts/harness/live_free_account.py`, `scripts/harness/test_live_free_account.py`, `shared/policies/groq-free-campaign.json`, `artifacts/evidence/llm-live-readiness/free-account-guard/**`. Runtime locks/registry at `.runtime/llm-live-readiness/**` are untracked references only, never authoritative usage; tests use temporary roots.
 - llm_mode: fake for tests and inventory; live only for authenticated GET model-catalog metadata. No generation in this phase.
 - forbidden_changes: `.env` writes, secret-bearing evidence, product sources/artifacts, existing service stacks, kit, datasets/rubrics/holdout, public/external effects and paid usage.
 - Validation: standard-library tests with synthetic project trees/databases; CLI dry-run with no credentials/provider; metadata preflight against fixed HTTPS Groq endpoint. Capture commands/exits/sanitized output, preserving errors.

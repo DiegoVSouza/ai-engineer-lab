@@ -1,0 +1,2 @@
+All checks passed!
+command=projects/p00/.venv/Scripts/ruff.exe check scripts/harness/live_free_account.py scripts/harness/test_live_free_account.py; exit_code=0

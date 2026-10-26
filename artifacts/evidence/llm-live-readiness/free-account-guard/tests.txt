@@ -1,0 +1,26 @@
+test_actual_overrun_is_retained_and_blocks_new_dispatch (__main__.AccountTests.test_actual_overrun_is_retained_and_blocks_new_dispatch) ... ok
+test_catalog_preflight_is_metadata_only_and_never_returns_credentials (__main__.AccountTests.test_catalog_preflight_is_metadata_only_and_never_returns_credentials) ... ok
+test_changed_policy_cannot_reset_preexisting_account (__main__.AccountTests.test_changed_policy_cannot_reset_preexisting_account) ... ok
+test_concurrent_projects_cannot_both_reserve (__main__.AccountTests.test_concurrent_projects_cannot_both_reserve) ... ok
+test_cumulative_token_and_economic_caps_apply_across_projects (__main__.AccountTests.test_cumulative_token_and_economic_caps_apply_across_projects) ... ok
+test_invalid_or_paid_policy_is_rejected (__main__.AccountTests.test_invalid_or_paid_policy_is_rejected) ... ok
+test_keys_come_only_from_numbered_root_file_entries_and_deduplicate (__main__.AccountTests.test_keys_come_only_from_numbered_root_file_entries_and_deduplicate) ... ok
+test_lease_contends_across_processes_and_recovers_after_death (__main__.AccountTests.test_lease_contends_across_processes_and_recovers_after_death) ... ok
+test_malformed_usage_cannot_be_interpreted_as_zero (__main__.AccountTests.test_malformed_usage_cannot_be_interpreted_as_zero) ... ok
+test_missing_ledger_or_lost_registry_does_not_reset_usage (__main__.AccountTests.test_missing_ledger_or_lost_registry_does_not_reset_usage) ... ok
+test_project_cap_does_not_reset_or_consume_another_project_allowance (__main__.AccountTests.test_project_cap_does_not_reset_or_consume_another_project_allowance) ... ok
+test_published_policy_totals_match_unchanged_per_call_maxima (__main__.AccountTests.test_published_policy_totals_match_unchanged_per_call_maxima) ... ok
+test_quota_stops_all_projects_after_restart (__main__.AccountTests.test_quota_stops_all_projects_after_restart) ... ok
+test_repeated_identity_and_completion_cannot_be_replayed (__main__.AccountTests.test_repeated_identity_and_completion_cannot_be_replayed) ... ok
+test_rolling_day_requests_and_provider_remaining_are_not_per_key (__main__.AccountTests.test_rolling_day_requests_and_provider_remaining_are_not_per_key) ... ok
+test_rolling_minute_and_day_tokens_stop_across_projects (__main__.AccountTests.test_rolling_minute_and_day_tokens_stop_across_projects) ... ok
+test_smaller_authenticated_capacity_and_reset_are_honored (__main__.AccountTests.test_smaller_authenticated_capacity_and_reset_are_honored) ... ok
+test_switching_project_campaign_and_process_does_not_reset_caps (__main__.AccountTests.test_switching_project_campaign_and_process_does_not_reset_caps) ... ok
+test_unknown_usage_keeps_reservation_and_blocks_until_reconciled (__main__.AccountTests.test_unknown_usage_keeps_reservation_and_blocks_until_reconciled) ... ok
+test_usage_is_append_only_and_logs_contain_no_provider_content (__main__.AccountTests.test_usage_is_append_only_and_logs_contain_no_provider_content) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 1.933s
+
+OK
+command=python -S scripts/harness/test_live_free_account.py -v; exit_code=0

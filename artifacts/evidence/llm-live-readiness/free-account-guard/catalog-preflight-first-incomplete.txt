@@ -1,0 +1,12 @@
+{
+  "account_billing_tier_verified": false,
+  "credentials_read": true,
+  "generation_calls": 0,
+  "model": "openai/gpt-oss-20b",
+  "model_access_count": 0,
+  "provider_accessed": true,
+  "remaining_daily_tokens": "PENDING",
+  "status": "INCOMPLETE",
+  "unique_credentials_checked": 4
+}
+command=python -S scripts/harness/live_free_account.py --catalog-preflight; exit_code=2

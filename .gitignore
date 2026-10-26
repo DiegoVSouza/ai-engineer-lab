@@ -2,6 +2,7 @@
 **/__pycache__/
 *.py[cod]
 .venv/
+/.runtime/llm-live-readiness/
 .env
 .env.*
 !.env.example

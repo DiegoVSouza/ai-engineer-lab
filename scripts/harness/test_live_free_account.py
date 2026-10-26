@@ -1,0 +1,312 @@
+from __future__ import annotations
+
+import copy
+import io
+import json
+import sqlite3
+import subprocess
+import sys
+import tempfile
+import unittest
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import closing
+from decimal import Decimal
+from pathlib import Path
+
+from live_free_account import (
+    AccountBlocked,
+    SharedAccount,
+    catalog_preflight,
+    machine_lease,
+    numbered_keys,
+)
+
+SOURCE = Path(__file__).resolve().parent
+POLICY = json.loads(
+    (SOURCE.parents[1] / "shared/policies/groq-free-campaign.json").read_text()
+)
+
+
+class AccountTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory(prefix="free-account-")
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.policy = copy.deepcopy(POLICY)
+        self.now = [1000000.0]
+
+    def account(self):
+        account = SharedAccount(self.root, self.policy, clock=lambda: self.now[0])
+        account.register("p00")
+        account.register("p02")
+        return account
+
+    def test_published_policy_totals_match_unchanged_per_call_maxima(self):
+        for caps in POLICY["projects"].values():
+            self.assertEqual(
+                caps["input_tokens"], caps["requests"] * caps["input_tokens_per_call"]
+            )
+            self.assertEqual(
+                caps["output_tokens"], caps["requests"] * caps["output_tokens_per_call"]
+            )
+        for field in ("requests", "input_tokens", "output_tokens"):
+            self.assertEqual(
+                POLICY["campaign_caps"][field],
+                sum(caps[field] for caps in POLICY["projects"].values()),
+            )
+
+    def reserve(self, account, project="p00", case="case-1", campaign="baseline"):
+        return account.reserve(project, campaign, case, 1, 1, 100, 50)
+
+    def test_switching_project_campaign_and_process_does_not_reset_caps(self):
+        self.policy["campaign_caps"]["requests"] = 1
+        first = self.account()
+        attempt = self.reserve(first)
+        first.complete("p00", attempt, input_tokens=80, output_tokens=30)
+        recovered = self.account()
+        with self.assertRaisesRegex(AccountBlocked, "cumulative_account"):
+            self.reserve(recovered, "p02", campaign="new-candidate")
+        self.assertEqual(recovered.snapshot()["accounted_attempts"], 1)
+
+    def test_unknown_usage_keeps_reservation_and_blocks_until_reconciled(self):
+        account = self.account()
+        attempt = self.reserve(account)
+        with self.assertRaisesRegex(AccountBlocked, "uncertain_attempt"):
+            self.reserve(account, "p02")
+        account.complete("p00", attempt, status="transport_error")
+        self.assertEqual(
+            account.snapshot()["cumulative_accounted_usage"]["input_tokens"], "100"
+        )
+        self.assertEqual(account.snapshot()["uncertain_attempts"], 0)
+        self.assertGreater(
+            Decimal(
+                account.snapshot()["cumulative_accounted_usage"]["estimated_cost_usd"]
+            ),
+            0,
+        )
+        self.reserve(account, "p02")
+
+    def test_cumulative_token_and_economic_caps_apply_across_projects(self):
+        for field, cap in (
+            ("input_tokens", 150),
+            ("output_tokens", 75),
+            ("estimated_cost_usd", "0.00003"),
+        ):
+            with (
+                self.subTest(field=field),
+                tempfile.TemporaryDirectory(prefix="free-cap-") as directory,
+            ):
+                policy = copy.deepcopy(POLICY)
+                policy["campaign_caps"][field] = cap
+                account = SharedAccount(Path(directory), policy)
+                account.register("p00")
+                account.register("p02")
+                attempt = self.reserve(account)
+                account.complete("p00", attempt, status="transport_error")
+                with self.assertRaisesRegex(AccountBlocked, "cumulative_account"):
+                    self.reserve(account, "p02")
+
+    def test_project_cap_does_not_reset_or_consume_another_project_allowance(self):
+        self.policy["projects"]["p00"]["requests"] = 1
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, input_tokens=10, output_tokens=10)
+        with self.assertRaisesRegex(AccountBlocked, "cumulative_account_or_project"):
+            self.reserve(account, case="case-2")
+        self.reserve(account, "p02")
+
+    def test_malformed_usage_cannot_be_interpreted_as_zero(self):
+        account = self.account()
+        with closing(sqlite3.connect(account.path("p00"))) as db:
+            db.execute(
+                "INSERT INTO usage_events(attempt_id,event,ordinal,campaign,case_id,trial,call_index,reserved_at,reserved_input,reserved_output,reserved_cost) VALUES('bad','reserved',1,'campaign','case',1,1,1000000,-1,50,'0')"
+            )
+            db.commit()
+        with self.assertRaisesRegex(AccountBlocked, "invalid_resource_count"):
+            self.reserve(account, "p02")
+
+    def test_repeated_identity_and_completion_cannot_be_replayed(self):
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, input_tokens=80, output_tokens=30)
+        with self.assertRaisesRegex(AccountBlocked, "already_reserved"):
+            self.reserve(account)
+        with self.assertRaisesRegex(AccountBlocked, "already_completed"):
+            account.complete("p00", attempt, input_tokens=0, output_tokens=0)
+
+    def test_rolling_minute_and_day_tokens_stop_across_projects(self):
+        self.policy["free_limits"]["tokens_per_minute"] = 150
+        self.policy["free_limits"]["tokens_per_day"] = 200
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, status="transport_error")
+        with self.assertRaisesRegex(AccountBlocked, "free_token_minute"):
+            self.reserve(account, "p02")
+        self.now[0] += 61
+        with self.assertRaisesRegex(AccountBlocked, "free_token_day"):
+            self.reserve(account, "p02")
+        self.now[0] += 86400
+        self.reserve(account, "p02")
+
+    def test_rolling_day_requests_and_provider_remaining_are_not_per_key(self):
+        self.policy["free_limits"]["requests_per_day"] = 1
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, input_tokens=10, output_tokens=10)
+        self.now[0] += 61
+        with self.assertRaisesRegex(AccountBlocked, "free_request_day"):
+            self.reserve(account, "p02")
+
+    def test_smaller_authenticated_capacity_and_reset_are_honored(self):
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete(
+            "p00",
+            attempt,
+            input_tokens=10,
+            output_tokens=10,
+            feedback={"remaining_tokens": 149, "token_reset_seconds": 70},
+        )
+        with self.assertRaisesRegex(AccountBlocked, "provider_token_capacity"):
+            self.reserve(account, "p02")
+        self.now[0] += 71
+        next_attempt = self.reserve(account, "p02")
+        account.complete(
+            "p02",
+            next_attempt,
+            input_tokens=10,
+            output_tokens=10,
+            feedback={"remaining_requests": 0, "request_reset_seconds": 90},
+        )
+        with self.assertRaisesRegex(AccountBlocked, "provider_request_capacity"):
+            self.reserve(account, "p00", case="case-2")
+
+    def test_quota_stops_all_projects_after_restart(self):
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, status="quota")
+        with self.assertRaisesRegex(AccountBlocked, "cooldown"):
+            self.reserve(self.account(), "p02")
+
+    def test_actual_overrun_is_retained_and_blocks_new_dispatch(self):
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, input_tokens=101, output_tokens=50)
+        self.assertEqual(
+            account.snapshot()["cumulative_accounted_usage"]["input_tokens"], "101"
+        )
+        with self.assertRaisesRegex(AccountBlocked, "overrun"):
+            self.reserve(account, "p02")
+
+    def test_missing_ledger_or_lost_registry_does_not_reset_usage(self):
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, status="transport_error")
+        content = account.registry.read_bytes()
+        account.registry.unlink()
+        with self.assertRaisesRegex(AccountBlocked, "without_registry"):
+            account.snapshot()
+        account.registry.write_bytes(content)
+        account.path("p00").unlink()
+        with self.assertRaisesRegex(AccountBlocked, "missing_or_replaced"):
+            account.snapshot()
+
+    def test_usage_is_append_only_and_logs_contain_no_provider_content(self):
+        account = self.account()
+        attempt = self.reserve(account)
+        account.complete("p00", attempt, status="transport_error")
+        with closing(sqlite3.connect(account.path("p00"))) as db:
+            with self.assertRaises(sqlite3.IntegrityError):
+                db.execute("UPDATE usage_events SET reserved_input=0")
+            with self.assertRaises(sqlite3.IntegrityError):
+                db.execute("DELETE FROM usage_events")
+        with self.assertRaisesRegex(AccountBlocked, "unknown_provider_feedback"):
+            account.complete("p00", attempt, feedback={"authorization": "do-not-log"})
+        self.assertNotIn("do-not-log", json.dumps(account.snapshot()))
+
+    def test_concurrent_projects_cannot_both_reserve(self):
+        account = self.account()
+
+        def reserve(project):
+            try:
+                self.reserve(account, project)
+                return "reserved"
+            except AccountBlocked:
+                return "blocked"
+
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            results = list(pool.map(reserve, ("p00", "p02")))
+        self.assertEqual(sorted(results), ["blocked", "reserved"])
+
+    def test_lease_contends_across_processes_and_recovers_after_death(self):
+        lock = self.root / "process.lock"
+        code = """
+import os,sys
+from pathlib import Path
+from live_free_account import machine_lease, AccountBlocked
+try:
+    with machine_lease(Path(sys.argv[1])):
+        os._exit(23)
+except AccountBlocked:
+    sys.exit(2)
+"""
+
+        def child():
+            return subprocess.run(
+                [sys.executable, "-c", code, str(lock)],
+                cwd=SOURCE,
+                capture_output=True,
+                timeout=10,
+                check=False,
+            )
+
+        with machine_lease(lock):
+            self.assertEqual(child().returncode, 2)
+        self.assertEqual(child().returncode, 23)
+        with machine_lease(lock):
+            pass
+
+    def test_changed_policy_cannot_reset_preexisting_account(self):
+        self.account()
+        self.policy["campaign_caps"]["requests"] += 1
+        with self.assertRaisesRegex(AccountBlocked, "policy_or_registry_changed"):
+            SharedAccount(self.root, self.policy).snapshot()
+
+    def test_invalid_or_paid_policy_is_rejected(self):
+        for value in (True, "PENDING", -1):
+            policy = copy.deepcopy(POLICY)
+            policy["campaign_caps"]["requests"] = value
+            with self.assertRaises(AccountBlocked):
+                SharedAccount(self.root, policy)
+        for value in ("NaN", "Infinity", "0.01"):
+            policy = copy.deepcopy(POLICY)
+            policy["authorized_paid_spend_usd"] = value
+            with self.assertRaises(AccountBlocked):
+                SharedAccount(self.root, policy)
+
+    def test_keys_come_only_from_numbered_root_file_entries_and_deduplicate(self):
+        (self.root / ".env").write_text(
+            "GROQ_API_KEY=excluded\nGROQ_API_KEY_1='synthetic-a'\nGROQ_API_KEY_2=synthetic-a\nOTHER_API_KEY=excluded\nGROQ_API_KEY_4=synthetic-b\n"
+        )
+        self.assertEqual(numbered_keys(self.root), ["synthetic-a", "synthetic-b"])
+        (self.root / ".env").write_text("GROQ_API_KEY=excluded\n")
+        with self.assertRaises(AccountBlocked):
+            numbered_keys(self.root)
+
+    def test_catalog_preflight_is_metadata_only_and_never_returns_credentials(self):
+        (self.root / ".env").write_text("GROQ_API_KEY_1=synthetic-secret\n")
+
+        def response(request, *, timeout):
+            self.assertEqual(request.full_url, "https://api.groq.com/openai/v1/models")
+            self.assertEqual(request.get_method(), "GET")
+            self.assertEqual(timeout, 15)
+            return io.BytesIO(json.dumps({"data": [{"id": POLICY["model"]}]}).encode())
+
+        result = catalog_preflight(self.root, request=response)
+        self.assertEqual(result["status"], "PASS")
+        self.assertEqual(result["generation_calls"], 0)
+        self.assertNotIn("synthetic-secret", json.dumps(result))
+
+
+if __name__ == "__main__":
+    unittest.main()

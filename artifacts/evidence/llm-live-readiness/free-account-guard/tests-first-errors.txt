@@ -1,0 +1,64 @@
+test_actual_overrun_is_retained_and_blocks_new_dispatch (__main__.AccountTests.test_actual_overrun_is_retained_and_blocks_new_dispatch) ... ok
+test_catalog_preflight_is_metadata_only_and_never_returns_credentials (__main__.AccountTests.test_catalog_preflight_is_metadata_only_and_never_returns_credentials) ... ERROR
+test_changed_policy_cannot_reset_preexisting_account (__main__.AccountTests.test_changed_policy_cannot_reset_preexisting_account) ... ok
+test_concurrent_projects_cannot_both_reserve (__main__.AccountTests.test_concurrent_projects_cannot_both_reserve) ... ok
+test_invalid_or_paid_policy_is_rejected (__main__.AccountTests.test_invalid_or_paid_policy_is_rejected) ... ok
+test_keys_come_only_from_numbered_root_file_entries_and_deduplicate (__main__.AccountTests.test_keys_come_only_from_numbered_root_file_entries_and_deduplicate) ... ok
+test_lease_contends_across_processes_and_recovers_after_death (__main__.AccountTests.test_lease_contends_across_processes_and_recovers_after_death) ... ok
+test_missing_ledger_or_lost_registry_does_not_reset_usage (__main__.AccountTests.test_missing_ledger_or_lost_registry_does_not_reset_usage) ... ok
+test_quota_stops_all_projects_after_restart (__main__.AccountTests.test_quota_stops_all_projects_after_restart) ... ok
+test_repeated_identity_and_completion_cannot_be_replayed (__main__.AccountTests.test_repeated_identity_and_completion_cannot_be_replayed) ... ok
+test_rolling_day_requests_and_provider_remaining_are_not_per_key (__main__.AccountTests.test_rolling_day_requests_and_provider_remaining_are_not_per_key) ... ok
+test_rolling_minute_and_day_tokens_stop_across_projects (__main__.AccountTests.test_rolling_minute_and_day_tokens_stop_across_projects) ... ok
+test_smaller_authenticated_capacity_and_reset_are_honored (__main__.AccountTests.test_smaller_authenticated_capacity_and_reset_are_honored) ... ok
+test_switching_project_campaign_and_process_does_not_reset_caps (__main__.AccountTests.test_switching_project_campaign_and_process_does_not_reset_caps) ... ok
+test_unknown_usage_keeps_reservation_and_blocks_until_reconciled (__main__.AccountTests.test_unknown_usage_keeps_reservation_and_blocks_until_reconciled) ... ok
+test_usage_is_append_only_and_logs_contain_no_provider_content (__main__.AccountTests.test_usage_is_append_only_and_logs_contain_no_provider_content) ... ERROR
+
+======================================================================
+ERROR: test_catalog_preflight_is_metadata_only_and_never_returns_credentials (__main__.AccountTests.test_catalog_preflight_is_metadata_only_and_never_returns_credentials)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 209, in test_catalog_preflight_is_metadata_only_and_never_returns_credentials
+    result = catalog_preflight(self.root, request=response)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 361, in catalog_preflight
+    with request(req, timeout=15) as response:
+         ~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 206, in response
+    self.assertEqual(request.method, "GET")
+                     ^^^^^^^^^^^^^^
+AttributeError: 'Request' object has no attribute 'method'
+
+======================================================================
+ERROR: test_usage_is_append_only_and_logs_contain_no_provider_content (__main__.AccountTests.test_usage_is_append_only_and_logs_contain_no_provider_content)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\shutil.py", line 625, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 32] O arquivo j� est� sendo usado por outro processo: 'C:\\Users\\dvsdi\\AppData\\Local\\Temp\\free-account-uo3__43d\\projects\\p00\\artifacts\\evals\\live\\provider-usage.sqlite'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\tempfile.py", line 955, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\shutil.py", line 790, in rmtree
+    return _rmtree_unsafe(path, onexc)
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\shutil.py", line 629, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\tempfile.py", line 910, in onexc
+    _os.unlink(path)
+    ~~~~~~~~~~^^^^^^
+PermissionError: [WinError 32] O arquivo j� est� sendo usado por outro processo: 'C:\\Users\\dvsdi\\AppData\\Local\\Temp\\free-account-uo3__43d\\projects\\p00\\artifacts\\evals\\live\\provider-usage.sqlite'
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.502s
+
+FAILED (errors=2)
+command=python -S scripts/harness/test_live_free_account.py -v; exit_code=1
