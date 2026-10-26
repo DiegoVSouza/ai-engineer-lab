@@ -1,0 +1,39 @@
+{
+  "credentials_read": false,
+  "cross_check_failures": [],
+  "docker_mutated": false,
+  "errors": [],
+  "expected_project_count": 6,
+  "generation_authorized": false,
+  "planned_calls": {
+    "all_additive_max_calls": 4074,
+    "fresh_confirmation_max_calls": 840,
+    "pilot_max_calls": 84,
+    "primary_max_calls": 3150
+  },
+  "planned_tokens": {
+    "confirmation_input": null,
+    "confirmation_output": null,
+    "primary_input": null,
+    "primary_output": null
+  },
+  "project_count": 6,
+  "provider_accessed": false,
+  "reservation_gaps": [
+    "p00.confirmation_input token ceiling missing from project dry-run contract",
+    "p00.confirmation_output token ceiling missing from project dry-run contract",
+    "p05.primary_input token ceiling missing from project dry-run contract",
+    "p05.primary_output token ceiling missing from project dry-run contract",
+    "p05.confirmation_input token ceiling missing from project dry-run contract",
+    "p05.confirmation_output token ceiling missing from project dry-run contract"
+  ],
+  "shared_blockers": [
+    "Groq account free-tier quota evidence: PENDING",
+    "Shared cumulative request/input/output/spend ceilings: PENDING",
+    "Cross-project account-wide ledger and lease enforcement: PENDING",
+    "Independent reviewer approval and human review capacity: PENDING",
+    "Authenticated model catalog preflight: REQUIRED BEFORE GENERATION"
+  ],
+  "status": "INCOMPLETE",
+  "unique_semantic_cases": 390
+}
