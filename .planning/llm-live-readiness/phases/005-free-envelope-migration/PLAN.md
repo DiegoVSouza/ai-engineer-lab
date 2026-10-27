@@ -18,6 +18,8 @@ allowed_write_paths:
 - `.runtime/llm-live-readiness/ledger-references.json` (only approved atomic policy-SHA transition, UUIDs preserved)
 - `.runtime/llm-live-readiness/policy-migrations.sqlite*` (new append-only migration audit, not usage accounting)
 - `.runtime/llm-live-readiness/account.lock` and `.runtime/llm-live-readiness/ledger-references.policy-migration.tmp` (scoped coordination/atomic write)
+- `projects/p00/.runtime/llm-live-readiness/campaign.lock` (acquire P00 execution lease before account lease so the logical trial journal cannot change during inspection; preserve any lock metadata)
+- `projects/p00/artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/**` (isolated P00 locked-gate scratch directory; owned project evidence only)
 - `docs/knowledge/free-envelope-migration.md`
 
 forbidden_changes: all provider/logical usage ledgers, historical campaign artifacts, raw/private answers, credentials, per-call/trial/free-rate/model/pricing/paid limits, other project allocations, kit, product source without its own phase, Docker/services, retries/fallback and external effects.
@@ -28,7 +30,7 @@ Validation commands:
 - `python -S -m unittest discover -s scripts/harness -p test_live_free_account.py -v`
 - `python -S -m unittest discover -s scripts/harness -p test_live_provider_transport.py -v`
 - `python -S -m unittest discover -s scripts/harness -p test_migrate_free_envelope.py -v`
-- P00: `uv run --locked python scripts/check_full.py` with its owned isolated pytest evidence path.
+- P00: `P00_PYTEST_BASETEMP=artifacts/evidence/private-review-ui/tmp-envelope-migration-gate uv run --locked python scripts/check_full.py` with isolated pytest evidence; retain existing temp trees.
 - P01: `uv run --locked --group frameworks python scripts/check_full.py`.
 - `python -S scripts/harness/migrate_free_envelope.py --dry-run`, then `--apply` only after valid source/gates/commit.
 

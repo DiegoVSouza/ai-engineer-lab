@@ -5,8 +5,9 @@ All execution checks start PENDING. Plan review is by the implementing agent, no
 - [ ] Explicit user approval matches only ten free P00 calls / 20,480 input / 2,560 output / USD 0.002304 economic estimate; paid USD 0 and all quality reviews stay pending.
 - [ ] All six remaining original evaluations and confirmations remain funded, with unchanged per-call/trial/free-rate/model/pricing constraints and no extras inferred.
 - [ ] Baseline/current policy identities and tracked committed migration inputs verified; any other delta or dirty/untracked source is rejected.
+- [ ] P00's separately owned campaign source is tracked, clean and matches its lock-bearing blob identity.
 - [ ] Dry-run reads no credential/provider and writes no registry, audit or usage state.
-- [ ] Shared lease protects revalidation; reserved in-flight/uncertain attempts block, while completed unknown usage retains its full original reserve.
+- [ ] P00 campaign then shared-account leases protect revalidation; reserved in-flight/uncertain attempts block, while completed unknown usage retains its full original reserve.
 - [ ] Registry UUIDs and all provider/logical event fields/receipts/reservations unchanged; only approved policy SHA transitions.
 - [ ] Append-only prepared/applied audit and atomic replacement recover idempotently from interrupted transitions without lost history or new UUIDs.
 - [ ] Unauthorized/corrupt/linked paths, missing ledgers, tampered audit, rollback, duplicate apply and concurrency fail closed in regressions.
