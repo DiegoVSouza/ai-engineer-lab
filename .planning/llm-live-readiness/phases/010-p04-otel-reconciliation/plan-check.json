@@ -1,0 +1,12 @@
+{
+  "phase": "010-p04-otel-reconciliation",
+  "plan_check": "PASS",
+  "phase_ids_inspected": ["001", "002", "003", "004", "005", "006", "007", "008", "009"],
+  "next_id": "010",
+  "allowed_paths_concrete": true,
+  "forbidden_changes_defined": true,
+  "tasks": 2,
+  "budget_usd": 0,
+  "human_or_independent_approval": "PENDING",
+  "reviewer": "implementer self-check; independent review not performed"
+}
