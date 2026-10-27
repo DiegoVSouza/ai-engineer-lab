@@ -13,10 +13,12 @@ allowed_write_paths:
 - `.planning/llm-live-readiness/STATUS.md`
 - `scripts/harness/migrate_free_envelope.py`
 - `scripts/harness/test_migrate_free_envelope.py`
+- `scripts/harness/live_free_account.py` and `scripts/harness/test_live_free_account.py` (fail closed on a durable pending migration marker)
 - `shared/policies/groq-free-campaign.json`
 - `artifacts/evidence/llm-live-readiness/envelope-migration/**`
 - `.runtime/llm-live-readiness/ledger-references.json` (only approved atomic policy-SHA transition, UUIDs preserved)
 - `.runtime/llm-live-readiness/policy-migrations.sqlite*` (new append-only migration audit, not usage accounting)
+- `.runtime/llm-live-readiness/policy-migration.pending` (durable dispatch stop marker; remove only after verified applied audit)
 - `.runtime/llm-live-readiness/account.lock` and `.runtime/llm-live-readiness/ledger-references.policy-migration.tmp` (scoped coordination/atomic write)
 - `projects/p00/.runtime/llm-live-readiness/campaign.lock` (acquire P00 execution lease before account lease so the logical trial journal cannot change during inspection; preserve any lock metadata)
 - `projects/p00/artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/**` (isolated P00 locked-gate scratch directory; owned project evidence only)

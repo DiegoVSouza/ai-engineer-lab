@@ -10,6 +10,7 @@ All execution checks start PENDING. Plan review is by the implementing agent, no
 - [ ] P00 campaign then shared-account leases protect revalidation; reserved in-flight/uncertain attempts block, while completed unknown usage retains its full original reserve.
 - [ ] Registry UUIDs and all provider/logical event fields/receipts/reservations unchanged; only approved policy SHA transitions.
 - [ ] Append-only prepared/applied audit and atomic replacement recover idempotently from interrupted transitions without lost history or new UUIDs.
+- [ ] A durable pending marker blocks ordinary account dispatches across every post-registry/pre-audit crash point and is removed only after successful audit reconciliation.
 - [ ] Unauthorized/corrupt/linked paths, missing ledgers, tampered audit, rollback, duplicate apply and concurrency fail closed in regressions.
 - [ ] Root guard/transport/migration tests and real P00/P01 locked gates pass; sanitized commands/exits/output saved; staged review and pre-apply source commit recorded.
 - [ ] Actual apply and post-reconciliation complete with no provider call, no historical campaign rewrite, no root registry reset and no consumption change.
