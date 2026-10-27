@@ -20,7 +20,7 @@ allowed_write_paths:
 - `.runtime/llm-live-readiness/policy-migrations.sqlite*` (new append-only migration audit, not usage accounting)
 - `.runtime/llm-live-readiness/policy-migration.pending` (durable dispatch stop marker; remove only after verified applied audit)
 - `.runtime/llm-live-readiness/account.lock` and `.runtime/llm-live-readiness/ledger-references.policy-migration.tmp` (scoped coordination/atomic write)
-- `projects/p00/.runtime/llm-live-readiness/campaign.lock` (acquire P00 execution lease before account lease so the logical trial journal cannot change during inspection; preserve any lock metadata)
+- `.runtime/llm-live-readiness/campaign.lock` (acquire P00 execution lease before account lease so the logical trial journal cannot change during inspection; preserve any lock metadata)
 - `projects/p00/artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/**` (isolated P00 locked-gate scratch directory; owned project evidence only)
 - `docs/knowledge/free-envelope-migration.md`
 
