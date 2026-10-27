@@ -1,4 +1,3 @@
 check: OK (0 erros, 0 avisos)
 COMMAND: python scripts/harness/check.py --root .
 EXIT_CODE: 0
-
