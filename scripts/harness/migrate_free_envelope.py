@@ -29,7 +29,7 @@ from live_free_account import (
 MIGRATION_ID = "p00-free-envelope-plus10-v1"
 OLD_SHA = "ec7ccca5e2bece8cb677cab24dfd9822255bf9fbb791807f956837e62db5ce8d"
 NEW_SHA = "1c87eb87ba3a653235aca546180602f288993e49424d6eecdedb01f4688c2a16"
-P00_CAMPAIGN_SOURCE_SHA = "2acb058782c79ab66aa4dbec76afa1f0b8713819"
+P00_CAMPAIGN_SOURCE_SHA = "ef043e86794b7b1df3b23530eb88cb4b68100863"
 BASELINE = "artifacts/evidence/llm-live-readiness/envelope-migration/policy-before.json"
 AUTH = (
     ".planning/llm-live-readiness/phases/005-free-envelope-migration/AUTHORIZATION.json"
