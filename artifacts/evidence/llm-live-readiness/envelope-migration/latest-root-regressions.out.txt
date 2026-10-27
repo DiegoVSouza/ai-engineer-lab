@@ -1,0 +1,7 @@
+Command: uv run --locked ruff check scripts/harness/migrate_free_envelope.py scripts/harness/test_migrate_free_envelope.py scripts/harness/live_free_account.py scripts/harness/test_live_free_account.py
+Exit: 0
+All checks passed!
+
+Command: uv run --locked pytest scripts/harness/test_migrate_free_envelope.py scripts/harness/test_live_free_account.py -q
+Exit: 0
+35 passed, 3 subtests passed

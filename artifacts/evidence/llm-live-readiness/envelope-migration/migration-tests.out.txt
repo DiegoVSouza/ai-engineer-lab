@@ -1,0 +1,20 @@
+test_applied_audit_before_marker_removal_stays_blocked_until_recovery (test_migrate_free_envelope.MigrationTests.test_applied_audit_before_marker_removal_stays_blocked_until_recovery) ... ok
+test_audit_is_append_only_and_registry_rollback_is_denied (test_migrate_free_envelope.MigrationTests.test_audit_is_append_only_and_registry_rollback_is_denied) ... ok
+test_dirty_staged_and_untracked_sources_are_denied (test_migrate_free_envelope.MigrationTests.test_dirty_staged_and_untracked_sources_are_denied) ... ok
+test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids (test_migrate_free_envelope.MigrationTests.test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids) ... ok
+test_idempotency_preserves_later_project_registration_and_usage (test_migrate_free_envelope.MigrationTests.test_idempotency_preserves_later_project_registration_and_usage) ... ok
+test_inflight_work_blocks_migration (test_migrate_free_envelope.MigrationTests.test_inflight_work_blocks_migration) ... ok
+test_interruptions_recover_once_before_and_after_registry_replace (test_migrate_free_envelope.MigrationTests.test_interruptions_recover_once_before_and_after_registry_replace) ... ok
+test_linked_authorization_input_is_rejected (test_migrate_free_envelope.MigrationTests.test_linked_authorization_input_is_rejected) ... ok
+test_logical_reserved_event_blocks_migration (test_migrate_free_envelope.MigrationTests.test_logical_reserved_event_blocks_migration) ... ok
+test_missing_registered_ledger_and_corrupt_audit_fail_closed (test_migrate_free_envelope.MigrationTests.test_missing_registered_ledger_and_corrupt_audit_fail_closed) ... ok
+test_new_registry_without_audit_and_unknown_hash_are_denied (test_migrate_free_envelope.MigrationTests.test_new_registry_without_audit_and_unknown_hash_are_denied) ... ok
+test_separate_p00_campaign_source_must_match_committed_blob (test_migrate_free_envelope.MigrationTests.test_separate_p00_campaign_source_must_match_committed_blob) ... ok
+test_shared_lease_contention_blocks_without_audit_writes (test_migrate_free_envelope.MigrationTests.test_shared_lease_contention_blocks_without_audit_writes) ... ok
+test_unapproved_delta_is_denied_before_any_write (test_migrate_free_envelope.MigrationTests.test_unapproved_delta_is_denied_before_any_write) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 18.904s
+
+OK
+EXIT_CODE=0

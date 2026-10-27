@@ -272,6 +272,15 @@ except AccountBlocked:
         with self.assertRaisesRegex(AccountBlocked, "policy_or_registry_changed"):
             SharedAccount(self.root, self.policy).snapshot()
 
+    def test_pending_policy_migration_marker_blocks_account_dispatch(self):
+        account = self.account()
+        marker = self.root / ".runtime/llm-live-readiness/policy-migration.pending"
+        marker.write_text('{"migration_id":"in-progress"}', encoding="utf-8")
+        with self.assertRaisesRegex(AccountBlocked, "policy_migration_pending"):
+            account.snapshot()
+        with self.assertRaisesRegex(AccountBlocked, "policy_migration_pending"):
+            self.reserve(account)
+
     def test_invalid_or_paid_policy_is_rejected(self):
         for value in (True, "PENDING", -1):
             policy = copy.deepcopy(POLICY)

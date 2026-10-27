@@ -1,0 +1,29 @@
+{
+  "plan_check": "PASS",
+  "old_policy_sha256": "ec7ccca5e2bece8cb677cab24dfd9822255bf9fbb791807f956837e62db5ce8d",
+  "proposed_policy_sha256": "1c87eb87ba3a653235aca546180602f288993e49424d6eecdedb01f4688c2a16",
+  "global_after": {
+    "estimated_cost_usd": "1.6100352",
+    "input_tokens": 14311424,
+    "output_tokens": 1788928,
+    "requests": 4084
+  },
+  "p00_after": {
+    "calls_per_trial": 1,
+    "estimated_cost_usd": "0.0451584",
+    "input_tokens": 401408,
+    "input_tokens_per_call": 2048,
+    "output_tokens": 50176,
+    "output_tokens_per_call": 256,
+    "requests": 196
+  },
+  "remaining_calls": 4068,
+  "remaining_original_primary_commitments": 3228,
+  "protected_confirmation_calls": 840,
+  "migration_registry_writes": 0,
+  "usage_ledger_writes": 0,
+  "provider_accessed": false,
+  "credentials_read": false,
+  "human_and_independent_review": "PENDING"
+}
+EXIT_CODE=0

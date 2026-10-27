@@ -20,8 +20,10 @@
   "remaining_calls": 4068,
   "remaining_original_primary_commitments": 3228,
   "protected_confirmation_calls": 840,
-  "policy_registry_writes": 0,
+  "migration_registry_writes": 0,
+  "usage_ledger_writes": 0,
   "provider_accessed": false,
   "credentials_read": false,
   "human_and_independent_review": "PENDING"
 }
+EXIT_CODE=0

@@ -92,13 +92,22 @@ def machine_lease(path):
 
 
 class SharedAccount:
-    def __init__(self, root: Path, policy: dict, *, clock=time.time):
+    def __init__(
+        self,
+        root: Path,
+        policy: dict,
+        *,
+        clock=time.time,
+        allow_pending_migration=False,
+    ):
         self.root = root.resolve()
         self.policy = policy
         self.clock = clock
         self.runtime = self.root / ".runtime/llm-live-readiness"
         self.lock = self.runtime / "account.lock"
         self.registry = self.runtime / "ledger-references.json"
+        self.pending_migration = self.runtime / "policy-migration.pending"
+        self.allow_pending_migration = allow_pending_migration
         if (
             policy.get("model") != MODEL
             or money(policy.get("authorized_paid_spend_usd")) != 0
@@ -149,6 +158,13 @@ class SharedAccount:
         )
 
     def _references(self):
+        pending_exists = (
+            self.pending_migration.exists()
+            or self.pending_migration.is_symlink()
+            or self.pending_migration.is_junction()
+        )
+        if pending_exists and not self.allow_pending_migration:
+            raise AccountBlocked("policy_migration_pending")
         if not self.registry.exists():
             return {}
         try:
