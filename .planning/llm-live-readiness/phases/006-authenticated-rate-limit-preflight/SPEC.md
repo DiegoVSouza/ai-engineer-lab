@@ -1,6 +1,6 @@
 # Phase 006 — Authenticated rate-limit preflight
 
-Status: PLANNED. The provider transport currently authenticates the model catalog before dispatch but discards rate-limit headers from that response. The user's requirement that smaller authenticated limits win therefore needs an explicit guard integration before P00 generation.
+Status: IMPLEMENTED; offline verification PASS. The provider transport authenticated the model catalog before dispatch but discarded rate-limit headers from that response. This phase adds their sanitized enforcement to the shared guard. Authenticated preflight and dependent candidate dispatch remain pending.
 
 ## Contract
 
@@ -14,3 +14,7 @@ Status: PLANNED. The provider transport currently authenticates the model catalo
 ## Non-goals
 
 No policy-budget change, provider completion, campaign allocation, model change, key rotation, new dependency, project-source import, or modification of provider/account histories. Paid spend remains USD 0.
+
+## Official limit contract checked on 2026-10-27
+
+Groq's [rate-limit documentation](https://console.groq.com/docs/rate-limits) says these limits apply at organization level and documents `x-ratelimit-limit-requests` and `x-ratelimit-remaining-requests` as RPD, `x-ratelimit-limit-tokens` and `x-ratelimit-remaining-tokens` as TPM, their corresponding reset headers, and `retry-after` in seconds. The same page says exact limits are account-specific; its published Free table lists `openai/gpt-oss-20b` at 30 RPM / 1,000 RPD / 8,000 TPM / 200,000 TPD. These public values do not verify this account's tier or its remaining daily tokens. Only authenticated response headers constrain the existing shared guard, and they can only lower the configured ceilings.

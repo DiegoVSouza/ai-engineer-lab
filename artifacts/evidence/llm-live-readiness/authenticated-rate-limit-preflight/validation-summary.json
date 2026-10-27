@@ -1,0 +1,25 @@
+[
+  {
+    "exit_code": 0,
+    "name": "account-tests",
+    "note": "24 passed (final formatted source)"
+  },
+  {
+    "exit_code": 0,
+    "name": "transport-tests",
+    "note": "17 passed"
+  },
+  {
+    "exit_code": 0,
+    "name": "migration-tests",
+    "note": "14 passed"
+  },
+  {
+    "exit_code": 0,
+    "name": "ruff-check"
+  },
+  {
+    "exit_code": 0,
+    "name": "ruff-format"
+  }
+]

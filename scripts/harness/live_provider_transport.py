@@ -241,6 +241,9 @@ class ProviderSession:
         if self.preflight["status"] != "PASS":
             raise AccountBlocked("authenticated_model_catalog_incomplete")
         self.account.register(project)
+        self.account.set_authenticated_feedback(
+            self.preflight.get("authenticated_rate_limits", {})
+        )
 
     def preview(self, envelope):
         caps = self.account.policy["projects"][self.project]

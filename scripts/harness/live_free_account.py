@@ -43,6 +43,46 @@ def integer(value, minimum=0):
     return value
 
 
+def duration(value):
+    if not isinstance(value, str):
+        return None
+    try:
+        result = float(value)
+    except ValueError:
+        parts = re.findall(r"(\d+(?:\.\d+)?)(ms|s|m|h)", value)
+        if not parts or "".join(number + unit for number, unit in parts) != value:
+            return None
+        result = sum(
+            float(number) * {"ms": 0.001, "s": 1, "m": 60, "h": 3600}[unit]
+            for number, unit in parts
+        )
+    return result if math.isfinite(result) and 0 <= result <= 86400 else None
+
+
+def feedback(headers):
+    """Return only numeric, allowlisted Groq rate-limit fields."""
+    normalized = {}
+    headers = {str(key).lower(): value for key, value in headers.items()}
+    for header, field in {
+        "x-ratelimit-limit-requests": "request_limit",
+        "x-ratelimit-limit-tokens": "token_limit",
+        "x-ratelimit-remaining-requests": "remaining_requests",
+        "x-ratelimit-remaining-tokens": "remaining_tokens",
+    }.items():
+        value = headers.get(header)
+        if isinstance(value, str) and value.isascii() and value.isdigit():
+            normalized[field] = int(value)
+    for header, field in {
+        "x-ratelimit-reset-requests": "request_reset_seconds",
+        "x-ratelimit-reset-tokens": "token_reset_seconds",
+        "retry-after": "retry_after_seconds",
+    }.items():
+        seconds = duration(headers.get(header))
+        if seconds is not None:
+            normalized[field] = seconds
+    return normalized
+
+
 def money(value):
     try:
         result = Decimal(str(value))
@@ -108,6 +148,7 @@ class SharedAccount:
         self.registry = self.runtime / "ledger-references.json"
         self.pending_migration = self.runtime / "policy-migration.pending"
         self.allow_pending_migration = allow_pending_migration
+        self.authenticated_feedback = {}
         if (
             policy.get("model") != MODEL
             or money(policy.get("authorized_paid_spend_usd")) != 0
@@ -392,6 +433,41 @@ class SharedAccount:
                     > feedback["remaining_tokens"]
                 ):
                     raise AccountBlocked("provider_token_capacity_checkpoint")
+        preflight = self.authenticated_feedback
+        if preflight.get("request_limit") is not None:
+            limits["requests_per_day"] = min(
+                limits["requests_per_day"], preflight["request_limit"]
+            )
+        if preflight.get("token_limit") is not None:
+            limits["tokens_per_minute"] = min(
+                limits["tokens_per_minute"], preflight["token_limit"]
+            )
+        observed = preflight.get("observed_at", 0)
+        if now < observed + preflight.get("retry_after_seconds", 0):
+            raise AccountBlocked("provider_cooldown_checkpoint")
+        later = [
+            row
+            for row in rows
+            if row["ordinal"] > preflight.get("account_ordinal", len(rows))
+        ]
+        if (
+            "remaining_requests" in preflight
+            and now < observed + preflight.get("request_reset_seconds", 86400)
+            and len(later) + 1 > preflight["remaining_requests"]
+        ):
+            raise AccountBlocked("provider_request_capacity_checkpoint")
+        if "remaining_tokens" in preflight and now < observed + preflight.get(
+            "token_reset_seconds", 60
+        ):
+            charged = sum(
+                self.usage(row)["input_tokens"] + self.usage(row)["output_tokens"]
+                for row in later
+            )
+            if (
+                charged + reservation["input_tokens"] + reservation["output_tokens"]
+                > preflight["remaining_tokens"]
+            ):
+                raise AccountBlocked("provider_token_capacity_checkpoint")
         for seconds, suffix in ((60, "minute"), (86400, "day")):
             active = [row for row in rows if row["reserved_at"] >= now - seconds]
             if len(active) + 1 > limits[f"requests_per_{suffix}"]:
@@ -405,6 +481,40 @@ class SharedAccount:
                 > limits[f"tokens_per_{suffix}"]
             ):
                 raise AccountBlocked(f"free_token_{suffix}_checkpoint")
+
+    def set_authenticated_feedback(self, values):
+        """Bind sanitized authenticated headers to this process's dispatch guard."""
+        if not isinstance(values, dict) or set(values) - FEEDBACK:
+            raise AccountBlocked("invalid_authenticated_rate_feedback")
+        clean = {}
+        integer_fields = {
+            "request_limit": 1,
+            "token_limit": 1,
+            "remaining_requests": 0,
+            "remaining_tokens": 0,
+        }
+        for name, minimum in integer_fields.items():
+            if name in values:
+                clean[name] = integer(values[name], minimum)
+        for name in (
+            "request_reset_seconds",
+            "token_reset_seconds",
+            "retry_after_seconds",
+        ):
+            if name in values:
+                value = values[name]
+                if (
+                    type(value) not in (int, float)
+                    or not math.isfinite(value)
+                    or not 0 <= value <= 86400
+                ):
+                    raise AccountBlocked("invalid_authenticated_rate_feedback")
+                clean[name] = float(value)
+        with machine_lease(self.lock):
+            rows = self._history()
+            clean["observed_at"] = self.clock()
+            clean["account_ordinal"] = len(rows)
+            self.authenticated_feedback = clean
 
     def _prepare_reservation(
         self, project, campaign, case_id, trial, call_index, input_tokens, output_tokens
@@ -645,6 +755,7 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
     keys = numbered_keys(root) if keys is None else keys
     valid = 0
     failures = {}
+    observations = []
     for key in keys:
         req = Request(
             "https://api.groq.com/openai/v1/models",
@@ -656,6 +767,9 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
         )
         try:
             with request(req, timeout=15) as response:
+                observed = feedback(getattr(response, "headers", {}))
+                if observed:
+                    observations.append(observed)
                 payload = json.loads(response.read())
             data = payload.get("data") if isinstance(payload, dict) else None
             if not isinstance(data, list) or not all(
@@ -669,6 +783,9 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
             else:
                 failures["model_access"] = failures.get("model_access", 0) + 1
         except HTTPError as exc:
+            observed = feedback(exc.headers or {})
+            if observed:
+                observations.append(observed)
             label = "http_" + str(exc.code)
             failures[label] = failures.get(label, 0) + 1
             exc.close()
@@ -679,6 +796,21 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
             failures["catalog_schema_or_transport"] = (
                 failures.get("catalog_schema_or_transport", 0) + 1
             )
+    effective = {}
+    for name in (
+        "request_limit",
+        "token_limit",
+        "remaining_requests",
+        "remaining_tokens",
+    ):
+        values = [row[name] for row in observations if name in row]
+        if values:
+            effective[name] = min(values)
+    for name in ("request_reset_seconds", "token_reset_seconds", "retry_after_seconds"):
+        values = [row[name] for row in observations if name in row]
+        if values:
+            # Use the longest observed window for the most restrictive remaining value.
+            effective[name] = max(values)
     return {
         "status": "PASS" if valid == len(keys) else "INCOMPLETE",
         "model": MODEL,
@@ -687,6 +819,8 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
         "provider_accessed": True,
         "credentials_read": True,
         "generation_calls": 0,
+        "authenticated_rate_limits": effective,
+        "rate_limit_headers_observed": sorted(effective),
         "account_billing_tier_verified": False,
         "remaining_daily_tokens": "PENDING",
         "failures": failures,

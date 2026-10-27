@@ -53,6 +53,7 @@ class ProviderTests(unittest.TestCase):
             "GROQ_API_KEY_1=synthetic-a\nGROQ_API_KEY_2=synthetic-b\n"
         )
         self.posts = []
+        self.catalog_headers = {}
         self.reply = {
             "model": MODEL,
             "choices": [
@@ -85,7 +86,7 @@ class ProviderTests(unittest.TestCase):
 
     def request(self, request, *, timeout):
         if request.get_method() == "GET":
-            return Response({"data": [{"id": MODEL}]})
+            return Response({"data": [{"id": MODEL}]}, self.catalog_headers)
         self.posts.append((request.full_url, json.loads(request.data), timeout))
         account = SharedAccount(self.root, self.policy)
         self.assertEqual(
@@ -138,6 +139,34 @@ class ProviderTests(unittest.TestCase):
         self.envelope["case_id"] = "case-2"
         with self.assertRaisesRegex(AccountBlocked, "cumulative_account"):
             session.preview(self.envelope)
+
+    def test_lower_authenticated_preflight_token_limit_blocks_before_reservation(self):
+        self.catalog_headers = {
+            "x-ratelimit-limit-requests": "1000",
+            "x-ratelimit-limit-tokens": "1",
+            "x-ratelimit-remaining-tokens": "1000",
+            "x-ratelimit-reset-tokens": "30s",
+        }
+        session = self.session()
+        with self.assertRaisesRegex(AccountBlocked, "free_token_minute_checkpoint"):
+            session.complete(self.envelope)
+        self.assertEqual(self.posts, [])
+        self.assertEqual(session.account.snapshot()["accounted_attempts"], 0)
+
+    def test_authenticated_remaining_tokens_block_before_provider_http(self):
+        self.catalog_headers = {
+            "x-ratelimit-limit-requests": "1000",
+            "x-ratelimit-limit-tokens": "8000",
+            "x-ratelimit-remaining-tokens": "1",
+            "x-ratelimit-reset-tokens": "45s",
+        }
+        session = self.session()
+        with self.assertRaisesRegex(
+            AccountBlocked, "provider_token_capacity_checkpoint"
+        ):
+            session.complete(self.envelope)
+        self.assertEqual(self.posts, [])
+        self.assertEqual(session.account.snapshot()["accounted_attempts"], 0)
 
     def test_owner_opt_in_and_explicit_live_mode_precede_keys_or_writes(self):
         (self.root / ".env").unlink()

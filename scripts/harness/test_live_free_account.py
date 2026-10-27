@@ -303,18 +303,127 @@ except AccountBlocked:
             numbered_keys(self.root)
 
     def test_catalog_preflight_is_metadata_only_and_never_returns_credentials(self):
-        (self.root / ".env").write_text("GROQ_API_KEY_1=synthetic-secret\n")
+        (self.root / ".env").write_text(
+            "GROQ_API_KEY_1=synthetic-secret-a\nGROQ_API_KEY_2=synthetic-secret-b\n"
+        )
+        responses = iter(
+            [
+                {
+                    "x-ratelimit-limit-requests": "1000",
+                    "x-ratelimit-limit-tokens": "8000",
+                },
+                {
+                    "x-ratelimit-limit-requests": "200",
+                    "x-ratelimit-limit-tokens": "400",
+                    "x-ratelimit-remaining-requests": "3",
+                    "x-ratelimit-remaining-tokens": "120",
+                    "x-ratelimit-reset-tokens": "45s",
+                    "x-private-provider-header": "header-secret",
+                },
+            ]
+        )
+
+        class CatalogResponse(io.BytesIO):
+            def __init__(self, payload, headers):
+                super().__init__(payload)
+                self.headers = headers
 
         def response(request, *, timeout):
             self.assertEqual(request.full_url, "https://api.groq.com/openai/v1/models")
             self.assertEqual(request.get_method(), "GET")
             self.assertEqual(timeout, 15)
-            return io.BytesIO(json.dumps({"data": [{"id": POLICY["model"]}]}).encode())
+            return CatalogResponse(
+                json.dumps({"data": [{"id": POLICY["model"]}]}).encode(),
+                next(responses),
+            )
 
         result = catalog_preflight(self.root, request=response)
         self.assertEqual(result["status"], "PASS")
         self.assertEqual(result["generation_calls"], 0)
+        self.assertEqual(
+            result["authenticated_rate_limits"],
+            {
+                "request_limit": 200,
+                "token_limit": 400,
+                "remaining_requests": 3,
+                "remaining_tokens": 120,
+                "token_reset_seconds": 45,
+            },
+        )
+        self.assertFalse(result["account_billing_tier_verified"])
+        self.assertEqual(result["remaining_daily_tokens"], "PENDING")
         self.assertNotIn("synthetic-secret", json.dumps(result))
+        self.assertNotIn("header-secret", json.dumps(result))
+
+    def test_missing_or_malformed_rate_headers_do_not_raise_policy_limits(self):
+        (self.root / ".env").write_text(
+            "GROQ_API_KEY_1=synthetic-a\nGROQ_API_KEY_2=synthetic-b\n"
+        )
+        response_headers = iter(
+            [
+                {
+                    "x-ratelimit-limit-requests": "999999",
+                    "x-ratelimit-limit-tokens": "999999",
+                },
+                {
+                    "x-ratelimit-limit-requests": "999999",
+                    "x-ratelimit-limit-tokens": "8000;secret",
+                    "x-ratelimit-remaining-requests": "not-a-number",
+                    "x-ratelimit-remaining-tokens": "-1",
+                    "x-ratelimit-reset-tokens": "999999s",
+                    "x-private-provider-header": "must-not-be-returned",
+                },
+            ]
+        )
+
+        class CatalogResponse(io.BytesIO):
+            def __init__(self, headers):
+                super().__init__(
+                    json.dumps({"data": [{"id": POLICY["model"]}]}).encode()
+                )
+                self.headers = headers
+
+        def response(request, *, timeout):
+            return CatalogResponse(next(response_headers))
+
+        result = catalog_preflight(self.root, request=response)
+        self.assertEqual(result["status"], "PASS")
+        self.assertEqual(
+            result["authenticated_rate_limits"],
+            {"request_limit": 999999, "token_limit": 999999},
+        )
+        self.assertEqual(
+            result["rate_limit_headers_observed"], ["request_limit", "token_limit"]
+        )
+        self.assertEqual(result["remaining_daily_tokens"], "PENDING")
+        self.assertNotIn("must-not-be-returned", json.dumps(result))
+        account = self.account()
+        account.set_authenticated_feedback(result["authenticated_rate_limits"])
+        self.reserve(account)
+        self.assertEqual(account.snapshot()["accounted_attempts"], 1)
+
+    def test_authenticated_preflight_limits_are_conservative_and_in_memory(self):
+        account = self.account()
+        account.set_authenticated_feedback({"request_limit": 1000, "token_limit": 100})
+        with self.assertRaisesRegex(AccountBlocked, "free_token_minute_checkpoint"):
+            self.reserve(account)
+        self.assertEqual(account.snapshot()["accounted_attempts"], 0)
+
+    def test_authenticated_remaining_capacity_and_reset_apply_before_reservation(self):
+        account = self.account()
+        account.set_authenticated_feedback(
+            {
+                "remaining_requests": 0,
+                "remaining_tokens": 1000,
+                "request_reset_seconds": 30,
+                "token_reset_seconds": 30,
+            }
+        )
+        with self.assertRaisesRegex(
+            AccountBlocked, "provider_request_capacity_checkpoint"
+        ):
+            self.reserve(account)
+        self.assertEqual(account.snapshot()["accounted_attempts"], 0)
 
 
 if __name__ == "__main__":
