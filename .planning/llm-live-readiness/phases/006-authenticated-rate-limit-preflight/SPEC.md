@@ -1,6 +1,6 @@
 # Phase 006 — Authenticated rate-limit preflight
 
-Status: IMPLEMENTED; offline verification PASS. The provider transport authenticated the model catalog before dispatch but discarded rate-limit headers from that response. This phase adds their sanitized enforcement to the shared guard. Authenticated preflight and dependent candidate dispatch remain pending.
+Status: IMPLEMENTED; OFFLINE PASS; ACCOUNT LIMIT PROOF INCOMPLETE. The provider transport authenticated the model catalog before dispatch but discarded rate-limit headers from that response. This phase adds their sanitized enforcement to the shared guard. Authenticated model access later passed for 4/4 unique root credentials, but no rate-limit headers were returned. Billing tier and exact daily token remainder remain unknown; generation stays blocked at paid authorization USD 0.
 
 ## Contract
 
