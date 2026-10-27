@@ -12,7 +12,14 @@
 
 Staged review and local commit reference: supplied in the delivery handoff after Git confirms success.
 
-Delivery status: documentation validation PASS. Campaign and promotion status: PENDING implementation.
+Root specification and documentation validation: PASS. Project implementations and gates are recorded in the current project reconciliation below. Live campaigns, human/independent approvals, and promotion remain PENDING/INCOMPLETE.
+
+## Current project reconciliation — 2026-10-27
+
+- P04 OTLP service export: PASS on candidate `beff749202805b138d820daaddb80a4468afc7c9`; one synthetic local request produced API and worker spans in the same phase-owned Jaeger trace. Full local gate PASS (84 tests, service scenarios, Docker build, Terraform plan-only). See [phase verification](../../projects/p04/.planning/phases/020-existing-tracer-provider/VERIFY.md) and [evidence](../../projects/p04/artifacts/evidence/otel-provider-020/).
+- Phase 019's provider-collision failure, task and trace remain immutable historical evidence; phase 020 used a new task/trace and did not replay it.
+- P04 RAG/retrieval, live model quality, billing, human/independent review, and promotion remain INCOMPLETE/PENDING. No project is declared live approved.
+- P00 generation remains blocked pending authoritative Free billing/quota proof; its funded call allocation and protected confirmation remain unchanged.
 
 ## Future project verifier
 
