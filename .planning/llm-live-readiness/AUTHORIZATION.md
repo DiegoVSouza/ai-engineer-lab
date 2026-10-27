@@ -9,3 +9,9 @@ On 2026-10-26 the user requested implementation of the remaining readiness work 
 - Public deployment, customer data, external messages, real refunds, push and paid usage remain outside this authorization.
 
 Policy evidence: [Groq rate limits](https://console.groq.com/docs/rate-limits), [model/pricing reference](https://console.groq.com/docs/models). Published rate ceilings are not proof of account tier, remaining quota or zero economic value of inference. Billed cost stays unknown without billing evidence; the user-designated free plan has no authorized paid charges.
+
+## Explicit budget amendment — 2026-10-27
+
+Authorization ID: `p00-free-envelope-plus10-v1`. After receiving the exact deficit and concrete proposal, the user replied: “Autorizar esse envelope adicional, somente gratuito, mediante fase de migração validada”. This authorizes only ten additional P00 calls / 20,480 input tokens / 2,560 output tokens / USD 0.002304 economic estimate. P00 calls become 186→196 and global calls 4,074→4,084 through phase 005's validated migration. Paid authorization remains USD 0; no upgrade, provider/model fallback, free-rate/per-call/trial increase, other-project reduction or implicit correction/judge/canary funding is authorized.
+
+Registry UUIDs, provider/logical histories, receipts and unknown reservations must survive the migration. Confirmation remains protected. Budget approval is not human/dataset/rubric/independent review or promotion approval; those remain PENDING. The historical P00 campaigns remain immutable, and a fresh candidate must be planned, validated, committed and frozen separately before any generation.

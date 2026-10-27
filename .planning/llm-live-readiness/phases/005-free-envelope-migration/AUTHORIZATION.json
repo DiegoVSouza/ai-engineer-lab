@@ -1,0 +1,18 @@
+{
+  "authorization_id": "p00-free-envelope-plus10-v1",
+  "authority": "explicit_user_reply",
+  "recorded_on": "2026-10-27",
+  "user_response": "Autorizar esse envelope adicional, somente gratuito, mediante fase de migração validada",
+  "project": "p00",
+  "additional_calls": 10,
+  "additional_input_tokens": 20480,
+  "additional_output_tokens": 2560,
+  "additional_economic_estimate_usd": "0.002304",
+  "authorized_paid_spend_usd": "0.00",
+  "free_only": true,
+  "condition": "validated_owning_migration_phase",
+  "other_project_caps_changed": false,
+  "confirmation_changed": false,
+  "human_dataset_rubric_independent_review": "PENDING",
+  "promotion": "PENDING"
+}
