@@ -1,0 +1,39 @@
+{
+  "status": "ALREADY_APPLIED",
+  "migration_id": "p00-free-envelope-plus10-v1",
+  "old_policy_sha256": "ec7ccca5e2bece8cb677cab24dfd9822255bf9fbb791807f956837e62db5ce8d",
+  "new_policy_sha256": "1c87eb87ba3a653235aca546180602f288993e49424d6eecdedb01f4688c2a16",
+  "projects": {
+    "p00": "384f921b0e8a4e7db7c5ae0491df3635"
+  },
+  "usage": {
+    "requests": 16,
+    "input_tokens": 6711,
+    "output_tokens": 1906,
+    "estimated_cost_usd": "0.001075125",
+    "unknown_usage_attempts": 1
+  },
+  "ledger_prefixes": {
+    "provider": {
+      "p00": {
+        "event_count": 32,
+        "events_sha256": "6481e2f20ce172fb0553b60fc17222e31955bcc1fb20911b04fdcfdb0e3b41b4",
+        "uuid": "384f921b0e8a4e7db7c5ae0491df3635"
+      }
+    },
+    "logical": {
+      "p00": {
+        "event_count": 32,
+        "events_sha256": "a00877bb8a8ed2eb5ac4aa3c162828f3cb7122c3caf088ae70723c04efea8dbe"
+      }
+    }
+  },
+  "provider_accessed": false,
+  "credentials_read": false,
+  "authorized_paid_spend_usd": "0.00",
+  "actual_billed_usd": null,
+  "human_independent_dataset_rubric_review": "PENDING",
+  "promotion": "PENDING"
+}
+
+EXIT_CODE=0
