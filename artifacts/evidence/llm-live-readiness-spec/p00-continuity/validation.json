@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "links_resolve": true,
+  "provider_accessed": false,
+  "credentials_read": false,
+  "human_review": "PENDING",
+  "live_allocation": "INCOMPLETE",
+  "project_sources_imported": false
+}
