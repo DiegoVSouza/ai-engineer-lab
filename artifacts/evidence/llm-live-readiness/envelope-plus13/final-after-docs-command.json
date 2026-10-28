@@ -1,0 +1,6 @@
+{
+  "reason": "final owning documentation heads updated; evaluated source unchanged",
+  "exit_code": 0,
+  "command": "uv run --locked --project projects/p00 python artifacts/evidence/llm-live-readiness/envelope-plus13/validate_final.py",
+  "cwd": "C:\\estudo\\Golpe\\lab"
+}

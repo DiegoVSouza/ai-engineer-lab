@@ -1,0 +1,122 @@
+[
+  {
+    "owner": ".",
+    "head": "bdde954bf8d06396d311ddd39fd143f7c573adf2",
+    "status": [
+      "?? .planning/llm-live-testing/",
+      "?? DESIGN_SYSTEM_COLAGEM_URBANA_NOITE.md",
+      "?? harness/reference/",
+      "?? harness/skills/humanizador/",
+      "?? harness/skills/threejs-animation/",
+      "?? harness/skills/threejs-fundamentals/",
+      "?? harness/skills/threejs-geometry/",
+      "?? harness/skills/threejs-interaction/",
+      "?? harness/skills/threejs-lighting/",
+      "?? harness/skills/threejs-loaders/",
+      "?? harness/skills/threejs-materials/",
+      "?? harness/skills/threejs-postprocessing/",
+      "?? harness/skills/threejs-shaders/",
+      "?? harness/skills/threejs-textures/",
+      "?? plano-adaptacao-react-go-no-harness-kit.md",
+      "?? plano-harness-saas-react-go.md",
+      "?? roadmap-ai-engineer.md"
+    ]
+  },
+  {
+    "owner": "projects/p00",
+    "head": "e71e03c8761110e312c6b952235f3bce1800a169",
+    "status": [
+      "?? artifacts/evidence/funded-candidate-continuation/check-full-final.txt",
+      "?? artifacts/evidence/funded-candidate-continuation/check-full-phase006-precommit.txt",
+      "?? artifacts/evidence/funded-candidate-continuation/check-full-rate-preflight.txt",
+      "?? artifacts/evidence/funded-candidate-continuation/check-full-reconciled-final.txt",
+      "?? artifacts/evidence/funded-candidate-continuation/credential-provenance-024/tmp-full-retry/",
+      "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/focused.txt",
+      "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-focused/",
+      "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full-final/",
+      "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full/",
+      "?? artifacts/evidence/funded-candidate-continuation/focused-reconciled.txt",
+      "?? artifacts/evidence/funded-candidate-continuation/private-review-recheck-023/tmp/",
+      "?? artifacts/evidence/funded-candidate-continuation/replacement-028/",
+      "?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-focused/",
+      "?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full-final/",
+      "?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full/",
+      "?? artifacts/evidence/funded-candidate-continuation/safe-guidance-025/tmp-full/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-final-focused/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-final-locked/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled-final/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-focused/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-full-final/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-full-locked/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled-final/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-full/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-20261027/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-final-20261027/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-rate-preflight/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled-only/",
+      "?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled/",
+      "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-final-root/",
+      "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full-after-resume/",
+      "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full/",
+      "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-green/",
+      "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-red/",
+      "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-root-0ed0e3a/",
+      "?? artifacts/evidence/funded-replacement-028/tmp-controls-green/",
+      "?? artifacts/evidence/funded-replacement-028/tmp-guidance-green/",
+      "?? artifacts/evidence/funded-replacement-028/tmp-guidance-red/",
+      "?? artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/",
+      "?? artifacts/tmp-pytest/"
+    ]
+  },
+  {
+    "owner": "projects/p01",
+    "head": "88c97bdd328b531434b4e7ebd821c6ea3675ae5e",
+    "status": [
+      " M artifacts/evidence/check-fast.txt",
+      " M artifacts/evidence/check-full.txt",
+      " M artifacts/runs/latest/results.json",
+      "?? artifacts/evidence/core-fixture-dispatch-014/tmp/",
+      "?? artifacts/evidence/dispatch-process-recovery-013/tmp/",
+      "?? artifacts/evidence/synthetic-dispatch-012/tmp/"
+    ]
+  },
+  {
+    "owner": "projects/p02",
+    "head": "fcaba804c6d111b8807a324ebd864917807652ea",
+    "status": []
+  },
+  {
+    "owner": "projects/p03",
+    "head": "2686c8a95175c76a02a0d6ce26e43c42a43b04cc",
+    "status": [
+      "?? artifacts/evidence/current-service-recheck-021/run/incident-simulation.json",
+      "?? artifacts/evidence/current-service-recheck-021/run/integrated-trace-synthetic.json",
+      "?? artifacts/evidence/current-service-recheck-021/run/phase-009-jaeger-export.json",
+      "?? artifacts/evidence/current-service-recheck-021/run/phase-009-live-alerts.json",
+      "?? artifacts/evidence/current-service-recheck-021/run/phase-009-service-traces.json"
+    ]
+  },
+  {
+    "owner": "projects/p04",
+    "head": "44be45baecc28ce826801bbc93bca4defe5a5a8d",
+    "status": [
+      "?? artifacts/evidence/current-full-privacy-027/tmp-run4/",
+      "?? artifacts/evidence/current-full-privacy-027/work-run4/",
+      "?? artifacts/evidence/current-full-privacy-027/work/",
+      "?? artifacts/evidence/local-terraform-network-023/work/",
+      "?? artifacts/evidence/offline-full-gate-025/tmp-retry/",
+      "?? artifacts/evidence/offline-full-gate-025/tmp/",
+      "?? artifacts/evidence/offline-full-gate-025/work/",
+      "?? artifacts/evidence/offline-provider-024/work/",
+      "?? artifacts/evidence/otlp-wire-privacy-026/gate-tmp/",
+      "?? artifacts/evidence/otlp-wire-privacy-026/tmp-full/"
+    ]
+  },
+  {
+    "owner": "projects/p05",
+    "head": "c4d01025563d0e17b241d95d2c8048ca96e40665",
+    "status": []
+  }
+]
