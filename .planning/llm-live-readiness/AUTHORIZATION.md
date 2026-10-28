@@ -1,5 +1,9 @@
 # Free-only campaign authorization
 
+## Local operation with evaluation deferred — 2026-10-28
+
+The user requested local live operation before evaluation and authorized using as much free capacity as needed. Begin with a bounded initial ten-call P00 operating envelope `p00-local-operation-plus10-v1` through a validated migration: +20,480 input / +2,560 output tokens and USD 0.002304 economic estimate, paid authorization USD 0. Protect all 84 holdout and 60 confirmation calls. The user will evaluate later; human/dataset/rubric/independent review remains PENDING, not approved. Scope remains synthetic local use; no customer data, public deployment, refunds, external messaging, push, provider fallback or paid usage is authorized.
+
 ## Explicit replacement envelope and slot-0 attestation — 2026-10-28
 
 After reviewing the concrete 107-versus-120 deficit and unapplied proposal, the user answered: “Autorizar as 13 chamadas somente gratuitas”. Authorization `p00-free-envelope-plus13-v1` permits only +13 P00/global calls, +26,624 input tokens, +3,328 output tokens and USD 0.0029952 economic estimate, through a validated owning migration. Paid authorization stays USD 0; all other project caps, 60 P00 confirmations and 84 future holdout calls remain protected. Historical C2 results/manifests remain immutable; a separate replacement candidate must be frozen. Human/dataset/rubric/independent review and holdout/promotion are not approved.
