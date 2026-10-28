@@ -1,0 +1,3 @@
+# Preserved validator failure
+
+Attempt 1: `uv run --locked --project projects/p00 python artifacts/evidence/llm-live-readiness/envelope-plus13/validate_final.py`, cwd C:/estudo/Golpe/lab, exit 1. The validator required a textual `138 passed` summary in P05's saved double-quiet pytest output. Actual output contains 72 + 66 success markers and no count summary. This is a validator-format mismatch, not a product/test failure. Inspect the paired offline-tests.meta.txt for the real command and exit. Correction will require exactly 138 success markers plus saved exit 0; no product evidence/test is changed or rerun.

@@ -1,0 +1,166 @@
+{
+  "account": {
+    "accounted_attempts": 65,
+    "cumulative_accounted_usage": {
+      "estimated_cost_usd": "0.003832950",
+      "input_tokens": "24550",
+      "output_tokens": "6639",
+      "requests": "65"
+    },
+    "historical_unmanaged_provider_usage": "PENDING",
+    "provider_billed_cost_usd": "PENDING",
+    "provider_remaining_daily_tokens": "PENDING",
+    "registered_projects": [
+      "p00"
+    ],
+    "uncertain_attempts": 0
+  },
+  "credentials_read": false,
+  "overall_live_readiness": "INCOMPLETE",
+  "p00_development": {
+    "all_three_cases": 9,
+    "candidate": "43737f7c75475579d8bae099f9ec01b47feb0e88",
+    "confirmation_protected": 60,
+    "passes": 27,
+    "remaining_primary_holdout": 84,
+    "status": "FAIL_PROVISIONAL",
+    "trials": 36,
+    "unique_cases": 12
+  },
+  "pending_external_prerequisites": {
+    "p00": [
+      "actual human/independent/dataset/rubric review of cases 025/026/037 and contract resolution",
+      "explicit fresh corrected-development funding before changing/re-evaluating candidate",
+      "original holdout sealing/approvals; development currently fails"
+    ],
+    "p01": [
+      "eligible owned KB/billing source/version, trusted principal/tenant ACL contract and verification environment"
+    ],
+    "p02": [
+      "eligible owned corpus/identity/source/model contract for actual external retrieval and entailment"
+    ],
+    "p03": [
+      "production backend/service identity and external operational acceptance; actual human/independent review"
+    ],
+    "p04": [
+      "owned RAG corpus/tenant/source contract, production backend acceptance and actual review"
+    ],
+    "p05": [
+      "external IdP issuer/audience/scopes/delegation/revocation acceptance contract and actual model/human review"
+    ]
+  },
+  "projects": {
+    "p00": {
+      "evidence_sha256": "457eb48fbae70a9606c9aaf2ba86423194f06d24bf00c9d7f4a5f7dfd363ecb3",
+      "git_status": [
+        "?? artifacts/evidence/funded-candidate-continuation/check-full-final.txt",
+        "?? artifacts/evidence/funded-candidate-continuation/check-full-phase006-precommit.txt",
+        "?? artifacts/evidence/funded-candidate-continuation/check-full-rate-preflight.txt",
+        "?? artifacts/evidence/funded-candidate-continuation/check-full-reconciled-final.txt",
+        "?? artifacts/evidence/funded-candidate-continuation/credential-provenance-024/tmp-full-retry/",
+        "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/focused.txt",
+        "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-focused/",
+        "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full-final/",
+        "?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full/",
+        "?? artifacts/evidence/funded-candidate-continuation/focused-reconciled.txt",
+        "?? artifacts/evidence/funded-candidate-continuation/private-review-recheck-023/tmp/",
+        "?? artifacts/evidence/funded-candidate-continuation/replacement-028/",
+        "?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-focused/",
+        "?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full-final/",
+        "?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full/",
+        "?? artifacts/evidence/funded-candidate-continuation/safe-guidance-025/tmp-full/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-final-focused/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-final-locked/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled-final/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-focused/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-full-final/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-full-locked/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled-final/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-full/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-20261027/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-final-20261027/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-rate-preflight/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled-only/",
+        "?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled/",
+        "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-final-root/",
+        "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full-after-resume/",
+        "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full/",
+        "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-green/",
+        "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-red/",
+        "?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-root-0ed0e3a/",
+        "?? artifacts/evidence/funded-replacement-028/tmp-controls-green/",
+        "?? artifacts/evidence/funded-replacement-028/tmp-guidance-green/",
+        "?? artifacts/evidence/funded-replacement-028/tmp-guidance-red/",
+        "?? artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/",
+        "?? artifacts/tmp-pytest/"
+      ],
+      "head": "fd2e48118ab74a539831d297fb2e61af1c9d7569",
+      "local_evidence": "artifacts/evidence/funded-replacement-028/full-attempt1.txt",
+      "local_gate": "PASS_SCOPED"
+    },
+    "p01": {
+      "evidence_sha256": "ae73fda86fcec860f1dd955c26243fd6b7f681f6b315fe87eae019e4493d7145",
+      "git_status": [
+        " M artifacts/evidence/check-fast.txt",
+        " M artifacts/evidence/check-full.txt",
+        " M artifacts/runs/latest/results.json",
+        "?? artifacts/evidence/core-fixture-dispatch-014/tmp/",
+        "?? artifacts/evidence/dispatch-process-recovery-013/tmp/",
+        "?? artifacts/evidence/synthetic-dispatch-012/tmp/"
+      ],
+      "head": "88c97bdd328b531434b4e7ebd821c6ea3675ae5e",
+      "local_evidence": "artifacts/evidence/transport-regression-015/final-root3316217/check_fast.txt",
+      "local_gate": "PASS_SCOPED"
+    },
+    "p02": {
+      "evidence_sha256": "9d452ca9dcd7acebaac8ea25bb1cfb82735e5436f5e4ce21d473c1e2aed4a452",
+      "git_status": [],
+      "head": "fcaba804c6d111b8807a324ebd864917807652ea",
+      "local_evidence": "artifacts/evidence/fixture-retrieval-012/full.txt",
+      "local_gate": "PASS_SCOPED"
+    },
+    "p03": {
+      "evidence_sha256": "b52cd39a2c55ee9440fe2d8d4c235d65237865b61166beaf7372ee9ff90014ae",
+      "git_status": [
+        "?? artifacts/evidence/current-service-recheck-021/run/incident-simulation.json",
+        "?? artifacts/evidence/current-service-recheck-021/run/integrated-trace-synthetic.json",
+        "?? artifacts/evidence/current-service-recheck-021/run/phase-009-jaeger-export.json",
+        "?? artifacts/evidence/current-service-recheck-021/run/phase-009-live-alerts.json",
+        "?? artifacts/evidence/current-service-recheck-021/run/phase-009-service-traces.json"
+      ],
+      "head": "2686c8a95175c76a02a0d6ce26e43c42a43b04cc",
+      "local_evidence": "artifacts/evidence/current-service-recheck-021/run/check-full.txt",
+      "local_gate": "PASS_SCOPED"
+    },
+    "p04": {
+      "evidence_sha256": "794078b2a6b4ba02e4df41f63664326a21504f7adb67829b11b1615af04aba5b",
+      "git_status": [
+        "?? artifacts/evidence/current-full-privacy-027/tmp-run4/",
+        "?? artifacts/evidence/current-full-privacy-027/work-run4/",
+        "?? artifacts/evidence/current-full-privacy-027/work/",
+        "?? artifacts/evidence/local-terraform-network-023/work/",
+        "?? artifacts/evidence/offline-full-gate-025/tmp-retry/",
+        "?? artifacts/evidence/offline-full-gate-025/tmp/",
+        "?? artifacts/evidence/offline-full-gate-025/work/",
+        "?? artifacts/evidence/offline-provider-024/work/",
+        "?? artifacts/evidence/otlp-wire-privacy-026/gate-tmp/",
+        "?? artifacts/evidence/otlp-wire-privacy-026/tmp-full/"
+      ],
+      "head": "44be45baecc28ce826801bbc93bca4defe5a5a8d",
+      "local_evidence": "artifacts/evidence/current-full-privacy-027/full-attempt2-run4.txt",
+      "local_gate": "PASS_SCOPED"
+    },
+    "p05": {
+      "evidence_sha256": "9b747aaa3785405374492e024c095b53c7aa31cd9befd545073276b2a3416734",
+      "git_status": [],
+      "head": "c4d01025563d0e17b241d95d2c8048ca96e40665",
+      "local_evidence": "artifacts/evidence/span-status-privacy-025/offline-tests.txt",
+      "local_gate": "PASS_SCOPED"
+    }
+  },
+  "promotion": "PENDING_ALL_APPLICABLE_QUALITY_REVIEW_HOLDOUT_CANARY_ROLLBACK_GATES",
+  "provider_accessed": false,
+  "status": "PASS_METADATA_AND_EVIDENCE_RECONCILIATION"
+}

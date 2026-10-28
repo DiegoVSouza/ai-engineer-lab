@@ -14,8 +14,9 @@ Current verified queue after the authorized +13 migration. Historical source/res
 | E4: P04 complete privacy phase | PASS local full gate | phase 027, 87 tests, services, OTLP wire and Terraform plan-only; 102/21/90 preserved | owned RAG corpus/tenant/source contract and production acceptance inputs |
 | E5: P05 local gaps | PASS existing scoped local gate | phase 025 candidate 28a81fc, evidence c4d0102; 138 tests and fake services/recovery | external IdP issuer/audience/tenant/scopes/revocation acceptance contract and human/model reviews |
 | F: private review controls | PASS local controls; actual review pending | P00 phases 023/027; nine UI regressions within full gate; no annotations written | actual reviewers supply independent authored scores/disagreement resolution |
-| G: coordination reconciliation | IN PROGRESS | current STATUS supersedes preserved historical entries | finalize source/head/commands after remaining execution |
-| P00 replacement development | EXECUTABLE after final regression/freeze/preflight | 120 primary remaining = 36 replacement + 84 holdout; 60 confirmation protected; slots 0–4 user-attested Free | owning phase 028 candidate freeze, authenticated catalog and account/window approval; max ten per batch |
+| G: coordination reconciliation | PASS | current STATUS supersedes preserved historical entries; P00/P04 owner states reconciled; final metadata/reference validator attempt 2 exit 0 | no live continuation command; provider-free review commands in P00 REVIEW.md |
+| P00 replacement development | COMPLETED / FAIL_PROVISIONAL | phase 028, candidate 43737f7, 27/36 passes and nine semantic failures; 65 receipts reconcile | actual reviewers resolve cases 025/026/037; a new corrected candidate needs fresh explicit development funding |
+| P00 further generation / holdout | STOPPED specific prerequisites | only 84 holdout + 60 confirmation remain; failed development, dataset/rubric/human review and holdout sealing pending | no live command; provider-free review only |
 
 ## Execution infrastructure
 
