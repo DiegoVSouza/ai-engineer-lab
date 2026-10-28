@@ -1,0 +1,5 @@
+{
+  "exit_code": 0,
+  "provider_calls": 0,
+  "command": "uv run --locked python scripts/run_live_campaign.py --dry-run --stage development --campaign-id free-dev-c2"
+}
