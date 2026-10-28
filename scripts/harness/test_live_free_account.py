@@ -28,6 +28,20 @@ POLICY = json.loads(
 
 
 class AccountTests(unittest.TestCase):
+    def test_catalog_rejects_oversized_body_and_closes_response(self):
+        class Oversized(io.BytesIO):
+            headers = {}
+
+            def read(self, size=-1):
+                self.requested_size = size
+                return b" " * 1000001
+
+        response = Oversized()
+        result = catalog_preflight(self.root, request=lambda *a, **k: response, keys=["fixture"])
+        self.assertEqual(result["status"], "INCOMPLETE")
+        self.assertEqual(response.requested_size, 1000001)
+        self.assertTrue(response.closed)
+
     def test_metadata_retry_is_bounded_same_request_and_never_retries_http(self):
         from live_free_account import catalog_request
         from urllib.request import Request

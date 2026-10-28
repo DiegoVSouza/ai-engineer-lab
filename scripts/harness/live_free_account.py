@@ -806,7 +806,10 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
                 observed = feedback(getattr(response, "headers", {}))
                 if observed:
                     observations.append(observed)
-                payload = json.loads(response.read())
+                raw = response.read(1000001)
+                if len(raw) > 1000000:
+                    raise ValueError("catalog response too large")
+                payload = json.loads(raw)
             data = payload.get("data") if isinstance(payload, dict) else None
             if not isinstance(data, list) or not all(
                 isinstance(item, dict) for item in data

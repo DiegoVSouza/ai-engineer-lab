@@ -313,8 +313,14 @@ class ProviderSession:
             observed_limits = feedback(exc.headers or {})
             status = exc.code
             # Only whitelisted categorical codes survive this boundary.
-            category, code = error_diagnostic(status, exc.read(65536))
-            exc.close()
+            try:
+                raw_error = exc.read(65536)
+            except (OSError, URLError):
+                # The status is known, but failed body reads cannot prove usage.
+                raw_error = b""
+            finally:
+                exc.close()
+            category, code = error_diagnostic(status, raw_error)
             self.account.complete(
                 self.project,
                 attempt,

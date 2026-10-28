@@ -1,0 +1,30 @@
+......E.............
+======================================================================
+ERROR: test_http_error_body_timeout_closes_response_and_keeps_reservation (test_live_provider_transport.ProviderTests.test_http_error_body_timeout_closes_response_and_keeps_reservation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 306, in complete
+    with self._request(req, timeout=timeout) as response:
+         ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 116, in request
+    raise self.failure
+urllib.error.HTTPError: HTTP Error 429: PRIVATE
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 45, in test_http_error_body_timeout_closes_response_and_keeps_reservation
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 316, in complete
+    category, code = error_diagnostic(status, exc.read(65536))
+                                              ~~~~~~~~^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\tempfile.py", line 500, in func_wrapper
+    return func(*args, **kwargs)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 37, in read
+    raise TimeoutError("PRIVATE_BODY")
+TimeoutError: PRIVATE_BODY
+
+----------------------------------------------------------------------
+Ran 20 tests in 1.527s
+
+FAILED (errors=1)

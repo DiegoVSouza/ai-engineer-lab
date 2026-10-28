@@ -31,6 +31,26 @@ class Response(io.BytesIO):
 
 
 class ProviderTests(unittest.TestCase):
+    def test_http_error_body_timeout_closes_response_and_keeps_reservation(self):
+        class InterruptedBody(io.BytesIO):
+            def read(self, size=-1):
+                raise TimeoutError("PRIVATE_BODY")
+
+        session = self.session()
+        body = InterruptedBody()
+        self.failure = HTTPError(
+            "https://api.groq.com/openai/v1/chat/completions",
+            429, "PRIVATE", {}, body,
+        )
+        result = session.complete(self.envelope)
+        self.assertTrue(body.closed)
+        self.assertEqual(len(self.posts), 1)
+        self.assertEqual(result["status"], "INCOMPLETE")
+        self.assertNotIn("PRIVATE", json.dumps(result))
+        self.assertEqual(
+            session.account.snapshot()["cumulative_accounted_usage"]["output_tokens"], "256"
+        )
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="provider-test-")
         self.addCleanup(self.temp.cleanup)

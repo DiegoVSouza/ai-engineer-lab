@@ -1,0 +1,14 @@
+....F.......................
+======================================================================
+FAIL: test_catalog_rejects_oversized_body_and_closes_response (test_live_free_account.AccountTests.test_catalog_rejects_oversized_body_and_closes_response)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 42, in test_catalog_rejects_oversized_body_and_closes_response
+    self.assertEqual(response.requested_size, 1000001)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -1 != 1000001
+
+----------------------------------------------------------------------
+Ran 28 tests in 3.180s
+
+FAILED (failures=1)
