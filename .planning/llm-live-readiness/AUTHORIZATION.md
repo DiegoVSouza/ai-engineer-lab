@@ -19,3 +19,7 @@ Registry UUIDs, provider/logical histories, receipts and unknown reservations mu
 ## User correction: distinct accounts — 2026-10-27
 
 The user states that the configured credentials belong to different accounts and asks to continue. Treat account topology as user-supplied distinct accounts, superseding the earlier blanket single-account assumption. This does not increase campaign allocations or authorize paid usage. Phase 017 records required identity and quota migration; existing aggregate accounting and unknown historical reservations remain authoritative until validated migration. Account billing verification and pending human reviews are separate requirements.
+
+## Free account attestation — 2026-10-27
+
+After clarifying that keys belong to distinct accounts, the user answered the per-variable Free-tier question with: todas free. This is recorded as user attestation covering authorized GROQ_API_KEY_1..4, not API-verified billing or organization identity. Controlled funded development may proceed under conservative existing aggregate ceilings; no per-account capacity multiplication, policy reset, paid usage, fallback or uncertain replay is authorized. Human review remains deferred/PENDING. The metadata API still does not expose billing or daily token balances.
