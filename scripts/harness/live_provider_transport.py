@@ -238,7 +238,18 @@ class ProviderSession:
         self._request = request
         self._key_slots = numbered_key_slots(self.root)
         if any(slot == 0 for slot, _ in self._key_slots):
-            raise AccountBlocked("unnumbered_credential_free_tier_unverified")
+            try:
+                attestation = json.loads((self.root / ".planning/llm-live-readiness/phases/027-free-envelope-plus13/AUTHORIZATION.json").read_text())
+                eligible = (
+                    attestation.get("authorization_id") == "p00-free-envelope-plus13-v1"
+                    and attestation.get("authority") == "explicit_user_reply"
+                    and attestation.get("unnumbered_free_attestation") == "explicit_user_reply_2026-10-28"
+                    and attestation.get("authorized_paid_spend_usd") == "0.00"
+                )
+            except (OSError, ValueError, AttributeError):
+                eligible = False
+            if not eligible:
+                raise AccountBlocked("unnumbered_credential_free_tier_unverified")
         self._keys = [key for _, key in self._key_slots]
         self.preflight = catalog_preflight(self.root, request=request, keys=self._keys)
         if self.preflight["status"] != "PASS":

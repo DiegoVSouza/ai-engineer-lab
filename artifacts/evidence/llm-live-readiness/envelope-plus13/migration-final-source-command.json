@@ -1,0 +1,6 @@
+{
+  "reason": "final owning source includes report guidance guard",
+  "command": "uv run --locked --project projects/p00 python -m unittest discover -s scripts/harness -p test_migrate_free_envelope_plus13.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0
+}

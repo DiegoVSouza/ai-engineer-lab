@@ -2,7 +2,7 @@
 
 1. Record explicit authorization, exact immutable baseline/proposal and plan-check self-assessment; commit planning before code.
 2. Build a narrow +13 migration from the existing same-repository migration contract with its own append-only audit DB, committed-input/owner checks, shared leases, pending marker, crash recovery/idempotency and read-only ledger continuity. Update slot-0 eligibility guard to require the recorded attestation, with injected tests. Preserve historical +10 behavior and audit.
-3. Coordinate P00 phase 028's exact primary/candidate binding and run locked root migration/account/transport plus P00/P01 consumer gates. Commit validated inputs before actual metadata application.
+3. Coordinate P00 phase 028's exact primary/candidate binding and run locked root migration/account/transport plus P00 focused controls. Commit validated inputs before actual metadata application. The actual policy/registry-dependent P00 full gate follows application immediately; pre-apply mismatch intentionally denies read-only allocation. P01 remains disabled and its locked full consumer regression follows the final committed root transport.
 4. Dry-run and apply the explicitly authorized migration, verify prefixes/UUIDs/unknown reserves and protected allocations, reconcile coordination docs and commit evidence. Generation requires separate owning candidate freeze/preflight and all current execution gates.
 
 allowed_write_paths:

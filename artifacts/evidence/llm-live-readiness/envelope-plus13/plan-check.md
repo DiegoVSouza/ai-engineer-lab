@@ -1,0 +1,5 @@
+# Plan check
+
+Implementer self-assessment only; independent review pending. Exact authorized delta is +13 requests, +26,624 input, +3,328 output and USD 0.0029952 economic estimate for P00 and global envelopes. Confirmation 60 and holdout 84 are preserved; other policy responsibilities remain identical. Distinct organizations do not multiply allocation. Slot-0 Free eligibility is explicit user attestation, not API billing evidence.
+
+Use a separate append-only plus13 migration audit database; preserve the original plus10 audit and all usage histories. Hold campaign then account lease, validate committed source/baseline/authorization and bound owner source hash, reject in-flight/uncertain reservations and keep a pending marker through atomic registry transition. Root policy may temporarily differ from registry during staged preparation; that must fail closed for ordinary dispatch. Root injected migration/control tests and P00 focused controls run before apply; the real-allocation-dependent full gate and read-only report run immediately after apply, because they intentionally reject a policy/registry mismatch.

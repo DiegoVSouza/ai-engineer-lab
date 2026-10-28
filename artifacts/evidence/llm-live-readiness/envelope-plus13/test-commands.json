@@ -1,0 +1,8 @@
+{
+  "attempt": 1,
+  "controls_exit": 0,
+  "controls_command": "uv run --locked --project projects/p00 python -m unittest discover -s scripts/harness -p test_live*.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "migration_exit": 0,
+  "migration_command": "uv run --locked --project projects/p00 python -m unittest discover -s scripts/harness -p test_migrate_free_envelope*.py"
+}

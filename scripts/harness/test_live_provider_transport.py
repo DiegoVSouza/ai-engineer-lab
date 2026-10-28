@@ -41,6 +41,17 @@ class ProviderTests(unittest.TestCase):
             ProviderSession(self.root, "p00", self.policy, request=forbidden, mode="live")
         self.assertFalse((self.root / "projects/p00/artifacts/evals/live/provider-usage.sqlite").exists())
 
+    def test_attested_unnumbered_slot_uses_the_existing_shared_allocation(self):
+        (self.root / ".env").write_text("GROQ_API_KEY=fixture-attested\nGROQ_API_KEY_1=fixture-numbered\n")
+        authorization = self.root / ".planning/llm-live-readiness/phases/027-free-envelope-plus13/AUTHORIZATION.json"
+        authorization.parent.mkdir(parents=True)
+        authorization.write_text(json.dumps({"authorization_id": "p00-free-envelope-plus13-v1", "authority": "explicit_user_reply", "unnumbered_free_attestation": "explicit_user_reply_2026-10-28", "authorized_paid_spend_usd": "0.00"}))
+        session = self.session()
+        result = session.complete(self.envelope)
+        self.assertEqual(result["status"], "ok")
+        self.assertEqual(len(self.posts), 1)
+        self.assertEqual(session.account.snapshot()["accounted_attempts"], 1)
+
     def test_http_error_body_timeout_closes_response_and_keeps_reservation(self):
         class InterruptedBody(io.BytesIO):
             def read(self, size=-1):
