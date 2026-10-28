@@ -1,5 +1,11 @@
 # Free-only campaign authorization
 
+## Explicit replacement envelope and slot-0 attestation — 2026-10-28
+
+After reviewing the concrete 107-versus-120 deficit and unapplied proposal, the user answered: “Autorizar as 13 chamadas somente gratuitas”. Authorization `p00-free-envelope-plus13-v1` permits only +13 P00/global calls, +26,624 input tokens, +3,328 output tokens and USD 0.0029952 economic estimate, through a validated owning migration. Paid authorization stays USD 0; all other project caps, 60 P00 confirmations and 84 future holdout calls remain protected. Historical C2 results/manifests remain immutable; a separate replacement candidate must be frozen. Human/dataset/rubric/independent review and holdout/promotion are not approved.
+
+The user separately answered the previously unconfirmed slot-0 question: “Confirmar GROQ_API_KEY também Free”. This extends user Free-tier attestation to GROQ_API_KEY as well as GROQ_API_KEY_1..4. It is not API verification of billing, organizations or remaining quota, and does not multiply campaign capacity. The structured record is `phases/027-free-envelope-plus13/AUTHORIZATION.json`. Earlier statements that slot 0 lacks user attestation are historical and superseded by this explicit reply.
+
 ## Additional credential topology attestation — 2026-10-28
 
 The user explicitly authorized GROQ_API_KEY in addition to GROQ_API_KEY_1..4 and stated that the credentials belong to different organizations. Slot 0 identifies the unnumbered variable. This does not authorize additional campaign calls or paid use; the existing explicit Free attestation covered numbered keys only, so unnumbered-key billing eligibility remains unverified. Retry authorization permits bounded same-key read-only metadata retries, not rotation around quota or replay of uncertain model work.
