@@ -21,7 +21,7 @@ from live_free_account import (
     SharedAccount,
     catalog_preflight,
     integer,
-    numbered_keys,
+    numbered_key_slots,
 )
 
 MAX_PROTOCOL_BYTES = 131072
@@ -236,7 +236,8 @@ class ProviderSession:
             raise AccountBlocked("finite_provider_timeout_required")
         self.timeout = timeout
         self._request = request
-        self._keys = numbered_keys(self.root)
+        self._key_slots = numbered_key_slots(self.root)
+        self._keys = [key for _, key in self._key_slots]
         self.preflight = catalog_preflight(self.root, request=request, keys=self._keys)
         if self.preflight["status"] != "PASS":
             raise AccountBlocked("authenticated_model_catalog_incomplete")
@@ -279,7 +280,7 @@ class ProviderSession:
             or not 0 < timeout <= self.timeout
         ):
             raise AccountBlocked("request_timeout_exceeds_owner_limit")
-        attempt = self.account.reserve(
+        attempt, slot = self.account.reserve(
             self.project,
             envelope["campaign_id"],
             envelope["case_id"],
@@ -287,14 +288,13 @@ class ProviderSession:
             envelope["call_index"],
             input_bound,
             output_bound,
+            credential_slots=tuple(slot for slot, _ in self._key_slots),
         )
         req = Request(
             "https://api.groq.com/openai/v1/chat/completions",
             data=encoded,
             headers={
-                "Authorization": "Bearer " + self._keys[
-                    (self.account.snapshot()["accounted_attempts"] - 1) % len(self._keys)
-                ],
+                "Authorization": "Bearer " + dict(self._key_slots)[slot],
                 "Content-Type": "application/json",
                 "Accept": "application/json",
                 "User-Agent": "supportops-lab-readiness/1.0",

@@ -1,0 +1,9 @@
+cwd: C:\estudo\Golpe\lab\projects\p00
+command: uv run --locked python -m unittest discover -s ../../scripts/harness -p test_live_free_account.py
+exit_code: 0
+output:
+.........................
+----------------------------------------------------------------------
+Ran 25 tests in 2.194s
+
+OK

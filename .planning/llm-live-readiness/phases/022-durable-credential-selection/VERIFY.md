@@ -1,3 +1,5 @@
 # Verification
 
-INCOMPLETE pending offline regressions and provenance reconciliation.
+PASS for offline reservation binding: the selected numbered slot is written into the existing reservation event's feedback field under the machine lease and FULL-synchronous commit, then the exact in-memory slot is used for HTTP. No schema migration or historical event rewrite is performed. Tests passed: transport 19, account 25 and P01 accounted boundary 21; P00 full fake gate passed 146 tests, optional service E2E INCOMPLETE. See phase evidence and P00 phase 024.
+
+Initial red showed missing reserved slot; an intermediate test failed on an unclosed test SQLite connection on Windows and is preserved. The first P00 full gate could not create its missing pytest parent; a fresh retry passed. Existing concurrency and cross-process lease tests remain in the account suite. The stored slot is a variable number at dispatch time, not verified organization identity or a key fingerprint; later credential replacement and all historical attribution remain unknown. This changes P00's fingerprint and does not authorize C2 resume. Reviews and independent verification remain PENDING.

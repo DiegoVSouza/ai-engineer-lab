@@ -1,0 +1,9 @@
+cwd: C:\estudo\Golpe\lab\projects\p00
+command: uv run --locked python -m unittest discover -s ../../scripts/harness -p test_live_provider_transport.py
+exit_code: 0
+output:
+...................
+----------------------------------------------------------------------
+Ran 19 tests in 0.962s
+
+OK

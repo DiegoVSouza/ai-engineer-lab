@@ -86,6 +86,26 @@ class AccountTests(unittest.TestCase):
         )
         self.reserve(account, "p02")
 
+    def test_slot_reservation_survives_restart_and_blocks_other_dispatch(self):
+        account = self.account()
+        attempt, slot = account.reserve(
+            "p00", "campaign", "case", 1, 1, 100, 50, credential_slots=(1, 3)
+        )
+        self.assertEqual(slot, 1)
+        with closing(sqlite3.connect(account.path("p00"))) as db:
+            feedback = db.execute(
+                "SELECT feedback FROM usage_events WHERE attempt_id=? AND event='reserved'", (attempt,)
+            ).fetchone()[0]
+        self.assertEqual(json.loads(feedback), {"credential_slot": 1})
+        restarted = self.account()
+        with self.assertRaisesRegex(AccountBlocked, "uncertain_attempt"):
+            restarted.reserve("p02", "campaign", "other", 1, 1, 100, 50, credential_slots=(1, 3))
+        restarted.complete("p00", attempt, input_tokens=10, output_tokens=10)
+        _, next_slot = restarted.reserve(
+            "p02", "campaign", "other", 1, 1, 100, 50, credential_slots=(1, 3)
+        )
+        self.assertEqual(next_slot, 3)
+
     def test_cumulative_token_and_economic_caps_apply_across_projects(self):
         for field, cap in (
             ("input_tokens", 150),

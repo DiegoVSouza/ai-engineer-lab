@@ -128,6 +128,29 @@ class ProviderTests(unittest.TestCase):
         self.assertNotIn(b"never store", content)
         self.assertNotIn(b"synthetic-a", content)
 
+    def test_selected_numbered_slot_is_durable_before_http(self):
+        import sqlite3
+        from contextlib import closing
+
+        seen = []
+        original = self.request
+
+        def request(req, *, timeout):
+            if req.get_method() == "POST":
+                account = SharedAccount(self.root, self.policy)
+                with closing(sqlite3.connect(account.path("p00"))) as db:
+                    metadata = db.execute(
+                        "SELECT feedback FROM usage_events WHERE event='reserved' ORDER BY ordinal DESC LIMIT 1"
+                    ).fetchone()[0]
+                seen.append((json.loads(metadata)["credential_slot"], req.get_header("Authorization")))
+            return original(req, timeout=timeout)
+
+        session = ProviderSession(self.root, "p00", self.policy, request=request, mode="live")
+        session.complete(self.envelope)
+        self.envelope["case_id"] = "case-2"
+        session.complete(self.envelope)
+        self.assertEqual(seen, [(1, "Bearer synthetic-a"), (2, "Bearer synthetic-b")])
+
     def test_rotation_survives_new_session_and_never_retries_provider_error(self):
         selected = []
         original = self.request

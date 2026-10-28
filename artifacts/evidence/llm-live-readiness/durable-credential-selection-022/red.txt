@@ -1,0 +1,53 @@
+cwd: C:\estudo\Golpe\lab\projects\p00
+command: uv run --locked python -m unittest discover -s ../../scripts/harness -p test_live_provider_transport.py
+exit_code: 1
+output:
+................FE..
+======================================================================
+ERROR: test_selected_numbered_slot_is_durable_before_http (test_live_provider_transport.ProviderTests.test_selected_numbered_slot_is_durable_before_http)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\shutil.py", line 625, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 32] O arquivo j� est� sendo usado por outro processo: 'C:\\Users\\dvsdi\\AppData\\Local\\Temp\\provider-test-dr9ehk0y\\projects\\p00\\artifacts\\evals\\live\\provider-usage.sqlite'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\tempfile.py", line 955, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\tempfile.py", line 935, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\shutil.py", line 790, in rmtree
+    return _rmtree_unsafe(path, onexc)
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\shutil.py", line 629, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\tempfile.py", line 910, in onexc
+    _os.unlink(path)
+    ~~~~~~~~~~^^^^^^
+PermissionError: [WinError 32] O arquivo j� est� sendo usado por outro processo: 'C:\\Users\\dvsdi\\AppData\\Local\\Temp\\provider-test-dr9ehk0y\\projects\\p00\\artifacts\\evals\\live\\provider-usage.sqlite'
+
+======================================================================
+FAIL: test_selected_numbered_slot_is_durable_before_http (test_live_provider_transport.ProviderTests.test_selected_numbered_slot_is_durable_before_http)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 151, in test_selected_numbered_slot_is_durable_before_http
+    self.assertEqual(seen, [(1, "Bearer synthetic-a"), (2, "Bearer synthetic-b")])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [] != [(1, 'Bearer synthetic-a'), (2, 'Bearer synthetic-b')]
+
+Second list contains 2 additional elements.
+First extra element 0:
+(1, 'Bearer synthetic-a')
+
+- []
++ [(1, 'Bearer synthetic-a'), (2, 'Bearer synthetic-b')]
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.268s
+
+FAILED (failures=1, errors=1)

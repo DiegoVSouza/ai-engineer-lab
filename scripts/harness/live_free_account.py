@@ -600,8 +600,16 @@ class SharedAccount:
         }
 
     def reserve(
-        self, project, campaign, case_id, trial, call_index, input_tokens, output_tokens
+        self, project, campaign, case_id, trial, call_index, input_tokens, output_tokens,
+        *, credential_slots=None,
     ):
+        if credential_slots is not None and (
+            not isinstance(credential_slots, tuple)
+            or not credential_slots
+            or any(type(slot) is not int or not 1 <= slot <= 4 for slot in credential_slots)
+            or len(set(credential_slots)) != len(credential_slots)
+        ):
+            raise AccountBlocked("invalid_credential_slots")
         cost = self._prepare_reservation(
             project, campaign, case_id, trial, call_index, input_tokens, output_tokens
         )
@@ -617,11 +625,12 @@ class SharedAccount:
                 cost,
             )
             attempt = uuid.uuid4().hex
+            slot = credential_slots[len(rows) % len(credential_slots)] if credential_slots else None
             try:
                 with closing(sqlite3.connect(self.path(project))) as db:
                     db.execute("PRAGMA synchronous=FULL")
                     db.execute(
-                        "INSERT INTO usage_events(attempt_id,event,ordinal,campaign,case_id,trial,call_index,reserved_at,reserved_input,reserved_output,reserved_cost) VALUES(?,'reserved',?,?,?,?,?,?,?,?,?)",
+                        "INSERT INTO usage_events(attempt_id,event,ordinal,campaign,case_id,trial,call_index,reserved_at,reserved_input,reserved_output,reserved_cost,feedback) VALUES(?,'reserved',?,?,?,?,?,?,?,?,?,?)",
                         (
                             attempt,
                             len(rows) + 1,
@@ -633,12 +642,13 @@ class SharedAccount:
                             input_tokens,
                             output_tokens,
                             str(cost),
+                            json.dumps({"credential_slot": slot}) if slot is not None else None,
                         ),
                     )
                     db.commit()
             except sqlite3.IntegrityError:
                 raise AccountBlocked("attempt_already_reserved_or_completed") from None
-            return attempt
+            return (attempt, slot) if slot is not None else attempt
 
     def complete(
         self,
@@ -732,7 +742,7 @@ class SharedAccount:
         }
 
 
-def numbered_keys(root):
+def numbered_key_slots(root):
     try:
         lines = (root / ".env").read_text(encoding="utf-8").splitlines()
     except OSError:
@@ -745,10 +755,17 @@ def numbered_keys(root):
             value = value.strip().strip('"').strip("'")
             if value:
                 values[name.strip()] = value
-    keys = list(dict.fromkeys(values[name] for name in sorted(values)))
+    keys = []
+    for name in sorted(values):
+        if values[name] not in (key for _, key in keys):
+            keys.append((int(name.rsplit("_", 1)[1]), values[name]))
     if not keys:
         raise AccountBlocked("numbered_credentials_missing")
     return keys
+
+
+def numbered_keys(root):
+    return [key for _, key in numbered_key_slots(root)]
 
 
 def catalog_preflight(root, *, request=urlopen, keys=None):
