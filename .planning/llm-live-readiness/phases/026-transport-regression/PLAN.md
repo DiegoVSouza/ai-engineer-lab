@@ -1,7 +1,7 @@
 # Plan
 
 1. Reproduce response-boundary defects with injected responses and record the baseline.
-2. Correct bounded metadata reads and completion error-response cleanup, deny metadata redirects, stop catalog traversal on 429 and block completion-session initialization when unnumbered credential Free eligibility is unresolved. Run locked root regressions and owning consumer gates.
+2. Correct bounded metadata reads and completion error-response cleanup, deny metadata redirects, stop catalog traversal on 429, bound the public metadata CLI with an 80-second parent subprocess deadline and block completion-session initialization when unnumbered credential Free eligibility is unresolved. Run locked root regressions and owning consumer gates.
 3. Record transport audit findings and maintain the finite coordination work table.
 
 allowed_write_paths:
