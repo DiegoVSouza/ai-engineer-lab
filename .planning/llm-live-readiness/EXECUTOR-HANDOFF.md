@@ -2,6 +2,16 @@
 
 This is an executor checklist for the remaining authorized implementation, not evidence of completion. Read it before continuing. The preceding assistant stopped after initial inspection despite a successful command retry. That was premature termination, not a demonstrated technical or authorization blocker. No implementation or campaign was performed in that attempt.
 
+## Repeated execution failure — 2026-10-28
+
+After this handoff was committed as de10aa8, the user explicitly instructed the next executor to read it and execute continuity. The executor successfully read the handoff, lab instructions, root Git status/history and the existing phase-020 verification, then ended with a report that it had performed no implementation, tests, ledger audit or independent-project inspection. Both tool commands in that attempt succeeded. No new technical failure, denied approval or missing user authorization was demonstrated.
+
+This was a second premature termination by the agent. It must not be reported as a blocked workspace, a failed handoff, or a requirement for the user to repeat permission. The pending audit is a prerequisite for C2 generation only; it does not justify stopping independent authorized offline work. The original implementation request remains unfulfilled.
+
+For the next implementation executor: reading this document is the start of execution. Continue to the next concrete authorized command in the same turn. After each completed read, phase or blocked action, identify and execute the next independent task. Before ending, account for every remaining task with actual evidence of completion or a specific unresolved prerequisite. A final response that merely says the handoff was read and no work was done repeats this incident. Do not claim an untested task is blocked. Do not require another user message saying continue.
+
+This incident record is based on the visible conversation and successful tool results; it adds no new runtime acceptance, provider call or human approval.
+
 ## 1. Establish facts before editing
 
 Read lab AGENTS.md, harness/GSD-LITE-PLUS.md, .agents/skills/lab-commits/SKILL.md, and this directory's SPEC.md, PLAN.md, VERIFY.md, AUTHORIZATION.md and STATUS.md. Read phase 020-rotation-continuity-audit and its artifacts. Before working in each project, read its AGENTS.md, current planning, progress, feature_list, scripts and evidence. Inspect Git status, HEAD and recent history in each owning repository. Preserve unrelated modifications and untracked files; never stage entire directories blindly.
