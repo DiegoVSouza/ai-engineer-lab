@@ -1,5 +1,7 @@
 # Broad Groq evaluation and local live readiness
 
+Execution authority update, 2026-10-28: this original specification is preserved as the target contract. Credential/budget/retry execution details are superseded where explicitly amended by AUTHORIZATION.md, root phases 026–027 and owning P00 phase 028. Slots 0–4 are user-attested Free; completions remain single-attempt. The exact +13 migration is applied; historical campaign candidates never resume on changed sources. Use current STATUS/WORK and owning source/ledgers for actual state; original example commands below are not safe continuation instructions.
+
 Status: READY FOR PROJECT PLANNING. Implementation, campaign results and live promotion: PENDING.
 
 ## 1. Outcome and authorization

@@ -1,5 +1,28 @@
 # Live readiness implementation status
 
+## Current verified state — 2026-10-28
+
+This section supersedes the historical coordination entries below. Overall live readiness remains INCOMPLETE. Completed local controls do not approve model quality, human reviews, holdout or promotion.
+
+| Owner | Current scoped result | Evidence |
+|---|---|---|
+| Root transport | PASS: bounded catalog body; HTTP error-response cleanup; no redirects; 429 stops traversal; public metadata CLI 80-second parent bound; slot-0 generation requires explicit recorded Free attestation | phase 026; 58 current injected root controls in phase 027 |
+| Root budget | APPLIED p00-free-envelope-plus13-v1; policy SHA a1144017dfc7e44ec4b985a58b061f60321b10b9d7fc43d63897c5c851b80463; UUID/history/unknown reserve and original migration audit preserved | artifacts/evidence/llm-live-readiness/envelope-plus13/apply.json and apply-command.json |
+| P00 | PASS local full fake gate, 148 tests; operational-error resume blocked. Historical C2 stays 13/36. Replacement free-dev-c2r1 funded but not generated yet | projects/p00/.planning/phases/028-funded-replacement/VERIFY.md |
+| P01 | PASS final dependent fake boundary/fixture dispatch, 71 tests and six runners; initially modified outputs restored, generated COMPARISON.md restored after strict one-line diff check | projects/p01/.planning/phases/015-transport-regression/VERIFY.md; evidence e11a448 / restoration 88c97bd |
+| P02 | PASS fixture tenant retrieval/attribution/refusal, 64 tests and adversarial fixtures; external source/identity/model integration pending | projects/p02/.planning/phases/012-fixture-retrieval-boundary/VERIFY.md |
+| P03 | PASS current local fake services, 56 tests, traces/dashboard/alerts; preserve phases 018–020 INCOMPLETE | projects/p03/.planning/phases/021-current-service-recheck/VERIFY.md |
+| P04 | PASS current complete local fake privacy/service gate, 87 tests; Terraform plan 6 add / 0 change / 0 destroy, no apply; Docker baseline 102/21/90 preserved | projects/p04/.planning/phases/027-current-full-privacy-gate/VERIFY.md |
+| P05 | PASS scoped local privacy/fake-service/recovery acceptance, 138 tests; external identity/quality/reviews pending | projects/p05/.planning/phases/025-span-status-privacy/VERIFY.md |
+
+P00 consumption is still 29 calls. Provider conservative input/output is 11,470/3,255; logical is 12,043/3,255: two views, never add them. Unknown pilot reserves remain provider 1,475/256 and logical 2,048/256. New policy supplies 120 primary calls remaining: 36 replacement development + 84 holdout. Confirmation 60 stays protected; no spare correction/judge/canary calls exist. All slots 0–4 are user-attested Free; billing/organization identity and daily remainder are not API-verified. Paid authorization remains USD 0.
+
+Current P00 source candidate 77f128992d262184a1384dac8f712aa9ce999bf1 has fingerprint 7b1e79cae5ef397c45be36dac5860489e7ad858fb6e6817a88f3b46896763dc9. Evidence-only commits may advance HEAD without changing that fingerprint. Historical C2 candidate 7099cc5d0f4d576d14f28f7dab4648b074b59740 is never resumed on these sources. No live start/resume command is advertised as safe by the report. Final dependent regression, owning freeze, authenticated model preflight and current guard approval precede provisional generation. Holdout remains rejected by the allocated execution scope.
+
+The private review audit confirms escaped/provider-free local navigation, protected storage, immutable provenance, append-only authored/dated corrections and stratified/double-review support. No human review or annotation was fabricated. Real source/identity contracts for P01/P02/P04 and external identity acceptance for P05 remain specific external dependencies; model quality, human/dataset/rubric/independent review and promotion remain pending per owner. See WORK.md for the finite task queue.
+
+## Historical coordination records — preserve, do not execute their live commands
+
 > Repeated execution failure, 2026-10-28: after de10aa8, the next executor read the handoff and instructions through successful commands, then stopped without implementing, testing, auditing ledgers or inspecting independent project tasks. No new technical or authorization blocker was established. This is an agent execution failure; the user does not need to repeat authorization. See the incident and required continuation behavior in [EXECUTOR-HANDOFF.md](EXECUTOR-HANDOFF.md#repeated-execution-failure--2026-10-28). Technical implementation remains INCOMPLETE.
 
 > Execution correction, 2026-10-28: read [EXECUTOR-HANDOFF.md](EXECUTOR-HANDOFF.md) before continuing. The preceding assistant ended after initial inspection even though a command retry succeeded; that was premature termination, not a demonstrated global blocker. No implementation, new campaign, or project validation was completed in that attempt. The handoff defines the remaining audit, conditional generation, sequential independent project work and private-review verification. Historical results below still require direct reconciliation; documentation changes do not approve live execution or human reviews.

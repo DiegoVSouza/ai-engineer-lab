@@ -1,5 +1,7 @@
 # Execution handoff
 
+Current execution update, 2026-10-28: root phases 026/027 and P00 phases 027/028 now contain executed transport fixes, receipt/crash/review audit, 148-test offline acceptance and the explicitly approved/applied +13 migration. Slot-0 Free attestation is now explicit. P04 phase 027 completed the current 87-test full local privacy/service gate. P01 final dependent regression is running; P02/P03/P05 existing scoped acceptance was inspected. STATUS.md's current section and WORK.md supersede historical counts/blockers/commands below. Do not repeat the old +10 migration, resume old C2, infer historical credential attribution or treat an evidence HEAD as the evaluated candidate. Finish the current task queue; an individual phase/commit is not completion of the user's implementation request.
+
 This is an executor checklist for the remaining authorized implementation, not evidence of completion. Read it before continuing. The preceding assistant stopped after initial inspection despite a successful command retry. That was premature termination, not a demonstrated technical or authorization blocker. No implementation or campaign was performed in that attempt.
 
 ## Repeated execution failure — 2026-10-28

@@ -1,5 +1,7 @@
 # Verification contract
 
+Current execution reconciliation, 2026-10-28: root phases 026/027 validate transport and the explicitly authorized/applied +13 migration; 58 control and 28 migration tests passed. P00 phase 028 full fake gate passes 148 tests, P01 final dependent gate passes 71 tests and six runners, P04 phase 027 full local privacy/service gate passes 87 tests with Terraform plan-only. Existing scoped P02/P03/P05 acceptances were inspected; see current STATUS/WORK and owning phase evidence. Human/independent/dataset/rubric/holdout/generalization/promotion remain pending. Historical claims below are preserved and superseded where they conflict with those current records.
+
 ## Documentation delivery
 
 - [x] Lab rules, workflow and commit skill read; current profiles and live entrypoints inspected.

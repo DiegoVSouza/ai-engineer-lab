@@ -1,0 +1,5 @@
+{
+  "command": "uv run --locked --project projects/p00 python -S scripts/harness/migrate_free_envelope_plus13.py --dry-run",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0
+}

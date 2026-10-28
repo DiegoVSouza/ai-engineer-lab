@@ -1,20 +1,21 @@
 # Finite remaining work
 
-Status is based on current inspection; uninspected items are PENDING, not blocked.
+Current verified queue after the authorized +13 migration. Historical source/results stay immutable. Overall readiness is INCOMPLETE.
 
 | Task | State | Evidence / prerequisite | Next command |
 |---|---|---|---|
-| A: root transport regression and audit | EXECUTABLE | Root HEAD 03b711a; phase 026 | locked injected account/transport suites |
-| B: P00 cumulative guard, crash, receipts and provenance | EXECUTABLE | P00 HEAD e978f09; historical C2 must remain immutable | inspect campaign execution/ledger tests and receipts |
-| C: provisional review authorization vs CLI | EXECUTABLE | AUTHORIZATION.md permits provisional development, human gates pending | inspect actual resume/execute-free branches |
-| D: replacement candidate funding proposal | EXECUTABLE preparation; execution pending | 107 remaining versus 120 required, verify from ledgers | read-only reconciliation, prepare exact amendment |
-| E1: P01 local gaps | PENDING inspection | independent repository | inspect rules/current phases/Git |
-| E2: P02 local gaps | PENDING inspection | independent repository | inspect rules/current phases/Git |
-| E3: P03 local gates | PENDING inspection | independent repository | inspect rules/current phases/Git |
-| E4: P04 complete privacy phase | PENDING inspection | independent repository | inspect rules/current phases/Git |
-| E5: P05 local gaps | PENDING inspection | independent repository | inspect rules/current phases/Git |
-| F: private review controls | EXECUTABLE audit | P00 phase 023 exists; inspect evidence | inspect UI/tests/protected storage |
-| G: coordination reconciliation | EXECUTABLE after findings | STATUS contains superseded claims | replace current summary with evidence references |
+| A: root transport regression and audit | PASS | root phases 026/027 (58 controls, 28 migration tests), P00 phase 028 (148), P01 phase 015 final dependent gate (71 and six runners) | no repeated gate unless sources change |
+| B: P00 cumulative guard, crash, receipts and provenance | PASS local audit/control correction | P00 phase 027, 29 matched receipts; zero historical slot attribution | preserve historical campaign hashes |
+| C: provisional review authorization vs CLI | RECONCILED | dry-run review blockers are reviewed-acceptance blockers; real development path permits explicit provisional exception; holdout denied | preserve all human gates |
+| D: replacement funding migration | APPLIED | explicit user +13 authorization; policy a1144017..., UUID/prefix/unknown reserve preserved | final candidate/preflight before generation |
+| E1: P01 local gaps | PASS local; external source/identity integration pending | phase 014 fixture controls and phase 015 audit; disabled live owner | source owner supplies eligible KB/billing source/version, trusted tenant/ACL and non-customer verification environment |
+| E2: P02 local gaps | PASS fixture controls; external integration pending | phase 012 current source fcaba80 and full 64-test evidence | eligible owned corpus, trusted identity and reviewed real retrieval/model contract |
+| E3: P03 local gates | PASS current local service scope | phase 021 source eaf3390, evidence 2686c8a; 56 tests and actual services | live/production identity, funded frozen model evaluation and reviews remain separate |
+| E4: P04 complete privacy phase | PASS local full gate | phase 027, 87 tests, services, OTLP wire and Terraform plan-only; 102/21/90 preserved | owned RAG corpus/tenant/source contract and production acceptance inputs |
+| E5: P05 local gaps | PASS existing scoped local gate | phase 025 candidate 28a81fc, evidence c4d0102; 138 tests and fake services/recovery | external IdP issuer/audience/tenant/scopes/revocation acceptance contract and human/model reviews |
+| F: private review controls | PASS local controls; actual review pending | P00 phases 023/027; nine UI regressions within full gate; no annotations written | actual reviewers supply independent authored scores/disagreement resolution |
+| G: coordination reconciliation | IN PROGRESS | current STATUS supersedes preserved historical entries | finalize source/head/commands after remaining execution |
+| P00 replacement development | EXECUTABLE after final regression/freeze/preflight | 120 primary remaining = 36 replacement + 84 holdout; 60 confirmation protected; slots 0–4 user-attested Free | owning phase 028 candidate freeze, authenticated catalog and account/window approval; max ten per batch |
 
 ## Execution infrastructure
 

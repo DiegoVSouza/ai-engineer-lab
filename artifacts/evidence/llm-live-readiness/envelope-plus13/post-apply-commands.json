@@ -1,0 +1,13 @@
+{
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "commands": [
+    {
+      "exit_code": 0,
+      "command": "uv run --locked --project projects/p00 python -S scripts/harness/migrate_free_envelope_plus13.py --dry-run"
+    },
+    {
+      "exit_code": 0,
+      "command": "uv run --locked --project projects/p00 python -S scripts/harness/live_free_account.py"
+    }
+  ]
+}

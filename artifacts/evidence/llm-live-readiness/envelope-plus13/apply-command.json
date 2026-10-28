@@ -1,0 +1,8 @@
+{
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "command": "uv run --locked --project projects/p00 python -S scripts/harness/migrate_free_envelope_plus13.py --apply",
+  "exit_code": 0,
+  "historical_audit_preserved": true,
+  "historical_plus10_audit_after": "1B6C6D086278396A60BE2E4ABA2630AE4354DFD6797939CEF5534A69CBADF314",
+  "historical_plus10_audit_before": "1B6C6D086278396A60BE2E4ABA2630AE4354DFD6797939CEF5534A69CBADF314"
+}
