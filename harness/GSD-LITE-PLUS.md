@@ -38,6 +38,14 @@ The project orchestrator is the only writer of its progress state. Plans declare
 
 ## 4. Gates
 
+### Bounded local repair
+
+Default `max_tries: 3` means three total validation attempts: the initial check and at most two corrective iterations. On a reproducible local failure, inspect the saved diagnostic, implement the smallest authorized cause-level correction and rerun the relevant check in the same turn. Do not stop at proposing a repair. Record attempt number, command, working directory, exit code, sanitized output and next action under the owning project's artifacts. Persist the counter across handoffs; changing phases or sessions does not reset the same unresolved failure.
+
+Stop this repair loop on PASS, three attempts, no measurable progress, uncertain work, missing external prerequisites, exhausted budget or an action outside authorization. Keep FAIL/INCOMPLETE evidence, report the exact remaining prerequisite and continue independent authorized work. A correction inside the existing spec and allowed paths does not need another planning-only phase. Scope changes require an amended plan before code.
+
+This loop repairs local code/configuration. It never automatically replays model completions, semantic evaluation failures, effectful tools, deploys or uncertain requests. Existing live stop conditions, immutable candidates, approval gates and reservations take precedence. These instructions do not install a host-runtime continuation hook; the executor must follow them explicitly.
+
 | Gate | Minimum evidence |
 |---|---|
 | G-INTAKE | Valid `harness.yaml`, decisions recorded, profile modules resolved |

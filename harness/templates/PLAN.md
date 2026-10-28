@@ -6,6 +6,7 @@ allowed_write_paths: []
 forbidden_changes: [shared/domain, AGENTS.md]
 llm_mode: fake
 validation_command: make -C projects/pxx verify
+max_tries: 3 # total validation attempts; initial plus at most two local repairs
 stop_condition: ""
 ```
 ## Contexto necessário (só estes arquivos)

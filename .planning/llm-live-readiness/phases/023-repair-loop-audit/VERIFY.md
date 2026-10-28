@@ -1,3 +1,7 @@
 # Verification
 
-INCOMPLETE pending instruction update.
+Instruction update PASS by staged review and whitespace validation. The orchestration and verification instructions now require bounded local repair, default three total validation attempts, persistent counters, diagnostics and continuation to independent work. No host-runtime hook or executable repair engine was installed; enforcement remains instruction-based. Live retry, budget and approvals were not changed.
+
+Audit: repeated premature exits are explicitly recorded by EXECUTOR-HANDOFF.md and root commits de10aa8/3d19442. The old verifier instruction only requested a proposed correction. Recent project commits demonstrate genuine local work (P01 7ef72ab; P03 2686c8a; P04 cdeb42f) but fixture-only work and repeated planning/evidence commits did not close real source/identity requirements. P00 source corrections changed fingerprints, preventing historical C2 resume; 36 replacement plus 84 holdout exceeds 107 remaining by 13. These are distinct from local repair failures and cannot be solved by three retries.
+
+Research: https://www.anthropic.com/engineering/building-effective-agents describes evaluator-optimizer feedback with explicit stopping conditions; https://developers.openai.com/cookbook/examples/agents_sdk/agent_improvement_loop ties traces and evaluation feedback to proposed harness changes; https://openai.com/index/harness-engineering/ emphasizes environments, feedback loops and control systems. Three attempts is the user's selected policy, not a universal value prescribed by these sources. Independent verification remains PENDING.
