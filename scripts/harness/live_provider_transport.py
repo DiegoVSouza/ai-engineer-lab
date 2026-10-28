@@ -292,7 +292,9 @@ class ProviderSession:
             "https://api.groq.com/openai/v1/chat/completions",
             data=encoded,
             headers={
-                "Authorization": "Bearer " + self._keys[0],
+                "Authorization": "Bearer " + self._keys[
+                    (self.account.snapshot()["accounted_attempts"] - 1) % len(self._keys)
+                ],
                 "Content-Type": "application/json",
                 "Accept": "application/json",
                 "User-Agent": "supportops-lab-readiness/1.0",

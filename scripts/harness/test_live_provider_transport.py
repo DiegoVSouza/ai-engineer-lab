@@ -128,6 +128,29 @@ class ProviderTests(unittest.TestCase):
         self.assertNotIn(b"never store", content)
         self.assertNotIn(b"synthetic-a", content)
 
+    def test_rotation_survives_new_session_and_never_retries_provider_error(self):
+        selected = []
+        original = self.request
+
+        def request(req, *, timeout):
+            if req.get_method() == "POST":
+                selected.append(req.get_header("Authorization"))
+            return original(req, timeout=timeout)
+
+        def fresh_session():
+            return ProviderSession(
+                self.root, "p00", self.policy, request=request, mode="live"
+            )
+
+        fresh_session().complete(self.envelope)
+        self.envelope["case_id"] = "case-2"
+        self.failure = URLError("synthetic timeout")
+        result = fresh_session().complete(self.envelope)
+        self.assertEqual(result["status"], "INCOMPLETE")
+        self.assertEqual(selected, ["Bearer synthetic-a", "Bearer synthetic-b"])
+        self.assertEqual(len(self.posts), 2)
+        self.assertEqual(fresh_session().account.snapshot()["accounted_attempts"], 2)
+
     def test_reservation_preview_checks_limits_without_consuming_or_dispatching(self):
         self.policy["campaign_caps"]["requests"] = 1
         session = self.session()
