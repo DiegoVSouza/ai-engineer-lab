@@ -1,0 +1,31 @@
+cwd: C:\estudo\Golpe\lab\projects\p00
+command: uv run --locked python -m unittest discover -s ../../scripts/harness -p test_live_*account.py
+exit_code: 1
+output:
+........F.................
+======================================================================
+FAIL: test_keys_come_only_from_numbered_root_file_entries_and_deduplicate (test_live_free_account.AccountTests.test_keys_come_only_from_numbered_root_file_entries_and_deduplicate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 330, in test_keys_come_only_from_numbered_root_file_entries_and_deduplicate
+    self.assertEqual(numbered_keys(self.root), ["synthetic-a", "synthetic-b"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['excluded', 'synthetic-a', 'synthetic-b'] != ['synthetic-a', 'synthetic-b']
+
+First differing element 0:
+'excluded'
+'synthetic-a'
+
+First list contains 1 additional elements.
+First extra element 2:
+'synthetic-b'
+
+- ['excluded', 'synthetic-a', 'synthetic-b']
+?  ------------
+
++ ['synthetic-a', 'synthetic-b']
+
+----------------------------------------------------------------------
+Ran 26 tests in 2.746s
+
+FAILED (failures=1)

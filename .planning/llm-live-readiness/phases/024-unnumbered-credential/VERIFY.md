@@ -1,3 +1,3 @@
 # Verification
 
-INCOMPLETE pending execution. New key Free/account identity is not inferred from the four-key attestation.
+PASS offline: 26 account and 19 transport tests passed in the locked P00 environment. GROQ_API_KEY is accepted as durable slot 0; values duplicated by numbered keys are deduplicated. The old numbered-only assertion failed first and was updated to the newly authorized allowlist while retaining rejection of unrelated variables. Evidence: `artifacts/evidence/llm-live-readiness/unnumbered-credential-024/`. No real credential was read and no provider call occurred. New key Free/account identity is not inferred from the four-key attestation. Existing completion timeout and no-replay behavior remain unchanged; jitter/retry implementation and full product validation remain INCOMPLETE. Historical fingerprint is invalidated; funding deficit remains 13 calls.

@@ -606,7 +606,7 @@ class SharedAccount:
         if credential_slots is not None and (
             not isinstance(credential_slots, tuple)
             or not credential_slots
-            or any(type(slot) is not int or not 1 <= slot <= 4 for slot in credential_slots)
+            or any(type(slot) is not int or not 0 <= slot <= 4 for slot in credential_slots)
             or len(set(credential_slots)) != len(credential_slots)
         ):
             raise AccountBlocked("invalid_credential_slots")
@@ -747,7 +747,7 @@ def numbered_key_slots(root):
         lines = (root / ".env").read_text(encoding="utf-8").splitlines()
     except OSError:
         raise AccountBlocked("root_credentials_unavailable") from None
-    names = {f"GROQ_API_KEY_{index}" for index in range(1, 5)}
+    names = {"GROQ_API_KEY", *(f"GROQ_API_KEY_{index}" for index in range(1, 5))}
     values = {}
     for raw in lines:
         name, separator, value = raw.strip().removeprefix("export ").partition("=")
@@ -758,7 +758,7 @@ def numbered_key_slots(root):
     keys = []
     for name in sorted(values):
         if values[name] not in (key for _, key in keys):
-            keys.append((int(name.rsplit("_", 1)[1]), values[name]))
+            keys.append((0 if name == "GROQ_API_KEY" else int(name.rsplit("_", 1)[1]), values[name]))
     if not keys:
         raise AccountBlocked("numbered_credentials_missing")
     return keys

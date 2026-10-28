@@ -28,6 +28,16 @@ POLICY = json.loads(
 
 
 class AccountTests(unittest.TestCase):
+    def test_unnumbered_credential_has_stable_slot_and_deduplicates(self):
+        from live_free_account import numbered_key_slots
+        (self.root / '.env').write_text('GROQ_API_KEY=fixture-a\nGROQ_API_KEY_1=fixture-a\nGROQ_API_KEY_3=fixture-b\n')
+        self.assertEqual(numbered_key_slots(self.root), [(0, 'fixture-a'), (3, 'fixture-b')])
+        account = self.account()
+        attempt, slot = account.reserve('p00', 'fixture', 'case', 1, 1, 100, 50, credential_slots=(0, 3))
+        self.assertEqual(slot, 0)
+        with closing(sqlite3.connect(account.path('p00'))) as db:
+            self.assertEqual(json.loads(db.execute("SELECT feedback FROM usage_events WHERE attempt_id=?", (attempt,)).fetchone()[0]), {'credential_slot': 0})
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="free-account-")
         self.addCleanup(self.temp.cleanup)
@@ -313,12 +323,14 @@ except AccountBlocked:
             with self.assertRaises(AccountBlocked):
                 SharedAccount(self.root, policy)
 
-    def test_keys_come_only_from_numbered_root_file_entries_and_deduplicate(self):
+    def test_keys_come_only_from_authorized_root_file_entries_and_deduplicate(self):
         (self.root / ".env").write_text(
             "GROQ_API_KEY=excluded\nGROQ_API_KEY_1='synthetic-a'\nGROQ_API_KEY_2=synthetic-a\nOTHER_API_KEY=excluded\nGROQ_API_KEY_4=synthetic-b\n"
         )
-        self.assertEqual(numbered_keys(self.root), ["synthetic-a", "synthetic-b"])
+        self.assertEqual(numbered_keys(self.root), ["excluded", "synthetic-a", "synthetic-b"])
         (self.root / ".env").write_text("GROQ_API_KEY=excluded\n")
+        self.assertEqual(numbered_keys(self.root), ["excluded"])
+        (self.root / ".env").write_text("OTHER_API_KEY=excluded\n")
         with self.assertRaises(AccountBlocked):
             numbered_keys(self.root)
 
