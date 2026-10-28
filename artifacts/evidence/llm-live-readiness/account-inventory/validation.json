@@ -1,0 +1,54 @@
+{
+  "validation": "PASS",
+  "command": "python -S scripts/harness/account_inventory.py",
+  "exit_code": 0,
+  "live": "INCOMPLETE",
+  "output": {
+    "accounts": [
+      {
+        "account_alias": "user-asserted-account-1",
+        "credential_variable": "GROQ_API_KEY_1",
+        "distinct_account_source": "user_statement",
+        "free_billing_verified": false,
+        "organization_identity_verified": false,
+        "remaining_daily_tokens": "PENDING"
+      },
+      {
+        "account_alias": "user-asserted-account-2",
+        "credential_variable": "GROQ_API_KEY_2",
+        "distinct_account_source": "user_statement",
+        "free_billing_verified": false,
+        "organization_identity_verified": false,
+        "remaining_daily_tokens": "PENDING"
+      },
+      {
+        "account_alias": "user-asserted-account-3",
+        "credential_variable": "GROQ_API_KEY_3",
+        "distinct_account_source": "user_statement",
+        "free_billing_verified": false,
+        "organization_identity_verified": false,
+        "remaining_daily_tokens": "PENDING"
+      },
+      {
+        "account_alias": "user-asserted-account-4",
+        "credential_variable": "GROQ_API_KEY_4",
+        "distinct_account_source": "user_statement",
+        "free_billing_verified": false,
+        "organization_identity_verified": false,
+        "remaining_daily_tokens": "PENDING"
+      }
+    ],
+    "aggregate_ledger_migration": "NOT_PERFORMED",
+    "credentials_read": false,
+    "generation_authorized": false,
+    "historical_account_attribution": "UNKNOWN",
+    "provider_accessed": false,
+    "required_evidence": [
+      "Map each variable to its organization in the authenticated console.",
+      "Verify Free billing for each organization without recording secrets.",
+      "Reconcile historical and unknown usage conservatively before rotation.",
+      "Validate transport migration and freeze a candidate before generation."
+    ],
+    "schema_version": 1
+  }
+}
