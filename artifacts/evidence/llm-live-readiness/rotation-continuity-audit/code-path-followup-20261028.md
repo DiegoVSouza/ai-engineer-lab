@@ -1,0 +1,12 @@
+# Code-path follow-up
+
+Status: INCOMPLETE; no provider dispatch authorized by this audit.
+
+- `SharedAccount.reserve` holds the machine lease while checking all registered history and commits a FULL-synchronous reservation before HTTP. Unknown reserved work blocks further reservations. The credential slot is selected later from a fresh snapshot and is not recorded in the reservation. Historical credential attribution is unknown.
+- The guard checks cumulative project and global caps and rolling minute/day windows, and incorporates smaller sanitized authenticated feedback. Actual remaining account capacity and billing are not established by this source inspection.
+- `run_chunk` holds a campaign lease, reserves and checkpoints before dispatch, refuses uncertain reservations, skips completed trials, and stops on provider errors. `verify_provider_usage` checks completed provider receipts against each live trial. Crash boundaries and all current receipts still require independent reconciliation.
+- The dry-run's dataset/rubric blockers are reporting fields; `--execute-free` takes a distinct branch and invokes `run_campaign` without consulting the dry-run summary. The documented user authorization permits provisional development with these reviews PENDING; it does not approve reviews or holdout. This observation alone does not establish that every execution prerequisite is met.
+- A critical failure becomes an ordinary `failed` outcome in `campaign_execution.py`; `run_chunk` only stops on `provider_error`, so a critical failure can be followed by another attempt in the same chunk. This conflicts with phase 021's stop condition. No campaign was dispatched to test it.
+- Both the root transport and all P00 scripts are fingerprinted. Correcting either changes the frozen C2 source fingerprint and existing manifest rejects that change. Preserve candidate `7099cc5d0f4d576d14f28f7dab4648b074b59740`, fingerprint `56bef263770d396fe69d915bc8aea1bdc9a9109e83584d08e28377adbb01af6b`, and its results. Replacing C2 with 36 attempts plus the 84 holdout attempts requires 120 calls against 107 remaining primary calls: deficit 13, before any other work. Confirmation 60 is protected.
+
+The locked transport regression and its command, directory, exit code and sanitized output are recorded in `recheck-20261028.txt` (18 tests, exit 0, no provider calls). This source review does not replace a complete ledger reconciliation or current official provider-limit verification. Human, independent, dataset and rubric reviews remain PENDING.
