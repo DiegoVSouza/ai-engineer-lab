@@ -13,3 +13,5 @@ llm_mode: fake fixtures only; paid USD 0; zero provider calls.
 validation_command: python -S -m unittest discover -s scripts/harness -p test_live_provider_transport.py -v
 stop_condition: regression failure or unknown billing; dependent generation remains INCOMPLETE.
 Plan-check: PASS (self-check); two tasks, concrete paths, no inferred account capacity. Separate-account optimization remains INCOMPLETE.
+
+Coordination follow-up allowed_write_paths: .planning/llm-live-readiness/STATUS.md and this phase VERIFY.md, to reference owning P00 phase 021 without duplicating authoritative ledgers.
