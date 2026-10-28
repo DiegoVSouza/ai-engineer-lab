@@ -28,6 +28,29 @@ POLICY = json.loads(
 
 
 class AccountTests(unittest.TestCase):
+    def test_metadata_retry_is_bounded_same_request_and_never_retries_http(self):
+        from live_free_account import catalog_request
+        from urllib.request import Request
+        from urllib.error import URLError, HTTPError
+        req = Request('https://api.groq.com/openai/v1/models')
+        calls, waits = [], []
+        def unavailable(request, *, timeout):
+            calls.append((request, timeout))
+            raise URLError('fixture')
+        with self.assertRaises(URLError):
+            catalog_request(unavailable, req, sleep=waits.append, jitter=lambda lo, hi: hi)
+        self.assertEqual(calls, [(req, 4)] * 3)
+        self.assertEqual(waits, [0.25, 0.5])
+        calls.clear()
+        def limited(request, *, timeout):
+            calls.append(request)
+            raise HTTPError(req.full_url, 429, 'fixture', {}, None)
+        with self.assertRaises(HTTPError):
+            catalog_request(limited, req, sleep=waits.append)
+        self.assertEqual(calls, [req])
+        with self.assertRaises(AccountBlocked):
+            catalog_request(unavailable, Request('https://api.groq.com/openai/v1/chat/completions', data=b'{}'))
+
     def test_unnumbered_credential_has_stable_slot_and_deduplicates(self):
         from live_free_account import numbered_key_slots
         (self.root / '.env').write_text('GROQ_API_KEY=fixture-a\nGROQ_API_KEY_1=fixture-a\nGROQ_API_KEY_3=fixture-b\n')
@@ -363,7 +386,7 @@ except AccountBlocked:
         def response(request, *, timeout):
             self.assertEqual(request.full_url, "https://api.groq.com/openai/v1/models")
             self.assertEqual(request.get_method(), "GET")
-            self.assertEqual(timeout, 15)
+            self.assertEqual(timeout, 4)
             return CatalogResponse(
                 json.dumps({"data": [{"id": POLICY["model"]}]}).encode(),
                 next(responses),

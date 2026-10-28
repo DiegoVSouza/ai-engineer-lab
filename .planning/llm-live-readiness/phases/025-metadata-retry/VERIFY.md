@@ -1,3 +1,3 @@
 # Verification
 
-INCOMPLETE pending execution.
+PASS for offline metadata retry controls: 27 account and 19 transport tests passed. Catalog GET connection failures retry the identical request at most three total times, each timeout 4 seconds, with full jitter capped at 0.25/0.5 seconds. HTTP errors including 429 are not retried, non-catalog requests are denied and completion replay remains disabled. The initial account test failed because its old catalog timeout assertion was 15 seconds; the updated 4-second contract passes. Evidence: `artifacts/evidence/llm-live-readiness/metadata-retry-025/`. No actual credential/provider was accessed. Full product regression, unnumbered credential Free attestation, C2 continuity/funding and human reviews remain INCOMPLETE/PENDING.

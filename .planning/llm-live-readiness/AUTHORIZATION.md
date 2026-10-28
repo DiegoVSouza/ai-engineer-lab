@@ -1,5 +1,9 @@
 # Free-only campaign authorization
 
+## Additional credential topology attestation — 2026-10-28
+
+The user explicitly authorized GROQ_API_KEY in addition to GROQ_API_KEY_1..4 and stated that the credentials belong to different organizations. Slot 0 identifies the unnumbered variable. This does not authorize additional campaign calls or paid use; the existing explicit Free attestation covered numbered keys only, so unnumbered-key billing eligibility remains unverified. Retry authorization permits bounded same-key read-only metadata retries, not rotation around quota or replay of uncertain model work.
+
 On 2026-10-26 the user requested implementation of the remaining readiness work and limited quota/ceilings to Groq's free plan. The user will perform human review once technical preparation/results are ready. This supersedes earlier absence of authorization to conduct a free-tier campaign; it does not turn pending human review into approval or authorize paid use.
 
 - Authorized paid spend: USD 0, with no upgrade, billing changes, alternate model/provider or silent fallback.

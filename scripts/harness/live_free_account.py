@@ -9,6 +9,7 @@ import json
 import math
 import os
 import re
+import random
 import sqlite3
 import time
 import uuid
@@ -768,6 +769,24 @@ def numbered_keys(root):
     return [key for _, key in numbered_key_slots(root)]
 
 
+def catalog_request(request, req, *, sleep=time.sleep, jitter=random.uniform):
+    """Bounded same-key retries for read-only catalog connection failures only."""
+    if req.get_method() != "GET" or req.full_url != "https://api.groq.com/openai/v1/models":
+        raise AccountBlocked("metadata_retry_scope_denied")
+    for attempt in range(3):
+        try:
+            return request(req, timeout=4)
+        except HTTPError:
+            raise
+        except (URLError, TimeoutError, ConnectionError):
+            if attempt == 2:
+                raise
+            delay = jitter(0, 0.25 * (2 ** attempt))
+            if type(delay) not in (int, float) or not math.isfinite(delay) or not 0 <= delay <= 0.25 * (2 ** attempt):
+                raise AccountBlocked("invalid_retry_jitter")
+            sleep(delay)
+
+
 def catalog_preflight(root, *, request=urlopen, keys=None):
     keys = numbered_keys(root) if keys is None else keys
     valid = 0
@@ -783,7 +802,7 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
             },
         )
         try:
-            with request(req, timeout=15) as response:
+            with catalog_request(request, req) as response:
                 observed = feedback(getattr(response, "headers", {}))
                 if observed:
                     observations.append(observed)

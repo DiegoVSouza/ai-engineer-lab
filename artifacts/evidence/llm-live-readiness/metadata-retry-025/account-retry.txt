@@ -1,0 +1,9 @@
+cwd: C:\estudo\Golpe\lab\projects\p00
+command: locked account suite
+exit_code: 0
+output:
+...........................
+----------------------------------------------------------------------
+Ran 27 tests in 3.582s
+
+OK

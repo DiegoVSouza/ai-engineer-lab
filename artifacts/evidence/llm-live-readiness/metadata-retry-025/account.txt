@@ -1,0 +1,25 @@
+cwd: C:\estudo\Golpe\lab\projects\p00
+command: uv run --locked python -m unittest discover -s ../../scripts/harness -p test_live_free_account.py
+exit_code: 1
+output:
+...F.......................
+======================================================================
+FAIL: test_catalog_preflight_is_metadata_only_and_never_returns_credentials (test_live_free_account.AccountTests.test_catalog_preflight_is_metadata_only_and_never_returns_credentials)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 395, in test_catalog_preflight_is_metadata_only_and_never_returns_credentials
+    result = catalog_preflight(self.root, request=response)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 805, in catalog_preflight
+    with catalog_request(request, req) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 778, in catalog_request
+    return request(req, timeout=4)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 389, in response
+    self.assertEqual(timeout, 15)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+AssertionError: 4 != 15
+
+----------------------------------------------------------------------
+Ran 27 tests in 2.571s
+
+FAILED (failures=1)
