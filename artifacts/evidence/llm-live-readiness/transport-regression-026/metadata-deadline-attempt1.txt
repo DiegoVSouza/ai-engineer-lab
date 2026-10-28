@@ -1,0 +1,14 @@
+..............E................
+======================================================================
+ERROR: test_metadata_parent_timeout_is_single_attempt_and_sanitized (test_live_free_account.AccountTests.test_metadata_parent_timeout_is_single_attempt_and_sanitized)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 36, in test_metadata_parent_timeout_is_single_attempt_and_sanitized
+    with patch.object(module.subprocess, "run", side_effect=subprocess.TimeoutExpired("PRIVATE", 80)) as runner:
+                      ^^^^^^^^^^^^^^^^^
+AttributeError: module 'live_free_account' has no attribute 'subprocess'
+
+----------------------------------------------------------------------
+Ran 31 tests in 3.055s
+
+FAILED (errors=1)

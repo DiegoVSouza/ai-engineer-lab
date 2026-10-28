@@ -11,6 +11,8 @@ import os
 import re
 import random
 import sqlite3
+import subprocess
+import sys
 import time
 import uuid
 from contextlib import closing, contextmanager
@@ -880,13 +882,41 @@ def catalog_preflight(root, *, request=metadata_request, keys=None):
     }
 
 
+def bounded_catalog_preflight():
+    """Kill a stalled metadata-only worker; never replay a timed-out request."""
+    try:
+        result = subprocess.run(
+            [sys.executable, str(Path(__file__).resolve()), "--catalog-preflight-worker"],
+            cwd=ROOT,
+            env={name: value for name, value in os.environ.items() if not name.startswith("GROQ_API_KEY")},
+            capture_output=True,
+            timeout=80,
+            check=False,
+        )
+        report = json.loads(result.stdout)
+        if result.returncode not in {0, 2} or not isinstance(report, dict) or report.get("status") not in {"PASS", "INCOMPLETE"}:
+            raise ValueError("invalid worker report")
+        return report
+    except (subprocess.TimeoutExpired, OSError, ValueError):
+        return {
+            "status": "INCOMPLETE",
+            "reason": "metadata_worker_timeout_or_failure",
+            "generation_calls": 0,
+            "provider_accessed": "UNKNOWN",
+            "credentials_read": "UNKNOWN",
+        }
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--catalog-preflight", action="store_true")
+    parser.add_argument("--catalog-preflight-worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     try:
-        if args.catalog_preflight:
+        if args.catalog_preflight_worker:
             report = catalog_preflight(ROOT)
+        elif args.catalog_preflight:
+            report = bounded_catalog_preflight()
         else:
             policy = json.loads(
                 (ROOT / "shared/policies/groq-free-campaign.json").read_text()
@@ -900,7 +930,7 @@ def main(argv=None):
                 "generation_authorized": False,
             }
         print(json.dumps(report, sort_keys=True, indent=2))
-        return 0 if report["status"] == "PASS" or not args.catalog_preflight else 2
+        return 0 if report["status"] == "PASS" or not (args.catalog_preflight or args.catalog_preflight_worker) else 2
     except (AccountBlocked, OSError, ValueError) as exc:
         reason = (
             str(exc) if isinstance(exc, AccountBlocked) else "account_input_unavailable"

@@ -1,0 +1,7 @@
+{
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "failure": "metadata-parent-deadline",
+  "command": "uv run --locked --project projects/p00 python -m unittest discover -s scripts/harness -p test_live*.py",
+  "attempt": 2,
+  "exit_code": 0
+}

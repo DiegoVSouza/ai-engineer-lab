@@ -28,6 +28,20 @@ POLICY = json.loads(
 
 
 class AccountTests(unittest.TestCase):
+    def test_metadata_parent_timeout_is_single_attempt_and_sanitized(self):
+        import subprocess
+        from unittest.mock import patch
+        import live_free_account as module
+
+        with patch.object(module.subprocess, "run", side_effect=subprocess.TimeoutExpired("PRIVATE", 80)) as runner:
+            result = module.bounded_catalog_preflight()
+        self.assertEqual(runner.call_count, 1)
+        self.assertEqual(runner.call_args.kwargs["timeout"], 80)
+        self.assertFalse(any(name.startswith("GROQ_API_KEY") for name in runner.call_args.kwargs["env"]))
+        self.assertEqual(result["status"], "INCOMPLETE")
+        self.assertEqual(result["generation_calls"], 0)
+        self.assertNotIn("PRIVATE", json.dumps(result))
+
     def test_catalog_429_stops_before_another_credential(self):
         from urllib.error import HTTPError
 
