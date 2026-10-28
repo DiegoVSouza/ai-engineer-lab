@@ -237,6 +237,8 @@ class ProviderSession:
         self.timeout = timeout
         self._request = request
         self._key_slots = numbered_key_slots(self.root)
+        if any(slot == 0 for slot, _ in self._key_slots):
+            raise AccountBlocked("unnumbered_credential_free_tier_unverified")
         self._keys = [key for _, key in self._key_slots]
         self.preflight = catalog_preflight(self.root, request=request, keys=self._keys)
         if self.preflight["status"] != "PASS":

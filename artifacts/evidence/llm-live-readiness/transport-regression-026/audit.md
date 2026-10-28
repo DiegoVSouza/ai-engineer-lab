@@ -16,3 +16,7 @@ Official references checked 2026-10-28: https://docs.python.org/3.13/library/url
 Evidence: attempt1.json and *attempt1.txt preserve the two reproduced failures; attempt2.json and *attempt2.txt record correction PASS (28 account, 20 transport). Commands use P00's locked environment; all credentials/provider responses are injected fixtures.
 
 Remaining: cross-project regression, metadata redirect protection, effective total-bound verification per consumer, credential billing eligibility, P00 complete receipt/crash/authorization audit. These are executable pending work, not demonstrated external blockers.
+
+## Follow-up correction
+
+Standalone metadata now uses a no-redirect opener; catalog traversal stops after the first HTTP 429 and reports the actual checked count separately from the selected count. New red-first tests also demonstrated that unverified slot 0 previously initialized generation; ProviderSession now rejects it before metadata network access or ledger registration. This is a conservative stop, not an attestation or automatic selection of another key. Slot 0 remains available to the metadata-only CLI. Numbered-key attestation does not prove slot-0 Free billing. Follow-up attempt 2 passed 30 account and 21 transport tests. P00 actual receipt/crash/review audit is in owning phase 027; P01 parent bound is 35 seconds (shutdown 1+2), disabled owner execution, scoped regression PASS. Neither socket arithmetic nor a catalog PASS establishes billing or remaining daily quota.

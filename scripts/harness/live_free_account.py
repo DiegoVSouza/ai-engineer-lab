@@ -17,7 +17,7 @@ from contextlib import closing, contextmanager
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 ROOT = Path(__file__).resolve().parents[2]
 PROJECTS = tuple(f"p{number:02d}" for number in range(6))
@@ -769,6 +769,15 @@ def numbered_keys(root):
     return [key for _, key in numbered_key_slots(root)]
 
 
+class NoMetadataRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def metadata_request(req, *, timeout):
+    return build_opener(NoMetadataRedirect()).open(req, timeout=timeout)
+
+
 def catalog_request(request, req, *, sleep=time.sleep, jitter=random.uniform):
     """Bounded same-key retries for read-only catalog connection failures only."""
     if req.get_method() != "GET" or req.full_url != "https://api.groq.com/openai/v1/models":
@@ -787,12 +796,14 @@ def catalog_request(request, req, *, sleep=time.sleep, jitter=random.uniform):
             sleep(delay)
 
 
-def catalog_preflight(root, *, request=urlopen, keys=None):
+def catalog_preflight(root, *, request=metadata_request, keys=None):
     keys = numbered_keys(root) if keys is None else keys
     valid = 0
     failures = {}
     observations = []
+    checked = 0
     for key in keys:
+        checked += 1
         req = Request(
             "https://api.groq.com/openai/v1/models",
             headers={
@@ -828,6 +839,8 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
             label = "http_" + str(exc.code)
             failures[label] = failures.get(label, 0) + 1
             exc.close()
+            if exc.code == 429:
+                break
         except URLError as exc:
             label = "transport_" + type(exc.reason).__name__
             failures[label] = failures.get(label, 0) + 1
@@ -851,9 +864,10 @@ def catalog_preflight(root, *, request=urlopen, keys=None):
             # Use the longest observed window for the most restrictive remaining value.
             effective[name] = max(values)
     return {
-        "status": "PASS" if valid == len(keys) else "INCOMPLETE",
+        "status": "PASS" if keys and valid == len(keys) else "INCOMPLETE",
         "model": MODEL,
-        "unique_credentials_checked": len(keys),
+        "unique_credentials_checked": checked,
+        "unique_credentials_selected": len(keys),
         "model_access_count": valid,
         "provider_accessed": True,
         "credentials_read": True,

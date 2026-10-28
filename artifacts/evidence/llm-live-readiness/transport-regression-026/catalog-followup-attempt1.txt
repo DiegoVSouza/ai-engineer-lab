@@ -1,0 +1,30 @@
+...FE.........................
+======================================================================
+ERROR: test_catalog_default_transport_denies_redirects (test_live_free_account.AccountTests.test_catalog_default_transport_denies_redirects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 54, in test_catalog_default_transport_denies_redirects
+    with patch.object(module, "build_opener") as factory:
+         ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1497, in __enter__
+    original, local = self.get_original()
+                      ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1467, in get_original
+    raise AttributeError(
+        "%s does not have the attribute %r" % (target, name)
+    )
+AttributeError: <module 'live_free_account' from 'C:\\estudo\\Golpe\\lab\\scripts\\harness\\live_free_account.py'> does not have the attribute 'build_opener'
+
+======================================================================
+FAIL: test_catalog_429_stops_before_another_credential (test_live_free_account.AccountTests.test_catalog_429_stops_before_another_credential)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 42, in test_catalog_429_stops_before_another_credential
+    self.assertEqual(len(calls), 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: 2 != 1
+
+----------------------------------------------------------------------
+Ran 30 tests in 3.353s
+
+FAILED (failures=1, errors=1)

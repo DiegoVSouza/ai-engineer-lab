@@ -31,6 +31,16 @@ class Response(io.BytesIO):
 
 
 class ProviderTests(unittest.TestCase):
+    def test_unverified_unnumbered_tier_denies_before_network_or_reservation(self):
+        (self.root / ".env").write_text("GROQ_API_KEY=fixture-unverified\nGROQ_API_KEY_1=fixture-numbered\n")
+
+        def forbidden(*args, **kwargs):
+            self.fail("unverified billing eligibility must deny before network")
+
+        with self.assertRaisesRegex(AccountBlocked, "unnumbered_credential_free_tier_unverified"):
+            ProviderSession(self.root, "p00", self.policy, request=forbidden, mode="live")
+        self.assertFalse((self.root / "projects/p00/artifacts/evals/live/provider-usage.sqlite").exists())
+
     def test_http_error_body_timeout_closes_response_and_keeps_reservation(self):
         class InterruptedBody(io.BytesIO):
             def read(self, size=-1):

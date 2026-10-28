@@ -1,0 +1,8 @@
+{
+  "transport_exit": 1,
+  "command": "uv run --locked --project projects/p00 python -m unittest discover -s scripts/harness -p <suite>.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "failure": "metadata-followup-and-eligibility",
+  "account_exit": 1,
+  "attempt": 1
+}

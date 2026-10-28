@@ -1,0 +1,25 @@
+....................F
+======================================================================
+FAIL: test_unverified_unnumbered_tier_denies_before_network_or_reservation (test_live_provider_transport.ProviderTests.test_unverified_unnumbered_tier_denies_before_network_or_reservation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 41, in test_unverified_unnumbered_tier_denies_before_network_or_reservation
+    ProviderSession(self.root, "p00", self.policy, request=forbidden, mode="live")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 241, in __init__
+    self.preflight = catalog_preflight(self.root, request=request, keys=self._keys)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 805, in catalog_preflight
+    with catalog_request(request, req) as response:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 778, in catalog_request
+    return request(req, timeout=4)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 38, in forbidden
+    self.fail("unverified billing eligibility must deny before network")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unverified billing eligibility must deny before network
+
+----------------------------------------------------------------------
+Ran 21 tests in 1.361s
+
+FAILED (failures=1)

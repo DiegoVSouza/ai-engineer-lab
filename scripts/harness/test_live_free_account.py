@@ -28,6 +28,34 @@ POLICY = json.loads(
 
 
 class AccountTests(unittest.TestCase):
+    def test_catalog_429_stops_before_another_credential(self):
+        from urllib.error import HTTPError
+
+        calls = []
+        body = io.BytesIO(b"PRIVATE")
+
+        def limited(req, *, timeout):
+            calls.append(req)
+            raise HTTPError(req.full_url, 429, "PRIVATE", {}, body)
+
+        result = catalog_preflight(self.root, request=limited, keys=["fixture-a", "fixture-b"])
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(result["unique_credentials_checked"], 1)
+        self.assertEqual(result["status"], "INCOMPLETE")
+        self.assertTrue(body.closed)
+        self.assertNotIn("PRIVATE", json.dumps(result))
+
+    def test_catalog_default_transport_denies_redirects(self):
+        from unittest.mock import patch
+        from urllib.request import Request
+        import live_free_account as module
+
+        req = Request("https://api.groq.com/openai/v1/models")
+        with patch.object(module, "build_opener") as factory:
+            module.metadata_request(req, timeout=4)
+        handler = factory.call_args.args[0]
+        self.assertIsNone(handler.redirect_request(req, None, 302, "fixture", {}, "https://example.invalid"))
+
     def test_catalog_rejects_oversized_body_and_closes_response(self):
         class Oversized(io.BytesIO):
             headers = {}
