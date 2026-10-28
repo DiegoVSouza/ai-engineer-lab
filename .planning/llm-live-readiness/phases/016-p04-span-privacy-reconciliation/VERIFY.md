@@ -2,11 +2,11 @@
 
 ## Status
 
-INCOMPLETE until P04 revision/evidence and root harness check are confirmed and the coordinator-only commit is recorded. This phase cannot declare production exporter privacy, service acceptance, RAG, model quality, human/independent review or promotion.
+**PASS — coordinator reconciliation.** P04 revision and phase evidence were confirmed; the root harness check passed with 0 errors and 0 warnings; this root-only coordinator update is committed as `6315cfc5f11a372c5f862dca124fb29c147e652e`. This phase does not declare production exporter privacy, service acceptance, RAG, model quality, human/independent review or promotion.
 
 ## Evidence
 
-Store root command/exit/output here. Project evidence remains in P04's own repository.
+Root command/exit/output are in `root-check.txt`. Project evidence remains in P04's own repository.
 
 ## Review
 
