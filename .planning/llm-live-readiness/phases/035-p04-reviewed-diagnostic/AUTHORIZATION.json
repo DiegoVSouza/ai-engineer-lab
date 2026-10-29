@@ -1,0 +1,18 @@
+{
+  "authorization_id": "p04-reviewed-diagnostic-v1",
+  "authority": "explicit_user_reply_2026-10-29",
+  "decision": "Autorizar diagnóstico separado de P04",
+  "original_result": "INCOMPLETE",
+  "original_failure_category": "unknown_unrecoverable",
+  "original_reserved_calls_retained": 3,
+  "diagnostic_campaign": "local-diagnostic-v1",
+  "diagnostic_case": "fixture-diagnostic-01",
+  "max_workflows": 1,
+  "max_provider_calls": 3,
+  "existing_total_logical_call_ceiling": 6,
+  "authorized_paid_usd": 0,
+  "original_receipts": [
+    "196cae46b57b4312afeee02aa89d813e"
+  ],
+  "quality_human_holdout_promotion": "PENDING"
+}
