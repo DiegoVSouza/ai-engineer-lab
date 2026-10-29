@@ -1,3 +1,3 @@
 # Verification
 
-PENDING exact proposal, shared guard, isolated migration regressions and applied registry reconciliation. P01 provider execution and evaluation remain INCOMPLETE/PENDING.
+PASS proposal-only: `uv run --locked --project projects/p01 python artifacts/evidence/llm-live-readiness/p01-operation-envelope/prepare-proposal.py`, cwd lab, exit 0. The exact P01/global delta is eight calls, 16,384 input tokens, 2,048 output tokens and USD 0.0018432 estimated economic value; paid authorization remains USD 0 and all other project caps are unchanged. Old SHA `6b678227c7d6ee138ed3495229e8bb365b930cafc9c241dece4df8d42cb6a12c`; proposed SHA `6c87609c7ebc7e58de8d5e9054fe1984ebcd20fec58bf26d0a60f73257ebbfeb`. No policy or registry mutation, credentials or provider access. Shared guard, isolated migration regressions and applied registry reconciliation PENDING. P01 provider execution and evaluation remain INCOMPLETE/PENDING.

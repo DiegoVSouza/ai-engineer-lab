@@ -1,0 +1,12 @@
+{
+  "status": "PASS_PROPOSAL_ONLY",
+  "old_sha256": "6b678227c7d6ee138ed3495229e8bb365b930cafc9c241dece4df8d42cb6a12c",
+  "new_sha256": "6c87609c7ebc7e58de8d5e9054fe1984ebcd20fec58bf26d0a60f73257ebbfeb",
+  "additional_calls": 8,
+  "additional_input_tokens": 16384,
+  "additional_output_tokens": 2048,
+  "additional_economic_estimate_usd": "0.0018432",
+  "paid_authorization_usd": "0.00",
+  "provider_accessed": false,
+  "credentials_read": false
+}
