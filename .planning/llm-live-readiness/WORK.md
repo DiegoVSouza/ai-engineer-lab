@@ -17,6 +17,7 @@ Current verified queue after the authorized +13 migration. Historical source/res
 | G: coordination reconciliation | PASS | current STATUS supersedes preserved historical entries; P00/P04 owner states reconciled; final metadata/reference validator attempt 2 exit 0 | no live continuation command; provider-free review commands in P00 REVIEW.md |
 | P00 replacement development | COMPLETED / FAIL_PROVISIONAL | phase 028, candidate 43737f7, 27/36 passes and nine semantic failures; 65 receipts reconcile | actual reviewers resolve cases 025/026/037; a new corrected candidate needs fresh explicit development funding |
 | P00 further generation / holdout | STOPPED specific prerequisites | only 84 holdout + 60 confirmation remain; failed development, dataset/rubric/human review and holdout sealing pending | no live command; provider-free review only |
+| P00 synthetic local operation | PASS one accounted live smoke | phase 031; separate ten-call allocation migrated, 1/10 used; 84 holdout and 60 confirmation protected | use a new stable request ID and synthetic input only; stop on provider error, uncertainty or exhausted allocation |
 
 ## Execution infrastructure
 

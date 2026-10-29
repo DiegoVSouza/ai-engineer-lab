@@ -2,6 +2,8 @@
 
 ## Current verified state — 2026-10-28
 
+P00 bounded synthetic Groq operation passed one accounted live smoke (`openai/gpt-oss-20b`, 342 input and 80 output tokens); nine operation calls remain under the separate ten-call envelope. Migration `p00-local-operation-plus10-v1` was applied after 28 isolated migration tests and 59 proposed-policy transport/account tests; ledger UUID and historical prefixes remained unchanged at migration. The locked post-migration fake product gate passed 156 tests, and post-smoke reconciliation passed. P00 provider ledger now records 66 calls, including one operation; 84 holdout and 60 confirmation calls remain protected, and one historical unknown reservation is retained. Candidate fingerprint before the smoke: `930cc7171f2cbdde28fb4335dd834475114ba7d3da2cb62ebcad68256029140d`. User-deferred evaluation, quality and promotion remain PENDING. P01–P05 local fake gates and external integration dependencies below remain unchanged. Evidence: `projects/p00/artifacts/evidence/local-live-operation-031/` and `artifacts/evidence/llm-live-readiness/local-operation-envelope/migration-apply.json`.
+
 This section supersedes the historical coordination entries below. Overall live readiness remains INCOMPLETE. Completed local controls do not approve model quality, human reviews, holdout or promotion.
 
 | Owner | Current scoped result | Evidence |

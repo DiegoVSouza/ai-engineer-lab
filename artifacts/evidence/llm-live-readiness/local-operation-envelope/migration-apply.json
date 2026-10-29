@@ -1,0 +1,7 @@
+{
+  "command": "C:\\estudo\\Golpe\\lab\\projects\\p00\\.venv\\Scripts\\python.exe scripts/harness/migrate_local_operation.py --apply",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "stdout": "{\n  \"status\": \"APPLIED\",\n  \"migration_id\": \"p00-local-operation-plus10-v1\",\n  \"old_policy_sha256\": \"a1144017dfc7e44ec4b985a58b061f60321b10b9d7fc43d63897c5c851b80463\",\n  \"new_policy_sha256\": \"6b678227c7d6ee138ed3495229e8bb365b930cafc9c241dece4df8d42cb6a12c\",\n  \"projects\": {\n    \"p00\": \"384f921b0e8a4e7db7c5ae0491df3635\"\n  },\n  \"usage\": {\n    \"requests\": 65,\n    \"input_tokens\": 24550,\n    \"output_tokens\": 6639,\n    \"estimated_cost_usd\": \"0.003832950\",\n    \"unknown_usage_attempts\": 1\n  },\n  \"ledger_prefixes\": {\n    \"provider\": {\n      \"p00\": {\n        \"event_count\": 130,\n        \"events_sha256\": \"a3d52c2504d4d88eeaca7738b704849f56ad2f982815e83c3aff83638476c916\",\n        \"uuid\": \"384f921b0e8a4e7db7c5ae0491df3635\"\n      }\n    },\n    \"logical\": {\n      \"p00\": {\n        \"event_count\": 130,\n        \"events_sha256\": \"737067b0979f3927b609403cc4d6aa1acdb9068710eef329e724ecebd3ac23e5\"\n      }\n    }\n  },\n  \"provider_accessed\": false,\n  \"credentials_read\": false,\n  \"authorized_paid_spend_usd\": \"0.00\",\n  \"actual_billed_usd\": null,\n  \"human_independent_dataset_rubric_review\": \"PENDING\",\n  \"promotion\": \"PENDING\"\n}\n",
+  "stderr": ""
+}
