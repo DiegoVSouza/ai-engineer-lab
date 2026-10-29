@@ -1,0 +1,6 @@
+{
+  "command": "python -m unittest discover -s scripts/harness -p test_p01_reviewed_diagnostic.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": ".....\r\n----------------------------------------------------------------------\r\nRan 5 tests in 3.388s\r\n\r\nOK\r\n"
+}

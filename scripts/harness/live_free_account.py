@@ -588,6 +588,15 @@ class SharedAccount:
                 raise AccountBlocked("operational_allocation_exhausted")
             if any(row["event"] == "completed" and row["status"] != "ok" for row in operation_p03):
                 raise AccountBlocked("prior_operational_failure_requires_review")
+        service_operations = {"p04": (744, 6), "p05": (1712, 8)}
+        if project in service_operations and self.policy["projects"][project]["requests"] == service_operations[project][0]:
+            if campaign != "local-operation-v1":
+                raise AccountBlocked("protected_" + project + "_allocation")
+            service_rows = [row for row in rows if row["project"] == project and row["campaign"] == campaign]
+            if len(service_rows) >= service_operations[project][1]:
+                raise AccountBlocked("operational_allocation_exhausted")
+            if any(row["event"] == "completed" and row["status"] != "ok" for row in service_rows):
+                raise AccountBlocked("prior_operational_failure_requires_review")
         if any(row["event"] == "reserved" for row in rows):
             raise AccountBlocked("uncertain_attempt_requires_reconciliation")
         if any(

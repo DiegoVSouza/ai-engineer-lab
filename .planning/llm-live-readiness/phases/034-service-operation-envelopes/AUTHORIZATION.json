@@ -1,0 +1,16 @@
+{
+  "authorization_id": "service-local-operations-v1",
+  "authority": "user_authorized_free_local_operation_as_needed",
+  "project": "p04+p05",
+  "additional_calls": 14,
+  "additional_input_tokens": 57344,
+  "additional_output_tokens": 7168,
+  "additional_economic_estimate_usd": "0.0064512",
+  "authorized_paid_spend_usd": "0.00",
+  "free_only": true,
+  "condition": "validated_owning_migration_phase",
+  "other_project_caps_changed": false,
+  "confirmation_changed": false,
+  "human_dataset_rubric_independent_review": "PENDING",
+  "promotion": "PENDING"
+}
