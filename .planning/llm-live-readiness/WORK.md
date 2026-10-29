@@ -21,6 +21,7 @@ Current verified queue after the authorized +13 migration. Historical source/res
 | P02–P05 legacy direct provider paths | PASS fail-closed controls; accounted replacement INCOMPLETE | P02 phase 013; P03 phase 022; P04 phase 028; P05 phase 026; latest offline fake gates passed | implement separately scoped accounted synthetic operation for each project without using protected evaluation allocations; rerun owning service gates after source changes |
 | P01 accounted fixture dispatch | PASS 75 offline unit tests and isolated full six-runner gate | P01 phase 016, source `db8f1f2`; live provenance remains refused and real allocation is not enabled | implement durable accounted operation and its separate protected allocation |
 | P01 reservation and operation controller | PASS fixture-only, 83 unit tests and isolated full gate | phases 017–018; source `00c0323`; four-call reservation and fail-closed uncertainty verified | implement root policy migration and shared operation cap, then bind committed P01 live manifest and validate one synthetic workflow |
+| P01 live synthetic workflow | INCOMPLETE, stop on open logical reservation | phase 019 candidate `d17923e`; two provider receipts, one unresolved four-call logical reservation, sanitized reason not retained | inspect provenance and receipts; preserve unknown work and never replay or switch IDs to bypass the stop |
 
 ## Execution infrastructure
 
