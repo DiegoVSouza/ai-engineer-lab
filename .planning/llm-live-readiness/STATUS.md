@@ -6,6 +6,8 @@ P00 bounded synthetic Groq operation passed one accounted live smoke (`openai/gp
 
 Subsequent local guard updates: P02 `f469d28` disables unaccounted legacy Groq and OpenRouter entries (66 fake tests); P03 `bc35f59` disables its direct legacy entry (57 fake tests); P04 `b24f063` disables legacy entries and default direct SDK construction (85 passed, four service tests skipped); P05 `3836de9` does the same for its runtime and legacy entries (140 fake tests). These are protective stops, not accounted live integrations. Earlier service gates are retained as historical evidence and were not rerun after these source changes. Current accounted live integration for P01–P05 remains INCOMPLETE.
 
+P00 phase 032 also disables the old unaccounted SDK smoke; the current locked fake gate passed 157 tests. After that source change, provider-free reconciliation yielded fingerprint `897bc37e886bb178c02ca825cd7e5d0aa59925f478c00e83f3fb2f2e4dc86b9b` at P00 source commit `3b8978f13e2dd8970f3a601cb470db77b969240a`. The earlier successful live smoke belongs to the prior fingerprint and was not replayed. Operation allocation and historical usage remain unchanged.
+
 This section supersedes the historical coordination entries below. Overall live readiness remains INCOMPLETE. Completed local controls do not approve model quality, human reviews, holdout or promotion.
 
 | Owner | Current scoped result | Evidence |
