@@ -1,0 +1,9 @@
+# Plan
+
+1. Prepare exact eight-call policy proposal and explicit user-authority record, preserving existing project limits, P00 operation and holdout/confirmation reserves.
+2. Implement shared P01 operation protection and migration with separate append-only audit, existing history/UUID continuity, locks and pending-marker crash recovery; test isolated fake registries including current P01 logical ledger schema.
+3. Commit validated inputs and reconcile/apply the migration only after all offline checks pass; record sanitized commands, exits and before/after digests without provider access.
+
+allowed_write_paths: `.planning/llm-live-readiness/phases/029-p01-operation-envelope/**`, `.planning/llm-live-readiness/AUTHORIZATION.md`, `.planning/llm-live-readiness/WORK.md`, `.planning/llm-live-readiness/STATUS.md`, `scripts/harness/live_free_account.py`, `scripts/harness/test_live_free_account.py`, `scripts/harness/migrate_p01_operation.py`, `scripts/harness/test_migrate_p01_operation.py`, `shared/policies/groq-free-campaign.json`, `artifacts/evidence/llm-live-readiness/p01-operation-envelope/**`, `.runtime/llm-live-readiness/ledger-references.json` (policy transition only), `.runtime/llm-live-readiness/policy-migrations-p01-operation.sqlite*`, `.runtime/llm-live-readiness/policy-migration.pending`, `.runtime/llm-live-readiness/ledger-references.policy-migration.tmp`, `.runtime/llm-live-readiness/account.lock`, `.runtime/llm-live-readiness/campaign.lock`.
+
+forbidden_changes: historical ledgers/audits/receipts, other allocations, confirmation or holdout budgets, rates, model/provider, paid use, customer data, credentials, live calls and human approvals. Fake mode; zero provider calls and paid USD 0. max_tries: 3 per failure. Stop on unknown active work, registry mismatch, invalid history, lock contention or unverified free-tier evidence. Plan-check is implementer self-assessment.
