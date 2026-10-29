@@ -1,5 +1,11 @@
 # Local live continuation plan
 
+## Verified checkpoint — 2026-10-29, P02 operation
+
+P02 now has accounted local synthetic transport acceptance: candidate `5f8d62e10698772b16e4381df0257a16b0cdcd6f`, fingerprint `6dc0cac2de3cc1c3e9240d3baf978e95478bb5fbf1dd1887f6eb8dbdb07c48c4`, evidence commit `5b91e73`. Phase 016 full fake gate passed 82 tests; one live call succeeded with 141 input/37 output and matching durable receipt. Root phase 031 migrated four separate operating calls (one used, three remain); policy SHA `196fb3503db9c68964e928d3f18494043c44ceeaf8ac2046981ec3c84c3ed66f`, migration source `687d995`, applied evidence `9b0de20`. Provider total is now 69 calls; provider conservative tokens 25,496/6,985 (not added to logical usage). P01 reservations/unknown original failure remain preserved. No quality, human, external identity/corpus, holdout or promotion approval follows.
+
+Next independent item: T3. P03 Git inspected at `e463011`; existing untracked phase-021/023 run files preserved. Read its instrumentation and current service wrapper before new phase 024; no P03 source edited yet. T1 recovery proposal, T3–T7 remain unfinished, not globally blocked. P02 phase 015 cleanup failure resolved attempt 2/3; root migration fixture failure resolved attempt 2/3; account fixture coupling resolved attempt 3/3. Do not reset these counters or repeat the P02 smoke. Existing historical tables below predate this checkpoint where inconsistent.
+
 This is the current execution queue after the P03 Docker recheck. Reverify every anchor against Git, source and ledgers before mutation. Earlier coordination entries contain superseded states. This document is a plan, not live approval or independent verification.
 
 ## Authority and scope
