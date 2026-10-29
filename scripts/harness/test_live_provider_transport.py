@@ -115,7 +115,7 @@ class ProviderTests(unittest.TestCase):
         }
         self.failure = None
         self.envelope = {
-            "campaign_id": "candidate-1",
+            "campaign_id": "local-live-operation-v1",
             "case_id": "case-1",
             "trial": 1,
             "call_index": 1,

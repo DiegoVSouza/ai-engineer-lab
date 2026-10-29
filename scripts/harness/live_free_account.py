@@ -557,6 +557,13 @@ class SharedAccount:
         rows = self._history()
         if project not in self._references():
             raise AccountBlocked("owning_project_not_initialized")
+        if project == "p00" and self.policy["projects"]["p00"]["requests"] == 219:
+            if campaign != "local-live-operation-v1":
+                raise AccountBlocked("protected_p00_allocation")
+            p00 = [row for row in rows if row["project"] == "p00"]
+            operation = [row for row in p00 if row["campaign"] == campaign]
+            if len(p00) >= 75 or len(operation) >= 10:
+                raise AccountBlocked("operational_allocation_exhausted")
         if any(row["event"] == "reserved" for row in rows):
             raise AccountBlocked("uncertain_attempt_requires_reconciliation")
         if any(
@@ -576,6 +583,9 @@ class SharedAccount:
                 "estimated_cost_usd": cost,
             },
         )
+        if project == "p00" and self.policy["projects"]["p00"]["requests"] == 219:
+            if any(row["event"] == "completed" and row["status"] != "ok" for row in operation):
+                raise AccountBlocked("prior_operational_failure_requires_review")
         return rows
 
     def preview(

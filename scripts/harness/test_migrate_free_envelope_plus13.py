@@ -36,11 +36,12 @@ class MigrationTests(unittest.TestCase):
         p00 = self.root / "projects/p00"
         campaign_source = p00 / "scripts/campaign_execution.py"
         campaign_source.parent.mkdir(parents=True, exist_ok=True)
-        real_source = (
-            Path(__file__).resolve().parents[2]
-            / "projects/p00/scripts/campaign_execution.py"
+        real_p00 = Path(__file__).resolve().parents[2] / "projects/p00"
+        pinned_source = subprocess.run(
+            ["git", "-C", str(real_p00), "cat-file", "blob", migration.P00_CAMPAIGN_SOURCE_SHA],
+            check=True, capture_output=True, timeout=15,
         )
-        campaign_source.write_bytes(real_source.read_bytes())
+        campaign_source.write_bytes(pinned_source.stdout)
         subprocess.run(["git", "init", "-q"], cwd=p00, check=True, capture_output=True)
         subprocess.run(
             ["git", "config", "user.email", "fixture@example.invalid"],

@@ -28,6 +28,17 @@ POLICY = json.loads(
 
 
 class AccountTests(unittest.TestCase):
+    def test_separate_local_operation_cap_preserves_other_p00_reserves(self):
+        self.policy["projects"]["p00"]["requests"] = 219
+        account = self.account()
+        for index in range(10):
+            attempt = self.reserve(account, campaign="local-live-operation-v1", case=f"op-{index}")
+            account.complete("p00", attempt, input_tokens=80, output_tokens=20)
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, campaign="local-live-operation-v1", case="op-extra")
+        with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
+            self.reserve(account, campaign="unallocated", case="other")
+
     def test_metadata_parent_timeout_is_single_attempt_and_sanitized(self):
         import subprocess
         from unittest.mock import patch
@@ -112,7 +123,7 @@ class AccountTests(unittest.TestCase):
         (self.root / '.env').write_text('GROQ_API_KEY=fixture-a\nGROQ_API_KEY_1=fixture-a\nGROQ_API_KEY_3=fixture-b\n')
         self.assertEqual(numbered_key_slots(self.root), [(0, 'fixture-a'), (3, 'fixture-b')])
         account = self.account()
-        attempt, slot = account.reserve('p00', 'fixture', 'case', 1, 1, 100, 50, credential_slots=(0, 3))
+        attempt, slot = account.reserve('p00', 'local-live-operation-v1', 'case', 1, 1, 100, 50, credential_slots=(0, 3))
         self.assertEqual(slot, 0)
         with closing(sqlite3.connect(account.path('p00'))) as db:
             self.assertEqual(json.loads(db.execute("SELECT feedback FROM usage_events WHERE attempt_id=?", (attempt,)).fetchone()[0]), {'credential_slot': 0})
@@ -145,6 +156,8 @@ class AccountTests(unittest.TestCase):
             )
 
     def reserve(self, account, project="p00", case="case-1", campaign="baseline"):
+        if project == "p00" and campaign == "baseline" and account.policy["projects"]["p00"]["requests"] == 219:
+            campaign = "local-live-operation-v1"
         return account.reserve(project, campaign, case, 1, 1, 100, 50)
 
     def test_switching_project_campaign_and_process_does_not_reset_caps(self):
@@ -178,7 +191,7 @@ class AccountTests(unittest.TestCase):
     def test_slot_reservation_survives_restart_and_blocks_other_dispatch(self):
         account = self.account()
         attempt, slot = account.reserve(
-            "p00", "campaign", "case", 1, 1, 100, 50, credential_slots=(1, 3)
+            "p00", "local-live-operation-v1", "case", 1, 1, 100, 50, credential_slots=(1, 3)
         )
         self.assertEqual(slot, 1)
         with closing(sqlite3.connect(account.path("p00"))) as db:
