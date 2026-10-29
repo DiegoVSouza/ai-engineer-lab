@@ -1,0 +1,88 @@
+{
+  "account_tier_attestation": "user-designated-free-plan; API model catalog cannot verify billing tier",
+  "authorization_reference": ".planning/llm-live-readiness/AUTHORIZATION.md",
+  "authorized_paid_spend_usd": "0.00",
+  "campaign_caps": {
+    "estimated_cost_usd": "1.6190208",
+    "input_tokens": 14391296,
+    "output_tokens": 1798912,
+    "requests": 4119
+  },
+  "free_limits": {
+    "requests_per_day": 1000,
+    "requests_per_minute": 30,
+    "tokens_per_day": 200000,
+    "tokens_per_minute": 8000
+  },
+  "human_review_status": "PENDING",
+  "model": "openai/gpt-oss-20b",
+  "policy_id": "groq-free-live-readiness-v1",
+  "pricing_per_million": {
+    "input_usd": "0.075",
+    "output_usd": "0.30"
+  },
+  "projects": {
+    "p00": {
+      "calls_per_trial": 1,
+      "estimated_cost_usd": "0.0504576",
+      "input_tokens": 448512,
+      "input_tokens_per_call": 2048,
+      "output_tokens": 56064,
+      "output_tokens_per_call": 256,
+      "requests": 219
+    },
+    "p01": {
+      "calls_per_trial": 4,
+      "estimated_cost_usd": "0.2285568",
+      "input_tokens": 2031616,
+      "input_tokens_per_call": 2048,
+      "output_tokens": 253952,
+      "output_tokens_per_call": 256,
+      "requests": 992
+    },
+    "p02": {
+      "calls_per_trial": 1,
+      "estimated_cost_usd": "0.1428480",
+      "input_tokens": 1269760,
+      "input_tokens_per_call": 4096,
+      "output_tokens": 158720,
+      "output_tokens_per_call": 512,
+      "requests": 310
+    },
+    "p03": {
+      "calls_per_trial": 1,
+      "estimated_cost_usd": "0.0718848",
+      "input_tokens": 638976,
+      "input_tokens_per_call": 4096,
+      "output_tokens": 79872,
+      "output_tokens_per_call": 512,
+      "requests": 156
+    },
+    "p04": {
+      "calls_per_trial": 3,
+      "estimated_cost_usd": "0.3400704",
+      "input_tokens": 3022848,
+      "input_tokens_per_call": 4096,
+      "output_tokens": 377856,
+      "output_tokens_per_call": 512,
+      "requests": 738
+    },
+    "p05": {
+      "calls_per_trial": 4,
+      "estimated_cost_usd": "0.7852032",
+      "input_tokens": 6979584,
+      "input_tokens_per_call": 4096,
+      "output_tokens": 872448,
+      "output_tokens_per_call": 512,
+      "requests": 1704
+    }
+  },
+  "promotion_enabled": false,
+  "provider": "groq",
+  "schema_version": 1,
+  "sources": {
+    "pricing": "https://console.groq.com/docs/models",
+    "rate_limits": "https://console.groq.com/docs/rate-limits"
+  },
+  "verified_on": "2026-10-26"
+}
