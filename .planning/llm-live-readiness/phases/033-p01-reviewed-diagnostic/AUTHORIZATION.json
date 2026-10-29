@@ -1,0 +1,16 @@
+{
+ "authorization_id":"p01-reviewed-diagnostic-v1",
+ "authority":"explicit_user_reply_2026-10-29",
+ "decision":"Autorizar o diagnóstico separado",
+ "original_result":"INCOMPLETE",
+ "original_failure_category":"unknown_unrecoverable",
+ "original_reserved_calls_retained":4,
+ "diagnostic_campaign":"local-diagnostic-v1",
+ "diagnostic_case":"fixture-diagnostic-01",
+ "max_workflows":1,
+ "max_provider_calls":4,
+ "existing_total_logical_call_ceiling":8,
+ "authorized_paid_usd":0,
+ "original_receipts":["9b174b5ca0fa40f6a0b177ec9f4f2523","bed97cb14f7146f0845588762940e7d4"],
+ "quality_human_holdout_promotion":"PENDING"
+}
