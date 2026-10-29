@@ -1,5 +1,20 @@
 # Finite remaining work
 
+## Execution checkpoint — 2026-10-29
+
+| Task | Current state/evidence | Dependency / next command |
+|---|---|---|
+| T0 | Root phase 031 read-only migration snapshot validated current provider/logical history and UUID continuity; policy migration APPLIED | Recheck after further mutations; never reset unknown history |
+| T1 | P01 remains INCOMPLETE; original two responses/category unavailable, four-call logical reserve retained | Prepare reviewed recovery exception proposal without dispatch, ID substitution or reserve release |
+| T2 | P02 PASS accounted local operation; phases 015/016; candidate 5f8d62e, evidence 5b91e73, 82 fake tests, real 141/37 tokens | Three operating calls remain; no repeat of fixture-local-01. Human quality, external identity/corpus and promotion pending |
+| T3 | P03 phase 024 adds fixture-accounted telemetry; 66 unit tests pass; service attempts 1–3 INCOMPLETE at grafana.search, root missing HTTP readiness corrected in 012c3b7 | User explicitly authorized one extra gate. Attempt 4 running in p03-accounted-024-20261029-d through exec session 43247; inspect phase-owned evidence and cleanup before more work. No provider call |
+| T4 | P04 phase 029 source 35bdad4: real API/Worker fixture-accounted boundary, four focused tests; 89 offline passes/four skips | Implement live factory, finite migration, committed manifest and service acceptance; deliberate offline skips are not host blockers |
+| T5 | P05 inspected at 3836de9; Git clean, existing identity/RAG/runtime contracts read; no product mutation | Implement accounted path with expiry/revocation/tenant boundaries; production identity remains separate |
+| T6 | P00 current-source live revalidation pending after shared account changes | Provider-free provenance/allocation audit, then fresh separately bound operational smoke only if lawful |
+| T7 | Prior review controls preserved; no annotations created | Recheck affected UI/private review controls and consolidate verified commits/usage after technical work |
+
+Root phase 031 policy SHA is 196fb3503db9c68964e928d3f18494043c44ceeaf8ac2046981ec3c84c3ed66f. Provider history totals 69 calls after P02, conservative input/output 25496/6985; unknown pilot reservation retained. Paid authorization USD 0, billed amount unknown. Do not add logical and provider accounting views. This table supersedes stale completion/next-action claims below; independent executable tasks remain.
+
 Current execution queue and acceptance/dependency details: [CONTINUATION-PLAN.md](CONTINUATION-PLAN.md), tasks T0–T7. That queue supersedes stale next-action text in the cumulative history below. Historical source/results stay immutable. Overall readiness is INCOMPLETE. Copyable executor instructions: [NEXT-EXECUTOR-PROMPT.pt-BR.md](NEXT-EXECUTOR-PROMPT.pt-BR.md).
 
 | Task | State | Evidence / prerequisite | Next command |
