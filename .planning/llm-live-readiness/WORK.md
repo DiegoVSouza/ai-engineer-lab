@@ -18,6 +18,7 @@ Current verified queue after the authorized +13 migration. Historical source/res
 | P00 replacement development | COMPLETED / FAIL_PROVISIONAL | phase 028, candidate 43737f7, 27/36 passes and nine semantic failures; 65 receipts reconcile | actual reviewers resolve cases 025/026/037; a new corrected candidate needs fresh explicit development funding |
 | P00 further generation / holdout | STOPPED specific prerequisites | only 84 holdout + 60 confirmation remain; failed development, dataset/rubric/human review and holdout sealing pending | no live command; provider-free review only |
 | P00 synthetic local operation | PASS one accounted live smoke | phase 031; separate ten-call allocation migrated, 1/10 used; 84 holdout and 60 confirmation protected | use a new stable request ID and synthetic input only; stop on provider error, uncertainty or exhausted allocation |
+| P02–P05 legacy direct provider paths | PASS fail-closed controls; accounted replacement INCOMPLETE | P02 phase 013; P03 phase 022; P04 phase 028; P05 phase 026; latest offline fake gates passed | implement separately scoped accounted synthetic operation for each project without using protected evaluation allocations; rerun owning service gates after source changes |
 
 ## Execution infrastructure
 
