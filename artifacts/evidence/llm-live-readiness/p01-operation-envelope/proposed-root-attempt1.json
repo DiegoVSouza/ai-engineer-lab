@@ -1,0 +1,6 @@
+{
+  "command": "python -m unittest discover -s scripts/harness -p test_live*.py (proposed P01 policy fixture)",
+  "cwd": "isolated temporary lab",
+  "exit_code": 0,
+  "output": "............................................................\n----------------------------------------------------------------------\nRan 60 tests in 5.134s\n\nOK\n"
+}

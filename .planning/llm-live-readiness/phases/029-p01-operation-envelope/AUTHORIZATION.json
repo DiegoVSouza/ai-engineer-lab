@@ -1,0 +1,16 @@
+{
+  "authorization_id": "p01-local-operation-plus8-v1",
+  "authority": "user_authorized_free_local_operation_as_needed",
+  "project": "p01",
+  "additional_calls": 8,
+  "additional_input_tokens": 16384,
+  "additional_output_tokens": 2048,
+  "additional_economic_estimate_usd": "0.0018432",
+  "authorized_paid_spend_usd": "0.00",
+  "free_only": true,
+  "condition": "validated_owning_migration_phase",
+  "other_project_caps_changed": false,
+  "confirmation_changed": false,
+  "human_dataset_rubric_independent_review": "PENDING",
+  "promotion": "PENDING"
+}
