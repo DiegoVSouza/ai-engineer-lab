@@ -1,0 +1,75 @@
+{
+  "command": "uv run --locked --project projects/p01 python artifacts/evidence/llm-live-readiness/executor-continuation-030/validate.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "checks": {
+    "finite_queue": true,
+    "repair_protocol": true,
+    "authority_and_reserves": true,
+    "host_limit_explicit": true,
+    "prompt_actionable": true,
+    "owner_references_exist": true,
+    "EXECUTOR-HANDOFF.md_links": true,
+    "WORK.md_links": true,
+    "p01_reservation_preserved": true,
+    "p03_service_pass": true,
+    "git_owners_verified": true
+  },
+  "git": [
+    {
+      "owner": "C:\\estudo\\Golpe\\lab",
+      "command": "git log -1 --format=%H",
+      "exit_code": 0,
+      "output": "332f1da18d62103c5d73d03a0c5f2a2cf57817b4"
+    },
+    {
+      "owner": "C:\\estudo\\Golpe\\lab\\projects\\p00",
+      "command": "git log -1 --format=%H",
+      "exit_code": 0,
+      "output": "9086f1b437aefb6f82af1231bea1df4461ef3b81"
+    },
+    {
+      "owner": "C:\\estudo\\Golpe\\lab\\projects\\p01",
+      "command": "git log -1 --format=%H",
+      "exit_code": 0,
+      "output": "7036433123870ae5488aa397db018514bd8364ae"
+    },
+    {
+      "owner": "C:\\estudo\\Golpe\\lab\\projects\\p02",
+      "command": "git log -1 --format=%H",
+      "exit_code": 0,
+      "output": "b191487532c6d6eee38dd9a8a327181478b2d4c7"
+    },
+    {
+      "owner": "C:\\estudo\\Golpe\\lab\\projects\\p03",
+      "command": "git log -1 --format=%H",
+      "exit_code": 0,
+      "output": "e463011d1de7303e8e66ba8443872d364c7be47b"
+    },
+    {
+      "owner": "C:\\estudo\\Golpe\\lab\\projects\\p04",
+      "command": "git log -1 --format=%H",
+      "exit_code": 0,
+      "output": "b24f063ae1c78af4b5c24198803b83949e74b4ad"
+    },
+    {
+      "owner": "C:\\estudo\\Golpe\\lab\\projects\\p05",
+      "command": "git log -1 --format=%H",
+      "exit_code": 0,
+      "output": "3836de9c3062e11c5be4fefd4021d71864774716"
+    }
+  ],
+  "references": [
+    "projects/p00/.planning/phases/033-p01-envelope-reconciliation/VERIFY.md",
+    "projects/p01/.planning/phases/019-accounted-local-live/VERIFY.md",
+    "projects/p01/artifacts/evidence/accounted-local-live-019/reconciliation-verified.json",
+    "projects/p02/.planning/phases/014-grounded-fixture-boundary/VERIFY.md",
+    "projects/p03/.planning/phases/023-service-availability-recheck/VERIFY.md",
+    "projects/p03/artifacts/evidence/service-availability-recheck-023/service-result.json",
+    "projects/p04/.planning/phases/028-disable-unaccounted-live/VERIFY.md",
+    "projects/p05/.planning/phases/026-disable-unaccounted-live/VERIFY.md"
+  ],
+  "provider_accessed": false,
+  "credentials_read": false,
+  "product_files_modified": false
+}

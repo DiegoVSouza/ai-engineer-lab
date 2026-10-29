@@ -1,6 +1,6 @@
 # Finite remaining work
 
-Current verified queue after the authorized +13 migration. Historical source/results stay immutable. Overall readiness is INCOMPLETE.
+Current execution queue and acceptance/dependency details: [CONTINUATION-PLAN.md](CONTINUATION-PLAN.md), tasks T0–T7. That queue supersedes stale next-action text in the cumulative history below. Historical source/results stay immutable. Overall readiness is INCOMPLETE. Copyable executor instructions: [NEXT-EXECUTOR-PROMPT.pt-BR.md](NEXT-EXECUTOR-PROMPT.pt-BR.md).
 
 | Task | State | Evidence / prerequisite | Next command |
 |---|---|---|---|
