@@ -28,6 +28,18 @@ POLICY = json.loads(
 
 
 class AccountTests(unittest.TestCase):
+    def test_p01_operation_cap_preserves_evaluation_allocations(self):
+        self.policy["projects"]["p01"]["requests"] = 992
+        account = self.account()
+        account.register("p01")
+        for index in range(8):
+            attempt = self.reserve(account, project="p01", campaign="local-operation-v1", case=f"op-{index}")
+            account.complete("p01", attempt, input_tokens=80, output_tokens=20)
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, project="p01", campaign="local-operation-v1", case="op-extra")
+        with self.assertRaisesRegex(AccountBlocked, "protected_p01_allocation"):
+            self.reserve(account, project="p01", campaign="unallocated", case="other")
+
     def test_separate_local_operation_cap_preserves_other_p00_reserves(self):
         self.policy["projects"]["p00"]["requests"] = 219
         account = self.account()

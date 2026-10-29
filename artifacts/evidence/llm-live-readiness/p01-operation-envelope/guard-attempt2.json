@@ -1,0 +1,6 @@
+{
+  "command": "C:\\estudo\\Golpe\\lab\\projects\\p01\\.venv\\Scripts\\python.exe -m unittest discover -s scripts/harness -p test_live_free_account.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": ".................................\n----------------------------------------------------------------------\nRan 33 tests in 3.070s\n\nOK\n"
+}

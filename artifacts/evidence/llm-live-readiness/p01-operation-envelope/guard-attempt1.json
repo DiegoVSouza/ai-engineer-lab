@@ -1,0 +1,6 @@
+{
+  "command": "C:\\estudo\\Golpe\\lab\\projects\\p01\\.venv\\Scripts\\python.exe -m unittest discover -s scripts/harness -p test_live_free_account.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 1,
+  "output": "..................F..............\n======================================================================\nFAIL: test_p01_operation_cap_preserves_evaluation_allocations (test_live_free_account.AccountTests.test_p01_operation_cap_preserves_evaluation_allocations)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\estudo\\Golpe\\lab\\scripts\\harness\\test_live_free_account.py\", line 38, in test_p01_operation_cap_preserves_evaluation_allocations\n    with self.assertRaisesRegex(AccountBlocked, \"operational_allocation_exhausted\"):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: AccountBlocked not raised\n\n----------------------------------------------------------------------\nRan 33 tests in 2.963s\n\nFAILED (failures=1)\n"
+}
