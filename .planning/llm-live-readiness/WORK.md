@@ -19,6 +19,7 @@ Current verified queue after the authorized +13 migration. Historical source/res
 | P00 further generation / holdout | STOPPED specific prerequisites | only 84 holdout + 60 confirmation remain; failed development, dataset/rubric/human review and holdout sealing pending | no live command; provider-free review only |
 | P00 synthetic local operation | PASS one accounted live smoke | phase 031; separate ten-call allocation migrated, 1/10 used; 84 holdout and 60 confirmation protected | use a new stable request ID and synthetic input only; stop on provider error, uncertainty or exhausted allocation |
 | P02–P05 legacy direct provider paths | PASS fail-closed controls; accounted replacement INCOMPLETE | P02 phase 013; P03 phase 022; P04 phase 028; P05 phase 026; latest offline fake gates passed | implement separately scoped accounted synthetic operation for each project without using protected evaluation allocations; rerun owning service gates after source changes |
+| P01 accounted fixture dispatch | PASS 75 offline unit tests; full six-runner gate INCOMPLETE | P01 phase 016, source `db8f1f2`; live provenance remains refused and real allocation is not enabled | run full gate without overwriting preexisting output, then implement durable accounted operation and its separate protected allocation |
 
 ## Execution infrastructure
 
