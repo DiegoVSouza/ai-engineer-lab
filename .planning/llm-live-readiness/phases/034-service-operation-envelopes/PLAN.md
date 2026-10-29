@@ -1,0 +1,8 @@
+# Plan
+
+1. Prepare exact P04 +6/P05 +8 finite policy proposal and structured existing-user authority record.
+2. Implement combined metadata migration and separate protected account scopes; validate all logical/provider/operation history, UUID/prefix continuity, unknown reserves, crash recovery and finite/failure caps in fake stores.
+3. Commit validated inputs, run current read-only dry-run, apply only if all histories reconcile, and record evidence/next tasks.
+
+allowed_write_paths: .planning/llm-live-readiness/phases/034-service-operation-envelopes/**; scripts/harness/migrate_service_operations.py; scripts/harness/test_migrate_service_operations.py; scripts/harness/live_free_account.py; shared/policies/groq-free-campaign.json; artifacts/evidence/llm-live-readiness/service-operation-envelopes/**; .runtime/llm-live-readiness/ledger-references.json (policy transition only); .runtime/llm-live-readiness/policy-migrations-service-operations.sqlite*; .runtime/llm-live-readiness/policy-migration.pending; .runtime/llm-live-readiness/ledger-references.policy-migration.tmp; .runtime/llm-live-readiness/account.lock; .runtime/llm-live-readiness/campaign.lock; .planning/llm-live-readiness/WORK.md; .planning/llm-live-readiness/STATUS.md; .planning/llm-live-readiness/CONTINUATION-PLAN.md.
+forbidden_changes: historical ledger/receipt/manifest mutation, heldout/confirmation, original reserves, model/rate/provider/per-trial caps, paid use, credentials/provider calls, Docker, human approval. Fake mode; zero provider calls/USD 0 paid. max_tries:3 per failure. Stop on unknown active work, invalid receipts, lock contention, regression or source mismatch. Plan-check implementer self-assessment.
