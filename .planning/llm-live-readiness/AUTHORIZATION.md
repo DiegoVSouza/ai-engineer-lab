@@ -37,3 +37,7 @@ The user states that the configured credentials belong to different accounts and
 ## Free account attestation — 2026-10-27
 
 After clarifying that keys belong to distinct accounts, the user answered the per-variable Free-tier question with: todas free. This is recorded as user attestation covering authorized GROQ_API_KEY_1..4, not API-verified billing or organization identity. Controlled funded development may proceed under conservative existing aggregate ceilings; no per-account capacity multiplication, policy reset, paid usage, fallback or uncertain replay is authorized. Human review remains deferred/PENDING. The metadata API still does not expose billing or daily token balances.
+
+## P04 separate reviewed diagnostic — 2026-10-29
+
+The user explicitly answered “Autorizar diagnóstico separado de P04”. Exact finite authority is phases/035-p04-reviewed-diagnostic/AUTHORIZATION.json. Retain original INCOMPLETE, unknown response/category and three reserved calls; one separate diagnostic may reserve at most three inside existing six, USD 0 paid. No original replay, replacement, release, quality/human/holdout or promotion approval. Implementation and current fake/service validation precede a fresh frozen diagnostic candidate.

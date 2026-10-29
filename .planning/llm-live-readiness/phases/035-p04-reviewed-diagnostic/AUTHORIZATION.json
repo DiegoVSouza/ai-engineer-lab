@@ -1,7 +1,7 @@
 {
   "authorization_id": "p04-reviewed-diagnostic-v1",
   "authority": "explicit_user_reply_2026-10-29",
-  "decision": "Autorizar diagnóstico separado de P04",
+  "decision": "Autorizar diagn\u00f3stico separado de P04",
   "original_result": "INCOMPLETE",
   "original_failure_category": "unknown_unrecoverable",
   "original_reserved_calls_retained": 3,

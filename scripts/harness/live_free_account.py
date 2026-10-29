@@ -590,10 +590,12 @@ class SharedAccount:
                 raise AccountBlocked("prior_operational_failure_requires_review")
         service_operations = {"p04": (744, 6), "p05": (1712, 8)}
         if project in service_operations and self.policy["projects"][project]["requests"] == service_operations[project][0]:
-            if campaign != "local-operation-v1":
+            if project == "p04" and campaign == "local-diagnostic-v1":
+                self._reviewed_p04_diagnostic(rows, case_id, trial)
+            elif campaign != "local-operation-v1":
                 raise AccountBlocked("protected_" + project + "_allocation")
-            service_rows = [row for row in rows if row["project"] == project and row["campaign"] == campaign]
-            if len(service_rows) >= service_operations[project][1]:
+            service_rows = [row for row in rows if row["project"] == project and row["campaign"] in ({"local-operation-v1", "local-diagnostic-v1"} if project == "p04" else {campaign})]
+            if len(service_rows) >= (4 if project == "p04" and campaign == "local-diagnostic-v1" else service_operations[project][1]):
                 raise AccountBlocked("operational_allocation_exhausted")
             if any(row["event"] == "completed" and row["status"] != "ok" for row in service_rows):
                 raise AccountBlocked("prior_operational_failure_requires_review")
@@ -662,6 +664,58 @@ class SharedAccount:
                     or events[-1][5:] != ("incomplete", "unknown", None, None, None)):
                 raise ValueError()
             if any(r["project"] == "p01" and r["campaign"] not in {"local-operation-v1", "local-diagnostic-v1"} for r in rows):
+                raise ValueError()
+        except Exception:
+            raise AccountBlocked("reviewed_diagnostic_authority_or_history_invalid") from None
+
+    def _reviewed_p04_diagnostic(self, rows, case_id, trial):
+        """One explicit diagnostic scope; original failed workflow stays immutable."""
+        if case_id != "fixture-diagnostic-01" or trial != 1:
+            raise AccountBlocked("reviewed_diagnostic_scope_required")
+        name = ".planning/llm-live-readiness/phases/035-p04-reviewed-diagnostic/AUTHORIZATION.json"
+        expected = {
+            "authorization_id": "p04-reviewed-diagnostic-v1", "authority": "explicit_user_reply_2026-10-29",
+            "decision": "Autorizar diagnóstico separado de P04", "original_result": "INCOMPLETE",
+            "original_failure_category": "unknown_unrecoverable", "original_reserved_calls_retained": 3,
+            "diagnostic_campaign": "local-diagnostic-v1", "diagnostic_case": "fixture-diagnostic-01",
+            "max_workflows": 1, "max_provider_calls": 3, "existing_total_logical_call_ceiling": 6,
+            "authorized_paid_usd": 0, "quality_human_holdout_promotion": "PENDING",
+            "original_receipts": ["196cae46b57b4312afeee02aa89d813e"],
+        }
+        try:
+            if json.loads((self.root / name).read_text(encoding="utf-8")) != expected:
+                raise ValueError()
+            for command in (["git", "ls-files", "--error-unmatch", "--", name],
+                            ["git", "diff", "--quiet", "HEAD", "--", name]):
+                if subprocess.run(command, cwd=self.root, capture_output=True, timeout=10).returncode:
+                    raise ValueError()
+            original = sorted((r for r in rows if r["project"] == "p04" and r["campaign"] == "local-operation-v1"), key=lambda r: r["call_index"])
+            if len(original) != 1:
+                raise ValueError()
+            for index, row in enumerate(original):
+                if (row["case_id"] != "fixture-local-01" or row["trial"] != 1 or row["call_index"] != index + 1
+                        or row["attempt_id"] != expected["original_receipts"][index]
+                        or row["event"] != "completed" or row["status"] != "ok"
+                        or (row["actual_input"], row["actual_output"]) != ((105, 51),)[index]):
+                    raise ValueError()
+            path = self.root / "projects/p04/artifacts/evals/live/ledger.sqlite"
+            with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as db:
+                events = db.execute("SELECT event,reserved_calls,reserved_input_tokens,reserved_output_tokens,reserved_cost_usd,outcome,error_class,actual_input_tokens,actual_output_tokens,actual_cost_usd FROM events WHERE campaign_id='local-operation-v1' AND case_id='fixture-local-01' AND trial=1 ORDER BY sequence").fetchall()
+            if (len(events) != 2 or [r[0] for r in events] != ["reserved", "completed"]
+                    or any(r[1:5] != (3,12288,1536,"0.0013824") for r in events)
+                    or events[-1][5:] != ("incomplete", "unknown", None, None, None)):
+                raise ValueError()
+            with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as db:
+                closed = db.execute("SELECT 1 FROM events WHERE campaign_id='local-diagnostic-v1' AND event='completed'").fetchone()
+                scopes = db.execute("SELECT DISTINCT case_id,trial FROM events WHERE campaign_id='local-diagnostic-v1'").fetchall()
+            if closed or any(scope != ("fixture-diagnostic-01", 1) for scope in scopes):
+                raise ValueError()
+            step_path = self.root / "projects/p04/artifacts/evals/live/operations.sqlite"
+            with closing(sqlite3.connect(step_path.resolve().as_uri() + "?mode=ro", uri=True)) as db:
+                steps = db.execute("SELECT operation,step,status,receipt,input_tokens,output_tokens FROM attempts").fetchall()
+            if steps != [("fixture-local-01", "triage", "reserved", None, None, None)]:
+                raise ValueError()
+            if any(r["project"] == "p04" and r["campaign"] not in {"local-operation-v1", "local-diagnostic-v1"} for r in rows):
                 raise ValueError()
         except Exception:
             raise AccountBlocked("reviewed_diagnostic_authority_or_history_invalid") from None

@@ -1,0 +1,7 @@
+{
+  "command": "python -m unittest discover -s scripts/harness -p test_p04_reviewed_diagnostic.py -v",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 1,
+  "output": "7 tests: 4 PASS, 3 errors reviewed_diagnostic_authority_or_history_invalid",
+  "diagnosis": "Exact decision string in copied guard differed from the approved P04 decision; use UTF-8 explicit source decoding."
+}

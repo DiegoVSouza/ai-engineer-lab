@@ -43,3 +43,11 @@ Current execution queue and acceptance/dependency details: [CONTINUATION-PLAN.md
 ## Execution infrastructure
 
 Read-only git status succeeded in sandbox. A subsequent combined read failed before process creation with helper_unknown_error/setup refresh. Repeating the required read through require_escalated succeeded (exit 0). This is a recovered tool failure, not a project blocker. Continue recovery through the normal approval mechanism when needed; never interpret a phase or commit as completion of this queue.
+
+
+### Active checkpoint — P05 third service validation, 2026-10-29
+- User approved the separate P04 diagnostic explicitly; do not request that authorization again. Implementation is pending after P05 completes.
+- P05 service attempts 1 and 2 completed fixture workflows but failed trace lookup. No P05 live dispatch in either. Attempt 2 full offline: 158 tests PASS; cleanup 0, prior resources preserved.
+- Confirmed cause: api.app import constructs its default app and initializes first-call-wins telemetry before controller endpoint setup. Corrected endpoint ordering, validated in a fresh subprocess before any database access; focused controller tests 10 PASS.
+- Source e8d50e5, frozen binding commit 87f20fc; immutable candidate-029-v3.json. Active session 28221 runs projects/p05/artifacts/evidence/accounted-local-services-029/run-services-attempt3.py, namespace p05-accounted-029-c. Stable trace failure now attempt 3/3, not reset. This wrapper may dispatch one four-call live workflow only after actual fake trace assertions pass.
+- Next command: inspect session 28221 and attempt3/commands.json plus fake-3-result/verification and live-context/result/stop/verification. Never rerun wrapper or original live case blindly. Finish cleanup/accounting/evidence, then implement already-approved P04 separate diagnostic; final P00 current binding and T7 remain independent pending work.
