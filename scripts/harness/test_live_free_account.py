@@ -144,7 +144,9 @@ class AccountTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix="free-account-")
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        self.policy = copy.deepcopy(POLICY)
+        # General capacity tests use the frozen pre-P02-operation policy.
+        # The current operation restrictions have dedicated migration tests.
+        self.policy = json.loads((Path(__file__).resolve().parents[2] / "artifacts/evidence/llm-live-readiness/p02-operation-envelope/policy-before.json").read_text())
         self.now = [1000000.0]
 
     def account(self):
@@ -230,7 +232,7 @@ class AccountTests(unittest.TestCase):
                 self.subTest(field=field),
                 tempfile.TemporaryDirectory(prefix="free-cap-") as directory,
             ):
-                policy = copy.deepcopy(POLICY)
+                policy = copy.deepcopy(self.policy)
                 policy["campaign_caps"][field] = cap
                 account = SharedAccount(Path(directory), policy)
                 account.register("p00")

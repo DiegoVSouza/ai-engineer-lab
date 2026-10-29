@@ -1,0 +1,6 @@
+{
+  "command": "python -m unittest discover -s scripts/harness -p test_migrate_p02_operation.py",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": ".................\r\n----------------------------------------------------------------------\r\nRan 17 tests in 24.641s\r\n\r\nOK\r\n"
+}
