@@ -1,0 +1,15 @@
+{
+  "command": "python finite policy delta validation",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": {
+    "old_sha": "48c3237baedf8ad54c7e4e8b824b8f707c899b0f7e14c712e86433f2797552cd",
+    "proposed_sha": "f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf",
+    "global_calls": 4148,
+    "p01_calls": 1000,
+    "p04_calls": 747,
+    "other_project_caps_unchanged": true,
+    "paid_authorized": "0.00",
+    "applied": false
+  }
+}
