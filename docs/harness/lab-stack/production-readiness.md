@@ -43,8 +43,4 @@ Should fix:
 11. Prometheus does not scrape the console, and the browser sends no `traceparent`, so traces start at P05.
 12. No CPU limits; memory limits are estimates from one idle measurement, not load tests.
 13. `scripts/check_services.py` (P05's own full service gate) has not run on 0.4.4; the root `stack.py check` and browser e2e have.
-14. Three orphan anonymous volumes remain from this phase. `tmpfs` stops new ones. Deleting them was refused by the session's permission mode, so they need the owner:
-
-- `2a567e293e1fed72f63b241cb777efca5126fe299273cbb4d1eda1a5a9ae60f8`
-- `390712c60373f9572cbdc6c56478cd1ad9f1212c10de3950fc33ddc44c5a9bd2`
-- `7a9191722dae1a97376d87ec5fd2e0a962ef016b5976b49eb056fc95d54b5097`
+14. 5 orphan anonymous volumes remain from this phase: LocalStack and Jaeger `down` cycles, and two early runs of `check_migrations.py`. Both causes are fixed and later runs add none. Deleting them was refused by the session's permission mode, so they need the owner. The list is in `artifacts/evidence/lab-stack/production-readiness-005/orphan-volumes.json`.

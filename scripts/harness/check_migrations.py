@@ -39,7 +39,8 @@ def tables(container, database):
 def main():
     container = f'lab-migration-check-{uuid4().hex[:8]}'
     subprocess.run(['docker', 'run', '-d', '--rm', '--name', container, '--label', 'lab.owner=migration-check',
-                    '--pull=never', '--network', 'none', '-e', 'POSTGRES_HOST_AUTH_METHOD=trust', IMAGE],
+                    '--pull=never', '--network', 'none', '--tmpfs', '/var/lib/postgresql/data',
+                    '-e', 'POSTGRES_HOST_AUTH_METHOD=trust', IMAGE],
                    check=True, capture_output=True)
     report = {}
     try:
@@ -60,7 +61,7 @@ def main():
             if not first or after_down or report[name]['tables_up_again'] != first:
                 raise RuntimeError(f'{name}: cycle did not return to the expected state: {report[name]}')
     finally:
-        subprocess.run(['docker', 'rm', '-f', container], capture_output=True)
+        subprocess.run(['docker', 'rm', '-f', '-v', container], capture_output=True)
     print(json.dumps({'status': 'PASS', **report}))
     return 0
 

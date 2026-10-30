@@ -66,10 +66,10 @@
     "status": "PASS",
     "details": {
       "services": [
+        "p05-worker",
         "supportops-platform",
         "jaeger",
-        "p05-mcp",
-        "p05-worker"
+        "p05-mcp"
       ]
     }
   },
@@ -115,7 +115,7 @@
     "status": "PASS",
     "details": {
       ".": {
-        "tracked_files": 799,
+        "tracked_files": 801,
         "secret_hits": []
       },
       "projects/p05": {
