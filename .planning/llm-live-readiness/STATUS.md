@@ -1,3 +1,7 @@
+## Product-first progress — 2026-10-30
+
+Queue items 1 to 5 executed. P04 phase043 gate PASS (127 tests, provider false, empty Docker diff). Fly one-command parity in lab-stack phase 003, not deployed. Console P06 runs in the root stack with real-browser e2e and axe. Production checklist in `docs/harness/lab-stack/production-readiness.md`: verdict **not ready for real customers**, eight concrete blockers. No provider call, no reservation, no counter change in this round. P05 source changed to 0.4.4, so its accepted live operations describe the earlier fingerprint.
+
 ## Current direction — product-first, 2026-10-31
 
 The user redirected the program: finish the product code, build the missing frontend, make the system usable in production, document everything, and keep one-command up/down parity locally and on Fly. Human evaluation, model quality, holdout and promotion are deferred by the user until the code is complete — these are not missing authorizations. The finite live scopes in [AUTHORIZATION.md](AUTHORIZATION.md) remain granted but are not the next action.

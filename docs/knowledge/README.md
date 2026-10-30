@@ -12,3 +12,4 @@ Os arquivos nascem como **sementes conceituais**; `sdd-knowledge` os aprofunda c
 | [P04-async.md](P04-async.md) | filas, idempotência, DLQ |
 | [P05-supportops-platform.md](P05-supportops-platform.md) | arquitetura integrada, walkthrough |
 | [06-system-design-and-security.md](06-system-design-and-security.md) | system design, segurança agentic |
+- [Programa produto primeiro](product-first-program.md): console, um comando para subir e derrubar, prontidão de produção.

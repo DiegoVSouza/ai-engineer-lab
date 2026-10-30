@@ -56,7 +56,7 @@ Both sides make the same promises. Each touches only its own application: Compos
 
 `down` removes this Compose application's containers and networks, so `down` followed by `up` is a non-destructive restart. Fly `down` stops every machine and disables public autostart, so requests cannot wake the stack; `up` is safe to repeat, creating anything missing, redeploying, starting in dependency order and waiting for health. The `fly-*` commands wrap `pwsh -File ops/fly/deploy.ps1 -Action Up|Down|Status`; `ops/fly/power.ps1 -Action Start|Stop|Status` resumes or suspends machines without a deploy. Fly commands need `flyctl` and PowerShell 7, spend real money, and change a public deployment.
 
-`checkout` clones missing product repositories at the commits in `ops/stack/projects.lock.json` and verifies existing checkouts without changing them. Access to those Git repositories is required.
+`checkout` clones missing product repositories at the commits in `ops/stack/projects.lock.json` and verifies existing checkouts without changing them. Access to those Git repositories is required. The pinned commits exist locally and have not been pushed, and P06 has no remote yet, so a fresh machine cannot clone them until they are published.
 
 The root Compose application runs the P06 console, P04 and P05 APIs/workers, P03 observability, and a persistent HTTPS Keycloak server. The package gate executes the installed P00 foundation, P01 orchestrator, and P02 toolkit before P05 starts. Each product keeps its own repository; the integration uses pinned wheels and existing Dockerfiles.
 

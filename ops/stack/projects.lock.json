@@ -1,26 +1,30 @@
 {
   "p00": {
     "url": "https://github.com/DiegoVSouza/supportops-foundation.git",
-    "commit": "36f790af3330d768d2fdd7649cd24e335b446ebd"
+    "commit": "6b84f9aeed126519671d5e5066bafc0b46ce95c4"
   },
   "p01": {
     "url": "https://github.com/DiegoVSouza/supportops-agents.git",
-    "commit": "e5d750477b192649e5c5611ee2575be66e0ec43a"
+    "commit": "6c8e06d885b80437ba4ebad293aa9659485adc16"
   },
   "p02": {
     "url": "https://github.com/DiegoVSouza/supportops-ai-toolkit.git",
-    "commit": "6f1ee2fb03b0569ef7a219cba4b8a616b1e061bb"
+    "commit": "5b91e7349a22298a08b073644195f005e42a4a53"
   },
   "p03": {
     "url": "https://github.com/DiegoVSouza/supportops-observability.git",
-    "commit": "9809f4398f6f730f694038049dc668ac8d875139"
+    "commit": "83fe06752d4823c4af4843f66417542642e0f2c9"
   },
   "p04": {
     "url": "https://github.com/DiegoVSouza/supportops-async.git",
-    "commit": "c58be0266250db30f2f68678553b1793a002687f"
+    "commit": "186ad7af37023ab1020275a2b3d7b0cff67c22d2"
   },
   "p05": {
     "url": "https://github.com/DiegoVSouza/supportops-platform.git",
-    "commit": "674074c54f9456b24daf084e170526c56019c2d3"
+    "commit": "f510047554e876382bfd702b4f83e1ae12ebb933"
+  },
+  "p06": {
+    "url": null,
+    "commit": "2f10d29c3f6e33e2eda93035dff0f5354bb41ab7"
   }
 }

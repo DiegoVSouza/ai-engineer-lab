@@ -4,6 +4,8 @@
 
 T4's `gossett_backend` blocker is **closed as a false positive**: the container belongs to the user's unrelated `gosset` project, counts were 102 → 102, and the identity comparator was comparing the volatile published-ports string of a crash-looping container. Fixed in `projects/p04/scripts/docker_inventory_identity.py` with regression coverage. No resource outside a proven phase namespace may still be mutated.
 
+Next product work: the open items of `docs/harness/lab-stack/production-readiness.md`. The first needs user authorization: `python scripts/stack.py fly-up`.
+
 ## Historical queue — phase048 checkpoint 2026-10-30
 
 Phase048 outcome: the one authorized additional P04 gate for `local-reviewed-operation-040-v1` ran and is consumed/FAIL (exit 1; cleanup/namespace/labels/protected-output/Docker-baseline all PASS; no provider access, no live dispatch). Two causes diagnosed offline and documented in [phase042 VERIFY](../../projects/p04/.planning/phases/042-replacement-gate/VERIFY.md): a this-phase-only snapshot gap (root lab tree not archived alongside p04) and a `check_full.py` subprocess bypassing the locked `uv` environment (fixed offline in `projects/p04/scripts/check_full.py`, unvalidated, zero cost). T4 stays blocked: a fresh, distinct finite gate/operation authority is required before any further P04 attempt; this exception's 3/3 historical attempts are spent.

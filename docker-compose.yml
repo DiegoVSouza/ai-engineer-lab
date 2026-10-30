@@ -3,6 +3,7 @@ name: supportops-lab
 x-product: &product
   image: supportops-lab-platform:local
   pull_policy: never
+  mem_limit: 512m
   entrypoint: [python, /ops/entrypoint.py]
   volumes: &product-volumes
     - ./ops/stack:/ops:ro
@@ -10,6 +11,7 @@ x-product: &product
   environment: &product-env
     LLM_MODE: fake
     P05_RUNTIME: services
+    PYTHONPATH: /ops/pylog
     MCP_URL: http://mcp:8000/mcp
     MCP_ISSUER: http://mcp:8000/issuer
     P05_REDIS_URL: redis://redis:6379/0
@@ -21,12 +23,14 @@ x-product: &product
 x-async: &async
   image: supportops-lab-async:local
   pull_policy: never
+  mem_limit: 384m
   entrypoint: [python, /ops/entrypoint.py]
   volumes:
     - ./ops/stack:/ops:ro
     - p04-secrets:/run/lab:ro
   environment: &async-env
     LLM_MODE: fake
+    PYTHONPATH: /ops/pylog
     AWS_REGION: us-east-1
     AWS_ACCESS_KEY_ID: test
     AWS_SECRET_ACCESS_KEY: test
@@ -59,6 +63,7 @@ services:
     restart: "no"
   postgres:
     image: pgvector/pgvector:0.8.7-pg16
+    mem_limit: 1g
     environment:
       POSTGRES_USER: lab_admin
       POSTGRES_DB: postgres
@@ -76,6 +81,7 @@ services:
     restart: unless-stopped
   keycloak:
     image: quay.io/keycloak/keycloak:26.8.1
+    mem_limit: 1536m
     entrypoint: [/bin/sh, -c]
     command:
       - . /run/lab/runtime.env; exec /opt/keycloak/bin/kc.sh start --import-realm
@@ -118,6 +124,7 @@ services:
     restart: "no"
   redis:
     image: redis@sha256:becdda6c7f4b3fb42e42fd7f120bbf5c54c4caaaf16f26da24e4563d2c1f0576
+    mem_limit: 256m
     command: [redis-server, --appendonly, "yes"]
     volumes: [redis-data:/data]
     healthcheck:
@@ -128,6 +135,8 @@ services:
     restart: unless-stopped
   localstack:
     image: localstack/localstack:4.14.0
+    mem_limit: 768m
+    tmpfs: [/var/lib/localstack]
     environment:
       SERVICES: sns
       AWS_DEFAULT_REGION: us-east-1
@@ -156,7 +165,7 @@ services:
   api:
     <<: *product
     build: ./projects/p05
-    command: [python, -m, uvicorn, supportops_platform.api.app:app, --host, 0.0.0.0, --port, "8000"]
+    command: [python, -m, uvicorn, supportops_platform.api.app:app, --host, 0.0.0.0, --port, "8000", --log-config, /ops/uvicorn-log.json]
     ports: ["127.0.0.1:${LAB_API_PORT:-48000}:8000"]
     depends_on:
       postgres: {condition: service_healthy}
@@ -188,7 +197,7 @@ services:
       retries: 30
   mcp:
     <<: *product
-    command: [python, -m, uvicorn, supportops_platform.mcp.runtime:create_mcp_app, --factory, --host, 0.0.0.0, --port, "8000"]
+    command: [python, -m, uvicorn, supportops_platform.mcp.runtime:create_mcp_app, --factory, --host, 0.0.0.0, --port, "8000", --log-config, /ops/uvicorn-log.json]
     environment:
       <<: *product-env
       OTEL_SERVICE_NAME: p05-mcp
@@ -203,6 +212,7 @@ services:
     build: ./projects/p06
     image: supportops-lab-web:local
     pull_policy: never
+    mem_limit: 128m
     environment:
       P05_API_URL: http://api:8000
       OIDC_ISSUER: https://localhost:${LAB_IDP_PORT:-38443}/realms/supportops
@@ -221,7 +231,7 @@ services:
   p04-api:
     <<: *async
     build: ./projects/p04
-    command: [uvicorn, supportops_async.api.runtime:app, --host, 0.0.0.0, --port, "8000"]
+    command: [uvicorn, supportops_async.api.runtime:app, --host, 0.0.0.0, --port, "8000", --log-config, /ops/uvicorn-log.json]
     ports: ["127.0.0.1:${LAB_ASYNC_PORT:-48004}:8000"]
     depends_on:
       postgres: {condition: service_healthy}
@@ -238,15 +248,29 @@ services:
       p04-api: {condition: service_healthy}
   otel:
     image: otel/opentelemetry-collector-contrib:0.161.0
+    mem_limit: 256m
     command: [--config=/etc/otelcol/config.yaml]
     volumes: [./projects/p05/infra/otel.yaml:/etc/otelcol/config.yaml:ro]
     restart: unless-stopped
   jaeger:
     image: jaegertracing/jaeger:2.18.0
+    mem_limit: 512m
+    tmpfs: ["/tmp:uid=10001"]
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:16686/]
+      interval: 10s
+      timeout: 3s
+      retries: 12
     ports: ["127.0.0.1:${LAB_TRACES_PORT:-46686}:16686"]
     restart: unless-stopped
   prometheus:
     image: prom/prometheus:v3.14.0
+    mem_limit: 512m
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:9090/-/healthy]
+      interval: 10s
+      timeout: 3s
+      retries: 12
     volumes:
       - ./ops/stack/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - ./projects/p05/infra/alerts.yml:/etc/prometheus/p05-alerts.yml:ro
@@ -256,6 +280,12 @@ services:
     restart: unless-stopped
   grafana:
     image: grafana/grafana:12.4.11
+    mem_limit: 384m
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:3000/api/health]
+      interval: 10s
+      timeout: 3s
+      retries: 18
     environment:
       GF_SECURITY_ADMIN_USER: lab-admin
       GF_SECURITY_ADMIN_PASSWORD__FILE: /run/lab/admin-password

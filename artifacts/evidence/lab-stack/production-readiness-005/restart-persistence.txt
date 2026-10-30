@@ -1,0 +1,3 @@
+PERSISTENCE PASS: same credentials/CA, Keycloak realm/users, P04 and P05 completed records survived container recreation.
+ Container supportops-lab-tools-run-ad8df80560e4 Creating 
+ Container supportops-lab-tools-run-ad8df80560e4 Created 

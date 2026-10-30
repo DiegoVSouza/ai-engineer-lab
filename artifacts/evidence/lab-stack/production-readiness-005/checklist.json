@@ -1,0 +1,162 @@
+{
+  "health": {
+    "status": "PASS",
+    "details": {
+      "api": "healthy",
+      "worker": "healthy",
+      "mcp": "healthy",
+      "p04-api": "healthy",
+      "p04-worker": "no port; liveness shown by the stack check processing a task",
+      "web": "healthy",
+      "postgres": "healthy",
+      "keycloak": "healthy",
+      "redis": "healthy",
+      "localstack": "healthy",
+      "otel": "image has no shell or HTTP client",
+      "jaeger": "healthy",
+      "prometheus": "healthy",
+      "grafana": "healthy"
+    }
+  },
+  "readiness": {
+    "status": "PASS",
+    "details": {
+      "web_readyz": [
+        200,
+        "{\"status\":\"ready\"}"
+      ]
+    }
+  },
+  "migrations": {
+    "status": "PASS",
+    "details": {
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"p05\": {\"tables_up\": 4, \"tables_down\": 0, \"tables_up_again\": 4}, \"p04\": {\"tables_up\": 5, \"tables_down\": 0, \"tables_up_again\": 5}}"
+    }
+  },
+  "structured_logs": {
+    "status": "PASS",
+    "details": {
+      "api": {
+        "json_lines": 20,
+        "lines": 20
+      },
+      "mcp": {
+        "json_lines": 20,
+        "lines": 20
+      },
+      "p04-api": {
+        "json_lines": 20,
+        "lines": 20
+      },
+      "web": {
+        "json_lines": 20,
+        "lines": 20
+      }
+    }
+  },
+  "metrics": {
+    "status": "PASS",
+    "details": {
+      "p05-api": "up",
+      "p05-worker": "up"
+    }
+  },
+  "tracing": {
+    "status": "PASS",
+    "details": {
+      "services": [
+        "supportops-platform",
+        "jaeger",
+        "p05-mcp",
+        "p05-worker"
+      ]
+    }
+  },
+  "resource_limits": {
+    "status": "PASS",
+    "details": {
+      "api": 536870912,
+      "worker": 536870912,
+      "mcp": 536870912,
+      "p04-api": 402653184,
+      "p04-worker": 402653184,
+      "web": 134217728,
+      "postgres": 1073741824,
+      "keycloak": 1610612736,
+      "redis": 268435456,
+      "localstack": 805306368,
+      "otel": 268435456,
+      "jaeger": 536870912,
+      "prometheus": 536870912,
+      "grafana": 402653184
+    }
+  },
+  "restart_policy": {
+    "status": "PASS",
+    "details": {
+      "api": "unless-stopped",
+      "worker": "unless-stopped",
+      "mcp": "unless-stopped",
+      "p04-api": "unless-stopped",
+      "p04-worker": "unless-stopped",
+      "web": "unless-stopped",
+      "postgres": "unless-stopped",
+      "keycloak": "unless-stopped",
+      "redis": "unless-stopped",
+      "localstack": "unless-stopped",
+      "otel": "unless-stopped",
+      "jaeger": "unless-stopped",
+      "prometheus": "unless-stopped",
+      "grafana": "unless-stopped"
+    }
+  },
+  "secrets": {
+    "status": "PASS",
+    "details": {
+      ".": {
+        "tracked_files": 799,
+        "secret_hits": []
+      },
+      "projects/p05": {
+        "tracked_files": 666,
+        "secret_hits": []
+      },
+      "projects/p06": {
+        "tracked_files": 70,
+        "secret_hits": []
+      },
+      "env_ignored": true,
+      "provider_keys_in_containers": {
+        "api": [],
+        "worker": [],
+        "web": []
+      }
+    }
+  },
+  "rollback": {
+    "status": "PASS",
+    "details": {
+      "plan": "production-readiness.md",
+      "restart_cycle": {
+        "down_exit": 0,
+        "containers_removed": true,
+        "up_exit": 0,
+        "persistence_exit": 0,
+        "console_ready_status": 200,
+        "p05_rows_before": [
+          "approval|9",
+          "ticket|17"
+        ],
+        "p05_rows_after": [
+          "approval|9",
+          "ticket|17"
+        ],
+        "volumes_unchanged": true,
+        "foreign_containers_unchanged": true,
+        "foreign_container_count": 86,
+        "status": "PASS"
+      }
+    }
+  }
+}

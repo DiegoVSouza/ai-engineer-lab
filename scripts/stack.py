@@ -26,6 +26,8 @@ def main():
         for name,item in manifest.items():
             target=ROOT/'projects'/name
             if not target.exists():
+                if not item['url']:
+                    raise RuntimeError(f'{name} has no remote yet; copy its repository to projects/{name}')
                 subprocess.run(['git','clone','--no-checkout',item['url'],str(target)],check=True)
                 subprocess.run(['git','-C',str(target),'checkout','--detach',item['commit']],check=True)
             actual=subprocess.check_output(['git','-C',str(target),'rev-parse','HEAD'],text=True).strip()

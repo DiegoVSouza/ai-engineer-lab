@@ -1,0 +1,19 @@
+{
+  "down_exit": 0,
+  "containers_removed": true,
+  "up_exit": 0,
+  "persistence_exit": 0,
+  "console_ready_status": 200,
+  "p05_rows_before": [
+    "approval|9",
+    "ticket|17"
+  ],
+  "p05_rows_after": [
+    "approval|9",
+    "ticket|17"
+  ],
+  "volumes_unchanged": true,
+  "foreign_containers_unchanged": true,
+  "foreign_container_count": 86,
+  "status": "PASS"
+}
