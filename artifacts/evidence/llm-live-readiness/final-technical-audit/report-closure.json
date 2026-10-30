@@ -1,0 +1,228 @@
+{
+  "status": "PASS_READ_ONLY_RECONCILIATION",
+  "projects": {
+    "p00": {
+      "owner_source_changes_since_recorded_candidate": [],
+      "head": "544d547b495d402f2e1a40c2d1789d64f58b0e9f",
+      "existing_changes_preserved": "?? artifacts/evidence/final-operating-reconciliation-035/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/check-full-final.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-phase006-precommit.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-rate-preflight.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-reconciled-final.txt\n?? artifacts/evidence/funded-candidate-continuation/credential-provenance-024/tmp-full-retry/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/focused.txt\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/final-operating-035/\n?? artifacts/evidence/funded-candidate-continuation/focused-reconciled.txt\n?? artifacts/evidence/funded-candidate-continuation/local-live-operation-031/\n?? artifacts/evidence/funded-candidate-continuation/local-live-preparation-030/\n?? artifacts/evidence/funded-candidate-continuation/operating-allocation-034/\n?? artifacts/evidence/funded-candidate-continuation/private-review-recheck-023/tmp/\n?? artifacts/evidence/funded-candidate-continuation/replacement-028/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/safe-guidance-025/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/second-diagnostic-036/\n?? artifacts/evidence/funded-candidate-continuation/tmp-final-focused/\n?? artifacts/evidence/funded-candidate-continuation/tmp-final-locked/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-locked/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-20261027/\n?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-final-20261027/\n?? artifacts/evidence/funded-candidate-continuation/tmp-rate-preflight/\n?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled-only/\n?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-final-root/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full-after-resume/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-green/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-red/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-root-0ed0e3a/\n?? artifacts/evidence/funded-replacement-028/tmp-controls-green/\n?? artifacts/evidence/funded-replacement-028/tmp-guidance-green/\n?? artifacts/evidence/funded-replacement-028/tmp-guidance-red/\n?? artifacts/evidence/local-live-operation-031/allocation-focused-attempt1.json\n?? artifacts/evidence/local-live-operation-031/allocation-focused-attempt1.txt\n?? artifacts/evidence/operating-allocation-034/tmp-focused1/\n?? artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/\n?? artifacts/tmp-pytest/\n",
+      "recorded_candidate": "aa194beb30b2d1006efb0fbc45b76a37cd542648",
+      "recorded_fingerprint": "6021179839d958d4fc548a54063f384cd7237ae6b2fafb67c0836131eb49fbc9",
+      "current_fingerprint": "6021179839d958d4fc548a54063f384cd7237ae6b2fafb67c0836131eb49fbc9",
+      "current_matches_recorded": true
+    },
+    "p01": {
+      "owner_source_changes_since_recorded_candidate": [
+        "src/supportops_agents/accounted_live.py",
+        "tests/test_strict_worker_schema.py"
+      ],
+      "head": "f1b37426daa7d06b0fe37532ded8337e7068cac9",
+      "existing_changes_preserved": " M artifacts/evidence/check-fast.txt\n M artifacts/evidence/check-full.txt\n M artifacts/runs/latest/results.json\n?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-fixture-dispatch-016-tmp/\n?? artifacts/evidence/accounted-local-live-019-tmp/\n?? artifacts/evidence/accounted-local-live-019/provider-shape-types.json\n?? artifacts/evidence/accounted-local-live-019/provider-shape-types2.json\n?? artifacts/evidence/accounted-local-live-019/provider-shape.json\n?? artifacts/evidence/core-fixture-dispatch-014/tmp/\n?? artifacts/evidence/dispatch-process-recovery-013/tmp/\n?? artifacts/evidence/recovery-proposal-020/snapshot-attempt2/\n?? artifacts/evidence/recovery-proposal-020/snapshot/\n?? artifacts/evidence/recovery-proposal-020/source-attempt2.tar\n?? artifacts/evidence/recovery-proposal-020/source.tar\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-attempt1/\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-final/\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-protocol/\n?? artifacts/evidence/reviewed-diagnostic-021/source-attempt1.tar\n?? artifacts/evidence/reviewed-diagnostic-021/source-final.tar\n?? artifacts/evidence/reviewed-diagnostic-021/source-protocol.tar\n?? artifacts/evidence/second-diagnostic-decision-022/snapshot-decision/\n?? artifacts/evidence/second-diagnostic-decision-022/source-decision.tar\n?? artifacts/evidence/second-reviewed-diagnostic-023/snapshot-current/\n?? artifacts/evidence/second-reviewed-diagnostic-023/source-current.tar\n?? artifacts/evidence/strict-worker-schema-024/snapshot-strict/\n?? artifacts/evidence/strict-worker-schema-024/source-strict.tar\n?? artifacts/evidence/synthetic-dispatch-012/tmp/\n?? artifacts/evidence/synthetic-operation-controller-018-tmp/\n?? artifacts/evidence/workflow-reservation-017-tmp/\n",
+      "recorded_candidate": "1877ea4c8f4016602c90138cec50e71486480d92",
+      "recorded_fingerprint": "617627b6b5f4a3785602a8263bdf44ec03b9a72cc0690dd95fb0dae7333c60dc",
+      "current_fingerprint": "fcbcb3d4d7e2686621f27c1d0387b25459486e1c85377a027a0440d7336afb55",
+      "current_matches_recorded": false
+    },
+    "p02": {
+      "owner_source_changes_since_recorded_candidate": [],
+      "head": "5b91e7349a22298a08b073644195f005e42a4a53",
+      "existing_changes_preserved": "?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n",
+      "recorded_candidate": "5f8d62e10698772b16e4381df0257a16b0cdcd6f",
+      "recorded_fingerprint": "6dc0cac2de3cc1c3e9240d3baf978e95478bb5fbf1dd1887f6eb8dbdb07c48c4",
+      "current_fingerprint": "6dc0cac2de3cc1c3e9240d3baf978e95478bb5fbf1dd1887f6eb8dbdb07c48c4",
+      "current_matches_recorded": true
+    },
+    "p03": {
+      "owner_source_changes_since_recorded_candidate": [],
+      "head": "83fe06752d4823c4af4843f66417542642e0f2c9",
+      "existing_changes_preserved": "?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-local-live-025/tmp-focused/\n?? artifacts/evidence/accounted-local-live-025/tmp-full1/\n?? artifacts/evidence/accounted-local-live-025/tmp-unit/\n?? artifacts/evidence/accounted-telemetry-024/fixture-operation.sqlite\n?? artifacts/evidence/accounted-telemetry-024/tmp-focused-2/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-1/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-2/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-3/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-4/\n?? artifacts/evidence/accounted-telemetry-024/tmp-readiness/\n?? artifacts/evidence/current-service-recheck-021/run/incident-simulation.json\n?? artifacts/evidence/current-service-recheck-021/run/integrated-trace-synthetic.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-jaeger-export.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-live-alerts.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-service-traces.json\n?? artifacts/evidence/service-availability-recheck-023/run/\n",
+      "recorded_candidate": "b0cf5bbd60ba590217c32914b9aa694eae8e483d",
+      "recorded_fingerprint": "ba0a9a19ccf08cfde039c478e93d94b0ba43625a9c7b7c40c02da55c3cf6eec5",
+      "current_fingerprint": "ba0a9a19ccf08cfde039c478e93d94b0ba43625a9c7b7c40c02da55c3cf6eec5",
+      "current_matches_recorded": true
+    },
+    "p04": {
+      "owner_source_changes_since_recorded_candidate": [],
+      "head": "a419400cb439e09e3fa28e7efc9ef5a11d57fac5",
+      "existing_changes_preserved": "?? artifacts/evals/live/diagnostic-operations.sqlite\n?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-local-service-030/service-attempt2/terraform-work/\n?? artifacts/evidence/accounted-local-service-030/service-final/terraform-work/\n?? artifacts/evidence/accounted-local-service-030/tmp-diagnostic-fix/\n?? artifacts/evidence/accounted-local-service-030/tmp-final-focused/\n?? artifacts/evidence/accounted-local-service-030/tmp-final/\n?? artifacts/evidence/accounted-local-service-030/tmp-focused1/\n?? artifacts/evidence/accounted-local-service-030/tmp-focused2/\n?? artifacts/evidence/accounted-local-service-030/tmp-full2/\n?? artifacts/evidence/accounted-local-service-030/tmp-unit1/\n?? artifacts/evidence/accounted-worker-029/tmp-focused/\n?? artifacts/evidence/accounted-worker-029/tmp-full1/\n?? artifacts/evidence/current-full-privacy-027/tmp-run4/\n?? artifacts/evidence/current-full-privacy-027/work-run4/\n?? artifacts/evidence/current-full-privacy-027/work/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp2/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp3/\n?? artifacts/evidence/local-terraform-network-023/work/\n?? artifacts/evidence/offline-full-gate-025/tmp-retry/\n?? artifacts/evidence/offline-full-gate-025/tmp/\n?? artifacts/evidence/offline-full-gate-025/work/\n?? artifacts/evidence/offline-provider-024/work/\n?? artifacts/evidence/otlp-wire-privacy-026/gate-tmp/\n?? artifacts/evidence/otlp-wire-privacy-026/tmp-full/\n?? artifacts/evidence/reviewed-diagnostic-031/focused.json\n?? artifacts/evidence/reviewed-diagnostic-031/service-attempt1/terraform-work/\n?? artifacts/evidence/reviewed-diagnostic-031/service-attempt1/terraform.rc\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-focused1/\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-focused2/\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-full1/\n",
+      "recorded_candidate": "e02495a87c9f86572d68715218b5ae25f846bfca",
+      "recorded_fingerprint": "ce1415c03f73b23af1d395ca1a95dbda395a7d8df3c78ef20ed684679381d0c1",
+      "current_fingerprint": "a87651183fa72d0b91ca795728c046265a0b1b3d56c957c45ead037bf6be3558",
+      "current_matches_recorded": false
+    },
+    "p05": {
+      "owner_source_changes_since_recorded_candidate": [],
+      "head": "32a2dcdf2b7df720418a2b46ccb1107e638e1cf7",
+      "existing_changes_preserved": "?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-http-028/tmp-focused1/\n?? artifacts/evidence/accounted-http-028/tmp-full1/\n?? artifacts/evidence/accounted-identity-027/tmp-focused2/\n?? artifacts/evidence/accounted-identity-027/tmp-full1/\n?? artifacts/evidence/accounted-local-services-029/attempt2/inventory-after.json\n?? artifacts/evidence/accounted-local-services-029/attempt2/inventory-before.json\n?? artifacts/evidence/accounted-local-services-029/fake-runtime-2/\n?? artifacts/evidence/accounted-local-services-029/fake-runtime-3/\n?? artifacts/evidence/accounted-local-services-029/fake-runtime/\n?? artifacts/evidence/accounted-local-services-029/full-fake-attempt2/\n?? artifacts/evidence/accounted-local-services-029/full-fake-attempt3/accounted029-product-trace.json\n?? artifacts/evidence/accounted-local-services-029/full-fake/\n?? artifacts/evidence/accounted-local-services-029/tmp-final-focused/\n?? artifacts/evidence/accounted-local-services-029/tmp-focused1/\n?? artifacts/evidence/accounted-local-services-029/tmp-focused2/\n?? artifacts/evidence/accounted-local-services-029/tmp-full1/\n?? artifacts/evidence/accounted-local-services-029/tmp-full2/\n?? artifacts/evidence/accounted-local-services-029/tmp-full3/\n?? artifacts/evidence/accounted-local-services-029/tmp-import-fix/\n?? artifacts/evidence/current-policy-operation-030/fake-runtime-1/\n?? artifacts/evidence/current-policy-operation-030/full-fake-attempt1/accounted029-product-trace.json\n?? artifacts/evidence/current-policy-operation-030/tmp-focused1/\n?? artifacts/evidence/current-policy-operation-030/tmp-full1/\n",
+      "recorded_candidate": "6b5f54a285a321589fa15b10412f86b7c21d37f3",
+      "recorded_fingerprint": "14aee7b67b77491332aa83b02e0bb2b84a23fd70ed5a0bbc7a0e90902ca704b7",
+      "current_fingerprint": "14aee7b67b77491332aa83b02e0bb2b84a23fd70ed5a0bbc7a0e90902ca704b7",
+      "current_matches_recorded": true
+    }
+  },
+  "provider_usage_by_project": {
+    "p00": {
+      "requests": "69",
+      "input_tokens": "25954",
+      "output_tokens": "7055",
+      "estimated_cost_usd": "0.004063050"
+    },
+    "p01": {
+      "requests": "4",
+      "input_tokens": "972",
+      "output_tokens": "363",
+      "estimated_cost_usd": "0.000181800"
+    },
+    "p02": {
+      "requests": "1",
+      "input_tokens": "141",
+      "output_tokens": "37",
+      "estimated_cost_usd": "0.000021675"
+    },
+    "p03": {
+      "requests": "1",
+      "input_tokens": "93",
+      "output_tokens": "23",
+      "estimated_cost_usd": "0.000013875"
+    },
+    "p04": {
+      "requests": "3",
+      "input_tokens": "397",
+      "output_tokens": "122",
+      "estimated_cost_usd": "0.000066375"
+    },
+    "p05": {
+      "requests": "8",
+      "input_tokens": "3160",
+      "output_tokens": "519",
+      "estimated_cost_usd": "0.000392700"
+    }
+  },
+  "total_provider_attempts": 86,
+  "unknown_provider_reservations": [
+    {
+      "project": "p00",
+      "receipt": "c77e984ea1374694b53c91c67f919a25",
+      "reserved_input": 1475,
+      "reserved_output": 256
+    }
+  ],
+  "logical_original_and_diagnostic": {
+    "p01": [
+      [
+        "local-operation-v1",
+        "reserved",
+        4,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-operation-v1",
+        "completed",
+        4,
+        "incomplete",
+        "unknown",
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "reserved",
+        4,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "completed",
+        4,
+        "incomplete",
+        "unknown",
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-2-v1",
+        "reserved",
+        4,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-2-v1",
+        "completed",
+        4,
+        "incomplete",
+        "unknown",
+        null,
+        null
+      ]
+    ],
+    "p04": [
+      [
+        "local-operation-v1",
+        "reserved",
+        3,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-operation-v1",
+        "completed",
+        3,
+        "incomplete",
+        "unknown",
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "reserved",
+        3,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "completed",
+        3,
+        "ok",
+        null,
+        292,
+        71
+      ]
+    ]
+  },
+  "terminal_guards": {
+    "p01/local-operation-v1": "logical_operation_stopped_requires_review",
+    "p01/local-diagnostic-v1": "reviewed_diagnostic_authority_or_history_invalid",
+    "p04/local-operation-v1": "logical_operation_stopped_requires_review",
+    "p04/local-diagnostic-v1": "reviewed_diagnostic_authority_or_history_invalid",
+    "p01/local-diagnostic-2-v1": "reviewed_diagnostic_authority_or_history_invalid",
+    "p05/operating-envelope": "operational_allocation_exhausted"
+  },
+  "policy_sha256": "48c3237baedf8ad54c7e4e8b824b8f707c899b0f7e14c712e86433f2797552cd",
+  "registry_projects": {
+    "p00": "384f921b0e8a4e7db7c5ae0491df3635",
+    "p01": "68c642b5f68e4941822a31bab7711cbb",
+    "p02": "cf56a104cc304f8baa562527885b17e3",
+    "p03": "cf4923f313884d47a3e856a3fb352d01",
+    "p04": "9ee9b9b838c54905a77824c523baa89e",
+    "p05": "aa20b55b14eb400cb5c732e6fae600a5"
+  },
+  "paid_authorization_usd": 0,
+  "actual_billing": "UNKNOWN",
+  "human_quality_holdout_promotion": "PENDING",
+  "provider_accessed": false,
+  "credentials_read": false,
+  "p01_user_output_hashes_unchanged": true
+}

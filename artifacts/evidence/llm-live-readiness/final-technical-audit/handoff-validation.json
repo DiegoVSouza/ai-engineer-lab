@@ -1,0 +1,9 @@
+{
+  "command": [
+    "python",
+    "artifacts\\evidence\\llm-live-readiness\\final-technical-audit\\validate-handoff.py"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "{\"status\": \"PASS\", \"projects\": 6, \"provider_attempts\": 86, \"policy_registry_match\": true, \"protected_user_outputs_unchanged\": true, \"native_references_and_commits_valid\": true, \"human_annotations_written\": false, \"provider_accessed\": false, \"credentials_read\": false}\n"
+}

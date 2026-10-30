@@ -1,0 +1,9 @@
+{
+  "command": [
+    "python",
+    "artifacts/evidence/llm-live-readiness/final-technical-audit/audit-closure.py"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "{\"status\": \"PASS_READ_ONLY_RECONCILIATION\", \"provider_attempts\": 86, \"current_matches\": {\"p00\": true, \"p01\": false, \"p02\": true, \"p03\": true, \"p04\": false, \"p05\": true}, \"terminal_guards\": {\"p01/local-operation-v1\": \"logical_operation_stopped_requires_review\", \"p01/local-diagnostic-v1\": \"reviewed_diagnostic_authority_or_history_invalid\", \"p04/local-operation-v1\": \"logical_operation_stopped_requires_review\", \"p04/local-diagnostic-v1\": \"reviewed_diagnostic_authority_or_history_invalid\", \"p01/local-diagnostic-2-v1\": \"reviewed_diagnostic_authority_or_history_invalid\", \"p05/operating-envelope\": \"operational_allocation_exhausted\"}}\n"
+}

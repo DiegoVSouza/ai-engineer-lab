@@ -1,0 +1,350 @@
+[
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p00",
+    "exit_code": 0,
+    "output": "544d547b495d402f2e1a40c2d1789d64f58b0e9f\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p00",
+    "exit_code": 0,
+    "output": "?? artifacts/evidence/final-operating-reconciliation-035/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/check-full-final.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-phase006-precommit.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-rate-preflight.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-reconciled-final.txt\n?? artifacts/evidence/funded-candidate-continuation/credential-provenance-024/tmp-full-retry/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/focused.txt\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/final-operating-035/\n?? artifacts/evidence/funded-candidate-continuation/focused-reconciled.txt\n?? artifacts/evidence/funded-candidate-continuation/local-live-operation-031/\n?? artifacts/evidence/funded-candidate-continuation/local-live-preparation-030/\n?? artifacts/evidence/funded-candidate-continuation/operating-allocation-034/\n?? artifacts/evidence/funded-candidate-continuation/private-review-recheck-023/tmp/\n?? artifacts/evidence/funded-candidate-continuation/replacement-028/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/safe-guidance-025/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/second-diagnostic-036/\n?? artifacts/evidence/funded-candidate-continuation/tmp-final-focused/\n?? artifacts/evidence/funded-candidate-continuation/tmp-final-locked/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-locked/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-20261027/\n?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-final-20261027/\n?? artifacts/evidence/funded-candidate-continuation/tmp-rate-preflight/\n?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled-only/\n?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-final-root/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full-after-resume/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-green/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-red/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-root-0ed0e3a/\n?? artifacts/evidence/funded-replacement-028/tmp-controls-green/\n?? artifacts/evidence/funded-replacement-028/tmp-guidance-green/\n?? artifacts/evidence/funded-replacement-028/tmp-guidance-red/\n?? artifacts/evidence/local-live-operation-031/allocation-focused-attempt1.json\n?? artifacts/evidence/local-live-operation-031/allocation-focused-attempt1.txt\n?? artifacts/evidence/operating-allocation-034/tmp-focused1/\n?? artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/\n?? artifacts/tmp-pytest/\n"
+  },
+  {
+    "command": [
+      "C:\\estudo\\Golpe\\lab\\projects\\p00\\.venv\\Scripts\\python.exe",
+      "-c",
+      "import json,hashlib;from scripts.campaign_execution import fingerprint;from pathlib import Path;p=Path.cwd();v=fingerprint(p,p.parents[1]/'shared/policies/groq-free-campaign.json');print(hashlib.sha256(json.dumps(v,sort_keys=True).encode()).hexdigest())"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p00",
+    "exit_code": 0,
+    "output": "6021179839d958d4fc548a54063f384cd7237ae6b2fafb67c0836131eb49fbc9\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--name-only",
+      "aa194beb30b2d1006efb0fbc45b76a37cd542648",
+      "HEAD",
+      "--",
+      "src",
+      "supportops_foundation",
+      "supportops_toolkit",
+      "supportops_obs",
+      "supportops_async",
+      "supportops_platform",
+      "scripts",
+      "tests",
+      "agent",
+      "evals",
+      "stack",
+      "alerts",
+      "pyproject.toml",
+      "uv.lock",
+      "harness.yaml"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p00",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p01",
+    "exit_code": 0,
+    "output": "f1b37426daa7d06b0fe37532ded8337e7068cac9\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p01",
+    "exit_code": 0,
+    "output": " M artifacts/evidence/check-fast.txt\n M artifacts/evidence/check-full.txt\n M artifacts/runs/latest/results.json\n?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-fixture-dispatch-016-tmp/\n?? artifacts/evidence/accounted-local-live-019-tmp/\n?? artifacts/evidence/accounted-local-live-019/provider-shape-types.json\n?? artifacts/evidence/accounted-local-live-019/provider-shape-types2.json\n?? artifacts/evidence/accounted-local-live-019/provider-shape.json\n?? artifacts/evidence/core-fixture-dispatch-014/tmp/\n?? artifacts/evidence/dispatch-process-recovery-013/tmp/\n?? artifacts/evidence/recovery-proposal-020/snapshot-attempt2/\n?? artifacts/evidence/recovery-proposal-020/snapshot/\n?? artifacts/evidence/recovery-proposal-020/source-attempt2.tar\n?? artifacts/evidence/recovery-proposal-020/source.tar\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-attempt1/\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-final/\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-protocol/\n?? artifacts/evidence/reviewed-diagnostic-021/source-attempt1.tar\n?? artifacts/evidence/reviewed-diagnostic-021/source-final.tar\n?? artifacts/evidence/reviewed-diagnostic-021/source-protocol.tar\n?? artifacts/evidence/second-diagnostic-decision-022/snapshot-decision/\n?? artifacts/evidence/second-diagnostic-decision-022/source-decision.tar\n?? artifacts/evidence/second-reviewed-diagnostic-023/snapshot-current/\n?? artifacts/evidence/second-reviewed-diagnostic-023/source-current.tar\n?? artifacts/evidence/strict-worker-schema-024/snapshot-strict/\n?? artifacts/evidence/strict-worker-schema-024/source-strict.tar\n?? artifacts/evidence/synthetic-dispatch-012/tmp/\n?? artifacts/evidence/synthetic-operation-controller-018-tmp/\n?? artifacts/evidence/workflow-reservation-017-tmp/\n"
+  },
+  {
+    "command": [
+      "C:\\estudo\\Golpe\\lab\\projects\\p01\\.venv\\Scripts\\python.exe",
+      "-c",
+      "from scripts.diagnostic_operation import fingerprint;print(fingerprint())"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p01",
+    "exit_code": 0,
+    "output": "fcbcb3d4d7e2686621f27c1d0387b25459486e1c85377a027a0440d7336afb55\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--name-only",
+      "1877ea4c8f4016602c90138cec50e71486480d92",
+      "HEAD",
+      "--",
+      "src",
+      "supportops_foundation",
+      "supportops_toolkit",
+      "supportops_obs",
+      "supportops_async",
+      "supportops_platform",
+      "scripts",
+      "tests",
+      "agent",
+      "evals",
+      "stack",
+      "alerts",
+      "pyproject.toml",
+      "uv.lock",
+      "harness.yaml"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p01",
+    "exit_code": 0,
+    "output": "src/supportops_agents/accounted_live.py\ntests/test_strict_worker_schema.py\n"
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p02",
+    "exit_code": 0,
+    "output": "5b91e7349a22298a08b073644195f005e42a4a53\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p02",
+    "exit_code": 0,
+    "output": "?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n"
+  },
+  {
+    "command": [
+      "C:\\estudo\\Golpe\\lab\\projects\\p02\\.venv\\Scripts\\python.exe",
+      "-c",
+      "from scripts.local_operation import fingerprint;print(fingerprint())"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p02",
+    "exit_code": 0,
+    "output": "6dc0cac2de3cc1c3e9240d3baf978e95478bb5fbf1dd1887f6eb8dbdb07c48c4\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--name-only",
+      "5f8d62e10698772b16e4381df0257a16b0cdcd6f",
+      "HEAD",
+      "--",
+      "src",
+      "supportops_foundation",
+      "supportops_toolkit",
+      "supportops_obs",
+      "supportops_async",
+      "supportops_platform",
+      "scripts",
+      "tests",
+      "agent",
+      "evals",
+      "stack",
+      "alerts",
+      "pyproject.toml",
+      "uv.lock",
+      "harness.yaml"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p02",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p03",
+    "exit_code": 0,
+    "output": "83fe06752d4823c4af4843f66417542642e0f2c9\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p03",
+    "exit_code": 0,
+    "output": "?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-local-live-025/tmp-focused/\n?? artifacts/evidence/accounted-local-live-025/tmp-full1/\n?? artifacts/evidence/accounted-local-live-025/tmp-unit/\n?? artifacts/evidence/accounted-telemetry-024/fixture-operation.sqlite\n?? artifacts/evidence/accounted-telemetry-024/tmp-focused-2/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-1/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-2/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-3/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-4/\n?? artifacts/evidence/accounted-telemetry-024/tmp-readiness/\n?? artifacts/evidence/current-service-recheck-021/run/incident-simulation.json\n?? artifacts/evidence/current-service-recheck-021/run/integrated-trace-synthetic.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-jaeger-export.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-live-alerts.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-service-traces.json\n?? artifacts/evidence/service-availability-recheck-023/run/\n"
+  },
+  {
+    "command": [
+      "C:\\estudo\\Golpe\\lab\\projects\\p03\\.venv\\Scripts\\python.exe",
+      "-c",
+      "from scripts.local_operation import fingerprint;print(fingerprint())"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p03",
+    "exit_code": 0,
+    "output": "ba0a9a19ccf08cfde039c478e93d94b0ba43625a9c7b7c40c02da55c3cf6eec5\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--name-only",
+      "b0cf5bbd60ba590217c32914b9aa694eae8e483d",
+      "HEAD",
+      "--",
+      "src",
+      "supportops_foundation",
+      "supportops_toolkit",
+      "supportops_obs",
+      "supportops_async",
+      "supportops_platform",
+      "scripts",
+      "tests",
+      "agent",
+      "evals",
+      "stack",
+      "alerts",
+      "pyproject.toml",
+      "uv.lock",
+      "harness.yaml"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p03",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p04",
+    "exit_code": 0,
+    "output": "a419400cb439e09e3fa28e7efc9ef5a11d57fac5\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p04",
+    "exit_code": 0,
+    "output": "?? artifacts/evals/live/diagnostic-operations.sqlite\n?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-local-service-030/service-attempt2/terraform-work/\n?? artifacts/evidence/accounted-local-service-030/service-final/terraform-work/\n?? artifacts/evidence/accounted-local-service-030/tmp-diagnostic-fix/\n?? artifacts/evidence/accounted-local-service-030/tmp-final-focused/\n?? artifacts/evidence/accounted-local-service-030/tmp-final/\n?? artifacts/evidence/accounted-local-service-030/tmp-focused1/\n?? artifacts/evidence/accounted-local-service-030/tmp-focused2/\n?? artifacts/evidence/accounted-local-service-030/tmp-full2/\n?? artifacts/evidence/accounted-local-service-030/tmp-unit1/\n?? artifacts/evidence/accounted-worker-029/tmp-focused/\n?? artifacts/evidence/accounted-worker-029/tmp-full1/\n?? artifacts/evidence/current-full-privacy-027/tmp-run4/\n?? artifacts/evidence/current-full-privacy-027/work-run4/\n?? artifacts/evidence/current-full-privacy-027/work/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp2/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp3/\n?? artifacts/evidence/local-terraform-network-023/work/\n?? artifacts/evidence/offline-full-gate-025/tmp-retry/\n?? artifacts/evidence/offline-full-gate-025/tmp/\n?? artifacts/evidence/offline-full-gate-025/work/\n?? artifacts/evidence/offline-provider-024/work/\n?? artifacts/evidence/otlp-wire-privacy-026/gate-tmp/\n?? artifacts/evidence/otlp-wire-privacy-026/tmp-full/\n?? artifacts/evidence/reviewed-diagnostic-031/focused.json\n?? artifacts/evidence/reviewed-diagnostic-031/service-attempt1/terraform-work/\n?? artifacts/evidence/reviewed-diagnostic-031/service-attempt1/terraform.rc\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-focused1/\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-focused2/\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-full1/\n"
+  },
+  {
+    "command": [
+      "C:\\estudo\\Golpe\\lab\\projects\\p04\\.venv\\Scripts\\python.exe",
+      "-c",
+      "from scripts.diagnostic_operation import fingerprint;print(fingerprint())"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p04",
+    "exit_code": 0,
+    "output": "a87651183fa72d0b91ca795728c046265a0b1b3d56c957c45ead037bf6be3558\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--name-only",
+      "e02495a87c9f86572d68715218b5ae25f846bfca",
+      "HEAD",
+      "--",
+      "src",
+      "supportops_foundation",
+      "supportops_toolkit",
+      "supportops_obs",
+      "supportops_async",
+      "supportops_platform",
+      "scripts",
+      "tests",
+      "agent",
+      "evals",
+      "stack",
+      "alerts",
+      "pyproject.toml",
+      "uv.lock",
+      "harness.yaml"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p04",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p05",
+    "exit_code": 0,
+    "output": "32a2dcdf2b7df720418a2b46ccb1107e638e1cf7\n"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p05",
+    "exit_code": 0,
+    "output": "?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-http-028/tmp-focused1/\n?? artifacts/evidence/accounted-http-028/tmp-full1/\n?? artifacts/evidence/accounted-identity-027/tmp-focused2/\n?? artifacts/evidence/accounted-identity-027/tmp-full1/\n?? artifacts/evidence/accounted-local-services-029/attempt2/inventory-after.json\n?? artifacts/evidence/accounted-local-services-029/attempt2/inventory-before.json\n?? artifacts/evidence/accounted-local-services-029/fake-runtime-2/\n?? artifacts/evidence/accounted-local-services-029/fake-runtime-3/\n?? artifacts/evidence/accounted-local-services-029/fake-runtime/\n?? artifacts/evidence/accounted-local-services-029/full-fake-attempt2/\n?? artifacts/evidence/accounted-local-services-029/full-fake-attempt3/accounted029-product-trace.json\n?? artifacts/evidence/accounted-local-services-029/full-fake/\n?? artifacts/evidence/accounted-local-services-029/tmp-final-focused/\n?? artifacts/evidence/accounted-local-services-029/tmp-focused1/\n?? artifacts/evidence/accounted-local-services-029/tmp-focused2/\n?? artifacts/evidence/accounted-local-services-029/tmp-full1/\n?? artifacts/evidence/accounted-local-services-029/tmp-full2/\n?? artifacts/evidence/accounted-local-services-029/tmp-full3/\n?? artifacts/evidence/accounted-local-services-029/tmp-import-fix/\n?? artifacts/evidence/current-policy-operation-030/fake-runtime-1/\n?? artifacts/evidence/current-policy-operation-030/full-fake-attempt1/accounted029-product-trace.json\n?? artifacts/evidence/current-policy-operation-030/tmp-focused1/\n?? artifacts/evidence/current-policy-operation-030/tmp-full1/\n"
+  },
+  {
+    "command": [
+      "C:\\estudo\\Golpe\\lab\\projects\\p05\\.venv\\Scripts\\python.exe",
+      "-c",
+      "from scripts.current_operation import fingerprint;print(fingerprint())"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p05",
+    "exit_code": 0,
+    "output": "14aee7b67b77491332aa83b02e0bb2b84a23fd70ed5a0bbc7a0e90902ca704b7\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--name-only",
+      "6b5f54a285a321589fa15b10412f86b7c21d37f3",
+      "HEAD",
+      "--",
+      "src",
+      "supportops_foundation",
+      "supportops_toolkit",
+      "supportops_obs",
+      "supportops_async",
+      "supportops_platform",
+      "scripts",
+      "tests",
+      "agent",
+      "evals",
+      "stack",
+      "alerts",
+      "pyproject.toml",
+      "uv.lock",
+      "harness.yaml"
+    ],
+    "cwd": "C:\\estudo\\Golpe\\lab\\projects\\p05",
+    "exit_code": 0,
+    "output": ""
+  }
+]
