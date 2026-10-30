@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/harness",
+    "-p",
+    "test_p01_reviewed_diagnostic.py",
+    "-v"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "test_changed_retained_reservation_is_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_changed_retained_reservation_is_denied) ... ok\ntest_closed_diagnostic_cannot_continue (test_p01_reviewed_diagnostic.DiagnosticTests.test_closed_diagnostic_cannot_continue) ... ok\ntest_failed_diagnostic_cannot_continue (test_p01_reviewed_diagnostic.DiagnosticTests.test_failed_diagnostic_cannot_continue) ... ok\ntest_failed_original_cannot_be_bypassed_with_a_new_case (test_p01_reviewed_diagnostic.DiagnosticTests.test_failed_original_cannot_be_bypassed_with_a_new_case) ... ok\ntest_missing_or_modified_authority_is_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_missing_or_modified_authority_is_denied) ... ok\ntest_narrow_scope_is_finite_and_preserves_original_reserve (test_p01_reviewed_diagnostic.DiagnosticTests.test_narrow_scope_is_finite_and_preserves_original_reserve) ... ok\ntest_other_identity_and_uncertain_replay_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_other_identity_and_uncertain_replay_denied) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 4.730s\n\nOK\n"
+}

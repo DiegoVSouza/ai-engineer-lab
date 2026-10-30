@@ -557,6 +557,16 @@ class SharedAccount:
         rows = self._history()
         if project not in self._references():
             raise AccountBlocked("owning_project_not_initialized")
+        if project in {"p01", "p04"} and campaign == "local-operation-v1":
+            logical = self.root / ("projects/" + project + "/artifacts/evals/live/ledger.sqlite")
+            if logical.exists():
+                try:
+                    with closing(sqlite3.connect(logical.resolve().as_uri() + "?mode=ro", uri=True)) as db:
+                        stopped = db.execute("SELECT 1 FROM events WHERE campaign_id='local-operation-v1' AND event='completed' AND outcome!='ok'").fetchone()
+                except sqlite3.Error:
+                    raise AccountBlocked("unreadable_logical_operation_history") from None
+                if stopped:
+                    raise AccountBlocked("logical_operation_stopped_requires_review")
         if project == "p00" and self.policy["projects"]["p00"]["requests"] == 219:
             if campaign != "local-live-operation-v1":
                 raise AccountBlocked("protected_p00_allocation")
@@ -662,6 +672,11 @@ class SharedAccount:
             if (len(events) != 2 or [r[0] for r in events] != ["reserved", "completed"]
                     or any(r[1:5] != (4,8192,1024,"0.0009216") for r in events)
                     or events[-1][5:] != ("incomplete", "unknown", None, None, None)):
+                raise ValueError()
+            with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as db:
+                closed = db.execute("SELECT 1 FROM events WHERE campaign_id='local-diagnostic-v1' AND event='completed'").fetchone()
+                scopes = db.execute("SELECT DISTINCT case_id,trial FROM events WHERE campaign_id='local-diagnostic-v1'").fetchall()
+            if closed or any(scope != ("fixture-diagnostic-01", 1) for scope in scopes):
                 raise ValueError()
             if any(r["project"] == "p01" and r["campaign"] not in {"local-operation-v1", "local-diagnostic-v1"} for r in rows):
                 raise ValueError()

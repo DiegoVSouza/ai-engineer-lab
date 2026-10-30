@@ -60,6 +60,10 @@ class DiagnosticTests(unittest.TestCase):
         with self.assertRaisesRegex(AccountBlocked,"authority_or_history"):
             self.reserve()
 
+    def test_failed_original_cannot_be_bypassed_with_a_new_case(self):
+        with self.assertRaisesRegex(AccountBlocked,"logical_operation_stopped"):
+            self.account.reserve("p04", "local-operation-v1", "fixture-renamed", 1, 1, 2048,256)
+
     def reserve(self, case="fixture-diagnostic-01", index=1):
         return self.account.reserve("p04", "local-diagnostic-v1", case, 1, index, 2048, 256)
 

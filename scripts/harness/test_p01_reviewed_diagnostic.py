@@ -41,6 +41,17 @@ class DiagnosticTests(unittest.TestCase):
                            (sequence,event,"incomplete" if sequence == 2 else None,"unknown" if sequence == 2 else None))
             db.commit()
 
+    def test_failed_original_cannot_be_bypassed_with_a_new_case(self):
+        with self.assertRaisesRegex(AccountBlocked,"logical_operation_stopped"):
+            self.account.reserve("p01", "local-operation-v1", "fixture-renamed", 1, 1, 2048,256)
+
+    def test_closed_diagnostic_cannot_continue(self):
+        with closing(sqlite3.connect(self.logical)) as db:
+            db.execute("INSERT INTO events(sequence,campaign_id,case_id,trial,event) VALUES(3,'local-diagnostic-v1','fixture-diagnostic-01',1,'completed')")
+            db.commit()
+        with self.assertRaisesRegex(AccountBlocked,"authority_or_history"):
+            self.reserve()
+
     def reserve(self, case="fixture-diagnostic-01", index=1):
         return self.account.reserve("p01", "local-diagnostic-v1", case, 1, index, 2048, 256)
 
