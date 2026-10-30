@@ -1,6 +1,6 @@
 ## Current executor handoff — phase041, 2026-10-30
 
-Read [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) first. P00 additional gate1/1 is consumed and FAIL; source remains unverified. Continue P01 new identity/controller/guard preparation and P04 baseline/collector/isolated gate without asking again for existing authorizations. Next read-only command: `Get-Content projects/p01/docs/harness/decisions.md`. Preserve dirty P01 standard outputs and all prior outcomes. Historical handoff follows.
+Read [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) first. P00 and P04 additional gates1/1 are consumed and FAIL; do not replay. P01 new workflow passed once and is consumed. P04 phase033 established stable Docker identity and cleaned only its owned namespace; offline build lacked a cached dependency. Prepare a finite reproducible offline build before any request for an additional gate. Preserve dirty P01 standard outputs and all prior outcomes. Historical handoff follows.
 
 ## Historical authoritative executor handoff — 2026-10-30
 

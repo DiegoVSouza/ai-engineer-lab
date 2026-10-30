@@ -4,7 +4,7 @@
 
 The current user prompt supersedes older requests for another confirmation: exactly one additional P00 full gate in a fresh snapshot; one new P01 operation with distinct stable identity/max one workflow after finite scope, reservations and PASS gates; exactly one additional P04 isolated gate, with the historical Docker attribution gap documented and excluded as a blocker for that new validation. No mutation of gossett_backend is authorized. Existing numbered and unnumbered Groq credentials are user-attested Free; paid USD0, synthetic local scope, human evaluation deferred. All no-replay, unknown-reserve, holdout84/confirmation60, no fallback/external effects restrictions remain.
 
-The P00 additional gate was consumed once in phase038 and failed (68 tests passed/93 scratch setup errors); history3/3 and exception1/1 remain consumed. No extra P00 gate is authorized by this record. P01/P04 preparation remains authorized and executable. See [phase041 current record](phases/041-authority-and-consumed-gate/CURRENT.md).
+The P00 additional gate was consumed once in phase038 and failed (68 tests passed/93 scratch setup errors); history3/3 and exception1/1 remain consumed. P01's new workflow passed once and is consumed. The P04 additional gate was consumed once in phase033 and failed at an offline image build; history3/3 and exception1/1 remain consumed. No extra P00/P04 gate is authorized by this record. Independent offline corrections remain authorized. See [phase041 current record](phases/041-authority-and-consumed-gate/CURRENT.md).
 
 ## Local operation with evaluation deferred — 2026-10-28
 

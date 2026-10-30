@@ -1,6 +1,6 @@
 # Current continuation — phase041, 2026-10-30
 
-The current queue and authorization supersessions are in [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md). P00 additional gate is consumed1/1 and FAIL; no replay. P01 new finite operation and P04 additional isolated gate are already authorized and remain executable after their technical preparation. Historical Docker attribution is not a blocker for the new P04 validation; document its gap and preserve unrelated resources. Historical phase040 follows.
+The current queue and authorization supersessions are in [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md). P00 and P04 additional gates are consumed1/1 and FAIL; no replay. P01 new finite operation PASS once, four calls1274/261, and is consumed. P04's stable identity comparator passes and historical attribution remains UNKNOWN; its offline image build lacks one cached dependency. Historical phase040 follows.
 
 # Historical authoritative checkpoint — 2026-10-30
 
