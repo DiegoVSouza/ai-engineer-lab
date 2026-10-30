@@ -1,0 +1,92 @@
+...F............F                                                        [100%]
+================================== FAILURES ===================================
+______________________ StackCli.test_logs_forward_flags _______________________
+
+self = <test_stack_cli.StackCli testMethod=test_logs_forward_flags>
+
+    def test_logs_forward_flags(self):
+        _, command = self.invoke("logs", "--follow", "api")
+>       self.assertEqual(command[-2:], ["--follow", "api"])
+E       AssertionError: Lists differ: ['api', '--follow'] != ['--follow', 'api']
+E       
+E       First differing element 0:
+E       'api'
+E       '--follow'
+E       
+E       - ['api', '--follow']
+E       + ['--follow', 'api']
+
+scripts\harness\test_stack_cli.py:34: AssertionError
+______ FlyOperatorScripts.test_up_deploys_infrastructure_before_products ______
+
+self = <test_fly_ops.FlyOperatorScripts testMethod=test_up_deploys_infrastructure_before_products>
+
+    def test_up_deploys_infrastructure_before_products(self):
+>       result = self.run_script(DEPLOY, "-Action", "Up", "-SkipSecrets")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+scripts\harness\test_fly_ops.py:121: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\harness\test_fly_ops.py:53: in run_script
+    return subprocess.run([PWSH, "-NoProfile", "-File", str(script), *arguments], cwd=ROOT,
+C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:556: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:1222: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <Popen: returncode: 1 args: ['C:\\Program Files\\PowerShell\\7\\pwsh.EXE', '...>
+input = None, endtime = 32920.6869344, orig_timeout = 180
+
+    def _communicate(self, input, endtime, orig_timeout):
+        # Start reader threads feeding into a list hanging off of this
+        # object, unless they've already been started.
+        if self.stdout and not hasattr(self, "_stdout_buff"):
+            self._stdout_buff = []
+            self.stdout_thread = \
+                    threading.Thread(target=self._readerthread,
+                                     args=(self.stdout, self._stdout_buff))
+            self.stdout_thread.daemon = True
+            self.stdout_thread.start()
+        if self.stderr and not hasattr(self, "_stderr_buff"):
+            self._stderr_buff = []
+            self.stderr_thread = \
+                    threading.Thread(target=self._readerthread,
+                                     args=(self.stderr, self._stderr_buff))
+            self.stderr_thread.daemon = True
+            self.stderr_thread.start()
+    
+        # Start writer thread to send input to stdin, unless already
+        # started.  The thread writes input and closes stdin when done,
+        # or continues in the background on timeout.
+        if self.stdin and not hasattr(self, "_stdin_thread"):
+            self._stdin_thread = \
+                    threading.Thread(target=self._writerthread,
+                                     args=(input,))
+            self._stdin_thread.daemon = True
+            self._stdin_thread.start()
+    
+        # Wait for the writer thread, or time out.  If we time out, the
+        # thread remains writing and the fd left open in case the user
+        # calls communicate again.
+        if hasattr(self, "_stdin_thread"):
+            self._stdin_thread.join(self._remaining_time(endtime))
+            if self._stdin_thread.is_alive():
+                raise TimeoutExpired(self.args, orig_timeout)
+    
+        # Wait for the reader threads, or time out.  If we time out, the
+        # threads remain reading and the fds left open in case the user
+        # calls communicate again.
+        if self.stdout is not None:
+            self.stdout_thread.join(self._remaining_time(endtime))
+            if self.stdout_thread.is_alive():
+>               raise TimeoutExpired(self.args, orig_timeout)
+E               subprocess.TimeoutExpired: Command '['C:\\Program Files\\PowerShell\\7\\pwsh.EXE', '-NoProfile', '-File', 'C:\\estudo\\Golpe\\lab\\ops\\fly\\deploy.ps1', '-Action', 'Up', '-SkipSecrets']' timed out after 180 seconds
+
+C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\subprocess.py:1665: TimeoutExpired
+=========================== short test summary info ===========================
+FAILED scripts/harness/test_stack_cli.py::StackCli::test_logs_forward_flags
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_up_deploys_infrastructure_before_products
+2 failed, 15 passed in 223.95s (0:03:43)

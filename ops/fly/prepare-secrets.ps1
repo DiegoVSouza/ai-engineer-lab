@@ -4,8 +4,9 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
+. (Join-Path $PSScriptRoot "stack-apps.ps1")
 $root = (Resolve-Path (Join-Path $PSScriptRoot "../.." )).Path
-$privateDir = Join-Path $root "artifacts/checkpoints/pre-fly-final-20261023"
+$privateDir = if ($env:FLY_SECRETS_DIR) { $env:FLY_SECRETS_DIR } else { Join-Path $root "artifacts/checkpoints/pre-fly-final-20261023" }
 $secretPath = Join-Path $privateDir "fly-secrets.json"
 $credentialPath = Join-Path $privateDir "demo-logins.txt"
 New-Item -ItemType Directory -Force -Path $privateDir | Out-Null
@@ -98,7 +99,8 @@ $apps = [ordered]@{
 }
 
 foreach ($app in $apps.Keys) {
-  $start = [System.Diagnostics.ProcessStartInfo]::new("fly")
+  Assert-StackApp -App $app
+  $start = [System.Diagnostics.ProcessStartInfo]::new($script:FlyBin)
   $start.ArgumentList.Add("secrets")
   $start.ArgumentList.Add("import")
   $start.ArgumentList.Add("--stage")

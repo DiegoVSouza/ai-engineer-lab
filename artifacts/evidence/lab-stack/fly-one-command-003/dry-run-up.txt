@@ -1,0 +1,101 @@
+$ pwsh -File ops/fly/deploy.ps1 -Action Up -DryRun
+DRY-RUN prepare-secrets.ps1 -Action Prepare, then -Action Import
+Starting supportops-lab-db/app
+DRY-RUN fly machine start 897915b6697578 --app supportops-lab-db
+DRY-RUN fly machine wait 897915b6697578 --app supportops-lab-db --state started --wait-timeout 5m
+Starting supportops-lab-redis/app
+DRY-RUN fly machine start 82d69df0799d98 --app supportops-lab-redis
+DRY-RUN fly machine wait 82d69df0799d98 --app supportops-lab-redis --state started --wait-timeout 5m
+Starting supportops-lab-idp/app
+DRY-RUN fly machine start 851d7dc426de58 --app supportops-lab-idp
+DRY-RUN fly machine wait 851d7dc426de58 --app supportops-lab-idp --state started --wait-timeout 5m
+Starting supportops-lab-sns/app
+DRY-RUN fly machine start 85777d4a23e348 --app supportops-lab-sns
+DRY-RUN fly machine wait 85777d4a23e348 --app supportops-lab-sns --state started --wait-timeout 5m
+Starting supportops-lab-jaeger/app
+DRY-RUN fly machine start 83d59dfd799058 --app supportops-lab-jaeger
+DRY-RUN fly machine wait 83d59dfd799058 --app supportops-lab-jaeger --state started --wait-timeout 5m
+Starting supportops-lab-p04/worker
+DRY-RUN fly machine start 2879390f917e38 --app supportops-lab-p04
+DRY-RUN fly machine wait 2879390f917e38 --app supportops-lab-p04 --state started --wait-timeout 5m
+Starting supportops-lab-p05/worker
+DRY-RUN fly machine start 9080ee506ad508 --app supportops-lab-p05
+DRY-RUN fly machine wait 9080ee506ad508 --app supportops-lab-p05 --state started --wait-timeout 5m
+Starting supportops-lab-p04/app
+DRY-RUN fly machine update 78452edf349568 --app supportops-lab-p04 --autostart=true --yes
+DRY-RUN fly machine start 78452edf349568 --app supportops-lab-p04
+DRY-RUN fly machine wait 78452edf349568 --app supportops-lab-p04 --state started --wait-timeout 5m
+Starting supportops-lab-p05/app
+DRY-RUN fly machine update 830374f76154d8 --app supportops-lab-p05 --autostart=true --yes
+DRY-RUN fly machine start 830374f76154d8 --app supportops-lab-p05
+DRY-RUN fly machine wait 830374f76154d8 --app supportops-lab-p05 --state started --wait-timeout 5m
+Starting supportops-lab-mcp/app
+DRY-RUN fly machine update 2870421c554548 --app supportops-lab-mcp --autostart=true --yes
+DRY-RUN fly machine start 2870421c554548 --app supportops-lab-mcp
+DRY-RUN fly machine wait 2870421c554548 --app supportops-lab-mcp --state started --wait-timeout 5m
+DRY-RUN fly deploy C:\estudo\Golpe\lab\ops\fly\postgres --config C:\estudo\Golpe\lab\fly\postgres\fly.toml --app supportops-lab-db --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-db --yes
+DRY-RUN fly deploy C:\estudo\Golpe\lab\ops\fly\redis --config C:\estudo\Golpe\lab\fly\redis\fly.toml --app supportops-lab-redis --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-redis --yes
+DRY-RUN fly deploy C:\estudo\Golpe\lab\ops\fly\idp --config C:\estudo\Golpe\lab\fly\idp\fly.toml --app supportops-lab-idp --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-idp --yes
+DRY-RUN fly deploy C:\estudo\Golpe\lab\ops\fly\sns --config C:\estudo\Golpe\lab\fly\sns\fly.toml --app supportops-lab-sns --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-sns --yes
+DRY-RUN fly deploy C:\estudo\Golpe\lab\ops\fly\jaeger --config C:\estudo\Golpe\lab\fly\jaeger\fly.toml --app supportops-lab-jaeger --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-jaeger --yes
+DRY-RUN fly deploy C:\estudo\Golpe\lab\projects\p05 --config C:\estudo\Golpe\lab\fly\mcp\fly.toml --app supportops-lab-mcp --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-mcp --yes
+DRY-RUN fly deploy C:\estudo\Golpe\lab\projects\p04 --config C:\estudo\Golpe\lab\fly\p04\fly.toml --app supportops-lab-p04 --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-p04 --yes
+DRY-RUN fly scale count 1 --process-group worker --app supportops-lab-p04 --yes
+DRY-RUN fly deploy C:\estudo\Golpe\lab\projects\p05 --config C:\estudo\Golpe\lab\fly\p05\fly.toml --app supportops-lab-p05 --remote-only --yes --ha=false
+DRY-RUN fly scale count 1 --process-group app --app supportops-lab-p05 --yes
+DRY-RUN fly scale count 1 --process-group worker --app supportops-lab-p05 --yes
+Starting supportops-lab-db/app
+DRY-RUN fly machine start 897915b6697578 --app supportops-lab-db
+DRY-RUN fly machine wait 897915b6697578 --app supportops-lab-db --state started --wait-timeout 5m
+Starting supportops-lab-redis/app
+DRY-RUN fly machine start 82d69df0799d98 --app supportops-lab-redis
+DRY-RUN fly machine wait 82d69df0799d98 --app supportops-lab-redis --state started --wait-timeout 5m
+Starting supportops-lab-idp/app
+DRY-RUN fly machine start 851d7dc426de58 --app supportops-lab-idp
+DRY-RUN fly machine wait 851d7dc426de58 --app supportops-lab-idp --state started --wait-timeout 5m
+Starting supportops-lab-sns/app
+DRY-RUN fly machine start 85777d4a23e348 --app supportops-lab-sns
+DRY-RUN fly machine wait 85777d4a23e348 --app supportops-lab-sns --state started --wait-timeout 5m
+Starting supportops-lab-jaeger/app
+DRY-RUN fly machine start 83d59dfd799058 --app supportops-lab-jaeger
+DRY-RUN fly machine wait 83d59dfd799058 --app supportops-lab-jaeger --state started --wait-timeout 5m
+Starting supportops-lab-p04/worker
+DRY-RUN fly machine start 2879390f917e38 --app supportops-lab-p04
+DRY-RUN fly machine wait 2879390f917e38 --app supportops-lab-p04 --state started --wait-timeout 5m
+Starting supportops-lab-p05/worker
+DRY-RUN fly machine start 9080ee506ad508 --app supportops-lab-p05
+DRY-RUN fly machine wait 9080ee506ad508 --app supportops-lab-p05 --state started --wait-timeout 5m
+Starting supportops-lab-p04/app
+DRY-RUN fly machine update 78452edf349568 --app supportops-lab-p04 --autostart=true --yes
+DRY-RUN fly machine start 78452edf349568 --app supportops-lab-p04
+DRY-RUN fly machine wait 78452edf349568 --app supportops-lab-p04 --state started --wait-timeout 5m
+Starting supportops-lab-p05/app
+DRY-RUN fly machine update 830374f76154d8 --app supportops-lab-p05 --autostart=true --yes
+DRY-RUN fly machine start 830374f76154d8 --app supportops-lab-p05
+DRY-RUN fly machine wait 830374f76154d8 --app supportops-lab-p05 --state started --wait-timeout 5m
+Starting supportops-lab-mcp/app
+DRY-RUN fly machine update 2870421c554548 --app supportops-lab-mcp --autostart=true --yes
+DRY-RUN fly machine start 2870421c554548 --app supportops-lab-mcp
+DRY-RUN fly machine wait 2870421c554548 --app supportops-lab-mcp --state started --wait-timeout 5m
+Up finished. Volumes and machines:
+supportops-lab-db/app: machine 897915b6697578 is stopped
+supportops-lab-db: volume pg_data 10GB (created)
+supportops-lab-redis/app: machine 82d69df0799d98 is stopped
+supportops-lab-redis: volume redis_data 1GB (created)
+supportops-lab-idp/app: machine 851d7dc426de58 is stopped
+supportops-lab-sns/app: machine 85777d4a23e348 is stopped
+supportops-lab-jaeger/app: machine 83d59dfd799058 is stopped
+supportops-lab-mcp/app: machine 2870421c554548 is stopped
+supportops-lab-p04/worker: machine 2879390f917e38 is stopped
+supportops-lab-p04/app: machine 78452edf349568 is stopped
+supportops-lab-p05/worker: machine 9080ee506ad508 is stopped
+supportops-lab-p05/app: machine 830374f76154d8 is stopped
+supportops-lab-p05: volume p05_graph 1GB (created)
+exit=0

@@ -1,0 +1,15 @@
+$ pwsh -File ops/fly/deploy.ps1 -Action Status
+supportops-lab-db/app: machine 897915b6697578 is stopped
+supportops-lab-db: volume pg_data 10GB (created)
+supportops-lab-redis/app: machine 82d69df0799d98 is stopped
+supportops-lab-redis: volume redis_data 1GB (created)
+supportops-lab-idp/app: machine 851d7dc426de58 is stopped
+supportops-lab-sns/app: machine 85777d4a23e348 is stopped
+supportops-lab-jaeger/app: machine 83d59dfd799058 is stopped
+supportops-lab-mcp/app: machine 2870421c554548 is stopped
+supportops-lab-p04/worker: machine 2879390f917e38 is stopped
+supportops-lab-p04/app: machine 78452edf349568 is stopped
+supportops-lab-p05/worker: machine 9080ee506ad508 is stopped
+supportops-lab-p05/app: machine 830374f76154d8 is stopped
+supportops-lab-p05: volume p05_graph 1GB (created)
+exit=0

@@ -1,82 +1,169 @@
+<#
+.SYNOPSIS
+One-command lifecycle of the SupportOps Fly stack.
+
+.DESCRIPTION
+Up     Prepare secrets once, create missing stack apps and volumes, wake existing
+       machines, deploy every app in dependency order, start everything and wait
+       for health. Safe to repeat.
+Down   Stop every machine and disable public autostart. Volumes survive and are
+       listed. Nothing is deleted unless -DestroyData is confirmed.
+Status Report machines and volumes per app without changing anything.
+Stage, Build and Deploy remain available as the individual steps of Up.
+
+Only apps in ops/fly/stack-apps.ps1 can be touched. Up and Down spend real money
+and change a public deployment; preview them with -DryRun.
+
+.PARAMETER Action
+Up, Down, Status, Stage, Build or Deploy.
+
+.PARAMETER Only
+Restrict the action to these stack apps.
+
+.PARAMETER DryRun
+Print the mutating Fly commands instead of running them.
+
+.PARAMETER SkipSecrets
+Skip secret preparation and import during Up or Stage.
+
+.PARAMETER DestroyData
+With Down, delete the stack apps and their volumes. Irreversible; requires
+-ConfirmDestroy supportops-lab.
+
+.PARAMETER ConfirmDestroy
+Must equal supportops-lab for -DestroyData to run.
+
+.EXAMPLE
+pwsh -File ops/fly/deploy.ps1 -Action Up -DryRun
+
+.EXAMPLE
+pwsh -File ops/fly/deploy.ps1 -Action Down
+#>
 param(
-  [ValidateSet("Stage", "Build", "Deploy")]
+  [ValidateSet("Up", "Down", "Status", "Stage", "Build", "Deploy")]
   [string]$Action = "Build",
-  [string[]]$Only = @()
+  [string[]]$Only = @(),
+  [switch]$DryRun,
+  [switch]$SkipSecrets,
+  [switch]$DestroyData,
+  [string]$ConfirmDestroy = ""
 )
 
 $ErrorActionPreference = "Stop"
+. (Join-Path $PSScriptRoot "stack-apps.ps1")
 $root = (Resolve-Path (Join-Path $PSScriptRoot "../.." )).Path
-$evidence = Join-Path $root "artifacts/evidence/fly"
-New-Item -ItemType Directory -Force -Path $evidence | Out-Null
-$log = Join-Path $evidence "provision-$($Action.ToLowerInvariant()).txt"
-Start-Transcript -Path $log -Append | Out-Null
+$power = Join-Path $PSScriptRoot "power.ps1"
+$apps = @(Get-StackApps -Only $Only)
 
-function Invoke-Fly {
-  param([string[]]$Arguments)
-  $output = & fly @Arguments 2>&1
-  $output | ForEach-Object { Write-Output $_.ToString() }
-  if ($LASTEXITCODE -ne 0) { throw "fly $($Arguments -join ' ') failed with exit code $LASTEXITCODE" }
+if ($DestroyData) {
+  if ($Action -ne "Down") { throw "-DestroyData is only valid with -Action Down." }
+  if ($ConfirmDestroy -cne $script:ConfirmToken) {
+    throw "-DestroyData deletes apps and volumes; pass -ConfirmDestroy $($script:ConfirmToken) to proceed."
+  }
 }
 
-$apps = @(
-  @{ Name = "supportops-lab-db"; Config = "fly/postgres/fly.toml"; Context = "ops/fly/postgres"; Volume = @{ Name = "pg_data"; Size = 10 } },
-  @{ Name = "supportops-lab-redis"; Config = "fly/redis/fly.toml"; Context = "ops/fly/redis"; Volume = @{ Name = "redis_data"; Size = 1 } },
-  @{ Name = "supportops-lab-idp"; Config = "fly/idp/fly.toml"; Context = "ops/fly/idp" },
-  @{ Name = "supportops-lab-sns"; Config = "fly/sns/fly.toml"; Context = "ops/fly/sns" },
-  @{ Name = "supportops-lab-jaeger"; Config = "fly/jaeger/fly.toml"; Context = "ops/fly/jaeger" },
-  @{ Name = "supportops-lab-mcp"; Config = "fly/mcp/fly.toml"; Context = "projects/p05" },
-  @{ Name = "supportops-lab-p04"; Config = "fly/p04/fly.toml"; Context = "projects/p04" },
-  @{ Name = "supportops-lab-p05"; Config = "fly/p05/fly.toml"; Context = "projects/p05"; Volume = @{ Name = "p05_graph"; Size = 1 } }
-)
-if ($Only.Count -gt 0) {
-  $apps = @($apps | Where-Object { $Only -contains $_.Name })
-  if ($apps.Count -eq 0) { throw "No configured Fly app matches -Only $($Only -join ', ')." }
+function Invoke-Stage {
+  $existing = Read-FlyJson -Arguments @("apps", "list", "--json") -AllowMissing:$DryRun
+  foreach ($app in $apps) {
+    if (-not ($existing | Where-Object Name -eq $app.Name)) {
+      Invoke-Fly -DryRun:$DryRun -Arguments @("apps", "create", $app.Name, "--org", "personal", "--yes")
+    }
+  }
+  foreach ($app in $apps) {
+    if ($app.Volume) {
+      $volumes = Read-FlyJson -Arguments @("volumes", "list", "--app", $app.Name, "--json") -AllowMissing
+      if (-not ($volumes | Where-Object Name -eq $app.Volume.Name)) {
+        Invoke-Fly -DryRun:$DryRun -Arguments @("volumes", "create", $app.Volume.Name, "--app", $app.Name, "--region", "iad", "--size", "$($app.Volume.Size)", "--snapshot-retention", "14", "--yes")
+      }
+    }
+  }
+  if ($SkipSecrets) { return }
+  if ($DryRun) {
+    Write-Output "DRY-RUN prepare-secrets.ps1 -Action Prepare, then -Action Import"
+    return
+  }
+  & (Join-Path $PSScriptRoot "prepare-secrets.ps1") -Action Prepare
+  & (Join-Path $PSScriptRoot "prepare-secrets.ps1") -Action Import
+}
+
+function Invoke-Build {
+  foreach ($app in $apps) {
+    $config = Join-Path $root $app.Config
+    $context = Join-Path $root $app.Context
+    Invoke-Fly -DryRun:$DryRun -Arguments @("deploy", $context, "--config", $config, "--app", $app.Name, "--remote-only", "--build-only", "--yes")
+  }
+}
+
+function Invoke-Deploy {
+  foreach ($app in $apps) {
+    $config = Join-Path $root $app.Config
+    $context = Join-Path $root $app.Context
+    Invoke-Fly -DryRun:$DryRun -Arguments @("deploy", $context, "--config", $config, "--app", $app.Name, "--remote-only", "--yes", "--ha=false")
+    foreach ($group in $app.Processes) {
+      Invoke-Fly -DryRun:$DryRun -Arguments @("scale", "count", "1", "--process-group", $group, "--app", $app.Name, "--yes")
+    }
+  }
+}
+
+function Write-PreservedVolumes {
+  foreach ($app in $apps) {
+    $volumes = Read-FlyJson -Arguments @("volumes", "list", "--app", $app.Name, "--json") -AllowMissing
+    foreach ($volume in @($volumes)) {
+      if ($volume) { Write-Output "preserved: $($app.Name) volume $($volume.name) $($volume.size_gb)GB (still billed while it exists)" }
+    }
+  }
+}
+
+function Invoke-Destroy {
+  $existing = Read-FlyJson -Arguments @("apps", "list", "--json")
+  $names = @($apps | ForEach-Object { $_.Name })
+  [array]::Reverse($names)
+  foreach ($name in $names) {
+    if ($existing | Where-Object Name -eq $name) {
+      Invoke-Fly -DryRun:$DryRun -Arguments @("apps", "destroy", $name, "--yes")
+    }
+    else {
+      Write-Output "$name`: not deployed, nothing to destroy"
+    }
+  }
+}
+
+$evidence = if ($env:FLY_EVIDENCE_DIR) { $env:FLY_EVIDENCE_DIR } else { Join-Path $root "artifacts/evidence/fly" }
+$transcript = -not $DryRun -and $Action -ne "Status"
+if ($transcript) {
+  New-Item -ItemType Directory -Force -Path $evidence | Out-Null
+  Start-Transcript -Path (Join-Path $evidence "provision-$($Action.ToLowerInvariant()).txt") -Append | Out-Null
 }
 
 Push-Location $root
 try {
-  if ($Action -eq "Stage") {
-    $existing = & fly apps list --json | ConvertFrom-Json
-    if ($LASTEXITCODE -ne 0) { throw "Unable to read the Fly app inventory." }
-    foreach ($app in $apps) {
-      if (-not ($existing | Where-Object Name -eq $app.Name)) {
-        Invoke-Fly -Arguments @("apps", "create", $app.Name, "--org", "personal", "--yes")
+  switch ($Action) {
+    "Stage" { Invoke-Stage }
+    "Build" { Invoke-Build }
+    "Deploy" { Invoke-Deploy }
+    "Status" { & $power -Action Status -Only $Only }
+    "Up" {
+      Invoke-Stage
+      & $power -Action Start -ExistingOnly -DryRun:$DryRun -Only $Only
+      Invoke-Deploy
+      & $power -Action Start -DryRun:$DryRun -Only $Only
+      Write-Output "Up finished. Volumes and machines:"
+      & $power -Action Status -Only $Only
+    }
+    "Down" {
+      if ($DestroyData) {
+        Invoke-Destroy
+        Write-Output "Destroyed the stack apps above, including their attached volumes."
       }
-    }
-    foreach ($app in $apps) {
-      if ($app.Volume) {
-        $volumes = & fly volumes list --app $app.Name --json 2>$null
-        if ($LASTEXITCODE -ne 0) { $volumes = "[]" }
-        $existingVolumes = @($volumes | ConvertFrom-Json)
-        if (-not ($existingVolumes | Where-Object Name -eq $app.Volume.Name)) {
-          Invoke-Fly -Arguments @("volumes", "create", $app.Volume.Name, "--app", $app.Name, "--region", "iad", "--size", "$($app.Volume.Size)", "--snapshot-retention", "14", "--yes")
-        }
-      }
-    }
-    & (Join-Path $PSScriptRoot "prepare-secrets.ps1") -Action Import
-  }
-
-  if ($Action -eq "Build") {
-    foreach ($app in $apps) {
-      $config = Join-Path $root $app.Config
-      $context = Join-Path $root $app.Context
-      Invoke-Fly -Arguments @("deploy", $context, "--config", $config, "--app", $app.Name, "--remote-only", "--build-only", "--yes")
-    }
-  }
-
-  if ($Action -eq "Deploy") {
-    foreach ($app in $apps) {
-      $config = Join-Path $root $app.Config
-      $context = Join-Path $root $app.Context
-      Invoke-Fly -Arguments @("deploy", $context, "--config", $config, "--app", $app.Name, "--remote-only", "--yes", "--ha=false")
-      $groups = if ($app.Name -in @("supportops-lab-p04", "supportops-lab-p05")) { @("app", "worker") } else { @("app") }
-      foreach ($group in $groups) {
-        Invoke-Fly -Arguments @("scale", "count", "1", "--process-group", $group, "--app", $app.Name, "--yes")
+      else {
+        & $power -Action Stop -DryRun:$DryRun -Only $Only
+        Write-PreservedVolumes
+        Write-Output "Down finished. Machines are stopped; bring them back with -Action Up."
       }
     }
   }
 }
 finally {
   Pop-Location
-  Stop-Transcript | Out-Null
+  if ($transcript) { Stop-Transcript | Out-Null }
 }

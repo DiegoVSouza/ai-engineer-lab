@@ -23,6 +23,10 @@ The API and MCP process groups use shared 1x/256 MB machines and Fly Proxy autos
 
 Using Fly's official list prices checked on 2026-10-23, the always-running machines total about USD 21.34 per 30 days at the current sizes. The three volumes total 12 GB, about USD 1.80 per month, giving an idle baseline near USD 23.14 before stopped root filesystems and network traffic; API/MCP runtime adds compute while active. The earlier estimate of USD 28.93 was wrong: it used outdated machine prices and understated the baseline. Actual billing depends on usage. The 10 GB PostgreSQL volume currently holds about 84 MB; Fly volumes cannot be shrunk in place. Moving it to 1 GB requires a logical database migration and would save about USD 1.35/month.
 
+## One-command lifecycle
+
+`python scripts/stack.py fly-up` and `python scripts/stack.py fly-down` are the operator entry points; `fly-status` is read-only and `-DryRun` previews a change. All three wrap `ops/fly/deploy.ps1`, and every app name passes through the allowlist in `ops/fly/stack-apps.ps1`. See the README for the side-by-side table with the local commands.
+
 ## Power state and stopped cost
 
 At the user's request, all ten Fly Machines are currently stopped, and autostart is disabled on the public APIs and MCP so outside requests cannot wake them. The endpoints stay offline until the stack is started again. Use `.\ops\fly\power.ps1 -Action Start` before a demo and `.\ops\fly\power.ps1 -Action Stop` afterward; let active jobs finish before stopping. The script starts data services and the IdP before the workers and APIs, re-enables public autostart, then disables it again when stopping.

@@ -1,0 +1,73 @@
+
+NOME
+    C:\estudo\Golpe\lab\ops\fly\deploy.ps1
+    
+SYNOPSIS
+    One-command lifecycle of the SupportOps Fly stack.
+    
+    
+SYNTAX
+    C:\estudo\Golpe\lab\ops\fly\deploy.ps1 [[-Action] <String>] [[-Only] <String[]>] [-DryRun] [-SkipSecrets] 
+    [-DestroyData] [[-ConfirmDestroy] <String>] [<CommonParameters>]
+    
+    
+DESCRIPTION
+    Up     Prepare secrets once, create missing stack apps and volumes, wake existing
+           machines, deploy every app in dependency order, start everything and wait
+           for health. Safe to repeat.
+    Down   Stop every machine and disable public autostart. Volumes survive and are
+           listed. Nothing is deleted unless -DestroyData is confirmed.
+    Status Report machines and volumes per app without changing anything.
+    Stage, Build and Deploy remain available as the individual steps of Up.
+    
+    Only apps in ops/fly/stack-apps.ps1 can be touched. Up and Down spend real money
+    and change a public deployment; preview them with -DryRun.
+    
+
+RELATED LINKS
+
+REMARKS
+    To see the examples, type: "Get-Help C:\estudo\Golpe\lab\ops\fly\deploy.ps1 -Examples"
+    For more information, type: "Get-Help C:\estudo\Golpe\lab\ops\fly\deploy.ps1 -Detailed"
+    For technical information, type: "Get-Help C:\estudo\Golpe\lab\ops\fly\deploy.ps1 -Full"
+
+
+
+
+NOME
+    C:\estudo\Golpe\lab\ops\fly\power.ps1
+    
+SYNOPSIS
+    Start, stop or inspect the machines of the SupportOps Fly stack.
+    
+    
+SYNTAX
+    C:\estudo\Golpe\lab\ops\fly\power.ps1 [-Action] <String> [-DryRun] [[-Only] <String[]>] [-ExistingOnly] 
+    [<CommonParameters>]
+    
+    
+DESCRIPTION
+    Start and Stop act only on apps in ops/fly/stack-apps.ps1, in dependency order.
+    Volumes are never touched here. Use deploy.ps1 -Action Up/Down for the
+    one-command lifecycle; this script is the resume/suspend half of it.
+    
+
+RELATED LINKS
+
+REMARKS
+    To see the examples, type: "Get-Help C:\estudo\Golpe\lab\ops\fly\power.ps1 -Examples"
+    For more information, type: "Get-Help C:\estudo\Golpe\lab\ops\fly\power.ps1 -Detailed"
+    For technical information, type: "Get-Help C:\estudo\Golpe\lab\ops\fly\power.ps1 -Full"
+
+
+
+usage: stack.py [-h]
+                {checkout,up,down,status,logs,stop,start,check,persistence,credentials,token,ca,fly-up,fly-down,fly-status}
+
+Operate only the root SupportOps Compose application.
+
+positional arguments:
+  {checkout,up,down,status,logs,stop,start,check,persistence,credentials,token,ca,fly-up,fly-down,fly-status}
+
+options:
+  -h, --help            show this help message and exit

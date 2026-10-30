@@ -1,0 +1,16 @@
+$ pwsh -File ops/fly/deploy.ps1 -Action Down -DryRun
+Stopping supportops-lab-p04/app
+Stopping supportops-lab-p05/app
+Stopping supportops-lab-mcp/app
+Stopping supportops-lab-p04/worker
+Stopping supportops-lab-p05/worker
+Stopping supportops-lab-idp/app
+Stopping supportops-lab-sns/app
+Stopping supportops-lab-jaeger/app
+Stopping supportops-lab-redis/app
+Stopping supportops-lab-db/app
+preserved: supportops-lab-db volume pg_data 10GB (still billed while it exists)
+preserved: supportops-lab-redis volume redis_data 1GB (still billed while it exists)
+preserved: supportops-lab-p05 volume p05_graph 1GB (still billed while it exists)
+Down finished. Machines are stopped; bring them back with -Action Up.
+exit=0

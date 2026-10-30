@@ -42,17 +42,19 @@ python scripts/stack.py credentials
 python scripts/stack.py check
 ```
 
-Bring the whole stack down with one command:
+### One command up, one command down
 
-```powershell
-python scripts/stack.py down
-```
+| | Local (Docker Compose) | Fly.io |
+| --- | --- | --- |
+| Up | `python scripts/stack.py up` | `python scripts/stack.py fly-up` |
+| Down, data kept | `python scripts/stack.py down` | `python scripts/stack.py fly-down` |
+| State | `python scripts/stack.py status` | `python scripts/stack.py fly-status` |
+| Down, data destroyed | `python scripts/stack.py down --volumes` | `python scripts/stack.py fly-down -DestroyData -ConfirmDestroy supportops-lab` |
+| Preview | not needed, nothing leaves the machine | append `-DryRun` |
 
-`down` removes this Compose application's containers and networks and leaves named volumes intact, so `down` followed by `up` is a non-destructive restart. It never touches containers outside this application. Add `--volumes` only to discard PostgreSQL, Keycloak, Redis, Grafana, and Prometheus data:
+Both sides make the same promises. Each touches only its own application: Compose scopes to the project, and Fly commands refuse any app outside `ops/fly/stack-apps.ps1`. Plain `down` keeps data: named volumes locally, Fly volumes on Fly, where each surviving volume is listed on exit. Data is destroyed only by the explicit flag. A failed step returns a non-zero exit code.
 
-```powershell
-python scripts/stack.py down --volumes
-```
+`down` removes this Compose application's containers and networks, so `down` followed by `up` is a non-destructive restart. Fly `down` stops every machine and disables public autostart, so requests cannot wake the stack; `up` is safe to repeat, creating anything missing, redeploying, starting in dependency order and waiting for health. The `fly-*` commands wrap `pwsh -File ops/fly/deploy.ps1 -Action Up|Down|Status`; `ops/fly/power.ps1 -Action Start|Stop|Status` resumes or suspends machines without a deploy. Fly commands need `flyctl` and PowerShell 7, spend real money, and change a public deployment.
 
 `checkout` clones missing product repositories at the commits in `ops/stack/projects.lock.json` and verifies existing checkouts without changing them. Access to those Git repositories is required.
 

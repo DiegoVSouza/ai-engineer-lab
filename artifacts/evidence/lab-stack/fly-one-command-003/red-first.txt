@@ -1,0 +1,22 @@
+
+    def test_up_deploys_infrastructure_before_products(self):
+        result = self.run_script(DEPLOY, "-Action", "Up", "-SkipSecrets")
+>       self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+E       AssertionError: 1 != 0 : [31;1mdeploy.ps1: [31;1mNão é possível validar o argumento no parâmetro 'Action'. The argument "Up" does not belong to the set "Stage;Build;Deploy" specified by the ValidateSet attribute. Supply an argument that is in the set and then try the command again.[0m
+
+scripts\harness\test_fly_ops.py:122: AssertionError
+=========================== short test summary info ===========================
+FAILED scripts/harness/test_stack_cli.py::StackCli::test_down_forwards_the_explicit_volume_flag
+FAILED scripts/harness/test_stack_cli.py::StackCli::test_fly_actions_invoke_the_operator_script
+FAILED scripts/harness/test_stack_cli.py::StackCli::test_logs_forward_flags
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_confirmed_destroy_never_leaves_the_allowlist
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_down_stops_every_stack_app_and_keeps_volumes
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_dry_run_plans_up_and_down_without_mutation
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_failed_fly_call_returns_non_zero_and_stops
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_help_documents_each_action
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_secret_import_is_scoped_to_the_inventory
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_status_reports_machines_and_volumes_without_mutation
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_status_treats_a_missing_app_as_not_deployed
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_stop_order_finishes_with_the_database
+FAILED scripts/harness/test_fly_ops.py::FlyOperatorScripts::test_up_deploys_infrastructure_before_products
+13 failed, 4 passed in 33.84s
