@@ -1,0 +1,7 @@
+{
+  "authorization_id": "p04-replacement-gate-048-v1",
+  "authority": "explicit_user_reply",
+  "decision": "faz isso",
+  "p04": {"additional_full_fake_gates": 1, "candidate": "22246dbffffed837eb8de67d7ddc79148e13c849", "operation_id": "local-reviewed-operation-040-v1", "live_dispatch": "only_after_gate_pass"},
+  "forbidden": ["provider_call_during_gate", "live_dispatch_before_gate_pass", "replay", "capacity_expansion", "reservation_release", "counter_reset", "fallback", "gossett_backend_mutation", "terraform_apply", "deployment", "push", "human_review_claim"]
+}
