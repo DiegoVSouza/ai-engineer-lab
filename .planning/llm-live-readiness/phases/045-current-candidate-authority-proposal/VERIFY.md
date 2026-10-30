@@ -1,3 +1,3 @@
 # Verification plan
 
-Planning-only PASS when the proposal states exact counters, identity, provider/model, token/time/cost caps, no-replay and stop conditions. Execution remains PENDING explicit authority; no gate, reservation, manifest, credential, provider or Docker action is performed by this phase.
+Authority is now explicit in `AUTHORIZATION.json`: one further P00 full fake gate, one further P04 full fake gate, and only after P04 PASS/control preconditions one non-replayable workflow under the exact declared ID/caps. Execution evidence remains PENDING.

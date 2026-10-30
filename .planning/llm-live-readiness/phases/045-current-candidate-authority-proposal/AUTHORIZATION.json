@@ -1,0 +1,24 @@
+{
+  "authorization_id": "current-candidate-validation-045-v1",
+  "authority": "explicit_user_reply",
+  "decision": "faz",
+  "p00": {
+    "additional_full_fake_gates": 1,
+    "live_dispatch": false,
+    "candidate_commit": "2335de8"
+  },
+  "p04": {
+    "additional_full_fake_gates": 1,
+    "operation_id": "local-reviewed-operation-038-v1",
+    "case_id": "fixture-reviewed-operation-038",
+    "max_workflows": 1,
+    "max_provider_calls": 3,
+    "max_input_tokens": 12288,
+    "max_output_tokens": 1536,
+    "provider_timeout_seconds": 30,
+    "model": "openai/gpt-oss-20b",
+    "paid_usd": "0.00",
+    "no_replay": true
+  },
+  "forbidden": ["capacity_expansion", "reservation_release", "counter_reset", "fallback", "holdout84", "confirmation60", "gossett_backend_mutation", "terraform_apply", "deployment", "push", "pull_request", "human_review_claim"]
+}
