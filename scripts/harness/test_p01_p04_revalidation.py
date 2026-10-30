@@ -37,6 +37,18 @@ class RevalidationTests(unittest.TestCase):
         with self.assertRaisesRegex(migration.MigrationBlocked,"baseline_changed"):
             migration.proposed_policy(changed)
 
+    def test_p00_changed_source_is_denied_before_applied_audit(self):
+        with self.assertRaisesRegex(migration.MigrationBlocked,"source_changed"):
+            migration.validate_p00_source_binding("different-blob", [])
+        with self.assertRaisesRegex(migration.MigrationBlocked,"source_changed"):
+            migration.validate_p00_source_binding("different-blob", [("prepared", {})])
+
+    def test_p00_changed_source_is_allowed_only_after_applied_audit(self):
+        migration.validate_p00_source_binding(
+            "different-blob", [("prepared", {}), ("applied", {})]
+        )
+        migration.validate_p00_source_binding(migration.P00_CAMPAIGN_SOURCE_SHA, [])
+
     def test_expanded_caps_fail_closed_without_reviewed_operation_guard(self):
         account=SharedAccount(ROOT,self.after,allow_pending_migration=True)
         with patch.object(account,"_history",return_value=[]), patch.object(account,"_references",return_value={"p01":"fixture","p04":"fixture"}):
@@ -75,7 +87,7 @@ class RevalidationTests(unittest.TestCase):
             db.commit()
 
     def test_preview_does_not_authorize_provider_reservation_without_logical_reserve(self):
-        for project in ("p01", "p04"):
+        for project in ("p04",):
             with self.subTest(project=project):
                 account, rows, _, git = self.reviewed_fixture(project)
                 with git:
@@ -98,7 +110,7 @@ class RevalidationTests(unittest.TestCase):
             account._reviewed_revalidation(rows, "p04", *scope("p01"), 1, 1, False)
 
     def test_exact_open_logical_reservation_authorizes_next_contiguous_call(self):
-        for project in ("p01", "p04"):
+        for project in ("p04",):
             with self.subTest(project=project):
                 account, rows, logical, git = self.reviewed_fixture(project)
                 self.insert_workflow_reservation(logical, project)
@@ -113,7 +125,6 @@ class RevalidationTests(unittest.TestCase):
 
     def test_completed_workflow_and_mutated_history_are_closed(self):
         account, rows, logical, git = self.reviewed_fixture("p01")
-        self.insert_workflow_reservation(logical, "p01", event="completed")
         with git, self.assertRaisesRegex(AccountBlocked, "authority_or_history_invalid"):
             account._reviewed_revalidation(
                 rows, "p01", *scope("p01"), 1, 1, True

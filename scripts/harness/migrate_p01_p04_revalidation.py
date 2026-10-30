@@ -98,6 +98,15 @@ def proposed_policy(before):
     return after
 
 
+def validate_p00_source_binding(blob, audit_records):
+    """Keep the historical blob mandatory until the migration is durably applied."""
+    if blob == P00_CAMPAIGN_SOURCE_SHA:
+        return
+    if [event for event, _ in audit_records] == ["prepared", "applied"]:
+        return
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+
+
 def require_inputs(root):
     before = read_json(root, root / BASELINE)
     after = read_json(root, root / POLICY)
@@ -139,8 +148,9 @@ def require_inputs(root):
         timeout=15,
         text=True,
     )
-    if blob.returncode or blob.stdout.strip() != P00_CAMPAIGN_SOURCE_SHA:
-        raise MigrationBlocked("migration_p00_campaign_source_changed")
+    if blob.returncode:
+        raise MigrationBlocked("migration_p00_campaign_source_unavailable")
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
     SharedAccount(root, before)
     SharedAccount(root, after)
     return before, after
