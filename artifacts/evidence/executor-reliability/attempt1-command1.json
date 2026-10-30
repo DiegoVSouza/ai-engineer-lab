@@ -1,0 +1,10 @@
+{
+  "command": [
+    "codex",
+    "--version"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit": 0,
+  "stdout": "codex-cli 0.166.0\n",
+  "stderr": ""
+}

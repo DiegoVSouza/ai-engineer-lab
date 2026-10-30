@@ -1,0 +1,1 @@
+{"command": "tomllib.loads and exact config assertion", "cwd": "C:\\estudo\\Golpe\\lab", "exit": 0, "config": {"model_reasoning_effort": "high"}}

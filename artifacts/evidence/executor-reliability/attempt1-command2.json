@@ -1,0 +1,17 @@
+{
+  "command": [
+    "C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/harness",
+    "-p",
+    "test_audit_codex_rollout.py",
+    "-v"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit": 0,
+  "stdout": "",
+  "stderr": "test_content_and_unrecognized_metadata_are_excluded (test_audit_codex_rollout.RolloutAuditTests.test_content_and_unrecognized_metadata_are_excluded) ... ok\ntest_model_switches_and_phase_are_not_conflated (test_audit_codex_rollout.RolloutAuditTests.test_model_switches_and_phase_are_not_conflated) ... ok\ntest_truncated_and_invalid_records_are_reported (test_audit_codex_rollout.RolloutAuditTests.test_truncated_and_invalid_records_are_reported) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+}

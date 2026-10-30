@@ -1,0 +1,11 @@
+{
+  "command": [
+    "C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+    "scripts/harness/audit_codex_rollout.py",
+    "C:/Users/dvsdi/.codex/sessions/2026/10/30/rollout-2026-10-30T09-48-04-01a18cda-6092-7d60-9da4-3a278d0837a3.jsonl"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit": 0,
+  "stdout": "{\n  \"turns\": [\n    {\n      \"turn\": 1,\n      \"model\": \"gpt-6-luna\",\n      \"effort\": \"medium\",\n      \"messages\": {\n        \"commentary\": 2,\n        \"final_answer\": 1\n      },\n      \"tool_calls\": 5,\n      \"termination_reason\": \"UNKNOWN\"\n    },\n    {\n      \"turn\": 2,\n      \"model\": \"gpt-6-luna\",\n      \"effort\": \"medium\",\n      \"messages\": {\n        \"commentary\": 2,\n        \"final_answer\": 1\n      },\n      \"tool_calls\": 4,\n      \"termination_reason\": \"UNKNOWN\"\n    },\n    {\n      \"turn\": 3,\n      \"model\": \"gpt-6.1-terra\",\n      \"effort\": \"low\",\n      \"messages\": {\n        \"commentary\": 1,\n        \"final_answer\": 1\n      },\n      \"tool_calls\": 3,\n      \"termination_reason\": \"UNKNOWN\"\n    },\n    {\n      \"turn\": 4,\n      \"model\": \"gpt-6.1-sol\",\n      \"effort\": \"low\",\n      \"messages\": {\n        \"final_answer\": 1\n      },\n      \"tool_calls\": 0,\n      \"termination_reason\": \"UNKNOWN\"\n    },\n    {\n      \"turn\": 5,\n      \"model\": \"gpt-6.1-sol\",\n      \"effort\": \"low\",\n      \"messages\": {\n        \"commentary\": 1,\n        \"final_answer\": 1\n      },\n      \"tool_calls\": 4,\n      \"termination_reason\": \"UNKNOWN\"\n    },\n    {\n      \"turn\": 6,\n      \"model\": \"gpt-6.1-sol\",\n      \"effort\": \"low\",\n      \"messages\": {\n        \"commentary\": 1,\n        \"final_answer\": 1\n      },\n      \"tool_calls\": 0,\n      \"termination_reason\": \"UNKNOWN\"\n    },\n    {\n      \"turn\": 7,\n      \"model\": \"gpt-6.1-sol\",\n      \"effort\": \"low\",\n      \"messages\": {\n        \"commentary\": 3\n      },\n      \"tool_calls\": 10,\n      \"termination_reason\": \"UNKNOWN\"\n    }\n  ],\n  \"malformed_records\": 0,\n  \"scope\": \"local_metadata_only\",\n  \"wire_phase_preservation\": \"NOT_VERIFIED\"\n}\n",
+  "stderr": ""
+}
