@@ -1,4 +1,10 @@
-# Finite remaining work — phase048 checkpoint 2026-10-30
+# Finite remaining work — product-first redirection 2026-10-31
+
+**Current priority is product completion, not evaluation.** The user redirected the program on 2026-10-31: finish the code and make it usable in production, build the missing frontend, keep everything documented, and guarantee one-command up/down locally and on Fly. Human evaluation, holdout and promotion are deferred by the user until all code is ready. The finite live scopes recorded in `AUTHORIZATION.md` stay available but are **not** the next action; see `NEXT-IMPLEMENTATION-PROMPT-2026-10-31.pt-BR.md` for the implementation queue.
+
+T4's `gossett_backend` blocker is **closed as a false positive**: the container belongs to the user's unrelated `gosset` project, counts were 102 → 102, and the identity comparator was comparing the volatile published-ports string of a crash-looping container. Fixed in `projects/p04/scripts/docker_inventory_identity.py` with regression coverage. No resource outside a proven phase namespace may still be mutated.
+
+## Historical queue — phase048 checkpoint 2026-10-30
 
 Phase048 outcome: the one authorized additional P04 gate for `local-reviewed-operation-040-v1` ran and is consumed/FAIL (exit 1; cleanup/namespace/labels/protected-output/Docker-baseline all PASS; no provider access, no live dispatch). Two causes diagnosed offline and documented in [phase042 VERIFY](../../projects/p04/.planning/phases/042-replacement-gate/VERIFY.md): a this-phase-only snapshot gap (root lab tree not archived alongside p04) and a `check_full.py` subprocess bypassing the locked `uv` environment (fixed offline in `projects/p04/scripts/check_full.py`, unvalidated, zero cost). T4 stays blocked: a fresh, distinct finite gate/operation authority is required before any further P04 attempt; this exception's 3/3 historical attempts are spent.
 

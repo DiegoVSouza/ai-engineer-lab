@@ -1,5 +1,22 @@
 # Free-only campaign authorization
 
+## Direction change and finite scopes — 2026-10-31
+
+The user redirected the program: **finish the product code and make it usable in production first; human evaluation happens only after all code is ready.** The frontend does not exist yet and is now in scope. Live model evaluation, holdout, quality judgement and promotion stay deferred by the user's own instruction — not blocked by a missing authorization. Do not open new evaluation campaigns to "make progress" while product work remains.
+
+Standing requirements attached to that redirection: every deliverable is documented, and the whole system comes up and goes down with **one command each, both locally and on Fly**. Local is `python scripts/stack.py up` / `python scripts/stack.py down`; the Fly counterpart is `ops/fly/deploy.ps1` plus `ops/fly/power.ps1 -Action Start|Stop`, which must reach the same one-command parity and be documented.
+
+Finite capacity approved in the same reply ("2 pode deixar topado"), reusing already-migrated reservations only — no new envelope, no new migration:
+
+- P00: one additional full fake gate, then up to **6 calls** of the existing ten-call operation envelope (4/10 already used).
+- P01: one new workflow with a distinct stable identity, max **4 calls** within the 12 retained logical calls, only after a fresh committed candidate/manifest and a PASS isolated fake gate.
+- P04: one additional isolated full fake gate with corrected snapshot preparation, then at most **3 calls** within its 6 retained logical calls, `openai/gpt-oss-20b`, 12,288 input / 1,536 output, 30-second timeout.
+- P02 3/4 and P03 3/4 remain intact and unused; P05 is exhausted at 8/8.
+
+`gossett_backend` is **resolved as a false positive, not a blocker.** The user confirmed the host is theirs and that the container belongs to a different, unrelated project (`gosset-backend`, `gosset-legal-brain-adapter`, `gosset-cognee`, Compose project `gosset`); this lab never used it. Evidence `projects/p04/artifacts/evidence/root-migration-revalidation-032/global-docker-drift-attempt3.json` shows container counts 102 → 102 with the same name listed as both missing and added, which is a changed row, not a created or destroyed resource. The container is in a crash-loop, and the identity comparator ignored the volatile status string but still compared the published-ports string, which alternates between empty while restarting and populated during the brief running window. Fixed in `projects/p04/scripts/docker_inventory_identity.py` by defining container identity as `ID|Names|Image|<compose project label>`; a genuine port-mapping change still requires recreating the container and therefore still changes the ID. Mutating, stopping, removing or pruning `gossett_backend` or any other resource outside a proven phase namespace remains **prohibited**.
+
+All other prohibitions stay in force unchanged: USD 0 paid, no plan upgrade, no provider/model switch, no silent fallback, no replay of a consumed call or gate, no unknown-reserve release, no counter reset under a new session/phase/ID, holdout 84 and confirmation 60 protected, no public deployment, no push/PR/merge, no external messages, no customer data, no real refunds, no `terraform apply`, no `--no-verify`.
+
 ## Current user continuation authority — 2026-10-30
 
 The current user prompt superseded older requests for another confirmation: exactly one additional P00 full gate in a fresh snapshot; one new P01 operation with distinct stable identity/max one workflow after finite scope, reservations and PASS gates; exactly one additional P04 isolated gate, with the historical Docker attribution gap documented and excluded as a blocker for that new validation. The later reply `pode fazer continua` separately authorized phase043's bounded wheel acquisition and one further isolated P00 full fake gate plus one further isolated P04 full fake gate. No mutation of gossett_backend is authorized. Existing numbered and unnumbered Groq credentials are user-attested Free; paid USD0, synthetic local scope, human evaluation deferred. All no-replay, unknown-reserve, holdout84/confirmation60, no fallback/external effects restrictions remain.
