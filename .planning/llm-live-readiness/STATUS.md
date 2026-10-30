@@ -1,4 +1,8 @@
-## Authoritative current checkpoint — 2026-10-30
+## Current status — phase041, 2026-10-30
+
+See [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) for the finite T0–T7 queue, current authorizations and P00 exception failure. P00 remains INCOMPLETE; exception1/1 is consumed with 68PASS/93setup errors, history3/3 preserved. P01/P04 authorized independent work remains executable. No provider dispatch occurred in this continuation. The following phase040 checkpoint is historical.
+
+## Historical authoritative checkpoint — 2026-10-30
 
 [Phase040 current technical report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md) supersedes the older status below. Root phase039 migration is APPLIED: canonical policy SHA `f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf`, global cap 4,148, paid authorization USD 0. Provider-account audit: 86 attempts, conservative 30,717 input / 8,119 output, billing and unmanaged history unknown. P02/P03/P05 synthetic operations PASS; P01 remains INCOMPLETE after the consumed no-provider operation and is now repaired offline; P00 current full gate is INCOMPLETE at 3/3; P04 global Docker reconciliation is INCOMPLETE due unattributed `gossett_backend` identity drift. Holdout 84 and confirmation 60 remain protected. Human review, quality, independent review, holdout evaluation, and promotion remain pending/deferred.
 

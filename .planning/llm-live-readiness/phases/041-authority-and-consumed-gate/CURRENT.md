@@ -1,0 +1,22 @@
+# Current authority and work — 2026-10-30
+
+This record supersedes phase040's requests for authorization. The current user explicitly authorized one additional P00 full gate, one new P01 operation with distinct stable ID/max one workflow after gates and reservations, and one additional isolated P04 gate. Historical Docker drift may be excluded as a blocker for the new P04 validation, with explicit historical gap and new baseline. This does not establish ownership of `gossett_backend` or permit its mutation. GROQ_API_KEY and GROQ_API_KEY_1..4 are user-attested Free; paid authorization USD 0. Human evaluation remains deferred.
+
+P00's authorized additional gate has now been consumed once. Command: `uv run --locked --no-sync --active python scripts/check_full.py`, cwd in the phase038 `snapshot-attempt2/lab/projects/p00`, exit 1. Fast/lint/format/compile passed; pytest 68 passed and 93 setup errors due the missing scratch parent. Historical 3/3 and exception1/1 remain consumed. Parent creation is corrected offline; no replay was run. Commits: planning `0c84efb`, evidence `b198f25`. Source/test implementation remains dirty, unverified and unfrozen. No live P00 smoke is eligible.
+
+P00 source correction currently checks phase039 applied audit continuity/ledger identities and recognizes P01 operating16/P04operating9, retaining 12/6 logical calls and primary744/558. This is implementation intent, not a full-gate PASS. The new root-module dependency and its fingerprint coverage still require offline review.
+
+| ID | Current status | Evidence / remaining dependency |
+|---|---|---|
+| T0 | Reconciliation in progress | Policy remains phase039 canonical f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf/global4148; no provider call or policy mutation occurred in this continuation. Root account reaudit remains executable. |
+| T1 | INCOMPLETE, authorized work remains executable | P01 HEAD82611c8; protected standard outputs dirty and preserved. Controller/guard still fix the old local-revalidation-v1/fixture-revalidation-01. Prepare a new finite identity and exact guard/history/offline tests; preserve old consumed outcome and 12 logical calls. Existing migrated capacity is four calls; prove coverage before use. |
+| T2 | Historical PASS, preserved | P02 one provider call141/37, operating1/4; no repeat. External source/identity/human evaluation remain pending. |
+| T3 | Historical PASS, preserved | P03 one provider call93/23, operating1/4; preserve traces/dashboard/alerts. External acceptance and human review remain pending. |
+| T4 | INCOMPLETE, authorized work remains executable | New P04 gate has NOT run; historical3/3 preserved. Investigate all baseline formats, document Docker historical gap/new explicit baseline, inspect collector and safe root .env key discovery before the isolated gate. Metadata-only observation: gossett_backend short ID2b6551ac517b, Created2026-09-24; no attribution inferred and no mutation. Do not dispatch operation032 merely on gate PASS. |
+| T5 | Historical PASS, exhausted | P05 operating8/8, provider3160/519; no repeat. Human/identity acceptance pending. |
+| T6 | FAIL gate / INCOMPLETE binding | P00 phase038 additional gate1/1 consumed; evidence under projects/p00/artifacts/evidence/live-allocation-reconciliation-038. Further gate needs new explicit finite authorization; no focused-test workaround. Continue offline review and independent P01/P04 work. |
+| T7 | Human evaluation deferred | No invented annotations, quality approval, holdout use or promotion. |
+
+Provider baseline remains historical86 attempts, conservative30717input/8119output and economic estimateUSD0.004739475. This continuation made zero provider requests; actual billing, remaining quota and unmanaged usage remain UNKNOWN/PENDING. Logical reservations are a separate view: P01 retained12, P04 retained6. The historical unknown reserve, holdout84 and confirmation60 remain protected. Do not reset counters, release unknown reservations, replay old operations, fall back provider/model, deploy/push/PR/merge/message externally, use customer data, apply Terraform, or perform real refunds.
+
+Next concrete read-only command: `Get-Content projects/p01/docs/harness/decisions.md`. Then complete P01 intake/evidence reading and prepare a genuinely free project phase before source changes. This is authorized executable work, not a request for a new user confirmation.

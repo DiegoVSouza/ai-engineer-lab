@@ -1,4 +1,8 @@
-## Authoritative executor handoff — 2026-10-30
+## Current executor handoff — phase041, 2026-10-30
+
+Read [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) first. P00 additional gate1/1 is consumed and FAIL; source remains unverified. Continue P01 new identity/controller/guard preparation and P04 baseline/collector/isolated gate without asking again for existing authorizations. Next read-only command: `Get-Content projects/p01/docs/harness/decisions.md`. Preserve dirty P01 standard outputs and all prior outcomes. Historical handoff follows.
+
+## Historical authoritative executor handoff — 2026-10-30
 
 Start with [CONTINUATION-PLAN.md](CONTINUATION-PLAN.md), [phase040 final report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md), and [phase040 VERIFY](phases/040-current-authoritative-checkpoint/VERIFY.md). Current root policy SHA is `f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf`, migration phase039 is APPLIED, global cap 4,148, paid authorization USD 0. No live command is safe now: P00's gate is exhausted 3/3, P01's single operation authorization is consumed, P04 has unattributed global Docker drift, and P05 operating capacity is 8/8. P02/P03 synthetic operation acceptance is already recorded. Preserve all historical results and untracked user files.
 

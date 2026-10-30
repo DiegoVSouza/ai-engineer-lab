@@ -1,4 +1,6 @@
-# Finite remaining work — current checkpoint 2026-10-30
+# Finite remaining work — phase041 checkpoint 2026-10-30
+
+The authoritative finite T0–T7 table is [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md). It supersedes the table below: the new P01 operation and additional P04 gate are authorized; P00 additional gate has been consumed1/1 with FAIL. Independent P01/P04 technical preparation remains executable. The older queue is preserved below as history.
 
 See [phase040 final report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md) and [verification evidence](phases/040-current-authoritative-checkpoint/VERIFY.md). Project status and roots are read-only audited in `artifacts/evidence/llm-live-readiness/current-checkpoint-040/`.
 

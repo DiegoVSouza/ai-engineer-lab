@@ -1,4 +1,8 @@
-# Authoritative current checkpoint — 2026-10-30
+# Current continuation — phase041, 2026-10-30
+
+The current queue and authorization supersessions are in [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md). P00 additional gate is consumed1/1 and FAIL; no replay. P01 new finite operation and P04 additional isolated gate are already authorized and remain executable after their technical preparation. Historical Docker attribution is not a blocker for the new P04 validation; document its gap and preserve unrelated resources. Historical phase040 follows.
+
+# Historical authoritative checkpoint — 2026-10-30
 
 See [phase040 current technical report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md) for the verified P00–P05 gate matrix, current applied policy, exact reserves, evidence, dependencies, and decisions. This checkpoint supersedes the 2026-10-29 status and every active-session command below. Root phase039 policy migration is APPLIED once; canonical policy SHA `f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf`, global cap 4,148, paid authorization USD 0. The read-only account audit reports 86 attempts and conservative 30,717/8,119 input/output tokens, while billing and unmanaged provider usage remain unknown. P01 phase026 offline deadlock repair is committed and its isolated 109-test/six-runner fake gate passes; the previously authorized operation remains consumed INCOMPLETE with zero provider access. P00 phase037 full gate is INCOMPLETE at 3/3, and P04 phase032 Docker reconciliation remains INCOMPLETE due an unattributed `gossett_backend` identity change.
 
