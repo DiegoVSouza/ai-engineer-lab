@@ -2,6 +2,8 @@
 
 Phase047 current action: P00's verified-scratch gate PASSed and exhausted its added validation allowance; P04's reentrant lease repair has a new committed guard identity. Prepare P04 `local-reviewed-operation-040-v1` in a project-owned phase, retain every prior ledger prefix/attempt, then run exactly one fresh isolated fake gate. Only a PASS candidate/manifest/guard chain can reach its one bounded live dispatch.
 
+Outcome: P04's phase041 gate was consumed INCOMPLETE when the execution host interrupted after marker/startup; owned cleanup passed and no provider/live operation occurred. Do not replay the gate or dispatch `local-reviewed-operation-040-v1`. A new explicit validation scope would be required.
+
 Latest: P04 nested lease fixed offline (commit848fbac), prior operation closed. P00 phase041 gate consumed/FAIL before tests because scratch location was rejected; the runner is corrected offline. Further execution needs fresh finite scopes/counters; see [continuity checkpoint](CONTINUITY-2026-10-30.md).
 
 Latest phase045: P00 gate consumed/FAIL; investigate fixture Git stderr offline without another gate. P04 gate consumed/PASS; live command stopped INCOMPLETE before marker/reservation/provider and must not be replayed. The exact failure cause is UNKNOWN; read-only migration and manifest validation later PASS. See [continuity checkpoint](CONTINUITY-2026-10-30.md).

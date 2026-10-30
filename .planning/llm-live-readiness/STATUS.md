@@ -2,6 +2,8 @@
 
 Phase047 update: P00 verified-scratch full gate PASS/consumed (161 tests, provider false). P04 root reentrant guard PASS (11 tests, provider false) for distinct `local-reviewed-operation-040-v1`. P04 project source must be frozen and pass one newly authorized isolated fake gate before its bounded replacement live operation may be attempted; the prior `-038-` attempt stays INCOMPLETE and non-replayable.
 
+Phase041 P04 update: candidate `22246db` / fingerprint `4a234a…` was frozen and its focused controls passed, but the new isolated gate was interrupted by the execution host after its durable consumption marker and Compose startup, before a `check_full.py` result. Owned resources were removed; provider/live/reservation access remained zero. The gate is INCOMPLETE and consumed, so its conditional replacement live operation is blocked and non-replayable.
+
 Latest: P04 root cause reproduced as nested campaign lock and corrected offline in commit848fbac (17 tests PASS); the failed operation remains closed. P00 phase041 additional gate consumed/FAIL exit2 before tests due invalid scratch location; runner corrected offline without replay. See [continuity checkpoint](CONTINUITY-2026-10-30.md).
 
 Latest phase045: P00 phase040 full fake gate consumed/FAIL (156 pass, five Git fixture failures, cause UNKNOWN). P04 phase039 full fake gate consumed/PASS; one authorized live command stopped INCOMPLETE `root_migration_unverified` before invocation, reservation or provider. Subsequent read-only migration/validation PASS; cause UNKNOWN, no replay. Provider accounting remains90 attempts31991/8380. See [continuity checkpoint](CONTINUITY-2026-10-30.md).
