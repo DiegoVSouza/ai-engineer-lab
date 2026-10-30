@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python",
+    "scripts/harness/check.py",
+    "--root",
+    "."
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "check: OK (0 erros, 0 avisos)\n",
+  "provider_accessed": false
+}
