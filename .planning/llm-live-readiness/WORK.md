@@ -1,5 +1,7 @@
 # Finite remaining work — phase041 checkpoint 2026-10-30
 
+Latest phase045: P00 gate consumed/FAIL; investigate fixture Git stderr offline without another gate. P04 gate consumed/PASS; live command stopped INCOMPLETE before marker/reservation/provider and must not be replayed. The exact failure cause is UNKNOWN; read-only migration and manifest validation later PASS. See [continuity checkpoint](CONTINUITY-2026-10-30.md).
+
 The authoritative finite T0–T7 table is [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md), updated by phase043. P01 new operation PASS and consumed; P00 phase039's additional gate is consumed/FAIL; P04 phase036's additional gate is consumed/PASS. The older queue is preserved below as history.
 
 See [phase040 final report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md) and [verification evidence](phases/040-current-authoritative-checkpoint/VERIFY.md). Project status and roots are read-only audited in `artifacts/evidence/llm-live-readiness/current-checkpoint-040/`.

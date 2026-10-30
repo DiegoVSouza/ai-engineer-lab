@@ -1,5 +1,7 @@
 ## Current status — phase041, 2026-10-30
 
+Latest phase045: P00 phase040 full fake gate consumed/FAIL (156 pass, five Git fixture failures, cause UNKNOWN). P04 phase039 full fake gate consumed/PASS; one authorized live command stopped INCOMPLETE `root_migration_unverified` before invocation, reservation or provider. Subsequent read-only migration/validation PASS; cause UNKNOWN, no replay. Provider accounting remains90 attempts31991/8380. See [continuity checkpoint](CONTINUITY-2026-10-30.md).
+
 See [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md), phase043 and phase044. P00 remains INCOMPLETE: its phase039 additional full gate is consumed and failed143PASS/18FAIL due a corrected-afterward temporary-fixture dependency; direct offline regression passed63, source2335de8 is committed, and applied migration binding now returns `ALREADY_APPLIED`, but no replay occurred. P01 new operation PASS once with four provider calls1274/261; global provider accounting remains90 attempts31991/8380. P04 phase036 additional fake gate PASSed with the complete verified offline wheelhouse; build/services/gate/cleanup all exit0 and baseline is stable. P04 commitc895f82 fixes root `.env` preflight offline (14 tests PASS); phase038 proves its old create-only manifest is stale and cannot be replaced under the consumed identity. A distinct P04 identity plus new finite gate/operation authority remain required. P04 operation was not invoked. The following phase040 checkpoint is historical.
 
 ## Historical authoritative checkpoint — 2026-10-30
