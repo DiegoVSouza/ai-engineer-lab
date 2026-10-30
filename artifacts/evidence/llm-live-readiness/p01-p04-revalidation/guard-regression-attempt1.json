@@ -1,0 +1,24 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/harness",
+    "-p",
+    "test_p01_p04_revalidation.py",
+    "-v"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 1,
+  "output": [
+    "ERROR test_completed_workflow_and_mutated_history_are_closed",
+    "sqlite3.IntegrityError: append-only ledger",
+    "Ran 6 tests; 5 passed, 1 errored",
+    "The disposable mutation fixture was blocked by the copied append-only trigger before reaching the fail-closed authorization assertion."
+  ],
+  "provider_accessed": false,
+  "credential_values_read": false,
+  "correction": "Drop only the append-only trigger in the temporary copied database before mutating the fixture; retain source ledger and trigger."
+}

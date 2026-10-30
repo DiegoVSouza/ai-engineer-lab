@@ -1,0 +1,4 @@
+ERROR test_completed_workflow_and_mutated_history_are_closed
+sqlite3.IntegrityError: append-only ledger
+Ran 6 tests; 5 passed, 1 errored
+The disposable mutation fixture was blocked by the copied append-only trigger before reaching the fail-closed authorization assertion.

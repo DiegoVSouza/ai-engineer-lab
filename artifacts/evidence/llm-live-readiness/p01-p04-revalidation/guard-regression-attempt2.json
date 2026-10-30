@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/harness",
+    "-p",
+    "test_p01_p04_revalidation.py",
+    "-v"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "test_baseline_mutation_is_rejected (test_p01_p04_revalidation.RevalidationTests.test_baseline_mutation_is_rejected) ... ok\ntest_completed_workflow_and_mutated_history_are_closed (test_p01_p04_revalidation.RevalidationTests.test_completed_workflow_and_mutated_history_are_closed) ... ok\ntest_exact_finite_delta_and_other_project_caps (test_p01_p04_revalidation.RevalidationTests.test_exact_finite_delta_and_other_project_caps) ... ok\ntest_exact_open_logical_reservation_authorizes_next_contiguous_call (test_p01_p04_revalidation.RevalidationTests.test_exact_open_logical_reservation_authorizes_next_contiguous_call) ... ok\ntest_expanded_caps_fail_closed_without_reviewed_operation_guard (test_p01_p04_revalidation.RevalidationTests.test_expanded_caps_fail_closed_without_reviewed_operation_guard) ... ok\ntest_preview_does_not_authorize_provider_reservation_without_logical_reserve (test_p01_p04_revalidation.RevalidationTests.test_preview_does_not_authorize_provider_reservation_without_logical_reserve) ... ok\n\n----------------------------------------------------------------------\nRan 6 tests in 0.161s\n\nOK",
+  "provider_accessed": false,
+  "credential_values_read": false
+}

@@ -553,6 +553,8 @@ class SharedAccount:
         input_tokens,
         output_tokens,
         cost,
+        *,
+        reservation=False,
     ):
         rows = self._history()
         if project not in self._references():
@@ -574,6 +576,11 @@ class SharedAccount:
             operation = [row for row in p00 if row["campaign"] == campaign]
             if len(p00) >= 75 or len(operation) >= 10:
                 raise AccountBlocked("operational_allocation_exhausted")
+        expanded = {"p01": 1000, "p04": 747}
+        if project in expanded and self.policy["projects"][project]["requests"] == expanded[project]:
+            self._reviewed_revalidation(
+                rows, project, campaign, case_id, trial, call_index, reservation
+            )
         if project == "p01" and self.policy["projects"]["p01"]["requests"] in {992, 996}:
             if campaign == "local-diagnostic-2-v1" and self.policy["projects"]["p01"]["requests"] == 996:
                 self._reviewed_p01_second_diagnostic(rows, case_id, trial)
@@ -637,6 +644,68 @@ class SharedAccount:
             if any(row["event"] == "completed" and row["status"] != "ok" for row in operation_p01):
                 raise AccountBlocked("prior_operational_failure_requires_review")
         return rows
+
+    def _reviewed_revalidation(
+        self, rows, project, campaign, case_id, trial, call_index, reservation
+    ):
+        """Permit only the approved new workflow against exact retained history."""
+        if (campaign, case_id, trial) != ("local-revalidation-v1", "fixture-revalidation-01", 1):
+            raise AccountBlocked("reviewed_revalidation_scope_required")
+        name = ".planning/llm-live-readiness/phases/039-p01-p04-reviewed-revalidation/AUTHORIZATION.json"
+        try:
+            expected = {'authorization_id': 'p01-p04-reviewed-revalidation-v1', 'authority': 'explicit_user_reply', 'decision': 'pode fazer', 'projects': {'p01': {'additional_calls': 4, 'input_tokens': 8192, 'output_tokens': 1024, 'prior_reserved_calls_retained': 12, 'max_workflows': 1}, 'p04': {'additional_calls': 3, 'input_tokens': 12288, 'output_tokens': 1536, 'prior_reserved_calls_retained': 6, 'max_workflows': 1}}, 'additional_calls': 7, 'additional_input_tokens': 20480, 'additional_output_tokens': 2560, 'additional_economic_estimate_usd': '0.0023040', 'authorized_paid_spend_usd': '0.00', 'condition': 'validated_owning_migration_phase', 'free_only': True, 'human_review': 'PENDING', 'migration_applied': False}
+            if json.loads((self.root / name).read_text(encoding="utf-8")) != expected:
+                raise ValueError()
+            for command in (["git", "ls-files", "--error-unmatch", "--", name], ["git", "diff", "--quiet", "HEAD", "--", name]):
+                if subprocess.run(command, cwd=self.root, capture_output=True, timeout=10).returncode:
+                    raise ValueError()
+            prior = [r for r in rows if r["project"] == project and r["campaign"] != campaign]
+            expected_rows = {
+                "p01": [
+                    ("9b174b5ca0fa40f6a0b177ec9f4f2523", "local-operation-v1", "fixture-local-01", 1, 1, 1470, 256, "0.00018705", 235, 46, "0.000031425"),
+                    ("bed97cb14f7146f0845588762940e7d4", "local-operation-v1", "fixture-local-01", 1, 2, 1448, 256, "0.0001854", 228, 183, "0.000072"),
+                    ("0182eacdb9694423a846400b64f4d321", "local-diagnostic-2-v1", "fixture-diagnostic-02", 1, 1, 1608, 256, "0.0001974", 258, 76, "0.00004215"),
+                    ("81182b5c41e04b46882e8cbca05c09fa", "local-diagnostic-2-v1", "fixture-diagnostic-02", 1, 2, 1587, 256, "0.000195825", 251, 58, "0.000036225"),
+                ],
+                "p04": [
+                    ("196cae46b57b4312afeee02aa89d813e", "local-operation-v1", "fixture-local-01", 1, 1, 753, 512, "0.000210075", 105, 51, "0.000023175"),
+                    ("832a16f2af404791b39534b130dbfbc2", "local-diagnostic-v1", "fixture-diagnostic-01", 1, 1, 886, 512, "0.00022005", 148, 38, "0.0000225"),
+                    ("5f6e80683f9c4a19960f5ce8f74c0187", "local-diagnostic-v1", "fixture-diagnostic-01", 1, 2, 869, 512, "0.000218775", 144, 33, "0.0000207"),
+                ],
+            }[project]
+            if [(r["attempt_id"], r["campaign"], r["case_id"], r["trial"], r["call_index"], r["reserved_input"], r["reserved_output"], r["reserved_cost"], r["actual_input"], r["actual_output"], r["actual_cost"]) for r in prior] != expected_rows or any(r["event"] != "completed" or r["status"] != "ok" for r in prior):
+                raise ValueError()
+            path = self.root / "projects" / project / "artifacts/evals/live/ledger.sqlite"
+            with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as db:
+                history = db.execute("SELECT campaign_id,case_id,trial,event,reserved_calls,reserved_input_tokens,reserved_output_tokens,reserved_cost_usd,outcome,error_class,actual_input_tokens,actual_output_tokens FROM events ORDER BY sequence").fetchall()
+            expected_history = {
+                "p01": [("local-operation-v1","fixture-local-01",1,"reserved",4,8192,1024,"0.0009216",None,None,None,None),("local-operation-v1","fixture-local-01",1,"completed",4,8192,1024,"0.0009216","incomplete","unknown",None,None),("local-diagnostic-v1","fixture-diagnostic-01",1,"reserved",4,8192,1024,"0.0009216",None,None,None,None),("local-diagnostic-v1","fixture-diagnostic-01",1,"completed",4,8192,1024,"0.0009216","incomplete","unknown",None,None),("local-diagnostic-2-v1","fixture-diagnostic-02",1,"reserved",4,8192,1024,"0.0009216",None,None,None,None),("local-diagnostic-2-v1","fixture-diagnostic-02",1,"completed",4,8192,1024,"0.0009216","incomplete","unknown",None,None)],
+                "p04": [("local-operation-v1","fixture-local-01",1,"reserved",3,12288,1536,"0.0013824",None,None,None,None),("local-operation-v1","fixture-local-01",1,"completed",3,12288,1536,"0.0013824","incomplete","unknown",None,None),("local-diagnostic-v1","fixture-diagnostic-01",1,"reserved",3,12288,1536,"0.0013824",None,None,None,None),("local-diagnostic-v1","fixture-diagnostic-01",1,"completed",3,12288,1536,"0.0013824","ok",None,292,71)],
+            }[project]
+            if history[:len(expected_history)] != expected_history:
+                raise ValueError()
+            tail = history[len(expected_history):]
+            calls = 4 if project == "p01" else 3
+            expected_tail = [
+                (campaign, case_id, 1, "reserved", calls,
+                 {"p01": 8192, "p04": 12288}[project],
+                 {"p01": 1024, "p04": 1536}[project],
+                 {"p01": "0.0009216", "p04": "0.0013824"}[project], None, None, None, None)
+            ]
+            if tail not in ([], expected_tail):
+                raise ValueError()
+            current = [r for r in rows if r["project"] == project and r["campaign"] == campaign]
+            indexes = [r["call_index"] for r in current]
+            if (len(current) >= calls or indexes != list(range(1, len(current) + 1))
+                    or call_index != len(current) + 1
+                    or any(r["case_id"] != case_id or r["trial"] != 1 or r["event"] != "completed" or r["status"] != "ok" for r in current)
+                    or sum(r["reserved_input"] for r in current) > {"p01": 8192, "p04": 12288}[project]
+                    or sum(r["reserved_output"] for r in current) > {"p01": 1024, "p04": 1536}[project]):
+                raise ValueError()
+            if reservation and tail != expected_tail:
+                raise ValueError()
+        except Exception:
+            raise AccountBlocked("reviewed_revalidation_authority_or_history_invalid") from None
 
     def _reviewed_p01_diagnostic(self, rows, case_id, trial):
         """One explicit diagnostic scope; original failed workflow stays immutable."""
@@ -831,6 +900,7 @@ class SharedAccount:
                 input_tokens,
                 output_tokens,
                 cost,
+                reservation=True,
             )
             attempt = uuid.uuid4().hex
             slot = credential_slots[len(rows) % len(credential_slots)] if credential_slots else None
