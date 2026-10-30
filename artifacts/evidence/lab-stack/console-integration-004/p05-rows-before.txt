@@ -1,0 +1,2 @@
+approval|5
+ticket|10

@@ -124,6 +124,13 @@ class FlyOperatorScripts(unittest.TestCase):
         self.assertLess(deployed.index("supportops-lab-db"), deployed.index("supportops-lab-p05"))
         self.assertLess(deployed.index("supportops-lab-idp"), deployed.index("supportops-lab-p05"))
 
+    def test_console_is_in_the_inventory_and_stops_first(self):
+        self.run_script(POWER, "-Action", "Stop")
+        stopped = [call[call.index("--app") + 1] for call in self.calls() if call[:2] == ["machine", "stop"]]
+        self.assertEqual(stopped[0], "supportops-lab-web")
+        result = self.run_script(DEPLOY, "-Action", "Up", "-DryRun")
+        self.assertIn("idp_clients.py", result.stdout)
+
     def test_failed_fly_call_returns_non_zero_and_stops(self):
         result = self.run_script(DEPLOY, "-Action", "Up", "-SkipSecrets", FAKE_FLY_FAIL="deploy")
         self.assertNotEqual(result.returncode, 0)

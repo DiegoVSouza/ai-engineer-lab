@@ -1,0 +1,11 @@
+ Container supportops-lab-tools-run-5eb3496f595f Creating 
+ Container supportops-lab-tools-run-5eb3496f595f Created 
+PASS P05: OIDC API -> durable queue -> P01 agent -> pgvector RAG -> signed MCP -> persisted result
+PASS tenant isolation: API denies cross-tenant ticket; MCP denies cross-tenant invoice
+PASS HITL: separate OIDC approver resumes the original bounded authorization snapshot
+PASS console: health, P05 proxy, CSP and PKCE-only public client
+PASS P04: independent API, PostgreSQL store, Redis Streams and worker
+PASS persistent self-hosted Keycloak: issued token, verified HTTPS introspection, API/MCP revocation denial
+PASS P03: healthy metric targets, provisioned dashboards and correlated API/worker/MCP trace
+ACCEPTANCE PASS; LLM_MODE=fake; model quality PENDING
+exit=0

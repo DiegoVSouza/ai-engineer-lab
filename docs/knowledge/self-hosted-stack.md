@@ -1,6 +1,6 @@
 # Stack self-hosted do SupportOps
 
-Execute na raiz do lab, com Docker Desktop em modo Linux e os seis repositórios dentro de `projects/`:
+Execute na raiz do lab, com Docker Desktop em modo Linux e os sete repositórios dentro de `projects/`:
 
 ```powershell
 python scripts/stack.py checkout
@@ -16,10 +16,11 @@ A primeira subida constrói as imagens, gera senhas e certificado e cria os banc
 
 P00 fornece os contratos e os dados de exemplo. P01 executa a orquestração e P02 aplica as regras das ferramentas; os três são bibliotecas instaladas na imagem do P05. O serviço `packages` verifica suas versões, hashes e um fluxo fake antes de liberar a aplicação. Ele terminar com código 0 é o resultado esperado.
 
-P03 fornece a instrumentação, dashboards e alertas. P04 tem API e worker próprios. P05 tem API, worker e servidor MCP, com PostgreSQL/pgvector, Redis e filas locais. Cada aplicação usa usuário e banco próprios no PostgreSQL. O Keycloak usa um terceiro banco para manter usuários, sessões e configuração.
+P06 é o console web: React servido por nginx, que encaminha `/api/` ao P05 e autentica no Keycloak com PKCE. O serviço `idp-clients` aplica o cliente público `supportops-web` pela API de administração sempre que o stack sobe, porque `--import-realm` ignora um realm que já existe. P03 fornece a instrumentação, dashboards e alertas. P04 tem API e worker próprios. P05 tem API, worker e servidor MCP, com PostgreSQL/pgvector, Redis e filas locais. Cada aplicação usa usuário e banco próprios no PostgreSQL. O Keycloak usa um terceiro banco para manter usuários, sessões e configuração.
 
 | Acesso | Endereço | Conta |
 | --- | --- | --- |
+| Console | http://localhost:48080 | `agent-a`, `agent-b` ou `approver-a` |
 | P05 Swagger | http://localhost:48000/docs | Token de `agent-a` ou `approver-a` |
 | P04 Swagger | http://localhost:48004/docs | API técnica local sem autenticação |
 | Keycloak | https://localhost:38443/admin/ | `lab-admin` |
@@ -45,7 +46,7 @@ Para obter um token e testar no Swagger do P05:
 python scripts/stack.py token agent-a
 ```
 
-Copie o token para o botão **Authorize** em `/docs`. Para aprovar, use um token de `approver-a`. O cliente `supportops-api` permite o grant de senha para esse roteiro local e também tem fluxo padrão habilitado. Uma aplicação de usuário deve usar Authorization Code com PKCE; esse lab não inclui uma interface de login própria.
+Copie o token para o botão **Authorize** em `/docs`. Para aprovar, use um token de `approver-a`. O cliente `supportops-api` permite o grant de senha para esse roteiro local e também tem fluxo padrão habilitado. O console em http://localhost:48080 usa Authorization Code com PKCE no cliente `supportops-web`, que recusa o grant de senha. No primeiro login o navegador avisa sobre a CA local: aceite o aviso ou confie no certificado exportado abaixo.
 
 O certificado HTTPS é assinado pela CA gerada no lab. Os containers validam essa CA automaticamente. Para exportar apenas o certificado público:
 
@@ -97,7 +98,7 @@ Para backup, guarde um dump dos bancos `p04`, `p05` e `keycloak` e os volumes de
 
 Copie `.env.example` para `.env` antes da primeira subida se precisar mudar portas. O issuer do Keycloak é `https://localhost:<LAB_IDP_PORT>/realms/supportops`. Após mudar a porta, execute novamente `python scripts/stack.py up` para atualizar a configuração gerada.
 
-Os projetos mantêm repositórios independentes e dependências instaladas por wheel. O Compose da raiz precisa desses diretórios locais para construir as imagens. O IdP é uma instância self-hosted real; a aceitação aqui é local. Hospedagem pública com DNS, política de backup, filas de produção e interface de login é outra etapa. Avaliação de qualidade de modelo continua PENDING por decisão do projeto.
+Os projetos mantêm repositórios independentes e dependências instaladas por wheel. O Compose da raiz precisa desses diretórios locais para construir as imagens. O IdP é uma instância self-hosted real; a aceitação aqui é local. Hospedagem pública com DNS próprio, política de backup e filas de produção é outra etapa. Avaliação de qualidade de modelo continua PENDING por decisão do projeto.
 
 ## Resposta de entrevista
 

@@ -100,6 +100,22 @@ services:
       retries: 60
       start_period: 30s
     restart: unless-stopped
+  idp-clients:
+    image: supportops-lab-init:local
+    pull_policy: never
+    user: "0:0"
+    entrypoint: [python, /ops/idp_clients.py]
+    environment:
+      IDP_URL: https://keycloak:8443
+      IDP_CA_FILE: /run/operator/ca.crt
+      IDP_CREDENTIALS_FILE: /run/operator/credentials.json
+      WEB_ORIGIN: http://localhost:${LAB_WEB_PORT:-48080}
+    volumes:
+      - ./ops/stack:/ops:ro
+      - operator-secrets:/run/operator:ro
+    depends_on:
+      keycloak: {condition: service_healthy}
+    restart: "no"
   redis:
     image: redis@sha256:becdda6c7f4b3fb42e42fd7f120bbf5c54c4caaaf16f26da24e4563d2c1f0576
     command: [redis-server, --appendonly, "yes"]
@@ -183,6 +199,25 @@ services:
       test: [CMD, python, -c, "import socket; socket.create_connection(('localhost',8000),3).close()"]
       interval: 5s
       retries: 30
+  web:
+    build: ./projects/p06
+    image: supportops-lab-web:local
+    pull_policy: never
+    environment:
+      P05_API_URL: http://api:8000
+      OIDC_ISSUER: https://localhost:${LAB_IDP_PORT:-38443}/realms/supportops
+      OIDC_ORIGIN: https://localhost:${LAB_IDP_PORT:-38443}
+      OIDC_CLIENT_ID: supportops-web
+    ports: ["127.0.0.1:${LAB_WEB_PORT:-48080}:8080"]
+    depends_on:
+      api: {condition: service_healthy}
+      idp-clients: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/healthz]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
   p04-api:
     <<: *async
     build: ./projects/p04

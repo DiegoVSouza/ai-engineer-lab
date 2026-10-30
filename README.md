@@ -33,7 +33,7 @@ python harness-kit/bootstrap/harness_init.py --help
 
 ## Run the SupportOps projects together
 
-With the six project repositories checked out under `projects/` and Docker Compose installed, run from this directory:
+With the seven project repositories checked out under `projects/` and Docker Compose installed, run from this directory:
 
 ```powershell
 python scripts/stack.py checkout
@@ -58,10 +58,11 @@ Both sides make the same promises. Each touches only its own application: Compos
 
 `checkout` clones missing product repositories at the commits in `ops/stack/projects.lock.json` and verifies existing checkouts without changing them. Access to those Git repositories is required.
 
-The root Compose application runs P04 and P05 APIs/workers, P03 observability, and a persistent HTTPS Keycloak server. The package gate executes the installed P00 foundation, P01 orchestrator, and P02 toolkit before P05 starts. Each product keeps its own repository; the integration uses pinned wheels and existing Dockerfiles.
+The root Compose application runs the P06 console, P04 and P05 APIs/workers, P03 observability, and a persistent HTTPS Keycloak server. The package gate executes the installed P00 foundation, P01 orchestrator, and P02 toolkit before P05 starts. Each product keeps its own repository; the integration uses pinned wheels and existing Dockerfiles.
 
 | Service | Local URL |
 | --- | --- |
+| Console | http://localhost:48080 |
 | P05 API / Swagger | http://localhost:48000/docs |
 | P04 async API / Swagger | http://localhost:48004/docs |
 | Keycloak admin | https://localhost:38443/admin/ |

@@ -13,7 +13,8 @@ $script:StackApps = @(
   @{ Name = "supportops-lab-jaeger"; Config = "fly/jaeger/fly.toml"; Context = "ops/fly/jaeger"; Processes = @("app") },
   @{ Name = "supportops-lab-mcp"; Config = "fly/mcp/fly.toml"; Context = "projects/p05"; Processes = @("app") },
   @{ Name = "supportops-lab-p04"; Config = "fly/p04/fly.toml"; Context = "projects/p04"; Processes = @("app", "worker") },
-  @{ Name = "supportops-lab-p05"; Config = "fly/p05/fly.toml"; Context = "projects/p05"; Volume = @{ Name = "p05_graph"; Size = 1 }; Processes = @("app", "worker") }
+  @{ Name = "supportops-lab-p05"; Config = "fly/p05/fly.toml"; Context = "projects/p05"; Volume = @{ Name = "p05_graph"; Size = 1 }; Processes = @("app", "worker") },
+  @{ Name = "supportops-lab-web"; Config = "fly/web/fly.toml"; Context = "projects/p06"; Processes = @("app") }
 )
 
 $script:StackAppNames = @($script:StackApps | ForEach-Object { $_.Name })

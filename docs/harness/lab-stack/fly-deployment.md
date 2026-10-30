@@ -6,6 +6,7 @@ The lab runs in Fly.io's `iad` region. P00–P03 are reusable libraries and are 
 
 | App | Purpose | Public access | Idle policy |
 | --- | --- | --- | --- |
+| `supportops-lab-web` | P06 console | `https://supportops-lab-web.fly.dev`, not deployed yet | Stops at idle and starts through Fly Proxy |
 | `supportops-lab-p04` | P04 API and worker | API at `https://supportops-lab-p04.fly.dev` | API stops at idle; worker stays on for queue delivery |
 | `supportops-lab-p05` | P05 API and worker | API at `https://supportops-lab-p05.fly.dev` | API stops at idle; worker stays on for queue delivery |
 | `supportops-lab-mcp` | P05 MCP server | `https://supportops-lab-mcp.fly.dev/mcp` | Stops at idle and starts through Fly Proxy |

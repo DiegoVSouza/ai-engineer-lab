@@ -1,0 +1,7 @@
+containers: before 102 after 104
+  changed 16 removed/18 added; outside supportops-lab or removed: []
+networks: before 21 after 21
+  changed 0 removed/0 added; outside supportops-lab or removed: []
+volumes: before 90 after 90
+  changed 0 removed/0 added; outside supportops-lab or removed: []
+gossett_backend present: True

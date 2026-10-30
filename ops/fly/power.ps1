@@ -56,7 +56,7 @@ function Set-ProcessState {
 
   $allowMissing = $DryRun -or $ExistingOnly
   foreach ($machine in (Get-ProcessMachines -App $App -Process $Process -AllowMissing:$allowMissing)) {
-    $publicApp = $App -in @("supportops-lab-p04", "supportops-lab-p05", "supportops-lab-mcp") -and $Process -eq "app"
+    $publicApp = $App -in @("supportops-lab-p04", "supportops-lab-p05", "supportops-lab-mcp", "supportops-lab-web") -and $Process -eq "app"
     $autoStart = $null
     if ($publicApp -and @($machine.config.services).Count -gt 0) {
       $autoStart = [bool]$machine.config.services[0].autostart
@@ -143,10 +143,12 @@ $startOrder = @(
   @{ App = "supportops-lab-p05"; Processes = @("worker"); Check = $false },
   @{ App = "supportops-lab-p04"; Processes = @("app"); Check = $true },
   @{ App = "supportops-lab-p05"; Processes = @("app"); Check = $true },
-  @{ App = "supportops-lab-mcp"; Processes = @("app"); Check = $true }
+  @{ App = "supportops-lab-mcp"; Processes = @("app"); Check = $true },
+  @{ App = "supportops-lab-web"; Processes = @("app"); Check = $true }
 )
 
 $stopOrder = @(
+  @{ App = "supportops-lab-web"; Processes = @("app") },
   @{ App = "supportops-lab-p04"; Processes = @("app") },
   @{ App = "supportops-lab-p05"; Processes = @("app") },
   @{ App = "supportops-lab-mcp"; Processes = @("app") },

@@ -105,6 +105,27 @@ function Invoke-Deploy {
   }
 }
 
+function Invoke-ClientSync {
+  if ($DryRun) {
+    Write-Output "DRY-RUN python ops/stack/idp_clients.py (WEB_ORIGIN https://supportops-lab-web.fly.dev)"
+    return
+  }
+  if ($SkipSecrets) { return }
+  $secretPath = Join-Path $root "artifacts/checkpoints/pre-fly-final-20261023/fly-secrets.json"
+  if ($env:FLY_SECRETS_DIR) { $secretPath = Join-Path $env:FLY_SECRETS_DIR "fly-secrets.json" }
+  $values = Get-Content -Raw $secretPath | ConvertFrom-Json
+  $env:IDP_URL = "https://supportops-lab-idp.fly.dev"
+  $env:WEB_ORIGIN = "https://supportops-lab-web.fly.dev"
+  $env:IDP_ADMIN_PASSWORD = $values.KEYCLOAK_ADMIN_PASSWORD
+  try {
+    & python (Join-Path $root "ops/stack/idp_clients.py")
+    if ($LASTEXITCODE -ne 0) { throw "Applying the console OIDC client failed with exit code $LASTEXITCODE" }
+  }
+  finally {
+    Remove-Item Env:IDP_ADMIN_PASSWORD
+  }
+}
+
 function Write-PreservedVolumes {
   foreach ($app in $apps) {
     $volumes = Read-FlyJson -Arguments @("volumes", "list", "--app", $app.Name, "--json") -AllowMissing
@@ -147,6 +168,7 @@ try {
       & $power -Action Start -ExistingOnly -DryRun:$DryRun -Only $Only
       Invoke-Deploy
       & $power -Action Start -DryRun:$DryRun -Only $Only
+      Invoke-ClientSync
       Write-Output "Up finished. Volumes and machines:"
       & $power -Action Status -Only $Only
     }
