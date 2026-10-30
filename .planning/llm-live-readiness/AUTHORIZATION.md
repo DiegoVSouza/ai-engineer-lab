@@ -41,3 +41,7 @@ After clarifying that keys belong to distinct accounts, the user answered the pe
 ## P04 separate reviewed diagnostic — 2026-10-29
 
 The user explicitly answered “Autorizar diagnóstico separado de P04”. Exact finite authority is phases/035-p04-reviewed-diagnostic/AUTHORIZATION.json. Retain original INCOMPLETE, unknown response/category and three reserved calls; one separate diagnostic may reserve at most three inside existing six, USD 0 paid. No original replay, replacement, release, quality/human/holdout or promotion approval. Implementation and current fake/service validation precede a fresh frozen diagnostic candidate.
+
+## Explicit second P01 diagnostic - 2026-10-29
+
+User approved Autorizar uma segunda operacao separada. Exact UTF-8 decision and finite authority: phases/038-p01-second-diagnostic/AUTHORIZATION.json. Preserve original and first diagnostic INCOMPLETE/all eight calls. One new distinct workflow maxfour calls, through tested +4/8192/1024/USD0.0009216 economic-estimate migration, paidUSD0. No original replay/replacement/release or human-quality/holdout/promotion approval.
