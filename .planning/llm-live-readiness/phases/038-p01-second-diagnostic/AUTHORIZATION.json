@@ -1,0 +1,23 @@
+{
+  "authorization_id": "p01-second-diagnostic-v1",
+  "authority": "explicit_user_reply_2026-10-29",
+  "decision": "Autorizar uma segunda opera\u00e7\u00e3o separada",
+  "project": "p01",
+  "original_reserved_calls_retained": 8,
+  "diagnostic_campaign": "local-diagnostic-2-v1",
+  "diagnostic_case": "fixture-diagnostic-02",
+  "max_workflows": 1,
+  "max_provider_calls": 4,
+  "existing_total_logical_call_ceiling": 12,
+  "additional_calls": 4,
+  "additional_input_tokens": 8192,
+  "additional_output_tokens": 1024,
+  "additional_economic_estimate_usd": "0.0009216",
+  "authorized_paid_spend_usd": "0.00",
+  "free_only": true,
+  "condition": "validated_owning_migration_phase",
+  "other_project_caps_changed": false,
+  "confirmation_changed": false,
+  "human_dataset_rubric_independent_review": "PENDING",
+  "promotion": "PENDING"
+}
