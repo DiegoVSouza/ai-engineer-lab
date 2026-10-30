@@ -1,6 +1,6 @@
 ## Current executor handoff — phase041, 2026-10-30
 
-Read [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) first, including its phase043 update. P00 phase039's additional gate is consumed and FAIL; do not replay. P04 phase036's additional fake/offline gate is consumed and PASS after a verified wheelhouse; do not replay or infer live authority. P01 new workflow passed once and is consumed. P04's historical Docker ownership remains unknown, and its stale manifest plus credential-wrapper integration need their own scoped phase before any future live consideration. Preserve dirty P01 standard outputs and all prior outcomes. Historical handoff follows.
+Read [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) first, including its phase043 update. P00 phase039's additional gate is consumed and FAIL; do not replay. P04 phase036's additional fake/offline gate is consumed and PASS after a verified wheelhouse; do not replay or infer live authority. P04 commitc895f82 integrates safe root `.env` preflight offline, so its old gate candidate is historical and a fresh manifest/binding plus new gate authority are required. P01 new workflow passed once and is consumed. P04's historical Docker ownership remains unknown. Preserve dirty P01 standard outputs and all prior outcomes. Historical handoff follows.
 
 ## Historical authoritative executor handoff — 2026-10-30
 

@@ -1,6 +1,6 @@
 # Current continuation — phase041, 2026-10-30
 
-The current queue and authorization supersessions are in [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md), updated by phase043. P00 phase039's newly authorized full gate is consumed/FAIL (143 pass/18 fixture failures) and may not be replayed. P04 phase036's newly authorized offline fake gate is consumed/PASS after a verified 37-wheel wheelhouse; no provider/live dispatch occurred. P01 new finite operation PASS once, four calls1274/261, and is consumed. P04's historical Docker ownership remains UNKNOWN and its live manifest/credential-wrapper binding remains stale. Historical phase040 follows.
+The current queue and authorization supersessions are in [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md), updated by phase043. P00 phase039's newly authorized full gate is consumed/FAIL (143 pass/18 fixture failures) and may not be replayed. P04 phase036's newly authorized offline fake gate is consumed/PASS after a verified 37-wheel wheelhouse; no provider/live dispatch occurred. P04 commitc895f82 fixes root `.env` credential preflight offline but makes that gate's source candidate historical; a fresh manifest/current binding and new gate authority are prerequisites for any live consideration. P01 new finite operation PASS once, four calls1274/261, and is consumed. Historical phase040 follows.
 
 # Historical authoritative checkpoint — 2026-10-30
 
