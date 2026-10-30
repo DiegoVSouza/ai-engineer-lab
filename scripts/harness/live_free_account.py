@@ -649,7 +649,11 @@ class SharedAccount:
         self, rows, project, campaign, case_id, trial, call_index, reservation
     ):
         """Permit only the approved new workflow against exact retained history."""
-        if (campaign, case_id, trial) != ("local-revalidation-v1", "fixture-revalidation-01", 1):
+        scopes = {
+            "p01": ("local-reviewed-operation-027-v1", "fixture-reviewed-operation-027", 1),
+            "p04": ("local-revalidation-v1", "fixture-revalidation-01", 1),
+        }
+        if (campaign, case_id, trial) != scopes.get(project):
             raise AccountBlocked("reviewed_revalidation_scope_required")
         name = ".planning/llm-live-readiness/phases/039-p01-p04-reviewed-revalidation/AUTHORIZATION.json"
         try:

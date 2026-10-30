@@ -13,6 +13,10 @@ from live_free_account import AccountBlocked, SharedAccount
 
 ROOT=Path(__file__).resolve().parents[2]
 
+def scope(project):
+    return (("local-reviewed-operation-027-v1", "fixture-reviewed-operation-027")
+            if project == "p01" else ("local-revalidation-v1", "fixture-revalidation-01"))
+
 class RevalidationTests(unittest.TestCase):
     def setUp(self):
         self.before=json.loads((ROOT/migration.BASELINE).read_text(encoding="utf-8"))
@@ -51,7 +55,7 @@ class RevalidationTests(unittest.TestCase):
         logical.parent.mkdir(parents=True)
         shutil.copyfile(ROOT / "projects" / project / "artifacts/evals/live/ledger.sqlite", logical)
         account = SharedAccount(root, self.after)
-        source = SharedAccount(ROOT, self.before)
+        source = SharedAccount(ROOT, self.after)
         rows = [row for row in source._history() if row["project"] == project]
         git_ok = lambda *args, **kwargs: subprocess.CompletedProcess(args[0], 0, b"", b"")
         return account, rows, logical, patch("live_free_account.subprocess.run", side_effect=git_ok)
@@ -64,7 +68,7 @@ class RevalidationTests(unittest.TestCase):
         with closing(sqlite3.connect(logical)) as db:
             db.execute(
                 "INSERT INTO events(campaign_id,case_id,trial,event,reserved_calls,reserved_input_tokens,reserved_output_tokens,reserved_cost_usd,outcome,error_class,created_at_utc) VALUES(?,?,?,?,?,?,?,?,?,?,?)",
-                ("local-revalidation-v1", "fixture-revalidation-01", 1, event,
+                (*scope(project), 1, event,
                  calls, input_tokens, output_tokens, cost,
                  "ok" if event == "completed" else None, None, "2026-10-29T00:00:00+00:00"),
             )
@@ -76,12 +80,22 @@ class RevalidationTests(unittest.TestCase):
                 account, rows, _, git = self.reviewed_fixture(project)
                 with git:
                     account._reviewed_revalidation(
-                        rows, project, "local-revalidation-v1", "fixture-revalidation-01", 1, 1, False
+                        rows, project, *scope(project), 1, 1, False
                     )
                     with self.assertRaisesRegex(AccountBlocked, "authority_or_history_invalid"):
                         account._reviewed_revalidation(
-                            rows, project, "local-revalidation-v1", "fixture-revalidation-01", 1, 1, True
+                            rows, project, *scope(project), 1, 1, True
                         )
+
+    def test_consumed_p01_identity_and_cross_project_identity_are_rejected(self):
+        account, rows, _, git = self.reviewed_fixture("p01")
+        with git, self.assertRaisesRegex(AccountBlocked, "scope_required"):
+            account._reviewed_revalidation(
+                rows, "p01", "local-revalidation-v1", "fixture-revalidation-01", 1, 1, False
+            )
+        account, rows, _, git = self.reviewed_fixture("p04")
+        with git, self.assertRaisesRegex(AccountBlocked, "scope_required"):
+            account._reviewed_revalidation(rows, "p04", *scope("p01"), 1, 1, False)
 
     def test_exact_open_logical_reservation_authorizes_next_contiguous_call(self):
         for project in ("p01", "p04"):
@@ -90,11 +104,11 @@ class RevalidationTests(unittest.TestCase):
                 self.insert_workflow_reservation(logical, project)
                 with git:
                     account._reviewed_revalidation(
-                        rows, project, "local-revalidation-v1", "fixture-revalidation-01", 1, 1, True
+                        rows, project, *scope(project), 1, 1, True
                     )
                     with self.assertRaisesRegex(AccountBlocked, "authority_or_history_invalid"):
                         account._reviewed_revalidation(
-                            rows, project, "local-revalidation-v1", "fixture-revalidation-01", 1, 2, True
+                            rows, project, *scope(project), 1, 2, True
                         )
 
     def test_completed_workflow_and_mutated_history_are_closed(self):
@@ -102,7 +116,7 @@ class RevalidationTests(unittest.TestCase):
         self.insert_workflow_reservation(logical, "p01", event="completed")
         with git, self.assertRaisesRegex(AccountBlocked, "authority_or_history_invalid"):
             account._reviewed_revalidation(
-                rows, "p01", "local-revalidation-v1", "fixture-revalidation-01", 1, 1, True
+                rows, "p01", *scope("p01"), 1, 1, True
             )
         account, rows, logical, git = self.reviewed_fixture("p04")
         with closing(sqlite3.connect(logical)) as db:
