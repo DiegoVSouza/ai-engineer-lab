@@ -27,6 +27,15 @@ Perfis disponíveis: `agent-app`, `mcp-server`, `rag-pipeline`, `workflow-automa
 9. **Autorização para efeitos externos.** Não faça deploy real, publique, abra PR/merge, envie mensagem externa ou ultrapasse o orçamento configurado sem autorização explícita do usuário.
 10. **Verifique, não presuma.** Confirme versões, flags e convenções atuais antes de depender delas; registre-as no projeto.
 
+## Continuidade obrigatória da execução
+
+- Continue no mesmo turno enquanto existir trabalho autorizado e executável. Leitura, inspeção, planejamento, teste, fase e commit são etapas intermediárias, não motivos para encerrar ou pedir outra mensagem "continue".
+- Saída truncada exige reler em partes menores. Uma falha transitória de ferramenta exige tentar novamente ou investigar uma alternativa autorizada; só registre bloqueio quando houver evidência atual de que a dependência impede o trabalho.
+- Atualizações de andamento devem usar commentary e ser seguidas pela próxima ação. Não use uma resposta final apenas para anunciar o próximo passo.
+- Quando uma ação depender de decisão específica, prepare primeiro o diff, o escopo finito e as evidências revisáveis; faça a pergunta necessária e continue as tarefas independentes autorizadas enquanto aguarda.
+- Encerre somente após concluir o trabalho solicitado ou demonstrar a dependência específica de cada item restante, sem trabalho independente disponível. Informe o que foi executado, evidências e decisões pendentes.
+- Continuidade não amplia autorização: preserve contadores entre fases e sessões, reservas, condições de parada e limites live. Não contorne um gate esgotado com teste focado, novo ID ou nova fase.
+
 ## Modos de LLM
 
 `LLM_MODE=fake` é o padrão em testes e CI; `replay` usa cassettes; `live` usa provedor real dentro do orçamento. Lógica de controle deve ser testável em `fake`.
