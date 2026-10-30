@@ -1,0 +1,20 @@
+{
+  "authorization_id": "p04-reentrant-operation-047-v1",
+  "authority": "explicit_user_reply_continuation",
+  "decision": "faz isso",
+  "supersedes_operation": "local-reviewed-operation-038-v1",
+  "p04": {
+    "additional_full_fake_gates": 1,
+    "operation_id": "local-reviewed-operation-040-v1",
+    "case_id": "fixture-reviewed-operation-040",
+    "max_workflows": 1,
+    "max_provider_calls": 3,
+    "max_input_tokens": 12288,
+    "max_output_tokens": 1536,
+    "provider_timeout_seconds": 30,
+    "model": "openai/gpt-oss-20b",
+    "paid_usd": "0.00",
+    "no_replay": true
+  },
+  "forbidden": ["capacity_expansion", "reservation_release", "counter_reset", "fallback", "holdout84", "confirmation60", "gossett_backend_mutation", "terraform_apply", "deployment", "push", "pull_request", "human_review_claim"]
+}
