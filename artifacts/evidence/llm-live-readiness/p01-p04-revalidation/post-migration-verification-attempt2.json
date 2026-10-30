@@ -1,0 +1,11 @@
+{
+  "command": [
+    "python",
+    "-"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "PASS: new registry and policy SHA match; exact proposed global/P01/P04 caps; audit contains prepared and applied; pending marker absent; provider/credentials untouched.",
+  "provider_accessed": false,
+  "credentials_read": false
+}

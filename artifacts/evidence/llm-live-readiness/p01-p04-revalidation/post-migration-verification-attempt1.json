@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python",
+    "- read-only migration audit inspection"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 1,
+  "output": "The SQL audit subcommand used Path.as_uri() before resolving a relative path and exited with ValueError. The independent post-migration account snapshot succeeded; this audit inspection did not complete.",
+  "provider_accessed": false,
+  "credentials_read": false,
+  "corrective_action": "Resolve the migration audit Path to an absolute path before opening its read-only SQLite URI."
+}
