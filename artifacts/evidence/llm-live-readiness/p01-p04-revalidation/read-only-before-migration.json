@@ -1,0 +1,42 @@
+{
+  "command": [
+    "python",
+    "scripts/harness/live_free_account.py"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": {
+    "status": "INCOMPLETE",
+    "provider_accessed": false,
+    "credentials_read": false,
+    "generation_authorized": false,
+    "policy_sha256": "f8c0a20521493ddedce3d1b0aa5023e639ee361b9c8bdf05fc030c73e6463f5a",
+    "usage": {
+      "accounted_attempts": 86,
+      "cumulative_accounted_usage": {
+        "estimated_cost_usd": "0.004739475",
+        "input_tokens": "30717",
+        "output_tokens": "8119",
+        "requests": "86"
+      },
+      "historical_unmanaged_provider_usage": "PENDING",
+      "provider_billed_cost_usd": "PENDING",
+      "provider_remaining_daily_tokens": "PENDING",
+      "registered_projects": [
+        "p00",
+        "p01",
+        "p02",
+        "p03",
+        "p04",
+        "p05"
+      ],
+      "uncertain_attempts": 0
+    },
+    "paid_authorized": "0.00",
+    "P00_campaign_source_blob": "4b531e2e55c5427ee773a13e0bf59bd935b03aec"
+  },
+  "provider_accessed": false,
+  "credentials_read": false,
+  "migration_marker_present": false,
+  "migration_audit_present": false
+}

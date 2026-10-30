@@ -3,10 +3,10 @@
   "authorization_reference": ".planning/llm-live-readiness/AUTHORIZATION.md",
   "authorized_paid_spend_usd": "0.00",
   "campaign_caps": {
-    "estimated_cost_usd": "1.6282368",
-    "input_tokens": 14473216,
-    "output_tokens": 1809152,
-    "requests": 4141
+    "estimated_cost_usd": "1.6305408",
+    "input_tokens": 14493696,
+    "output_tokens": 1811712,
+    "requests": 4148
   },
   "free_limits": {
     "requests_per_day": 1000,
@@ -33,12 +33,12 @@
     },
     "p01": {
       "calls_per_trial": 4,
-      "estimated_cost_usd": "0.2294784",
-      "input_tokens": 2039808,
+      "estimated_cost_usd": "0.2304000",
+      "input_tokens": 2048000,
       "input_tokens_per_call": 2048,
-      "output_tokens": 254976,
+      "output_tokens": 256000,
       "output_tokens_per_call": 256,
-      "requests": 996
+      "requests": 1000
     },
     "p02": {
       "calls_per_trial": 1,
@@ -60,12 +60,12 @@
     },
     "p04": {
       "calls_per_trial": 3,
-      "estimated_cost_usd": "0.3428352",
-      "input_tokens": 3047424,
+      "estimated_cost_usd": "0.3442176",
+      "input_tokens": 3059712,
       "input_tokens_per_call": 4096,
-      "output_tokens": 380928,
+      "output_tokens": 382464,
       "output_tokens_per_call": 512,
-      "requests": 744
+      "requests": 747
     },
     "p05": {
       "calls_per_trial": 4,
