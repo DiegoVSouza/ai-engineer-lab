@@ -1,5 +1,7 @@
 # Current continuation — phase041, 2026-10-30
 
+Latest phase047: the P04 root guard now binds the distinct reentrant replacement identity `local-reviewed-operation-040-v1`; the 11-test guard regression passed without provider access. P00 phase042's separately authorized verified-scratch gate PASSed (161 tests) and is consumed. Next executable work is P04 project candidate preparation and its one newly authorized isolated fake gate; the replacement operation remains conditional on those PASS controls.
+
 Latest phase045 state and concrete evidence: [continuity checkpoint](CONTINUITY-2026-10-30.md). P00 gate consumed/FAIL; P04 gate consumed/PASS and single live command stopped before marker/reservation/provider. Do not replay either action.
 
 The current queue and authorization supersessions are in [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md), updated by phases043–044. P00 phase039's newly authorized full gate is consumed/FAIL (143 pass/18 fixture failures) and may not be replayed; its source is committed and applied-migration binding now passes read-only. P04 phase036's newly authorized offline fake gate is consumed/PASS after a verified 37-wheel wheelhouse; no provider/live dispatch occurred. P04 commitc895f82 fixes root `.env` credential preflight offline, and phase038 proves the old create-only identity is stale: a distinct P04 identity plus new finite gate/operation authority are prerequisites for any live consideration. P01 new finite operation PASS once, four calls1274/261, and is consumed. Historical phase040 follows.
