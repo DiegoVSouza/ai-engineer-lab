@@ -1,0 +1,222 @@
+{
+  "command": "python read-only SQLite reconciliation",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": {
+    "policy_sha256": "48c3237baedf8ad54c7e4e8b824b8f707c899b0f7e14c712e86433f2797552cd",
+    "global_calls": 4141,
+    "project_calls": {
+      "p01": 996,
+      "p04": 744
+    },
+    "paid_authorized": "0.00",
+    "projects": {
+      "p01": {
+        "logical": [
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "reserved",
+            4,
+            null,
+            null
+          ],
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "completed",
+            4,
+            "incomplete",
+            "unknown"
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "reserved",
+            4,
+            null,
+            null
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "completed",
+            4,
+            "incomplete",
+            "unknown"
+          ],
+          [
+            "local-diagnostic-2-v1",
+            "fixture-diagnostic-02",
+            "reserved",
+            4,
+            null,
+            null
+          ],
+          [
+            "local-diagnostic-2-v1",
+            "fixture-diagnostic-02",
+            "completed",
+            4,
+            "incomplete",
+            "unknown"
+          ]
+        ],
+        "provider": [
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "reserved",
+            null,
+            null,
+            null
+          ],
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "completed",
+            "ok",
+            235,
+            46
+          ],
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "reserved",
+            null,
+            null,
+            null
+          ],
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "completed",
+            "ok",
+            228,
+            183
+          ],
+          [
+            "local-diagnostic-2-v1",
+            "fixture-diagnostic-02",
+            "reserved",
+            null,
+            null,
+            null
+          ],
+          [
+            "local-diagnostic-2-v1",
+            "fixture-diagnostic-02",
+            "completed",
+            "ok",
+            258,
+            76
+          ],
+          [
+            "local-diagnostic-2-v1",
+            "fixture-diagnostic-02",
+            "reserved",
+            null,
+            null,
+            null
+          ],
+          [
+            "local-diagnostic-2-v1",
+            "fixture-diagnostic-02",
+            "completed",
+            "ok",
+            251,
+            58
+          ]
+        ]
+      },
+      "p04": {
+        "logical": [
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "reserved",
+            3,
+            null,
+            null
+          ],
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "completed",
+            3,
+            "incomplete",
+            "unknown"
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "reserved",
+            3,
+            null,
+            null
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "completed",
+            3,
+            "ok",
+            null
+          ]
+        ],
+        "provider": [
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "reserved",
+            null,
+            null,
+            null
+          ],
+          [
+            "local-operation-v1",
+            "fixture-local-01",
+            "completed",
+            "ok",
+            105,
+            51
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "reserved",
+            null,
+            null,
+            null
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "completed",
+            "ok",
+            148,
+            38
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "reserved",
+            null,
+            null,
+            null
+          ],
+          [
+            "local-diagnostic-v1",
+            "fixture-diagnostic-01",
+            "completed",
+            "ok",
+            144,
+            33
+          ]
+        ]
+      }
+    }
+  },
+  "provider_accessed": false,
+  "credentials_read": false
+}
