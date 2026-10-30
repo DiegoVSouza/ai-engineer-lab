@@ -1,3 +1,11 @@
+## Authoritative executor handoff — 2026-10-30
+
+Start with [CONTINUATION-PLAN.md](CONTINUATION-PLAN.md), [phase040 final report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md), and [phase040 VERIFY](phases/040-current-authoritative-checkpoint/VERIFY.md). Current root policy SHA is `f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf`, migration phase039 is APPLIED, global cap 4,148, paid authorization USD 0. No live command is safe now: P00's gate is exhausted 3/3, P01's single operation authorization is consumed, P04 has unattributed global Docker drift, and P05 operating capacity is 8/8. P02/P03 synthetic operation acceptance is already recorded. Preserve all historical results and untracked user files.
+
+The next technically meaningful steps depend on: (1) an explicitly approved finite new P01 scope if wanted; (2) a separate P00 validation window before a fourth full gate; (3) independent Docker ownership/audit attribution for the `gossett_backend` ID drift before P04 action; and (4) actual human reviewers for deferred quality/review/holdout/promotion decisions. Do not rerun old wrappers or use old historical commands. Billing/quota remain unknown and paid spend remains USD 0.
+
+## Historical executor notes (retained; superseded by phase040)
+
 ## Authoritative final checkpoint - 2026-10-29
 
 [Final gates, commits, fingerprints, budgets, evidence and finite T0-T7 queue](phases/037-final-technical-audit/FINAL-REPORT.md). P00/P02/P03/P05 synthetic accounted operations PASS on current recorded fingerprints; P04 separate diagnostic PASS on its recorded source, original/current-composite acceptance INCOMPLETE; P01 remains INCOMPLETE after three retained workflows, with offline strict-schema correction100 tests/six runners PASS. P00full157, P03full70, P04full105, P05offline161 plus actual services/privacy/crash gates PASS. Final provider86 attempts/30717input/8119output conservative, one historical unknown; P01logical12 and P04logical6 charged, P00holdout84/confirmation60 protected, P05operating8/8. Policy48c3237b applied, paid authorizationUSD0/billingUNKNOWN.

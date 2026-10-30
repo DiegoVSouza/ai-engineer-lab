@@ -1,3 +1,26 @@
+# Authoritative current checkpoint — 2026-10-30
+
+See [phase040 current technical report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md) for the verified P00–P05 gate matrix, current applied policy, exact reserves, evidence, dependencies, and decisions. This checkpoint supersedes the 2026-10-29 status and every active-session command below. Root phase039 policy migration is APPLIED once; canonical policy SHA `f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf`, global cap 4,148, paid authorization USD 0. The read-only account audit reports 86 attempts and conservative 30,717/8,119 input/output tokens, while billing and unmanaged provider usage remain unknown. P01 phase026 offline deadlock repair is committed and its isolated 109-test/six-runner fake gate passes; the previously authorized operation remains consumed INCOMPLETE with zero provider access. P00 phase037 full gate is INCOMPLETE at 3/3, and P04 phase032 Docker reconciliation remains INCOMPLETE due an unattributed `gossett_backend` identity change.
+
+## Current finite T0–T7 queue
+
+| ID | State | Exact dependency / next action |
+|---|---|---|
+| T0 — reconcile current state | PASS, phase040 | Recheck read-only after a new authorized operation or migration; evidence under `artifacts/evidence/llm-live-readiness/current-checkpoint-040/`. |
+| T1 — P01 recovery | Offline repair PASS; live INCOMPLETE | A new explicit finite live scope and fresh committed candidate/manifest are required. Do not replay the consumed operation; retain 12 logical calls. |
+| T2 — P02 accounted operation | PASS | One call/141 input/37 output; no additional sample is required. External corpus/identity and human quality review remain pending. |
+| T3 — P03 accounted operation | PASS | One call/93 input/23 output and private correlated service trace; no repeat. Production exporter/identity and human quality review remain pending. |
+| T4 — P04 current operation | INCOMPLETE | Independently attribute the replaced/missing `gossett_backend` container IDs before any Docker mutation or live operation. Gate attempts 3/3. |
+| T5 — P05 accounted operation | PASS, envelope exhausted | Eight of eight operating calls consumed. Human quality review and production identity remain pending. |
+| T6 — P00 current-policy binding | INCOMPLETE | Full fake gate attempts 3/3; 157 passed/1 stale allocation assertion. A separate validation window is required before any fourth full gate; live remains blocked until a passing gate and fresh frozen binding. |
+| T7 — private review and human evaluation | UI preparation PASS; human evaluation deferred | Human reviewers must record their own candidate-specific judgments. No annotations, approval, holdout, or promotion are fabricated. |
+
+## Scope and preserved history
+
+Only local synthetic flows are in scope. No public deployment, push, PR/merge, external message, customer data, real effect, fallback, Terraform apply, Docker cleanup of ambiguous ownership, or paid use. Holdout 84 and confirmation 60 remain protected. The detailed historical continuation record follows and is preserved for audit, but is non-authoritative; do not execute its old commands or use its old counters.
+
+## Superseded historical continuation record
+
 ## Authoritative final checkpoint - 2026-10-29
 
 [Final gates, commits, fingerprints, budgets, evidence and finite T0-T7 queue](phases/037-final-technical-audit/FINAL-REPORT.md). P00/P02/P03/P05 synthetic accounted operations PASS on current recorded fingerprints; P04 separate diagnostic PASS on its recorded source, original/current-composite acceptance INCOMPLETE; P01 remains INCOMPLETE after three retained workflows, with offline strict-schema correction100 tests/six runners PASS. P00full157, P03full70, P04full105, P05offline161 plus actual services/privacy/crash gates PASS. Final provider86 attempts/30717input/8119output conservative, one historical unknown; P01logical12 and P04logical6 charged, P00holdout84/confirmation60 protected, P05operating8/8. Policy48c3237b applied, paid authorizationUSD0/billingUNKNOWN.

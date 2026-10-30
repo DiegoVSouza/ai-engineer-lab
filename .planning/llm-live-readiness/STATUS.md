@@ -1,3 +1,19 @@
+## Authoritative current checkpoint — 2026-10-30
+
+[Phase040 current technical report](phases/040-current-authoritative-checkpoint/FINAL-REPORT.md) supersedes the older status below. Root phase039 migration is APPLIED: canonical policy SHA `f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf`, global cap 4,148, paid authorization USD 0. Provider-account audit: 86 attempts, conservative 30,717 input / 8,119 output, billing and unmanaged history unknown. P02/P03/P05 synthetic operations PASS; P01 remains INCOMPLETE after the consumed no-provider operation and is now repaired offline; P00 current full gate is INCOMPLETE at 3/3; P04 global Docker reconciliation is INCOMPLETE due unattributed `gossett_backend` identity drift. Holdout 84 and confirmation 60 remain protected. Human review, quality, independent review, holdout evaluation, and promotion remain pending/deferred.
+
+| Owner | Current gate | Current operation / exact blocker |
+|---|---|---|
+| Root | Migration PASS/APPLIED; account report INCOMPLETE by design for remaining authorization/review gates | No current provider dispatch authorized by this checkpoint. |
+| P00 | Current-policy full gate INCOMPLETE, 3/3 | Last successful smoke fingerprint is stale; current gate has one stale allocation expectation (P01/P04 744/558 vs actual 760/567). |
+| P01 | Offline phase026 PASS, live INCOMPLETE | Authorized attempt consumed before marker/reservation/provider; 12 logical calls retained. |
+| P02 | Fake and accounted synthetic operation PASS | One call 141/37, 1/4 used. |
+| P03 | Fake services/privacy and accounted synthetic operation PASS | One call 93/23, 1/4 used. |
+| P04 | Code/service gate PASS, overall Docker reconciliation INCOMPLETE | Unattributed container identity change; no cleanup or operation until proven. |
+| P05 | Current-policy fake/services and accounted operation PASS | 8/8 operating calls used. |
+
+# Historical status record (superseded; preserved below)
+
 ## Authoritative final checkpoint - 2026-10-29
 
 [Final gates, commits, fingerprints, budgets, evidence and finite T0-T7 queue](phases/037-final-technical-audit/FINAL-REPORT.md). P00/P02/P03/P05 synthetic accounted operations PASS on current recorded fingerprints; P04 separate diagnostic PASS on its recorded source, original/current-composite acceptance INCOMPLETE; P01 remains INCOMPLETE after three retained workflows, with offline strict-schema correction100 tests/six runners PASS. P00full157, P03full70, P04full105, P05offline161 plus actual services/privacy/crash gates PASS. Final provider86 attempts/30717input/8119output conservative, one historical unknown; P01logical12 and P04logical6 charged, P00holdout84/confirmation60 protected, P05operating8/8. Policy48c3237b applied, paid authorizationUSD0/billingUNKNOWN.
