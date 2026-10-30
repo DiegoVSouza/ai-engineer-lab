@@ -1,6 +1,6 @@
 ## Current status — phase041, 2026-10-30
 
-See [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) for the finite T0–T7 queue and authorizations. P00 remains INCOMPLETE; exception1/1 consumed with 68PASS/93setup errors, history3/3 preserved. P01 new operation PASS once with four provider calls1274/261; global provider accounting90 attempts31991/8380. P04 additional gate consumed1/1 and FAIL solely at offline image build (missing cached dependency); 119 tests/services/Terraform PASS, namespace cleanup and stable baseline PASS. P04 operation not invoked. The following phase040 checkpoint is historical.
+See [phase041 CURRENT](phases/041-authority-and-consumed-gate/CURRENT.md) and phase043 for the finite queue and superseding authorization. P00 remains INCOMPLETE: its phase039 additional full gate is consumed and failed143PASS/18FAIL due a corrected-afterward temporary-fixture dependency; no replay occurred. P01 new operation PASS once with four provider calls1274/261; global provider accounting remains90 attempts31991/8380. P04 phase036 additional fake gate PASSed with the complete verified offline wheelhouse; build/services/gate/cleanup all exit0 and baseline is stable. P04 operation was not invoked; manifest/credential-wrapper binding remains INCOMPLETE. The following phase040 checkpoint is historical.
 
 ## Historical authoritative checkpoint — 2026-10-30
 
