@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[2]
 
 def scope(project):
     return (("local-reviewed-operation-027-v1", "fixture-reviewed-operation-027")
-            if project == "p01" else ("local-revalidation-v1", "fixture-revalidation-01"))
+            if project == "p01" else ("local-reviewed-operation-038-v1", "fixture-reviewed-operation-038"))
 
 class RevalidationTests(unittest.TestCase):
     def setUp(self):
@@ -63,6 +63,9 @@ class RevalidationTests(unittest.TestCase):
         auth = root / ".planning/llm-live-readiness/phases/039-p01-p04-reviewed-revalidation/AUTHORIZATION.json"
         auth.parent.mkdir(parents=True)
         shutil.copyfile(ROOT / migration.AUTH, auth)
+        new_auth = root / ".planning/llm-live-readiness/phases/045-current-candidate-authority-proposal/AUTHORIZATION.json"
+        new_auth.parent.mkdir(parents=True)
+        shutil.copyfile(ROOT / ".planning/llm-live-readiness/phases/045-current-candidate-authority-proposal/AUTHORIZATION.json", new_auth)
         logical = root / "projects" / project / "artifacts/evals/live/ledger.sqlite"
         logical.parent.mkdir(parents=True)
         shutil.copyfile(ROOT / "projects" / project / "artifacts/evals/live/ledger.sqlite", logical)
@@ -136,7 +139,21 @@ class RevalidationTests(unittest.TestCase):
             db.commit()
         with git, self.assertRaisesRegex(AccountBlocked, "authority_or_history_invalid"):
             account._reviewed_revalidation(
-                rows, "p04", "local-revalidation-v1", "fixture-revalidation-01", 1, 1, False
+                rows, "p04", *scope("p04"), 1, 1, False
             )
+
+    def test_old_p04_identity_is_rejected(self):
+        account, rows, _, git = self.reviewed_fixture("p04")
+        with git, self.assertRaisesRegex(AccountBlocked, "scope_required"):
+            account._reviewed_revalidation(rows, "p04", "local-revalidation-v1", "fixture-revalidation-01", 1, 1, False)
+
+    def test_new_p04_authority_tampering_is_rejected(self):
+        account, rows, _, git = self.reviewed_fixture("p04")
+        path = account.root / ".planning/llm-live-readiness/phases/045-current-candidate-authority-proposal/AUTHORIZATION.json"
+        value = json.loads(path.read_text(encoding="utf-8"))
+        value["p04"]["max_provider_calls"] = 4
+        path.write_text(json.dumps(value), encoding="utf-8")
+        with git, self.assertRaisesRegex(AccountBlocked, "authority_or_history_invalid"):
+            account._reviewed_revalidation(rows, "p04", *scope("p04"), 1, 1, False)
 
 if __name__=="__main__":unittest.main()

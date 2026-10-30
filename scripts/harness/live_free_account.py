@@ -651,12 +651,28 @@ class SharedAccount:
         """Permit only the approved new workflow against exact retained history."""
         scopes = {
             "p01": ("local-reviewed-operation-027-v1", "fixture-reviewed-operation-027", 1),
-            "p04": ("local-revalidation-v1", "fixture-revalidation-01", 1),
+            "p04": ("local-reviewed-operation-038-v1", "fixture-reviewed-operation-038", 1),
         }
         if (campaign, case_id, trial) != scopes.get(project):
             raise AccountBlocked("reviewed_revalidation_scope_required")
         name = ".planning/llm-live-readiness/phases/039-p01-p04-reviewed-revalidation/AUTHORIZATION.json"
         try:
+            if project == "p04":
+                new_auth = ".planning/llm-live-readiness/phases/045-current-candidate-authority-proposal/AUTHORIZATION.json"
+                authority = json.loads((self.root / new_auth).read_text(encoding="utf-8"))
+                expected_scope = {"additional_full_fake_gates": 1, "operation_id": campaign,
+                                  "case_id": case_id, "max_workflows": 1, "max_provider_calls": 3,
+                                  "max_input_tokens": 12288, "max_output_tokens": 1536,
+                                  "provider_timeout_seconds": 30, "model": "openai/gpt-oss-20b",
+                                  "paid_usd": "0.00", "no_replay": True}
+                if (authority.get("authorization_id") != "current-candidate-validation-045-v1"
+                        or authority.get("authority") != "explicit_user_reply"
+                        or authority.get("decision") != "faz" or authority.get("p04") != expected_scope):
+                    raise ValueError()
+                for command in (["git", "ls-files", "--error-unmatch", "--", new_auth],
+                                ["git", "diff", "--quiet", "HEAD", "--", new_auth]):
+                    if subprocess.run(command, cwd=self.root, capture_output=True, timeout=10).returncode:
+                        raise ValueError()
             expected = {'authorization_id': 'p01-p04-reviewed-revalidation-v1', 'authority': 'explicit_user_reply', 'decision': 'pode fazer', 'projects': {'p01': {'additional_calls': 4, 'input_tokens': 8192, 'output_tokens': 1024, 'prior_reserved_calls_retained': 12, 'max_workflows': 1}, 'p04': {'additional_calls': 3, 'input_tokens': 12288, 'output_tokens': 1536, 'prior_reserved_calls_retained': 6, 'max_workflows': 1}}, 'additional_calls': 7, 'additional_input_tokens': 20480, 'additional_output_tokens': 2560, 'additional_economic_estimate_usd': '0.0023040', 'authorized_paid_spend_usd': '0.00', 'condition': 'validated_owning_migration_phase', 'free_only': True, 'human_review': 'PENDING', 'migration_applied': False}
             if json.loads((self.root / name).read_text(encoding="utf-8")) != expected:
                 raise ValueError()
