@@ -1,0 +1,16 @@
+{
+  "command": "python scripts/harness/migrate_p01_p04_revalidation.py --dry-run",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "status": "ALREADY_APPLIED",
+  "usage": {
+    "requests": 90,
+    "input_tokens": 31991,
+    "output_tokens": 8380,
+    "estimated_cost_usd": "0.004913325",
+    "unknown_usage_attempts": 1
+  },
+  "provider_accessed": false,
+  "credentials_read": false,
+  "ledger_mutated": false
+}
