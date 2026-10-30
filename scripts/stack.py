@@ -12,7 +12,7 @@ COMPOSE = ['docker', 'compose', '--project-directory', str(ROOT), '-f', str(ROOT
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action',choices=['checkout','up','status','logs','stop','start','check','persistence','credentials','token','ca'])
+    parser.add_argument('action',choices=['checkout','up','down','status','logs','stop','start','check','persistence','credentials','token','ca'])
     parser.add_argument('extra',nargs='*')
     args=parser.parse_args()
     if args.action=='checkout':
@@ -29,6 +29,11 @@ def main():
         return 0
     if args.action=='up':
         command=COMPOSE+['up','-d','--build','--wait','--wait-timeout','300']
+    elif args.action=='down':
+        # Removes only this Compose application's containers and networks. Named
+        # volumes survive unless the caller passes --volumes explicitly, so
+        # `down` followed by `up` is a non-destructive restart.
+        command=COMPOSE+['down','--remove-orphans']+args.extra
     elif args.action in {'check','persistence','credentials','token','ca'}:
         command=COMPOSE+['--profile','tools','run','--rm','--no-deps','tools',args.action]+args.extra
     elif args.action=='status':

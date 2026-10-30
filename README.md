@@ -37,9 +37,21 @@ With the six project repositories checked out under `projects/` and Docker Compo
 
 ```powershell
 python scripts/stack.py checkout
-docker compose up -d --build --wait --wait-timeout 300
+python scripts/stack.py up
 python scripts/stack.py credentials
 python scripts/stack.py check
+```
+
+Bring the whole stack down with one command:
+
+```powershell
+python scripts/stack.py down
+```
+
+`down` removes this Compose application's containers and networks and leaves named volumes intact, so `down` followed by `up` is a non-destructive restart. It never touches containers outside this application. Add `--volumes` only to discard PostgreSQL, Keycloak, Redis, Grafana, and Prometheus data:
+
+```powershell
+python scripts/stack.py down --volumes
 ```
 
 `checkout` clones missing product repositories at the commits in `ops/stack/projects.lock.json` and verifies existing checkouts without changing them. Access to those Git repositories is required.
