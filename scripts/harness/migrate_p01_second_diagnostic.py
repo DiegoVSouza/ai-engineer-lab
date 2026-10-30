@@ -1,4 +1,4 @@
-"""Apply only the explicitly authorized four-call local operation free P03 policy amendment.
+"""Apply only the explicitly authorized second P01 diagnostic four-call free policy amendment.
 
 No credential/provider path exists here. Usage ledgers are always opened read-only.
 The audit database records migration metadata, never provider consumption.
