@@ -1,0 +1,9 @@
+{
+  "command": [
+    "python",
+    "artifacts\\evidence\\llm-live-readiness\\final-technical-audit\\audit.py"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "PASS_READ_ONLY_RECONCILIATION; 79 provider attempts, one historical unknown; current fingerprint matches P00/P02/P03; original/diagnostic terminal guards reject P01/P04."
+}

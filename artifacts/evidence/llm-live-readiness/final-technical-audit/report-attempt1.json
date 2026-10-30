@@ -1,0 +1,198 @@
+{
+  "status": "PASS_READ_ONLY_RECONCILIATION",
+  "projects": {
+    "p00": {
+      "head": "5b747ddfa665eebbbe910b1574ea07419fd1910e",
+      "existing_changes_preserved": "?? artifacts/evidence/final-operating-reconciliation-035/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/check-full-final.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-phase006-precommit.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-rate-preflight.txt\n?? artifacts/evidence/funded-candidate-continuation/check-full-reconciled-final.txt\n?? artifacts/evidence/funded-candidate-continuation/credential-provenance-024/tmp-full-retry/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/focused.txt\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/critical-stop-022/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/final-operating-035/\n?? artifacts/evidence/funded-candidate-continuation/focused-reconciled.txt\n?? artifacts/evidence/funded-candidate-continuation/local-live-operation-031/\n?? artifacts/evidence/funded-candidate-continuation/local-live-preparation-030/\n?? artifacts/evidence/funded-candidate-continuation/operating-allocation-034/\n?? artifacts/evidence/funded-candidate-continuation/private-review-recheck-023/tmp/\n?? artifacts/evidence/funded-candidate-continuation/replacement-028/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/rotation-provenance/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/safe-guidance-025/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/tmp-final-focused/\n?? artifacts/evidence/funded-candidate-continuation/tmp-final-locked/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/tmp-focused/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-locked/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled-final/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-20261027/\n?? artifacts/evidence/funded-candidate-continuation/tmp-phase006-verification-final-20261027/\n?? artifacts/evidence/funded-candidate-continuation/tmp-rate-preflight/\n?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled-only/\n?? artifacts/evidence/funded-candidate-continuation/tmp-reconciled/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-final-root/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full-after-resume/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-full/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-green/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-resume-red/\n?? artifacts/evidence/funded-candidate-continuation/transport-regression-027/tmp-root-0ed0e3a/\n?? artifacts/evidence/funded-replacement-028/tmp-controls-green/\n?? artifacts/evidence/funded-replacement-028/tmp-guidance-green/\n?? artifacts/evidence/funded-replacement-028/tmp-guidance-red/\n?? artifacts/evidence/local-live-operation-031/allocation-focused-attempt1.json\n?? artifacts/evidence/local-live-operation-031/allocation-focused-attempt1.txt\n?? artifacts/evidence/operating-allocation-034/tmp-focused1/\n?? artifacts/evidence/private-review-ui/tmp-envelope-migration-gate/\n?? artifacts/tmp-pytest/\n",
+      "recorded_candidate": "271fca758fb99429598c8a4dfcb73b02281a379b",
+      "recorded_fingerprint": "f8608311104a4fb4005881b9569a94c1f29731707ac9f70247636bd63685f72d",
+      "current_fingerprint": "f8608311104a4fb4005881b9569a94c1f29731707ac9f70247636bd63685f72d",
+      "current_matches_recorded": true
+    },
+    "p01": {
+      "head": "fe1fa3d08f2f75444f6cb572773f9b8ea80aff57",
+      "existing_changes_preserved": " M artifacts/evidence/check-fast.txt\n M artifacts/evidence/check-full.txt\n M artifacts/runs/latest/results.json\n?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-fixture-dispatch-016-tmp/\n?? artifacts/evidence/accounted-local-live-019-tmp/\n?? artifacts/evidence/accounted-local-live-019/provider-shape-types.json\n?? artifacts/evidence/accounted-local-live-019/provider-shape-types2.json\n?? artifacts/evidence/accounted-local-live-019/provider-shape.json\n?? artifacts/evidence/core-fixture-dispatch-014/tmp/\n?? artifacts/evidence/dispatch-process-recovery-013/tmp/\n?? artifacts/evidence/recovery-proposal-020/snapshot-attempt2/\n?? artifacts/evidence/recovery-proposal-020/snapshot/\n?? artifacts/evidence/recovery-proposal-020/source-attempt2.tar\n?? artifacts/evidence/recovery-proposal-020/source.tar\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-attempt1/\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-final/\n?? artifacts/evidence/reviewed-diagnostic-021/snapshot-protocol/\n?? artifacts/evidence/reviewed-diagnostic-021/source-attempt1.tar\n?? artifacts/evidence/reviewed-diagnostic-021/source-final.tar\n?? artifacts/evidence/reviewed-diagnostic-021/source-protocol.tar\n?? artifacts/evidence/synthetic-dispatch-012/tmp/\n?? artifacts/evidence/synthetic-operation-controller-018-tmp/\n?? artifacts/evidence/workflow-reservation-017-tmp/\n",
+      "recorded_candidate": "846bb994c88c24a196e526ba486ace394579d287",
+      "recorded_fingerprint": null,
+      "current_fingerprint": "f871701d01d4529dce7c2d1842f022d0c6bbefbbc100b53a2289e940a82c10e1",
+      "current_matches_recorded": false
+    },
+    "p02": {
+      "head": "5b91e7349a22298a08b073644195f005e42a4a53",
+      "existing_changes_preserved": "?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n",
+      "recorded_candidate": "5f8d62e10698772b16e4381df0257a16b0cdcd6f",
+      "recorded_fingerprint": null,
+      "current_fingerprint": "6dc0cac2de3cc1c3e9240d3baf978e95478bb5fbf1dd1887f6eb8dbdb07c48c4",
+      "current_matches_recorded": false
+    },
+    "p03": {
+      "head": "83fe06752d4823c4af4843f66417542642e0f2c9",
+      "existing_changes_preserved": "?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-local-live-025/tmp-focused/\n?? artifacts/evidence/accounted-local-live-025/tmp-full1/\n?? artifacts/evidence/accounted-local-live-025/tmp-unit/\n?? artifacts/evidence/accounted-telemetry-024/fixture-operation.sqlite\n?? artifacts/evidence/accounted-telemetry-024/tmp-focused-2/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-1/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-2/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-3/\n?? artifacts/evidence/accounted-telemetry-024/tmp-full-4/\n?? artifacts/evidence/accounted-telemetry-024/tmp-readiness/\n?? artifacts/evidence/current-service-recheck-021/run/incident-simulation.json\n?? artifacts/evidence/current-service-recheck-021/run/integrated-trace-synthetic.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-jaeger-export.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-live-alerts.json\n?? artifacts/evidence/current-service-recheck-021/run/phase-009-service-traces.json\n?? artifacts/evidence/service-availability-recheck-023/run/\n",
+      "recorded_candidate": "b0cf5bbd60ba590217c32914b9aa694eae8e483d",
+      "recorded_fingerprint": null,
+      "current_fingerprint": "ba0a9a19ccf08cfde039c478e93d94b0ba43625a9c7b7c40c02da55c3cf6eec5",
+      "current_matches_recorded": false
+    },
+    "p04": {
+      "head": "a419400cb439e09e3fa28e7efc9ef5a11d57fac5",
+      "existing_changes_preserved": "?? artifacts/evals/live/diagnostic-operations.sqlite\n?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-local-service-030/service-attempt2/terraform-work/\n?? artifacts/evidence/accounted-local-service-030/service-final/terraform-work/\n?? artifacts/evidence/accounted-local-service-030/tmp-diagnostic-fix/\n?? artifacts/evidence/accounted-local-service-030/tmp-final-focused/\n?? artifacts/evidence/accounted-local-service-030/tmp-final/\n?? artifacts/evidence/accounted-local-service-030/tmp-focused1/\n?? artifacts/evidence/accounted-local-service-030/tmp-focused2/\n?? artifacts/evidence/accounted-local-service-030/tmp-full2/\n?? artifacts/evidence/accounted-local-service-030/tmp-unit1/\n?? artifacts/evidence/accounted-worker-029/tmp-focused/\n?? artifacts/evidence/accounted-worker-029/tmp-full1/\n?? artifacts/evidence/current-full-privacy-027/tmp-run4/\n?? artifacts/evidence/current-full-privacy-027/work-run4/\n?? artifacts/evidence/current-full-privacy-027/work/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp2/\n?? artifacts/evidence/disable-unaccounted-live-028/pytest-tmp3/\n?? artifacts/evidence/local-terraform-network-023/work/\n?? artifacts/evidence/offline-full-gate-025/tmp-retry/\n?? artifacts/evidence/offline-full-gate-025/tmp/\n?? artifacts/evidence/offline-full-gate-025/work/\n?? artifacts/evidence/offline-provider-024/work/\n?? artifacts/evidence/otlp-wire-privacy-026/gate-tmp/\n?? artifacts/evidence/otlp-wire-privacy-026/tmp-full/\n?? artifacts/evidence/reviewed-diagnostic-031/focused.json\n?? artifacts/evidence/reviewed-diagnostic-031/service-attempt1/terraform-work/\n?? artifacts/evidence/reviewed-diagnostic-031/service-attempt1/terraform.rc\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-focused1/\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-focused2/\n?? artifacts/evidence/reviewed-diagnostic-031/tmp-full1/\n",
+      "recorded_candidate": "e02495a87c9f86572d68715218b5ae25f846bfca",
+      "recorded_fingerprint": "ce1415c03f73b23af1d395ca1a95dbda395a7d8df3c78ef20ed684679381d0c1",
+      "current_fingerprint": "3029962f3583dc729fe08c083b11a279b1c2d251451f617d16c279c37a8d43f4",
+      "current_matches_recorded": false
+    },
+    "p05": {
+      "head": "51c6cceeb93b0a4daa2c2f56a0338880b3e51e40",
+      "existing_changes_preserved": "?? artifacts/evals/live/ledger.sqlite\n?? artifacts/evals/live/ledger.sqlite-shm\n?? artifacts/evals/live/ledger.sqlite-wal\n?? artifacts/evals/live/operations.sqlite\n?? artifacts/evals/live/provider-usage.sqlite\n?? artifacts/evals/live/provider-usage.sqlite-shm\n?? artifacts/evals/live/provider-usage.sqlite-wal\n?? artifacts/evidence/accounted-http-028/tmp-focused1/\n?? artifacts/evidence/accounted-http-028/tmp-full1/\n?? artifacts/evidence/accounted-identity-027/tmp-focused2/\n?? artifacts/evidence/accounted-identity-027/tmp-full1/\n?? artifacts/evidence/accounted-local-services-029/attempt2/inventory-after.json\n?? artifacts/evidence/accounted-local-services-029/attempt2/inventory-before.json\n?? artifacts/evidence/accounted-local-services-029/fake-runtime-2/\n?? artifacts/evidence/accounted-local-services-029/fake-runtime-3/\n?? artifacts/evidence/accounted-local-services-029/fake-runtime/\n?? artifacts/evidence/accounted-local-services-029/full-fake-attempt2/\n?? artifacts/evidence/accounted-local-services-029/full-fake-attempt3/accounted029-product-trace.json\n?? artifacts/evidence/accounted-local-services-029/full-fake/\n?? artifacts/evidence/accounted-local-services-029/tmp-final-focused/\n?? artifacts/evidence/accounted-local-services-029/tmp-focused1/\n?? artifacts/evidence/accounted-local-services-029/tmp-focused2/\n?? artifacts/evidence/accounted-local-services-029/tmp-full1/\n?? artifacts/evidence/accounted-local-services-029/tmp-full2/\n?? artifacts/evidence/accounted-local-services-029/tmp-full3/\n?? artifacts/evidence/accounted-local-services-029/tmp-import-fix/\n",
+      "recorded_candidate": "e8d50e56dfb9569fc43df93b3da3a2861cecda8a",
+      "recorded_fingerprint": "5ded33b09aeeac5ac68457c206e3b7554364e48397018c4940a74a53c6126467",
+      "current_fingerprint": "3a8e9af94f7fd2ddb39fbc407bb293ea5a71f129e79e9e9ddc8ac28eb59e4537",
+      "current_matches_recorded": false
+    }
+  },
+  "provider_usage_by_project": {
+    "p00": {
+      "requests": "68",
+      "input_tokens": "25600",
+      "output_tokens": "6943",
+      "estimated_cost_usd": "0.004002900"
+    },
+    "p01": {
+      "requests": "2",
+      "input_tokens": "463",
+      "output_tokens": "229",
+      "estimated_cost_usd": "0.000103425"
+    },
+    "p02": {
+      "requests": "1",
+      "input_tokens": "141",
+      "output_tokens": "37",
+      "estimated_cost_usd": "0.000021675"
+    },
+    "p03": {
+      "requests": "1",
+      "input_tokens": "93",
+      "output_tokens": "23",
+      "estimated_cost_usd": "0.000013875"
+    },
+    "p04": {
+      "requests": "3",
+      "input_tokens": "397",
+      "output_tokens": "122",
+      "estimated_cost_usd": "0.000066375"
+    },
+    "p05": {
+      "requests": "4",
+      "input_tokens": "1582",
+      "output_tokens": "257",
+      "estimated_cost_usd": "0.000195750"
+    }
+  },
+  "total_provider_attempts": 79,
+  "unknown_provider_reservations": [
+    {
+      "project": "p00",
+      "receipt": "c77e984ea1374694b53c91c67f919a25",
+      "reserved_input": 1475,
+      "reserved_output": 256
+    }
+  ],
+  "logical_original_and_diagnostic": {
+    "p01": [
+      [
+        "local-operation-v1",
+        "reserved",
+        4,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-operation-v1",
+        "completed",
+        4,
+        "incomplete",
+        "unknown",
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "reserved",
+        4,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "completed",
+        4,
+        "incomplete",
+        "unknown",
+        null,
+        null
+      ]
+    ],
+    "p04": [
+      [
+        "local-operation-v1",
+        "reserved",
+        3,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-operation-v1",
+        "completed",
+        3,
+        "incomplete",
+        "unknown",
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "reserved",
+        3,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "local-diagnostic-v1",
+        "completed",
+        3,
+        "ok",
+        null,
+        292,
+        71
+      ]
+    ]
+  },
+  "terminal_guards": {
+    "p01/local-operation-v1": "logical_operation_stopped_requires_review",
+    "p01/local-diagnostic-v1": "reviewed_diagnostic_authority_or_history_invalid",
+    "p04/local-operation-v1": "logical_operation_stopped_requires_review",
+    "p04/local-diagnostic-v1": "reviewed_diagnostic_authority_or_history_invalid"
+  },
+  "policy_sha256": "ac70138a8434a46900cdb68fa51e334df1983bafafa3130ecabb2c02a6bb20c6",
+  "registry_projects": {
+    "p00": "384f921b0e8a4e7db7c5ae0491df3635",
+    "p01": "68c642b5f68e4941822a31bab7711cbb",
+    "p02": "cf56a104cc304f8baa562527885b17e3",
+    "p03": "cf4923f313884d47a3e856a3fb352d01",
+    "p04": "9ee9b9b838c54905a77824c523baa89e",
+    "p05": "aa20b55b14eb400cb5c732e6fae600a5"
+  },
+  "paid_authorization_usd": 0,
+  "actual_billing": "UNKNOWN",
+  "human_quality_holdout_promotion": "PENDING",
+  "provider_accessed": false,
+  "credentials_read": false
+}
