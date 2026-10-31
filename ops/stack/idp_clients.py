@@ -10,7 +10,7 @@ from pathlib import Path
 import ssl
 import sys
 import time
-from urllib.parse import quote, urlencode
+from urllib.parse import quote, urlencode, urlsplit
 from urllib.request import Request, urlopen
 
 REALM = 'supportops'
@@ -24,13 +24,41 @@ def claim(name, config):
             'config': {'access.token.claim': 'true', 'introspection.token.claim': 'true', **config}}
 
 
-def client_document(origin):
+LOOPBACK = {'localhost', '127.0.0.1', '[::1]'}
+
+
+def parse_origins(value):
+    """Comma-separated front origins: exact https, or loopback http. No wildcard, path or empty list."""
+    origins = []
+    for item in value.split(','):
+        item = item.strip().rstrip('/')
+        if not item:
+            continue
+        if '*' in item:
+            raise ValueError(f'wildcard origin refused: {item!r}')
+        parts = urlsplit(item)
+        if parts.scheme not in ('http', 'https') or not parts.hostname:
+            raise ValueError(f'origin must be http(s)://host[:port]: {item!r}')
+        if parts.path or parts.query or parts.fragment or parts.username:
+            raise ValueError(f'origin must not carry a path or credentials: {item!r}')
+        host = f'[{parts.hostname}]' if ':' in parts.hostname else parts.hostname
+        if parts.scheme == 'http' and host not in LOOPBACK:
+            raise ValueError(f'origin must use https unless loopback: {item!r}')
+        if item not in origins:
+            origins.append(item)
+    if not origins:
+        raise ValueError('WEB_ORIGIN needs at least one origin')
+    return origins
+
+
+def client_document(origins):
+    origin = origins[0]
     return {
         'clientId': CLIENT_ID, 'name': 'SupportOps Console', 'enabled': True, 'protocol': 'openid-connect',
         'publicClient': True, 'standardFlowEnabled': True, 'directAccessGrantsEnabled': False,
         'implicitFlowEnabled': False, 'serviceAccountsEnabled': False, 'fullScopeAllowed': True,
-        'rootUrl': origin, 'redirectUris': [origin + '/'], 'webOrigins': [origin],
-        'attributes': {'pkce.code.challenge.method': 'S256', 'post.logout.redirect.uris': origin + '/'},
+        'rootUrl': origin, 'redirectUris': [o + '/' for o in origins], 'webOrigins': list(origins),
+        'attributes': {'pkce.code.challenge.method': 'S256', 'post.logout.redirect.uris': '##'.join(o + '/' for o in origins)},
         'protocolMappers': [
             claim('tenant', {'mapper': 'oidc-usermodel-attribute-mapper', 'user.attribute': 'tenant_id',
                              'claim.name': 'tenant_id', 'jsonType.label': 'String'}),
@@ -63,8 +91,8 @@ class Admin:
         return json.loads(raw) if raw else None
 
 
-def apply_client(admin, origin):
-    wanted = client_document(origin)
+def apply_client(admin, origins):
+    wanted = client_document(origins)
     found = admin.call('GET', f'/clients?clientId={CLIENT_ID}')
     if found:
         client = found[0]['id']
@@ -89,7 +117,7 @@ def apply_client(admin, origin):
 
 
 def main():
-    origin = os.environ['WEB_ORIGIN'].rstrip('/')
+    origins = parse_origins(os.environ['WEB_ORIGIN'])
     ca_file = os.environ.get('IDP_CA_FILE')
     context = ssl.create_default_context(cafile=ca_file) if ca_file else ssl.create_default_context()
     credentials_file = os.environ.get('IDP_CREDENTIALS_FILE')
@@ -105,8 +133,8 @@ def main():
                 print(f'Keycloak admin login failed: {error}', file=sys.stderr)
                 return 1
             time.sleep(3)
-    apply_client(admin, origin)
-    print(f'Applied OIDC client {CLIENT_ID} for {origin}')
+    apply_client(admin, origins)
+    print(f'Applied OIDC client {CLIENT_ID} for {", ".join(origins)}')
     return 0
 
 
