@@ -45,6 +45,7 @@ Consequences: live is a real P05 feature, not a flag, because the existing guard
 ## Open items, owner
 
 1. Review of the copy and the English CV.
-2. `go` per repository, per deploy group.
-3. Other repositories to feature, and whether `newsAR` goes public.
-4. Custom domain, later.
+2. Every stage is authorized for the executor, under the conditions in `docs/harness/portfolio/NEXT-EXECUTOR-PROMPT.pt-BR.md`.
+3. Custom domain, later.
+
+Closed on 2026-10-31: `newsAR` is not used and no other repository is featured. Groq accounts and key rotation confirmed fine by the owner.

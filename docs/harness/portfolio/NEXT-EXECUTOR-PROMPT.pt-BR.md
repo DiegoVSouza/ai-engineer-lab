@@ -1,6 +1,6 @@
 # Prompt de execução — portfólio real do Diego (2026-10-31)
 
-> **Pronto para enviar.** O dono autorizou todas as etapas em 2026-10-31. Só o `newsAR` e os repositórios em destaque seguem pendentes.
+> **Pronto para enviar.** O dono autorizou todas as etapas em 2026-10-31. Sem pendências.
 
 --- INÍCIO DO PROMPT ---
 
@@ -13,7 +13,7 @@ Portfólio de **Diego Vieira Gonçalves de Souza, AI Engineer**, em React, segui
 ## Leitura obrigatória antes de qualquer escrita
 
 1. `AGENTS.md` (regras do lab; valem sobre este prompt em caso de dúvida) e `harness/skills/lab-commits/SKILL.md`.
-2. `projects/p07/.planning/phases/003-real-portfolio/SPEC.md` e `PLAN.md`: **a spec é a fonte de verdade do produto**. Etapas W0 a W11 estão lá.
+2. `projects/p07/.planning/phases/003-real-portfolio/SPEC.md` e `PLAN.md`: **a spec é a fonte de verdade do produto**, inclusive a seção "Project copy", com o texto de cada projeto. Etapas W0 a W11 estão lá.
 3. `docs/decisions/ADR-001-frontend-on-cloudflare-pages.md` e `ADR-002-portfolio-as-product.md`.
 4. `docs/harness/public-readiness.md`: resultado da auditoria.
 5. `docs/knowledge/portfolios-de-ai.md`: pesquisa.
@@ -72,7 +72,7 @@ Autorização dada pelo dono em 2026-10-31 ("quero que ele faça tudo"). Ela val
 4. **As chaves** vão do `.env` para Fly secrets ou variáveis do Cloudflare, sem aparecer em comando, log ou evidência.
 5. **Anúncio não é autorizado.** Publicar não inclui postar em rede social nem contatar ninguém.
 
-Destacar o `newsAR` e outros repos públicos: **PENDENTE**. Deixe marcado como `PENDING` no conteúdo.
+Decidido pelo dono: **não usar o `newsAR`** nem destacar outros repositórios. Contas Groq e rotação entre as chaves confirmadas pelo dono: não reabrir.
 
 Execute tudo acima sem pedir nova confirmação. Uma autorização vale para o que está escrito, não para o que parecer vizinho (regra 9 e seção de continuidade do `AGENTS.md`). Se uma condição falhar, prepare diff e dry-run do que travou e siga para o próximo item independente.
 
@@ -88,7 +88,7 @@ Registre em `docs/harness/portfolio/W1b-findings.md`, com fonte e data:
 
 1. Machines API do Fly: dá para calcular custo sem acordar máquina? Dá para ler estado com token só-leitura? O cost guard é viável?
 2. Créditos pré-pagos do Fly: o que a documentação atual diz. Fórum tem relatos conflitantes.
-3. Groq: limites reais em `console.groq.com/settings/limits` exigem o dono; termos sobre várias organizações; rate limit por organização.
+3. Groq: leia os limites reais dos headers de resposta. Termos e contas já foram confirmados pelo dono.
 4. Ordem mínima de wake para o fluxo do demo, e quais apps podem seguir dormindo.
 5. Turnstile: origem exata para a CSP só em `/demo/`.
 
