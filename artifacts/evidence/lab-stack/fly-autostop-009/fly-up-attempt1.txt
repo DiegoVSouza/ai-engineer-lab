@@ -1,0 +1,26 @@
+ VERSION │ IP                   │ TYPE            │ REGION │ NETWORK │ CREATED AT 
+ v6      │ fdaa:24:282a:0:1::1c │ private ingress │ global │ default │ 0s         
+
+ VERSION │ IP                   │ TYPE            │ REGION │ NETWORK │ CREATED AT 
+ v6      │ fdaa:24:282a:0:1::1d │ private ingress │ global │ default │ 0s         
+
+ VERSION │ IP                   │ TYPE            │ REGION │ NETWORK │ CREATED AT 
+ v6      │ fdaa:24:282a:0:1::1e │ private ingress │ global │ default │ 0s         
+
+ VERSION │ IP                   │ TYPE            │ REGION │ NETWORK │ CREATED AT 
+ v6      │ fdaa:24:282a:0:1::1f │ private ingress │ global │ default │ 0s         
+
+Created private Fly secrets and demo credentials in the local checkpoint directory. Values were not printed.
+Staged 4 secrets for supportops-lab-db. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 1 secrets for supportops-lab-redis. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 6 secrets for supportops-lab-idp. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 4 secrets for supportops-lab-p04. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 9 secrets for supportops-lab-p05. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Staged 6 secrets for supportops-lab-mcp. Secrets have been staged, but not set on VMs. Deploy or update machines in this app for the secrets to take effect.
+Starting supportops-lab-db/app
+[31;1mpower.ps1: [0mC:\estudo\Golpe\lab\ops\fly\deploy.ps1:217[0m
+[31;1m[0m[36;1mLine |[0m
+[31;1m[0m[36;1m[36;1m 217 | [0m       [36;1m& $power -Action Start -ExistingOnly -DryRun:$DryRun -Only $Onl[0m …[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m     | [31;1m       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[31;1m[0m[36;1m[36;1m[0m[36;1m[0m[36;1m[31;1m[31;1m[36;1m     | [31;1mCannot index into a null array.[0m
+exit=1

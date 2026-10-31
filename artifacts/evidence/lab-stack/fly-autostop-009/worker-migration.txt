@@ -1,0 +1,11 @@
+scheduled snapshots:
+ vs_4b1apXwmJMQ9SkmZy5pJL │ created │     8.6 MiB │  1.0 GiB │ 10 minute
+
+Total stored size: 48 MiB
+Sending kill signal to machine 9080ee506ad508...
+9080ee506ad508 has been successfully stopped
+stop=0
+machine 9080ee506ad508 was found and is currently in stopped state, attempting to destroy...
+9080ee506ad508 has been destroyed
+destroy=0
+vol_v3gxjkngoznzn0l4 p05_graph created None

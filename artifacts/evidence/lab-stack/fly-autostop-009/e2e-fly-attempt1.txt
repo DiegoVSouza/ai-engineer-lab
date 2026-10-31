@@ -1,0 +1,40 @@
+
+Running 4 tests using 1 worker
+
+  ✘  1 e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart (17.0s)
+  ✓  2 e2e\console.spec.ts:72:1 › a manual refund runs after approval, with the requested amount (27.4s)
+  ✓  3 e2e\console.spec.ts:101:1 › narrow screen keeps the console usable (4.7s)
+  -  4 e2e\renewal.spec.ts:4:1 › the session renews itself before the access token expires
+
+
+  1) e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart ───────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'Tickets', level: 1 })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'Tickets', level: 1 }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'Tickets', level: 1 })
+
+
+      14 |   await page.locator("#password").fill(secret);
+      15 |   await page.locator("#kc-login").click();
+    > 16 |   await expect(page.getByRole("heading", { level: 1, name: "Tickets" })).toBeVisible();
+         |                                                                          ^
+      17 | }
+      18 |
+      19 | async function expectNoViolations(page: Page) {
+        at signIn (C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:16:74)
+        at C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:33:3
+
+    Error Context: test-results\console-agent-and-approver-bafd2-fund-and-tenants-stay-apart\error-context.md
+
+  1 failed
+    e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart ────────
+  1 skipped
+  2 passed (51.8s)
+exit=1

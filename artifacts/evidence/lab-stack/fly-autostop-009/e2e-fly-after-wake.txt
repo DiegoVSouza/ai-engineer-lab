@@ -1,0 +1,78 @@
+
+Running 4 tests using 1 worker
+
+  ✘  1 e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart (2.0m)
+  ✘  2 e2e\console.spec.ts:72:1 › a manual refund runs after approval, with the requested amount (2.0m)
+  ✘  3 e2e\console.spec.ts:101:1 › narrow screen keeps the console usable (2.0m)
+  -  4 e2e\renewal.spec.ts:4:1 › the session renews itself before the access token expires
+
+
+  1) e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart ───────
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.fill: Test ended.
+    Call log:
+      - waiting for locator('#username')
+
+
+      11 |   await page.goto("/");
+      12 |   await page.getByRole("button", { name: "Entrar" }).click();
+    > 13 |   await page.locator("#username").fill(username);
+         |                                   ^
+      14 |   await page.locator("#password").fill(secret);
+      15 |   await page.locator("#kc-login").click();
+      16 |   await expect(page.getByRole("heading", { level: 1, name: "Tickets" })).toBeVisible({ timeout: 45_000 });
+        at signIn (C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:13:35)
+        at C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:33:3
+
+    Error Context: test-results\console-agent-and-approver-bafd2-fund-and-tenants-stay-apart\error-context.md
+
+  2) e2e\console.spec.ts:72:1 › a manual refund runs after approval, with the requested amount ─────
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.fill: Test ended.
+    Call log:
+      - waiting for locator('#username')
+
+
+      11 |   await page.goto("/");
+      12 |   await page.getByRole("button", { name: "Entrar" }).click();
+    > 13 |   await page.locator("#username").fill(username);
+         |                                   ^
+      14 |   await page.locator("#password").fill(secret);
+      15 |   await page.locator("#kc-login").click();
+      16 |   await expect(page.getByRole("heading", { level: 1, name: "Tickets" })).toBeVisible({ timeout: 45_000 });
+        at signIn (C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:13:35)
+        at C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:78:3
+
+    Error Context: test-results\console-a-manual-refund-ru-32eb0-l-with-the-requested-amount\error-context.md
+
+  3) e2e\console.spec.ts:101:1 › narrow screen keeps the console usable ────────────────────────────
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.fill: Test ended.
+    Call log:
+      - waiting for locator('#username')
+
+
+      11 |   await page.goto("/");
+      12 |   await page.getByRole("button", { name: "Entrar" }).click();
+    > 13 |   await page.locator("#username").fill(username);
+         |                                   ^
+      14 |   await page.locator("#password").fill(secret);
+      15 |   await page.locator("#kc-login").click();
+      16 |   await expect(page.getByRole("heading", { level: 1, name: "Tickets" })).toBeVisible({ timeout: 45_000 });
+        at signIn (C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:13:35)
+        at C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:104:3
+
+    Error Context: test-results\console-narrow-screen-keeps-the-console-usable\error-context.md
+
+  3 failed
+    e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart ────────
+    e2e\console.spec.ts:72:1 › a manual refund runs after approval, with the requested amount ──────
+    e2e\console.spec.ts:101:1 › narrow screen keeps the console usable ─────────────────────────────
+  1 skipped
+exit=1

@@ -1,0 +1,4 @@
+db ['private_v6']
+redis ['private_v6']
+sns ['private_v6']
+jaeger ['private_v6']

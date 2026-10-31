@@ -1,0 +1,7 @@
+13 ['db', 'redis', 'idp', 'jaeger', 'mcp', 'p05', 'web']
+87 ['db', 'redis', 'jaeger', 'mcp', 'web']
+161 ['db', 'redis', 'jaeger', 'web']
+233 ['db', 'redis', 'jaeger']
+306 []
+{"all_stopped": true, "seconds_until_all_stopped": 306, "wake_seconds": 14.0, "after_wake": {"db": ["started"], "redis": ["started"], "idp": ["stopped"], "sns": ["stopped"], "jaeger": ["started"], "mcp": ["stopped"], "p04": ["stopped"], "p05": ["started"], "web": ["started"]}}
+exit=0

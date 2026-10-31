@@ -1,0 +1,79 @@
+{
+  "all_stopped": true,
+  "seconds_until_all_stopped": 306,
+  "wake_seconds": 14.0,
+  "after_wake": {
+    "db": [
+      "started"
+    ],
+    "redis": [
+      "started"
+    ],
+    "idp": [
+      "stopped"
+    ],
+    "sns": [
+      "stopped"
+    ],
+    "jaeger": [
+      "started"
+    ],
+    "mcp": [
+      "stopped"
+    ],
+    "p04": [
+      "stopped"
+    ],
+    "p05": [
+      "started"
+    ],
+    "web": [
+      "started"
+    ]
+  },
+  "samples": [
+    {
+      "seconds": 13,
+      "running": [
+        "db",
+        "redis",
+        "idp",
+        "jaeger",
+        "mcp",
+        "p05",
+        "web"
+      ]
+    },
+    {
+      "seconds": 87,
+      "running": [
+        "db",
+        "redis",
+        "jaeger",
+        "mcp",
+        "web"
+      ]
+    },
+    {
+      "seconds": 161,
+      "running": [
+        "db",
+        "redis",
+        "jaeger",
+        "web"
+      ]
+    },
+    {
+      "seconds": 233,
+      "running": [
+        "db",
+        "redis",
+        "jaeger"
+      ]
+    },
+    {
+      "seconds": 306,
+      "running": []
+    }
+  ]
+}
