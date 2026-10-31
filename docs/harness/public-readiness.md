@@ -32,6 +32,11 @@ Limits: patterns can miss a credential of an unknown format that was never in th
 
 Fast gates only. `check_full.py` and service gates did not run in clean clones. No run was made on Linux, where hosted CI will run. `stack.py checkout` still needs the pinned commits to be pushed.
 
+## Found after the audit
+
+- P05: `artifacts/packages/.gitignore` ignores **all five** wheels in `pyproject.toml`, not only `supportops_async`, which was just the first error.
+- CI: workflows never ran on a clean runner. P06 runs `npm` with no Node setup or `npm ci`; P07 and P08 need the same check. P00–P05 run `check_full.py` with no `uv sync`.
+
 ## Other findings
 
 | Finding | Where | Action |
