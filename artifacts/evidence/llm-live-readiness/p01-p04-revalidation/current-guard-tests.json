@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/harness",
+    "-p",
+    "test_p01_p04_revalidation.py",
+    "-v"
+  ],
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "test_baseline_mutation_is_rejected (test_p01_p04_revalidation.RevalidationTests.test_baseline_mutation_is_rejected) ... ok\ntest_exact_finite_delta_and_other_project_caps (test_p01_p04_revalidation.RevalidationTests.test_exact_finite_delta_and_other_project_caps) ... ok\ntest_expanded_caps_fail_closed_without_reviewed_operation_guard (test_p01_p04_revalidation.RevalidationTests.test_expanded_caps_fail_closed_without_reviewed_operation_guard) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n",
+  "real_history_readonly": "P01/P04 exact authorization/history PASS",
+  "provider_accessed": false
+}

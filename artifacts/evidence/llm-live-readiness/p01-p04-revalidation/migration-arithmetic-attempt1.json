@@ -1,0 +1,8 @@
+{
+  "command": "python: import migrate_p01_p04_revalidation; compare proposed_policy with frozen proposal",
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "exit_code": 0,
+  "output": "PASS exact finite migration arithmetic; no apply",
+  "attempt": 1,
+  "provider_accessed": false
+}

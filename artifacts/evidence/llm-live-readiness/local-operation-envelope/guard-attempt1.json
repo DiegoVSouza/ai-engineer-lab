@@ -1,0 +1,7 @@
+{
+  "exit_code": 1,
+  "command": "uv run --locked --project projects/p00 python -m unittest discover -s scripts/harness -p test_live_free_account.py",
+  "attempt": 1,
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "failure": "protected_operational_allocation"
+}

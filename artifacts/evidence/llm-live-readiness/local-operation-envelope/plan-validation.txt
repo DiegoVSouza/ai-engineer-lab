@@ -1,0 +1,1 @@
+{"status": "PASS_EXACT_OPERATION_DELTA", "old_sha": "a1144017dfc7e44ec4b985a58b061f60321b10b9d7fc43d63897c5c851b80463", "new_sha": "6b678227c7d6ee138ed3495229e8bb365b930cafc9c241dece4df8d42cb6a12c", "provider_accessed": false, "credentials_read": false}

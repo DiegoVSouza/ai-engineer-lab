@@ -1,0 +1,14 @@
+[
+  {
+    "command": "C:\\estudo\\Golpe\\lab\\projects\\p00\\.venv\\Scripts\\python.exe -m unittest discover -s scripts/harness -p test_migrate_free_envelope_plus13.py",
+    "cwd": "C:\\estudo\\Golpe\\lab",
+    "exit_code": 0,
+    "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 18.610s\n\nOK\n"
+  },
+  {
+    "command": "C:\\estudo\\Golpe\\lab\\projects\\p00\\.venv\\Scripts\\python.exe -m unittest discover -s scripts/harness -p test_migrate_local_operation.py",
+    "cwd": "C:\\estudo\\Golpe\\lab",
+    "exit_code": 0,
+    "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 18.292s\n\nOK\n"
+  }
+]

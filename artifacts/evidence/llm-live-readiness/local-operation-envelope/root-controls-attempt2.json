@@ -1,0 +1,7 @@
+{
+  "command": "uv run --locked --project projects/p00 python -m unittest discover -s scripts/harness -p test_live*.py",
+  "exit_code": 0,
+  "attempt": 2,
+  "cwd": "C:\\estudo\\Golpe\\lab",
+  "failure": "guard_new_policy_fixture"
+}

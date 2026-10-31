@@ -1,0 +1,761 @@
+.....EFF.....FEEE......EE...EEEE.EEEEEEEEEFE..EEEFE..EEE.EEE.
+======================================================================
+ERROR: test_actual_overrun_is_retained_and_blocks_new_dispatch (test_live_free_account.AccountTests.test_actual_overrun_is_retained_and_blocks_new_dispatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 313, in test_actual_overrun_is_retained_and_blocks_new_dispatch
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_cumulative_token_and_economic_caps_apply_across_projects (test_live_free_account.AccountTests.test_cumulative_token_and_economic_caps_apply_across_projects) (field='input_tokens')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 224, in test_cumulative_token_and_economic_caps_apply_across_projects
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_cumulative_token_and_economic_caps_apply_across_projects (test_live_free_account.AccountTests.test_cumulative_token_and_economic_caps_apply_across_projects) (field='output_tokens')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 224, in test_cumulative_token_and_economic_caps_apply_across_projects
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_cumulative_token_and_economic_caps_apply_across_projects (test_live_free_account.AccountTests.test_cumulative_token_and_economic_caps_apply_across_projects) (field='estimated_cost_usd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 224, in test_cumulative_token_and_economic_caps_apply_across_projects
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_missing_ledger_or_lost_registry_does_not_reset_usage (test_live_free_account.AccountTests.test_missing_ledger_or_lost_registry_does_not_reset_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 323, in test_missing_ledger_or_lost_registry_does_not_reset_usage
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_missing_or_malformed_rate_headers_do_not_raise_policy_limits (test_live_free_account.AccountTests.test_missing_or_malformed_rate_headers_do_not_raise_policy_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 524, in test_missing_or_malformed_rate_headers_do_not_raise_policy_limits
+    self.reserve(account)
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_quota_stops_all_projects_after_restart (test_live_free_account.AccountTests.test_quota_stops_all_projects_after_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 306, in test_quota_stops_all_projects_after_restart
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_repeated_identity_and_completion_cannot_be_replayed (test_live_free_account.AccountTests.test_repeated_identity_and_completion_cannot_be_replayed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 250, in test_repeated_identity_and_completion_cannot_be_replayed
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_rolling_day_requests_and_provider_remaining_are_not_per_key (test_live_free_account.AccountTests.test_rolling_day_requests_and_provider_remaining_are_not_per_key)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 274, in test_rolling_day_requests_and_provider_remaining_are_not_per_key
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_rolling_minute_and_day_tokens_stop_across_projects (test_live_free_account.AccountTests.test_rolling_minute_and_day_tokens_stop_across_projects)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 261, in test_rolling_minute_and_day_tokens_stop_across_projects
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_slot_reservation_survives_restart_and_blocks_other_dispatch (test_live_free_account.AccountTests.test_slot_reservation_survives_restart_and_blocks_other_dispatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 191, in test_slot_reservation_survives_restart_and_blocks_other_dispatch
+    attempt, slot = account.reserve(
+                    ~~~~~~~~~~~~~~~^
+        "p00", "campaign", "case", 1, 1, 100, 50, credential_slots=(1, 3)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_smaller_authenticated_capacity_and_reset_are_honored (test_live_free_account.AccountTests.test_smaller_authenticated_capacity_and_reset_are_honored)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 282, in test_smaller_authenticated_capacity_and_reset_are_honored
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_switching_project_campaign_and_process_does_not_reset_caps (test_live_free_account.AccountTests.test_switching_project_campaign_and_process_does_not_reset_caps)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 164, in test_switching_project_campaign_and_process_does_not_reset_caps
+    attempt = self.reserve(first)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_unknown_usage_keeps_reservation_and_blocks_until_reconciled (test_live_free_account.AccountTests.test_unknown_usage_keeps_reservation_and_blocks_until_reconciled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 173, in test_unknown_usage_keeps_reservation_and_blocks_until_reconciled
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_unnumbered_credential_has_stable_slot_and_deduplicates (test_live_free_account.AccountTests.test_unnumbered_credential_has_stable_slot_and_deduplicates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 126, in test_unnumbered_credential_has_stable_slot_and_deduplicates
+    attempt, slot = account.reserve('p00', 'fixture', 'case', 1, 1, 100, 50, credential_slots=(0, 3))
+                    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_usage_is_append_only_and_logs_contain_no_provider_content (test_live_free_account.AccountTests.test_usage_is_append_only_and_logs_contain_no_provider_content)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 336, in test_usage_is_append_only_and_logs_contain_no_provider_content
+    attempt = self.reserve(account)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 159, in reserve
+    return account.reserve(project, campaign, case, 1, 1, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_accounted_single_attempt_reconciles_usage_without_content_logs (test_live_provider_transport.ProviderTests.test_accounted_single_attempt_reconciles_usage_without_content_logs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 154, in test_accounted_single_attempt_reconciles_usage_without_content_logs
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_actual_usage_over_input_bound_is_retained_and_stops (test_live_provider_transport.ProviderTests.test_actual_usage_over_input_bound_is_retained_and_stops)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 430, in test_actual_usage_over_input_bound_is_retained_and_stops
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_attested_unnumbered_slot_uses_the_existing_shared_allocation (test_live_provider_transport.ProviderTests.test_attested_unnumbered_slot_uses_the_existing_shared_allocation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 50, in test_attested_unnumbered_slot_uses_the_existing_shared_allocation
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_authentication_failure_does_not_rotate_or_expose_response (test_live_provider_transport.ProviderTests.test_authentication_failure_does_not_rotate_or_expose_response)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 333, in test_authentication_failure_does_not_rotate_or_expose_response
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_http_error_body_timeout_closes_response_and_keeps_reservation (test_live_provider_transport.ProviderTests.test_http_error_body_timeout_closes_response_and_keeps_reservation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 66, in test_http_error_body_timeout_closes_response_and_keeps_reservation
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_invalid_usage_is_not_credited_as_zero (test_live_provider_transport.ProviderTests.test_invalid_usage_is_not_credited_as_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 411, in test_invalid_usage_is_not_credited_as_zero
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_json_generation_failure_keeps_categorical_code_without_failed_content (test_live_provider_transport.ProviderTests.test_json_generation_failure_keeps_categorical_code_without_failed_content)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 356, in test_json_generation_failure_keeps_categorical_code_without_failed_content
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_observed_model_mismatch_stops_all_later_attempts (test_live_provider_transport.ProviderTests.test_observed_model_mismatch_stops_all_later_attempts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 420, in test_observed_model_mismatch_stops_all_later_attempts
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_provider_quota_never_rotates_keys_or_retries (test_live_provider_transport.ProviderTests.test_provider_quota_never_rotates_keys_or_retries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 305, in test_provider_quota_never_rotates_keys_or_retries
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_reservation_preview_checks_limits_without_consuming_or_dispatching (test_live_provider_transport.ProviderTests.test_reservation_preview_checks_limits_without_consuming_or_dispatching)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 222, in test_reservation_preview_checks_limits_without_consuming_or_dispatching
+    self.assertEqual(session.preview(self.envelope)["status"], "approved")
+                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 265, in preview
+    return self.account.preview(
+           ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<5 lines>...
+        output_bound,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 597, in preview
+    self._approve(
+    ~~~~~~~~~~~~~^
+        project,
+        ^^^^^^^^
+    ...<6 lines>...
+        cost,
+        ^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_rotation_survives_new_session_and_never_retries_provider_error (test_live_provider_transport.ProviderTests.test_rotation_survives_new_session_and_never_retries_provider_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 209, in test_rotation_survives_new_session_and_never_retries_provider_error
+    fresh_session().complete(self.envelope)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_selected_numbered_slot_is_durable_before_http (test_live_provider_transport.ProviderTests.test_selected_numbered_slot_is_durable_before_http)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 190, in test_selected_numbered_slot_is_durable_before_http
+    session.complete(self.envelope)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_semantic_output_and_truncation_are_returned_once_for_product_grading (test_live_provider_transport.ProviderTests.test_semantic_output_and_truncation_are_returned_once_for_product_grading)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 402, in test_semantic_output_and_truncation_are_returned_once_for_product_grading
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+ERROR: test_transport_timeout_keeps_full_reservation (test_live_provider_transport.ProviderTests.test_transport_timeout_keeps_full_reservation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 316, in test_transport_timeout_keeps_full_reservation
+    result = session.complete(self.envelope)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_provider_transport.py", line 296, in complete
+    attempt, slot = self.account.reserve(
+                    ~~~~~~~~~~~~~~~~~~~~^
+        self.project,
+        ^^^^^^^^^^^^^
+    ...<6 lines>...
+        credential_slots=tuple(slot for slot, _ in self._key_slots),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 629, in reserve
+    rows = self._approve(
+        project,
+    ...<6 lines>...
+        cost,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 562, in _approve
+    raise AccountBlocked("protected_p00_allocation")
+live_free_account.AccountBlocked: protected_p00_allocation
+
+======================================================================
+FAIL: test_authenticated_preflight_limits_are_conservative_and_in_memory (test_live_free_account.AccountTests.test_authenticated_preflight_limits_are_conservative_and_in_memory)
+----------------------------------------------------------------------
+live_free_account.AccountBlocked: protected_p00_allocation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 530, in test_authenticated_preflight_limits_are_conservative_and_in_memory
+    with self.assertRaisesRegex(AccountBlocked, "free_token_minute_checkpoint"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "free_token_minute_checkpoint" does not match "protected_p00_allocation"
+
+======================================================================
+FAIL: test_authenticated_remaining_capacity_and_reset_apply_before_reservation (test_live_free_account.AccountTests.test_authenticated_remaining_capacity_and_reset_apply_before_reservation)
+----------------------------------------------------------------------
+live_free_account.AccountBlocked: protected_p00_allocation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 544, in test_authenticated_remaining_capacity_and_reset_apply_before_reservation
+    with self.assertRaisesRegex(
+         ~~~~~~~~~~~~~~~~~~~~~~^
+        AccountBlocked, "provider_request_capacity_checkpoint"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+AssertionError: "provider_request_capacity_checkpoint" does not match "protected_p00_allocation"
+
+======================================================================
+FAIL: test_concurrent_projects_cannot_both_reserve (test_live_free_account.AccountTests.test_concurrent_projects_cannot_both_reserve)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 359, in test_concurrent_projects_cannot_both_reserve
+    self.assertEqual(sorted(results), ["blocked", "reserved"])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['blocked', 'blocked'] != ['blocked', 'reserved']
+
+First differing element 1:
+'blocked'
+'reserved'
+
+- ['blocked', 'blocked']
+?              ^^^^^
+
++ ['blocked', 'reserved']
+?              ^^^^^^
+
+
+======================================================================
+FAIL: test_authenticated_remaining_tokens_block_before_provider_http (test_live_provider_transport.ProviderTests.test_authenticated_remaining_tokens_block_before_provider_http)
+----------------------------------------------------------------------
+live_free_account.AccountBlocked: protected_p00_allocation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 251, in test_authenticated_remaining_tokens_block_before_provider_http
+    with self.assertRaisesRegex(
+         ~~~~~~~~~~~~~~~~~~~~~~^
+        AccountBlocked, "provider_token_capacity_checkpoint"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+AssertionError: "provider_token_capacity_checkpoint" does not match "protected_p00_allocation"
+
+======================================================================
+FAIL: test_lower_authenticated_preflight_token_limit_blocks_before_reservation (test_live_provider_transport.ProviderTests.test_lower_authenticated_preflight_token_limit_blocks_before_reservation)
+----------------------------------------------------------------------
+live_free_account.AccountBlocked: protected_p00_allocation
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_provider_transport.py", line 238, in test_lower_authenticated_preflight_token_limit_blocks_before_reservation
+    with self.assertRaisesRegex(AccountBlocked, "free_token_minute_checkpoint"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "free_token_minute_checkpoint" does not match "protected_p00_allocation"
+
+----------------------------------------------------------------------
+Ran 59 tests in 3.279s
+
+FAILED (failures=5, errors=30)

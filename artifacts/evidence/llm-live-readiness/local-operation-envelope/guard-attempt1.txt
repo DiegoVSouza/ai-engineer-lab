@@ -1,0 +1,14 @@
+.........................F......
+======================================================================
+FAIL: test_separate_local_operation_cap_preserves_other_p00_reserves (test_live_free_account.AccountTests.test_separate_local_operation_cap_preserves_other_p00_reserves)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 37, in test_separate_local_operation_cap_preserves_other_p00_reserves
+    with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: AccountBlocked not raised
+
+----------------------------------------------------------------------
+Ran 32 tests in 2.522s
+
+FAILED (failures=1)
