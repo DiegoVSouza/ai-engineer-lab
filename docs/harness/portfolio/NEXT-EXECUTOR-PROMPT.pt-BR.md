@@ -25,7 +25,7 @@ Portfólio de **Diego Vieira Gonçalves de Souza, AI Engineer**, em React, segui
 
 | Repo | HEAD | Observação |
 | --- | --- | --- |
-| lab | `54411e1` + commit deste prompt | Remoto privado `ai-engineer-lab` |
+| lab | commit deste prompt | Remoto privado `ai-engineer-lab` |
 | P00 | `bce4d20` | Privado, 116+ commits sem push. `.git` pertence ao usuário do sandbox do Codex |
 | P01 | `9af1dbc` | Privado, 80+ sem push. Clone limpo falha |
 | P02 | `06dbd3e` | Privado, 29+ sem push |
@@ -33,7 +33,7 @@ Portfólio de **Diego Vieira Gonçalves de Souza, AI Engineer**, em React, segui
 | P04 | `a97f4ff` | Privado, 87+ sem push |
 | P05 | `4b78b9f` | Privado, 63+ sem push. Clone limpo falha |
 | P06 | `1994b4c` | Sem remoto. Clone limpo falha |
-| P07 | `d9f396e` | Sem remoto. Site atual é provisório; a spec o substitui |
+| P07 | último commit: handoff | Sem remoto. Site atual é provisório; a spec o substitui |
 | P08 | `52ed222` | Sem remoto. `colagem-ui` 0.3.0 |
 
 Pronto e verificado localmente: `colagem-ui` (P08) com contraste testado; P06 e P07 sobre o pacote; P05 com CORS por allowlist (`CORS_ALLOWED_ORIGINS`); `ops/stack/idp_clients.py` com várias origens; `ops/pages/deploy.ps1` em dry-run por padrão; MIT em todos os repos; auditoria de segredos limpa.
