@@ -63,10 +63,10 @@ class PagesDeploy(unittest.TestCase):
         deploys = [c for c in self.calls() if c[:2] == ["pages", "deploy"]]
         self.assertEqual(len(deploys), 1)
         call = deploys[0]
-        self.assertEqual(call[call.index("--project-name") + 1], "lab-portfolio")
+        self.assertEqual(call[call.index("--project-name") + 1], "diego-portifolio-ai")
         self.assertEqual(call[call.index("--branch") + 1], "main")
         self.assertIn("dist", call)
-        self.assertIn("DEPLOYED lab-portfolio", result.stdout)
+        self.assertIn("DEPLOYED diego-portifolio-ai", result.stdout)
         self.assertTrue(list((Path(self.directory.name) / "evidence").glob("portfolio-*.json")))
 
     def test_create_project_is_explicit(self):
