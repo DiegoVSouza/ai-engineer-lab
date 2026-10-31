@@ -14,3 +14,4 @@
 /artifacts/evidence/harness-kit/trifecta/
 /artifacts/stack-ca.crt
 /artifacts/evidence/lab-stack/pre-existing-containers.txt
+artifacts/evidence/llm-live-readiness/additional-validation-043/coverage-check/*.whl

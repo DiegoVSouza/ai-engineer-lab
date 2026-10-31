@@ -7,14 +7,14 @@ The lab runs in Fly.io's `iad` region. P00–P03 are reusable libraries and are 
 | App | Purpose | Public access | Idle policy |
 | --- | --- | --- | --- |
 | `supportops-lab-web` | P06 console | `https://supportops-lab-web.fly.dev` | Stops at idle and starts through Fly Proxy |
-| `supportops-lab-p04` | P04 API and worker | API at `https://supportops-lab-p04.fly.dev` | API stops at idle; worker stays on for queue delivery |
-| `supportops-lab-p05` | P05 API and worker | API at `https://supportops-lab-p05.fly.dev` | API stops at idle; worker stays on for queue delivery |
+| `supportops-lab-p04` | P04 API and worker | API at `https://supportops-lab-p04.fly.dev` | API and worker stop at idle; a request wakes them |
+| `supportops-lab-p05` | P05 API and worker | API at `https://supportops-lab-p05.fly.dev` | API and worker stop at idle; a request wakes them |
 | `supportops-lab-mcp` | P05 MCP server | `https://supportops-lab-mcp.fly.dev/mcp` | Stops at idle and starts through Fly Proxy |
-| `supportops-lab-idp` | Keycloak OIDC realm | `https://supportops-lab-idp.fly.dev/realms/supportops` | Always on because APIs introspect tokens against it |
-| `supportops-lab-db` | PostgreSQL 16 + pgvector | Private 6PN only | Always on; 10 GB encrypted volume |
-| `supportops-lab-redis` | Authenticated Redis Streams | Private 6PN only | Always on; 1 GB encrypted volume, AOF enabled |
-| `supportops-lab-sns` | LocalStack SNS compatibility for P04 outbox events | Private 6PN only | Always on; topics are recreated by the ready hook |
-| `supportops-lab-jaeger` | P05 OpenTelemetry receiver and trace UI | Private 6PN only; use `fly proxy` for the UI | Always on to receive spans; trace storage is in memory |
+| `supportops-lab-idp` | Keycloak OIDC realm | `https://supportops-lab-idp.fly.dev/realms/supportops` | Stops at idle; image is prebuilt (`kc.sh build`, `--optimized`), cold start about 22 s |
+| `supportops-lab-db` | PostgreSQL 16 + pgvector | Private 6PN only | Stops at idle; 10 GB encrypted volume |
+| `supportops-lab-redis` | Authenticated Redis Streams | Private 6PN only | Stops at idle; 1 GB encrypted volume, AOF enabled |
+| `supportops-lab-sns` | LocalStack SNS compatibility for P04 outbox events | Private 6PN only | Stops at idle; topics are recreated by the ready hook |
+| `supportops-lab-jaeger` | P05 OpenTelemetry receiver and trace UI | Private 6PN and Flycast; use `fly proxy` for the UI | Stops at idle and starts on a Flycast connection to port 4317; trace storage is in memory |
 
 Database and Redis have no public service bindings. Fly secrets hold all runtime passwords and signing keys. A local copy of the generated demo credentials is kept outside Git in the ACL-restricted checkpoint directory. Rotate those demo passwords before sharing the identity realm broadly.
 
@@ -22,7 +22,7 @@ Database and Redis have no public service bindings. Fly secrets hold all runtime
 
 The API and MCP process groups use shared 1x/256 MB machines and Fly Proxy autostop with zero minimum warm machines. The PostgreSQL app is a self-managed Docker image on our Fly Machine, not Fly Managed Postgres; its volume remains persistent. PostgreSQL has been reduced to 256 MB after observing 126 MiB current memory use for this low-volume lab. Redis, SNS, Jaeger and P04's worker use 256–512 MB; the P05 worker now runs at 256 MB and completed a Redis-backed task after the change. SNS remains at 512 MB after its observed usage reached about 273 MiB. Keycloak was reduced to 1 GB; realm import, health checks, password-grant login and an authenticated P05 API request passed. The workers poll Redis Streams and cannot safely use request-based autostop; stopping them would leave queued work unprocessed.
 
-Using Fly's official list prices checked on 2026-10-23, the always-running machines total about USD 21.34 per 30 days at the current sizes. The three volumes total 12 GB, about USD 1.80 per month, giving an idle baseline near USD 23.14 before stopped root filesystems and network traffic; API/MCP runtime adds compute while active. The earlier estimate of USD 28.93 was wrong: it used outdated machine prices and understated the baseline. Actual billing depends on usage. The 10 GB PostgreSQL volume currently holds about 84 MB; Fly volumes cannot be shrunk in place. Moving it to 1 GB requires a logical database migration and would save about USD 1.35/month.
+Using Fly's official list prices checked on 2026-10-23, the machines total, if they were left running all month, about USD 21.34 per 30 days at the current sizes. The three volumes total 12 GB, about USD 1.80 per month, giving an idle baseline near USD 23.14 before stopped root filesystems and network traffic; API/MCP runtime adds compute while active. The earlier estimate of USD 28.93 was wrong: it used outdated machine prices and understated the baseline. Actual billing depends on usage. The 10 GB PostgreSQL volume currently holds about 84 MB; Fly volumes cannot be shrunk in place. Moving it to 1 GB requires a logical database migration and would save about USD 1.35/month.
 
 ## One-command lifecycle
 
@@ -30,11 +30,23 @@ Using Fly's official list prices checked on 2026-10-23, the always-running machi
 
 The console is published at https://supportops-lab-web.fly.dev with demo accounts and `LLM_MODE=fake`. Stop it with `python scripts/stack.py fly-down` when testing ends, because running machines cost money.
 
-## Power state and stopped cost
+## Idle behavior (accepted 2026-10-31)
 
-At the user's request, all ten Fly Machines are currently stopped, and autostart is disabled on the public APIs and MCP so outside requests cannot wake them. The endpoints stay offline until the stack is started again. Use `.\ops\fly\power.ps1 -Action Start` before a demo and `.\ops\fly\power.ps1 -Action Stop` afterward; let active jobs finish before stopping. The script starts data services and the IdP before the workers and APIs, re-enables public autostart, then disables it again when stopping.
+Every app stops at idle and starts on demand through Fly Proxy or Flycast, so an unused stack costs only volumes and stopped root filesystems. `python scripts/harness/fly_idle_probe.py` watches the stack go idle and times one wake request.
 
-While stopped, the 12 GB of persistent volumes cost about USD 1.80 per month. Current snapshots total about 400 MiB, below Fly's first 10 GB monthly snapshot allowance. The ten stopped machine root filesystems are about 1.2 GB based on deployed image sizes, roughly USD 0.18 per month at Fly's stopped-rootfs price. The estimated idle floor is therefore about USD 2 per month, plus any account-specific usage. Actual billing appears in the Fly dashboard.
+| Check | Result | Evidence |
+| --- | --- | --- |
+| All nine apps stopped after the last request | 671 s | `artifacts/evidence/fly/idle-acceptance/idle-probe.json` |
+| One request wakes the web app to `/readyz` 200 | 16 s | same file |
+| Keycloak cold start with the prebuilt image | 22 s, then 200 in under 1 s | `artifacts/evidence/fly/idp-optimized/cold-start.txt` |
+| Console OIDC client applied after the IdP is healthy | `Applied OIDC client supportops-web` | `artifacts/evidence/fly/idp-optimized/reconcile.txt` |
+| Jaeger Flycast `supportops-lab-jaeger.flycast:4317` from P04 | connected in 0.01 s and started the stopped machine | `artifacts/evidence/fly/jaeger-flycast/flycast.txt` |
+
+The deploy warning "does not have a public or private IP address" for Jaeger is harmless: the app has a private ingress address only.
+
+A worker that is stopped does not consume its Redis stream until something wakes it. Start the whole stack before a demo with `python scripts/stack.py fly-up` or `./ops/fly/deploy.ps1 -Action Reconcile`, and stop it explicitly with `python scripts/stack.py fly-down` or `./ops/fly/power.ps1 -Action Stop`.
+
+While stopped, the 12 GB of persistent volumes cost about USD 1.80 per month. Current snapshots total about 400 MiB, below Fly's first 10 GB monthly snapshot allowance. The stopped machine root filesystems add roughly USD 0.18 per month at Fly's stopped-rootfs price. The estimated idle floor is about USD 2 per month, plus any account-specific usage. Actual billing appears in the Fly dashboard.
 
 ## Backups and restore
 
