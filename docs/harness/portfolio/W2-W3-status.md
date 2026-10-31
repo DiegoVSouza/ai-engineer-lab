@@ -23,3 +23,10 @@ Windows clean clone, fast gate: all nine pass after the fixes. Linux was checked
 - `public_readiness.py` with the CV-free secret files: 0 local credential values in any history, 0 credential patterns. Six findings, the same classes as the earlier audit: four test or mock strings in P01 and P05, two in third-party wheel text kept in the lab history. No new finding.
 - All nine project repositories and the lab were **pushed to private repositories** to get hosted CI. New private repositories: `supportops-console`, `diego-portfolio-ai`, `colagem-ui`.
 - No repository was made public. Visibility stays a separate step, one repository at a time, after its hosted CI is green.
+
+## Update: hosted CI, and what stopped
+
+- Hosted CI on Linux is green for all nine project repositories at their latest commits: P00 `047eef5`, P01 `79f26bf`, P02 `4345ec9`, P03 `20ef0b1`, P04 `0919d41`, P05 `c244e5d`, P06 `a85a521`, P07 `0945c39` (CI for this last one not yet confirmed), P08 `8d42144`. It found real defects that the local Windows runs could not (lab-only imports in P00, P04 and P05, executable bit, missing extras, missing pytest path, Terraform and history depth). Fixes are in each repository.
+- A final `public_readiness.py` run (20 local credential values, all histories): 0 credential values, the same six known findings, no new one.
+- **Blocked, needs the owner:** `diego-portfolio-ai` (P07) history contains partial digits of the owner's phone number in commit `83c2253`, inside a test regex I wrote. HEAD no longer has it. Making that repository public as is would publish those digits. Removing them needs a history rewrite and force push on a private repository that has no other users; the harness denied that action, so it was not done.
+- **Blocked:** the harness also denied `gh repo edit --visibility public`. No repository is public. No Cloudflare project exists and nothing was deployed.
