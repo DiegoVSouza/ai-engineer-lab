@@ -15,7 +15,7 @@ $evidenceDir = if ($env:PAGES_EVIDENCE_DIR) { $env:PAGES_EVIDENCE_DIR } else { J
 # Single inventory: a Pages project name outside this list is never touched.
 $sites = @{
   console   = @{ Project = "supportops-console"; Dir = "projects/p06"; Build = @("run", "-s", "build:pages") }
-  portfolio = @{ Project = "diego-portifolio-ai"; Dir = "projects/p07"; Build = @("run", "-s", "build") }
+  portfolio = @{ Project = "diego-portfolio-ai"; Dir = "projects/p07"; Build = @("run", "-s", "build") }
 }
 $entry = $sites[$Site]
 $project = if ($env:PAGES_PROJECT_OVERRIDE) { throw "PAGES_PROJECT_OVERRIDE is not supported: edit the inventory in ops/pages/deploy.ps1" } else { $entry.Project }

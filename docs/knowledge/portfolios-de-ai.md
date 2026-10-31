@@ -1,6 +1,6 @@
 # Pesquisa: como portfólios de AI mostram projetos
 
-Pesquisa de 2026-10-31 para a fase de portfólio do P07. Li páginas reais de portfólios, além de guias. Decisões derivadas daqui: `docs/decisions/ADR-002-portfolio-as-product.md`. Spec: `projects/p07/.planning/phases/003-real-portfolio/SPEC.md`.
+Pesquisa de 2026-10-31 para a fase de portfólio do P07. Li páginas reais de portfólios, além de guias. Revisado com as decisões do dono (demo sempre live). Decisões derivadas daqui: `docs/decisions/ADR-002-portfolio-as-product.md`. Spec: `projects/p07/.planning/phases/003-real-portfolio/SPEC.md`.
 
 ## Confiabilidade
 

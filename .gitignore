@@ -15,3 +15,5 @@
 /artifacts/stack-ca.crt
 /artifacts/evidence/lab-stack/pre-existing-containers.txt
 artifacts/evidence/llm-live-readiness/additional-validation-043/coverage-check/*.whl
+# personal CV with a phone number
+/*.docx

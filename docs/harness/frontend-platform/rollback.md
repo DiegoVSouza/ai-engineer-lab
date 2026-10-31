@@ -4,7 +4,7 @@ Status: written, not rehearsed. Nothing here has been run against Cloudflare or 
 
 ## Order of the cutover
 
-1. **Owner go and access.** The owner confirms the Pages project names in the inventory of `ops/pages/deploy.ps1` (`supportops-console`, `diego-portifolio-ai`). Done on 2026-10-31: `wrangler whoami` shows `pages (write)`. Project names still need confirmation.
+1. **Owner go and access.** The owner confirms the Pages project names in the inventory of `ops/pages/deploy.ps1` (`supportops-console`, `diego-portfolio-ai`). Done on 2026-10-31: `wrangler whoami` shows `pages (write)`. Project names still need confirmation.
 2. **Release P05 with CORS.** Bump P05 (additive, contract unchanged), rebuild the wheel, update `ops/stack/projects.lock.json`, set `CORS_ALLOWED_ORIGINS=https://<console-project>.pages.dev` in `fly/p05/fly.toml`, `fly deploy`. Check a preflight with `curl -i -X OPTIONS` from the Pages origin.
 3. **Keycloak client.** Run `ops/stack/idp_clients.py` with `WEB_ORIGIN` listing the existing Fly web origin and the Pages origin, so both work during the cutover.
 4. **Publish the fronts.** `ops/pages/deploy.ps1 -Site console -CreateProject` then `-Apply` (the first call without `-Apply` prints the plan). Same for `portfolio`.

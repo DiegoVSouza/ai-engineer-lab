@@ -1,0 +1,190 @@
+{
+  "p00": {
+    "passed": true,
+    "note": "re-run through a Git bundle: local clone refused, .git owned by the Codex sandbox user; uv sync and check_fast exit 0"
+  },
+  "p01": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p01 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p01",
+        "exit": 0,
+        "seconds": 2,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE sync --locked --all-extras",
+        "exit": 0,
+        "seconds": 2,
+        "tail": "Using CPython 3.13.12 interpreter at: C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe\nCreating virtual environment at: .venv\nResolved 221 packages in 57ms\n   Building supportops-agents @ file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p01\n      Built supportops-agents @ file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p01\nPrepared 1 package in 140ms\nInstalled 15 packages in 403ms\n + annotated-types==0.8.0\n + anyio==4.15.1\n + certifi==2026.7.22\n + distro==1.9.0\n + groq==1.7.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + idna==3.20\n + pydantic==2.12.5\n + pydantic-core==2.41.5\n + sniffio==1.3.1\n + supportops-agents==0.1.1 (from file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p01)\n + typing-extensions==4.16.0\n + typing-inspection==0.4.4\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE run python scripts/check_fast.py",
+        "exit": 1,
+        "seconds": 28,
+        "tail": "roup\"\n    ) from error\nsupportops_agents.registry.RunnerUnavailable: llamaindex adapter is INCOMPLETE: sync the 'frameworks' dependency group\n\n======================================================================\nFAIL: test_root_transport_encoder_parity_is_offline_and_utf8 (test_accounted_core.AccountedCoreTests.test_root_transport_encoder_parity_is_offline_and_utf8)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p01\\tests\\test_accounted_core.py\", line 279, in test_root_transport_encoder_parity_is_offline_and_utf8\n    self.assertEqual(result.returncode, 0, result.stderr)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0 : Traceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import sys,json; sys.path.insert(0,sys.argv[1]); from live_provider_transport import encode_payload; payload=json.load(sys.stdin); body,bound,out=encode_payload(payload,{'input_tokens_per_call':2048,'output_tokens_per_call':256}); print(json.dumps({'bound':bound,'output':out}))\n                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'live_provider_transport'\n\n\n----------------------------------------------------------------------\nRan 105 tests in 23.277s\n\nFAILED (failures=1, errors=19)\n\n"
+      }
+    ],
+    "passed": false
+  },
+  "p02": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p02 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p02",
+        "exit": 0,
+        "seconds": 2,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE sync --locked --all-extras",
+        "exit": 0,
+        "seconds": 11,
+        "tail": "Using CPython 3.13.12 interpreter at: C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe\nCreating virtual environment at: .venv\nResolved 15 packages in 1ms\n   Building supportops-ai-toolkit @ file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p02\n      Built supportops-ai-toolkit @ file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p02\nPrepared 1 package in 9.57s\nInstalled 15 packages in 392ms\n + annotated-types==0.8.0\n + anyio==4.15.1\n + certifi==2026.10.23\n + distro==1.9.0\n + groq==1.7.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + idna==3.20\n + pydantic==2.14.1\n + pydantic-core==2.50.1\n + sniffio==1.3.1\n + supportops-ai-toolkit==0.2.0 (from file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p02)\n + typing-extensions==4.16.0\n + typing-inspection==0.4.4\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE run python scripts/check_fast.py",
+        "exit": 0,
+        "seconds": 1,
+        "tail": "check-fast: OK\n"
+      }
+    ],
+    "passed": true
+  },
+  "p03": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p03 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p03",
+        "exit": 0,
+        "seconds": 3,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE sync --locked --all-extras",
+        "exit": 0,
+        "seconds": 9,
+        "tail": "virtual environment at: .venv\nResolved 50 packages in 292ms\n   Building supportops-obs @ file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p03\nDownloading grpcio (5.0MiB)\nDownloading pydantic-core (2.1MiB)\n Downloaded pydantic-core\n Downloaded grpcio\n      Built supportops-obs @ file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p03\nPrepared 3 packages in 5.16s\nInstalled 33 packages in 2.01s\n + annotated-types==0.8.0\n + anyio==4.15.1\n + certifi==2026.10.23\n + colorama==0.4.6\n + distro==1.9.0\n + googleapis-common-protos==1.75.5\n + groq==1.7.0\n + grpcio==1.84.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + idna==3.20\n + iniconfig==2.3.1\n + opentelemetry-api==1.45.1\n + opentelemetry-exporter-otlp-common==0.66b1\n + opentelemetry-exporter-otlp-proto-common==1.45.1\n + opentelemetry-exporter-otlp-proto-grpc==1.45.1\n + opentelemetry-proto==1.45.1\n + opentelemetry-sdk==1.45.1\n + opentelemetry-semantic-conventions==0.66b1\n + packaging==26.3\n + pluggy==1.7.0\n + prometheus-client==0.26.0\n + protobuf==7.36.2\n + pydantic==2.14.1\n + pydantic-core==2.50.1\n + pygments==2.21.0\n + pytest==8.4.2\n + pyyaml==6.0.3\n + sniffio==1.3.1\n + supportops-obs==0.3.1 (from file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p03)\n + typing-extensions==4.16.0\n + typing-inspection==0.4.4\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE run python scripts/check_fast.py",
+        "exit": 0,
+        "seconds": 1,
+        "tail": "check-fast: OK\n"
+      }
+    ],
+    "passed": true
+  },
+  "p04": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p04 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p04",
+        "exit": 0,
+        "seconds": 2,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE sync --locked --all-extras",
+        "exit": 0,
+        "seconds": 16,
+        "tail": "///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p04\nPrepared 1 package in 8.89s\nInstalled 49 packages in 5.47s\n + annotated-doc==0.0.5\n + annotated-types==0.8.0\n + anyio==4.15.1\n + boto3==1.43.114\n + botocore==1.43.114\n + certifi==2026.7.22\n + charset-normalizer==3.5.2\n + click==8.5.0\n + colorama==0.4.6\n + distro==1.9.0\n + fastapi==0.142.4\n + googleapis-common-protos==1.76.0\n + groq==1.7.0\n + h11==0.16.0\n + httpcore==1.0.9\n + httpx==0.28.1\n + idna==3.20\n + iniconfig==2.3.1\n + jmespath==1.1.0\n + opentelemetry-api==1.45.1\n + opentelemetry-exporter-http-transport==0.66b1\n + opentelemetry-exporter-otlp-common==0.66b1\n + opentelemetry-exporter-otlp-proto-common==1.45.1\n + opentelemetry-exporter-otlp-proto-http==1.45.1\n + opentelemetry-proto==1.45.1\n + opentelemetry-sdk==1.45.1\n + opentelemetry-semantic-conventions==0.66b1\n + packaging==26.3\n + pluggy==1.7.0\n + protobuf==7.36.2\n + psycopg==3.2.10\n + psycopg-binary==3.2.10\n + pydantic==2.14.1\n + pydantic-core==2.50.1\n + pygments==2.21.0\n + pytest==9.1.1\n + python-dateutil==2.9.0.post0\n + redis==6.4.0\n + requests==2.34.2\n + s3transfer==0.19.2\n + six==1.17.0\n + sniffio==1.3.1\n + starlette==1.8.0\n + supportops-async==0.1.4 (from file:///C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p04)\n + typing-extensions==4.16.0\n + typing-inspection==0.4.4\n + tzdata==2026.5\n + urllib3==2.8.0\n + uvicorn==0.46.0\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE run python scripts/check_fast.py",
+        "exit": 0,
+        "seconds": 4,
+        "tail": "artifact=supportops_async-0.1.4-py3-none-any.whl\nartifact_sha256=fefb871993591cabe7f9baba132e9f430ddbd65dd730c6789e22dc86d4d87c3f\nsource_commit=f4b5df828b397e7ecbb9fa87c0ef77485d829dca\ndependency_lock_sha256=61eafa0524fe91863f71c9b234f8acb992f7483b2c46af20f340f49311fa0cc2\nfastapi_requirement=fastapi<0.143.0,>=0.137.1\nartifact-lock: PASS\npython -m compileall -q supportops_async scripts: exit=0\nuv lock --check: exit=0\npython scripts/verify_artifact_lock.py: exit=0\ncheck-fast: PASS\nResolved 49 packages in 1ms\n"
+      }
+    ],
+    "passed": true
+  },
+  "p05": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p05 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p05",
+        "exit": 0,
+        "seconds": 3,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE sync --locked --all-extras",
+        "exit": 2,
+        "seconds": 0,
+        "tail": "Using CPython 3.13.12 interpreter at: C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe\nCreating virtual environment at: .venv\nerror: Failed to generate package metadata for `supportops-async==0.1.4 @ path+artifacts/packages/supportops_async-0.1.4-py3-none-any.whl`\n  Caused by: Failed to read from the distribution cache\n  Caused by: failed to query metadata of file `C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p05\\artifacts\\packages\\supportops_async-0.1.4-py3-none-any.whl`: O sistema n\u00c3\u00a3o pode encontrar o arquivo especificado. (os error 2)\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\.local\\bin\\uv.EXE run python scripts/check_fast.py",
+        "exit": 2,
+        "seconds": 0,
+        "tail": "error: Failed to generate package metadata for `supportops-async==0.1.4 @ path+artifacts/packages/supportops_async-0.1.4-py3-none-any.whl`\n  Caused by: Failed to read from the distribution cache\n  Caused by: failed to query metadata of file `C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p05\\artifacts\\packages\\supportops_async-0.1.4-py3-none-any.whl`: O sistema n\u00c3\u00a3o pode encontrar o arquivo especificado. (os error 2)\n"
+      }
+    ],
+    "passed": false
+  },
+  "p06": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p06 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p06",
+        "exit": 0,
+        "seconds": 1,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Program Files\\nodejs\\npm.CMD ci --ignore-scripts",
+        "exit": 0,
+        "seconds": 28,
+        "tail": "\nadded 227 packages, and audited 228 packages in 27s\n\n59 packages are looking for funding\n  run `npm fund` for details\n\n13 moderate severity vulnerabilities\n\nTo address issues that do not require attention, run:\n  npm audit fix\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force\n\nRun `npm audit` for details.\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe scripts/check_fast.py",
+        "exit": 1,
+        "seconds": 29,
+        "tail": "lint: exit 0\ntypecheck: exit 0\ncontract:check: exit 1\ncheck-fast: FAIL, run npm run contract:check and fix the first error\ncontract: src/api/schema.d.ts is stale; run npm run contract:gen\n"
+      }
+    ],
+    "passed": false
+  },
+  "p07": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p07 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p07",
+        "exit": 0,
+        "seconds": 1,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Program Files\\nodejs\\npm.CMD ci --ignore-scripts",
+        "exit": 0,
+        "seconds": 20,
+        "tail": "\nadded 199 packages, and audited 200 packages in 19s\n\n53 packages are looking for funding\n  run `npm fund` for details\n\n11 moderate severity vulnerabilities\n\nTo address issues that do not require attention, run:\n  npm audit fix\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force\n\nRun `npm audit` for details.\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe scripts/check_fast.py",
+        "exit": 0,
+        "seconds": 40,
+        "tail": "9c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p07\n\n\n Test Files  2 passed (2)\n      Tests  20 passed (20)\n   Start at  14:39:42\n   Duration  16.46s (environment 54%, tests 33%, setup 7%, import 4%, transform 2%)\n\nlint: exit 0\ntypecheck: exit 0\ncatalog:check: exit 0\ntest: exit 0\ncheck-fast: OK\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\n"
+      }
+    ],
+    "passed": true
+  },
+  "p08": {
+    "steps": [
+      {
+        "command": "git clone --quiet C:\\estudo\\Golpe\\lab\\projects\\p08 C:\\Users\\dvsdi\\AppData\\Local\\Temp\\claude\\C--estudo-Golpe-lab\\7b49c003-acc4-446d-9beb-406b8c985d39\\scratchpad\\clones\\p08",
+        "exit": 0,
+        "seconds": 1,
+        "tail": ""
+      },
+      {
+        "command": "C:\\Program Files\\nodejs\\npm.CMD ci --ignore-scripts",
+        "exit": 0,
+        "seconds": 24,
+        "tail": "\nadded 198 packages, and audited 199 packages in 23s\n\n53 packages are looking for funding\n  run `npm fund` for details\n\n11 moderate severity vulnerabilities\n\nTo address issues that do not require attention, run:\n  npm audit fix\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force\n\nRun `npm audit` for details.\n"
+      },
+      {
+        "command": "C:\\Users\\dvsdi\\AppData\\Local\\Programs\\Python\\Python313\\python.exe scripts/check_fast.py",
+        "exit": 0,
+        "seconds": 32,
+        "tail": "\n RUN  v5.0.5 C:/Users/dvsdi/AppData/Local/Temp/claude/C--estudo-Golpe-lab/7b49c003-acc4-446d-9beb-406b8c985d39/scratchpad/clones/p08\n\n\n Test Files  2 passed (2)\n      Tests  40 passed (40)\n   Start at  14:40:45\n   Duration  10.97s (environment 63%, tests 16%, setup 13%, import 6%, transform 2%)\n\nlint: exit 0\ntypecheck: exit 0\ntest: exit 0\ncheck-fast: OK\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\nNot implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package\n"
+      }
+    ],
+    "passed": true
+  }
+}
