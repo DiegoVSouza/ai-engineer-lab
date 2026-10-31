@@ -1,0 +1,12 @@
+12 ['db', 'redis', 'jaeger', 'p04']
+85 ['db', 'redis', 'jaeger', 'p04']
+158 ['db', 'redis', 'jaeger', 'p04']
+231 ['db', 'redis', 'jaeger', 'p04']
+303 ['db', 'redis', 'jaeger', 'p04']
+377 ['db', 'redis', 'jaeger', 'p04']
+451 ['db', 'redis', 'jaeger', 'p04']
+524 ['db', 'redis']
+598 ['db', 'redis']
+671 []
+{"all_stopped": true, "seconds_until_all_stopped": 671, "wake_seconds": 16.0, "after_wake": {"db": ["started"], "redis": ["started"], "idp": ["stopped"], "sns": ["stopped"], "jaeger": ["started"], "mcp": ["stopped"], "p04": ["stopped"], "p05": ["started"], "web": ["started"]}}
+exit=0
