@@ -1,0 +1,59 @@
+
+Running 2 tests using 1 worker
+
+  ✘  1 e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart (2.0s)
+  ✘  2 e2e\console.spec.ts:71:1 › narrow screen keeps the console usable (2.0m)
+
+
+  1) e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart ───────
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    - Array []
+    + Array [
+    +   "landmark-one-main: html",
+    +   "page-has-heading-one: html",
+    + ]
+
+      19 | async function expectNoViolations(page: Page) {
+      20 |   const result = await new AxeBuilder({ page }).analyze();
+    > 21 |   expect(result.violations.map((violation) => `${violation.id}: ${violation.nodes[0]?.target}`)).toEqual([]);
+         |                                                                                                  ^
+      22 | }
+      23 |
+      24 | test("agent and approver complete a refund, and tenants stay apart", async ({ browser }) => {
+        at expectNoViolations (C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:21:98)
+        at C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:31:3
+
+    Error Context: test-results\console-agent-and-approver-bafd2-fund-and-tenants-stay-apart\error-context.md
+
+  2) e2e\console.spec.ts:71:1 › narrow screen keeps the console usable ─────────────────────────────
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.fill: Test ended.
+    Call log:
+      - waiting for locator('#username')
+        - waiting for "https://supportops-lab-idp.fly.dev/realms/supportops/protocol/openid-connect/auth?client_id=supportops-web&redirect_uri=https%3A%2F%2Fsupportops-lab-web.fly.dev%2F&response_type=code&scope=openid+tic…" navigation to finish...
+        - navigated to "https://supportops-lab-idp.fly.dev/realms/supportops/protocol/openid-connect/auth?client_id=supportops-web&redirect_uri=https%3A%2F%2Fsupportops-lab-web.fly.dev%2F&response_type=code&scope=openid+tic…"
+
+
+      11 |   await page.goto("/");
+      12 |   await page.getByRole("button", { name: "Entrar" }).click();
+    > 13 |   await page.locator("#username").fill(username);
+         |                                   ^
+      14 |   await page.locator("#password").fill(secret);
+      15 |   await page.locator("#kc-login").click();
+      16 |   await expect(page.getByRole("heading", { level: 1, name: "Tickets" })).toBeVisible();
+        at signIn (C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:13:35)
+        at C:\estudo\Golpe\lab\projects\p06\e2e\console.spec.ts:74:3
+
+    Error Context: test-results\console-narrow-screen-keeps-the-console-usable\error-context.md
+
+  2 failed
+    e2e\console.spec.ts:24:1 › agent and approver complete a refund, and tenants stay apart ────────
+    e2e\console.spec.ts:71:1 › narrow screen keeps the console usable ──────────────────────────────
+exit=1

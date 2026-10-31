@@ -1,0 +1,14 @@
+healthz 200 ok
+
+readyz 504 <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+<hr><center>nginx</center>
+</body>
+config.json 200 {"oidcIssuer":"https://supportops-lab-idp.fly.dev/realms/supportops","oidcClientId":"supportops-web"}
+
+HTTP/1.1 200 OK
+content-security-policy: default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self' https://supportops-lab-idp.fly
+x-content-type-options: nosniff
+api-no-token 401

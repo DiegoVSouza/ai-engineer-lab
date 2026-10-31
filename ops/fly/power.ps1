@@ -141,10 +141,10 @@ $startOrder = @(
   @{ App = "supportops-lab-jaeger"; Processes = @("app"); Check = $false },
   @{ App = "supportops-lab-p04"; Processes = @("worker"); Check = $false },
   @{ App = "supportops-lab-p05"; Processes = @("worker"); Check = $false },
-  @{ App = "supportops-lab-p04"; Processes = @("app"); Check = $true },
-  @{ App = "supportops-lab-p05"; Processes = @("app"); Check = $true },
-  @{ App = "supportops-lab-mcp"; Processes = @("app"); Check = $true },
-  @{ App = "supportops-lab-web"; Processes = @("app"); Check = $true }
+  @{ App = "supportops-lab-p04"; Processes = @("app"); Check = $false },
+  @{ App = "supportops-lab-p05"; Processes = @("app"); Check = $false },
+  @{ App = "supportops-lab-mcp"; Processes = @("app"); Check = $false },
+  @{ App = "supportops-lab-web"; Processes = @("app"); Check = $false }
 )
 
 $stopOrder = @(

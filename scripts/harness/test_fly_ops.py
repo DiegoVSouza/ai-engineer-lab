@@ -47,7 +47,7 @@ class FlyOperatorScripts(unittest.TestCase):
         self.log = base / "calls.jsonl"
         self.log.touch()
         self.env = {**os.environ, "FLY_BIN": str(wrapper), "FAKE_FLY_LOG": str(self.log),
-                    "FLY_SECRETS_DIR": str(base / "private"), "FLY_EVIDENCE_DIR": str(base / "evidence")}
+                    "FLY_SKIP_PROBE": "1", "FLY_SECRETS_DIR": str(base / "private"), "FLY_EVIDENCE_DIR": str(base / "evidence")}
 
     def run_script(self, script, *arguments, **overrides):
         return subprocess.run([PWSH, "-NoProfile", "-File", str(script), *arguments], cwd=ROOT,
@@ -130,6 +130,19 @@ class FlyOperatorScripts(unittest.TestCase):
         self.assertEqual(stopped[0], "supportops-lab-web")
         result = self.run_script(DEPLOY, "-Action", "Up", "-DryRun")
         self.assertIn("idp_clients.py", result.stdout)
+
+    def test_reconcile_starts_without_deploying(self):
+        result = self.run_script(DEPLOY, "-Action", "Reconcile", "-SkipSecrets")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertFalse(any(call[0] == "deploy" for call in self.calls()))
+        result = self.run_script(DEPLOY, "-Action", "Reconcile", "-DryRun")
+        self.assertIn("idp_clients.py", result.stdout)
+        self.assertIn("probe public URLs", result.stdout)
+
+    def test_autostop_apps_are_not_judged_by_machine_checks(self):
+        text = POWER.read_text(encoding="utf-8")
+        for app in ("p04", "p05", "mcp", "web"):
+            self.assertIn(f'App = "supportops-lab-{app}"; Processes = @("app"); Check = $false', text)
 
     def test_failed_fly_call_returns_non_zero_and_stops(self):
         result = self.run_script(DEPLOY, "-Action", "Up", "-SkipSecrets", FAKE_FLY_FAIL="deploy")

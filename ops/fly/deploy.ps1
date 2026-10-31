@@ -9,13 +9,15 @@ Up     Prepare secrets once, create missing stack apps and volumes, wake existin
 Down   Stop every machine and disable public autostart. Volumes survive and are
        listed. Nothing is deleted unless -DestroyData is confirmed.
 Status Report machines and volumes per app without changing anything.
+Reconcile  Finish Up without rebuilding: start machines, apply the console OIDC
+       client and probe the public URLs. Use it after a partial Up.
 Stage, Build and Deploy remain available as the individual steps of Up.
 
 Only apps in ops/fly/stack-apps.ps1 can be touched. Up and Down spend real money
 and change a public deployment; preview them with -DryRun.
 
 .PARAMETER Action
-Up, Down, Status, Stage, Build or Deploy.
+Up, Down, Status, Reconcile, Stage, Build or Deploy.
 
 .PARAMETER Only
 Restrict the action to these stack apps.
@@ -40,7 +42,7 @@ pwsh -File ops/fly/deploy.ps1 -Action Up -DryRun
 pwsh -File ops/fly/deploy.ps1 -Action Down
 #>
 param(
-  [ValidateSet("Up", "Down", "Status", "Stage", "Build", "Deploy")]
+  [ValidateSet("Up", "Down", "Status", "Reconcile", "Stage", "Build", "Deploy")]
   [string]$Action = "Build",
   [string[]]$Only = @(),
   [switch]$DryRun,
@@ -126,6 +128,43 @@ function Invoke-ClientSync {
   }
 }
 
+# Public apps stop at idle, so machine state cannot prove health. A request wakes them.
+function Invoke-Probe {
+  if ($DryRun) {
+    Write-Output "DRY-RUN probe public URLs"
+    return
+  }
+  if ($env:FLY_SKIP_PROBE) { return }
+  $urls = @(
+    "https://supportops-lab-web.fly.dev/readyz",
+    "https://supportops-lab-p05.fly.dev/readyz",
+    "https://supportops-lab-p04.fly.dev/openapi.json"
+  )
+  foreach ($url in $urls) {
+    $deadline = [DateTime]::UtcNow.AddSeconds(120)
+    while ($true) {
+      try {
+        $status = (Invoke-WebRequest -Uri $url -TimeoutSec 30 -SkipHttpErrorCheck).StatusCode
+      }
+      catch {
+        $status = 0
+      }
+      if ($status -eq 200) {
+        Write-Output "ready: $url"
+        break
+      }
+      if ([DateTime]::UtcNow -gt $deadline) { throw "$url answered $status instead of 200." }
+      Start-Sleep -Seconds 5
+    }
+  }
+}
+
+function Invoke-Reconcile {
+  & $power -Action Start -DryRun:$DryRun -Only $Only
+  Invoke-ClientSync
+  Invoke-Probe
+}
+
 function Write-PreservedVolumes {
   foreach ($app in $apps) {
     $volumes = Read-FlyJson -Arguments @("volumes", "list", "--app", $app.Name, "--json") -AllowMissing
@@ -163,12 +202,12 @@ try {
     "Build" { Invoke-Build }
     "Deploy" { Invoke-Deploy }
     "Status" { & $power -Action Status -Only $Only }
+    "Reconcile" { Invoke-Reconcile }
     "Up" {
       Invoke-Stage
       & $power -Action Start -ExistingOnly -DryRun:$DryRun -Only $Only
       Invoke-Deploy
-      & $power -Action Start -DryRun:$DryRun -Only $Only
-      Invoke-ClientSync
+      Invoke-Reconcile
       Write-Output "Up finished. Volumes and machines:"
       & $power -Action Status -Only $Only
     }

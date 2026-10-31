@@ -21,7 +21,7 @@ Local e Fly têm a mesma interface: `python scripts/stack.py up` e `down`, `fly-
 
 ## O que ainda não está pronto
 
-O sistema não está pronto para clientes reais. A lista concreta fica em [production-readiness.md](../harness/lab-stack/production-readiness.md). Qualidade de modelo, avaliação humana, holdout e promoção seguem adiados por decisão do usuário. O console no Fly nunca foi publicado.
+O sistema não está pronto para clientes reais. A lista concreta fica em [production-readiness.md](../harness/lab-stack/production-readiness.md). Qualidade de modelo, avaliação humana, holdout e promoção seguem adiados por decisão do usuário. O console foi publicado no Fly em 2026-10-31 para teste, com dados sintéticos e contas de demonstração.
 
 ## Resposta de entrevista
 

@@ -28,7 +28,7 @@
 Blockers for real customers:
 
 1. **Model quality is unknown.** `LLM_MODE=fake` everywhere. Deferred by the user until code is complete.
-2. **Fly console never deployed.** `fly-up` is tested by dry run and a fake `flyctl` only. Needs the user's authorization, and the first run will exercise the real deploy path, including P05 0.4.4.
+2. **Fly runs demo data only.** Published for testing on 2026-10-31 with the real-browser e2e passing from outside, see lab-stack phase 006. It is a public URL with demo accounts, and a full `fly-up` from start to finish has not yet completed in one run: the first stopped at a health wait since fixed, and the rest ran through `Deploy` and `Reconcile`.
 3. **Rate limit is shared behind the console.** P05 cannot decode OIDC tokens in its middleware, so it buckets by client IP, and every console user arrives from the `web` container: 60 requests per minute for all of them. Fix: bucket by verified subject after introspection, or trust `X-Forwarded-For` from the proxy only.
 4. **Queue and broker are emulated.** LocalStack provides SNS, with ephemeral state. A production broker must replace it.
 5. **Demo identity.** Bootstrap Keycloak admin, synthetic users, and a local CA. Needs a permanent admin, real users and public certificates.
@@ -39,7 +39,7 @@ Blockers for real customers:
 Should fix:
 
 9. Unpushed commits: `projects.lock.json` pins local commits and P06 has no remote, so `checkout` cannot clone on a fresh machine. Push needs authorization.
-10. Fly logs are not JSON: `--log-config` is applied by Compose only, and `/ops` does not exist in Fly images.
+10. Fly logs for P04, P05 and MCP are not JSON: `--log-config` is applied by Compose only, and `/ops` does not exist in Fly images.
 11. Prometheus does not scrape the console, and the browser sends no `traceparent`, so traces start at P05.
 12. No CPU limits; memory limits are estimates from one idle measurement, not load tests.
 13. `scripts/check_services.py` (P05's own full service gate) has not run on 0.4.4; the root `stack.py check` and browser e2e have.

@@ -1,0 +1,21 @@
+Starting supportops-lab-db/app
+Starting supportops-lab-redis/app
+Starting supportops-lab-idp/app
+Starting supportops-lab-sns/app
+Starting supportops-lab-jaeger/app
+Starting supportops-lab-p04/worker
+Starting supportops-lab-p05/worker
+Starting supportops-lab-p04/app
+Starting supportops-lab-p05/app
+Starting supportops-lab-mcp/app
+2870421c554548 has been started
+Waiting up to 5m0s for machine 2870421c554548 to reach "started"...
+Machine 2870421c554548 reached state "started"
+Starting supportops-lab-web/app
+8ed9102b21dd48 has been started
+Waiting up to 5m0s for machine 8ed9102b21dd48 to reach "started"...
+Machine 8ed9102b21dd48 reached state "started"
+Applied OIDC client supportops-web for https://supportops-lab-web.fly.dev
+ready: https://supportops-lab-web.fly.dev/readyz
+ready: https://supportops-lab-p05.fly.dev/readyz
+ready: https://supportops-lab-p04.fly.dev/openapi.json

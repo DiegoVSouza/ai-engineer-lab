@@ -33,6 +33,8 @@ function Get-StackApps {
   param([string[]]$Only = @())
 
   if ($Only.Count -eq 0) { return $script:StackApps }
+  # pwsh -File passes a comma list as one string.
+  $Only = @($Only | ForEach-Object { $_ -split "," })
   Assert-StackApp -App $Only
   @($script:StackApps | Where-Object { $Only -contains $_.Name })
 }
