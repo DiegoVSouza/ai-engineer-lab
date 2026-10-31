@@ -42,6 +42,8 @@ Status: direction from the owner on 2026-10-31; items marked **owner** are open.
 
 Consequences: live is a real P05 feature, not a flag, because the existing guards refuse unaccounted calls and the live refund workflow. Those guards stay until the accounted path replaces them. P00's protected budget is untouched. Public text reaches a real model, so the triage stays tool-free and refunds simulated.
 
+23. **Own `FlowDiagram` on the site, Mermaid in READMEs.** ELK runs at build time and React draws the SVG. Measured: Mermaid and inline D2 break the strict CSP, and React Flow costs 60 KB for pan and zoom nobody needs. See `docs/knowledge/diagramas-no-portfolio.md`.
+
 ## Open items, owner
 
 1. Review of the copy and the English CV.

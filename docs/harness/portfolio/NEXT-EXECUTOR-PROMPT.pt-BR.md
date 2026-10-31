@@ -16,7 +16,7 @@ Portfólio de **Diego Vieira Gonçalves de Souza, AI Engineer**, em React, segui
 2. `projects/p07/.planning/phases/003-real-portfolio/SPEC.md` e `PLAN.md`: **a spec é a fonte de verdade do produto**, inclusive a seção "Project copy", com o texto de cada projeto. Etapas W0 a W11 estão lá.
 3. `docs/decisions/ADR-001-frontend-on-cloudflare-pages.md` e `ADR-002-portfolio-as-product.md`.
 4. `docs/harness/public-readiness.md`: resultado da auditoria.
-5. `docs/knowledge/portfolios-de-ai.md`: pesquisa.
+5. `docs/knowledge/portfolios-de-ai.md` e `docs/knowledge/diagramas-no-portfolio.md`: pesquisa.
 6. `docs/harness/frontend-platform/`: `SPEC`, `PLAN`, `VERIFY`, `rollback.md`.
 7. `DESIGN_SYSTEM_COLAGEM_URBANA_NOITE.md`.
 8. `AGENTS.md`, `docs/harness/progress.md` e `docs/harness/feature_list.json` de cada projeto antes de editá-lo.
@@ -123,7 +123,7 @@ Guardas `accounted_guard_required` (`agents/live_groq.py`) e `live refund/approv
 
 ### W5 a W7 e W9 — produto
 
-Conforme a spec. Faça o flagship completo antes dos demais cases. O conteúdo atual do P07 diz "seven projects": substitua. Número de projeto só com registro `Evidence`; dado do CV só em `profile.ts`, rotulado como carreira. Republicar `colagem-ui` 0.4.0 corrige o `UNLICENSED` no tarball usado por P06 e P07. Atualize `sources.lock.json` em ambos.
+Conforme a spec, incluindo a seção "Flow diagrams": cada projeto tem um `FlowDiagram` com layout ELK no build, SVG em React, walkthrough, cenários de falha com evidência e versão em lista. **Não use Mermaid, D2 nem React Flow no site**: a avaliação com medições está em `docs/knowledge/diagramas-no-portfolio.md`. Mermaid fica só nos READMEs, exportado da mesma fonte. `elkjs` nunca entra no bundle do navegador. Faça o flagship completo antes dos demais cases. O conteúdo atual do P07 diz "seven projects": substitua. Número de projeto só com registro `Evidence`; dado do CV só em `profile.ts`, rotulado como carreira. Republicar `colagem-ui` 0.4.0 corrige o `UNLICENSED` no tarball usado por P06 e P07. Atualize `sources.lock.json` em ambos.
 
 Copy em inglês e pt-BR, primeira pessoa, específica, sem adjetivo onde cabe número. O CV em inglês é rascunho até o dono revisar.
 
