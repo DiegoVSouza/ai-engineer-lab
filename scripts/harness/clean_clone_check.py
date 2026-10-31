@@ -29,8 +29,16 @@ def check(name: str, base: Path, timeout: int) -> dict:
     source = ROOT / "projects" / name
     target = base / name
     env = {key: value for key, value in os.environ.items() if key not in {"VIRTUAL_ENV", "PYTHONPATH"}}
-    steps = [run(["git", "clone", "--quiet", str(source), str(target)], base, env, 120)]
-    if steps[0]["exit"] != 0:
+    if name == "p00":
+        # P00's .git belongs to another Windows user, so a direct clone is refused. A bundle avoids safe.directory.
+        bundle = base / f"{name}.bundle"
+        steps = [run(["git", "-C", str(source), "bundle", "create", str(bundle), "HEAD"], base, env, 300),
+                 run(["git", "clone", "--quiet", str(bundle), str(target)], base, env, 300)]
+        if steps[0]["exit"] != 0:
+            return {"steps": steps, "passed": False}
+    else:
+        steps = [run(["git", "clone", "--quiet", str(source), str(target)], base, env, 120)]
+    if steps[-1]["exit"] != 0:
         return {"steps": steps, "passed": False}
     if (target / "package.json").exists():
         steps.append(run([shutil.which("npm") or "npm", "ci", "--ignore-scripts"], target, env, timeout))
