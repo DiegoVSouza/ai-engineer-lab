@@ -18,7 +18,7 @@ Status: direction from the owner on 2026-10-31; items marked **owner** are open.
 9. **Every number is an evidence record** with mode (`fake`, `replay`, `live`), command, exit code, commit and a permalink. A number without one fails the build. A `fake` result is never shown as model quality.
 10. **The demo is always live** (revised, see below). Recorded live runs are the labelled fallback, never a silent substitute.
 11. **Prerendered real routes instead of hash routes,** so pages are indexable, shareable with a preview, and readable without JavaScript, as the design system requires.
-12. **Level 1 stays.** Level 2 (Three.js) is a later phase, after the content is verified.
+12. **Level 2 on the portfolio, now** (revised by the owner). Three.js scene with the level 1 layers as fallback. P06 stays level 0.
 13. **AI assistance is disclosed.** The projects were built with coding agents under the lab's harness. Hiding that would be false, and directing agents under gates is itself the skill on show.
 14. **Stay on Pages, with Pages Functions for dynamic data.** Cloudflare's guidance and plugin recommend Workers + Static Assets for new sites. This is a deliberate deviation: the owner chose Pages, it gives the short `pages.dev` URL, Functions cover the need, and `_headers` carries over. Cron needs one small separate Worker.
 

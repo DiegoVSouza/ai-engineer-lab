@@ -9,8 +9,8 @@ Avaliação de 2026-10-31 para mostrar como cada projeto funciona. Medições: `
 ## Restrições que decidem
 
 1. CSP estrita: `style-src 'self'`, sem `unsafe-inline`.
-2. No máximo 100 KB gzip de JS inicial por rota.
-3. Conteúdo legível sem JavaScript (princípio 7 do design system).
+2. No máximo 100 KB gzip de JS inicial por rota. O 3D vai em chunk separado, de até 500 KB.
+3. Texto já presente no HTML, para aparecer antes do bundle e se ele falhar (princípio 7 do design system). Isso é fallback: o site usa React e JavaScript à vontade.
 4. Só tokens: a aparência precisa ser colagem, não o tema de uma biblioteca.
 5. Movimento só em `transform` e `opacity`, respeitando `prefers-reduced-motion`.
 

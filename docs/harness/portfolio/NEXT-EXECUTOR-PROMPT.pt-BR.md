@@ -49,7 +49,8 @@ Hoje: Wrangler autenticado com `pages (write)`, plugin Cloudflare instalado, Doc
 - **Demo sempre em live.** Máquinas com autostop, sempre prontas para live. Sem fake para visitante.
 - Usar as 4 chaves Groq até onde as organizações gratuitas permitirem. **Teto de USD 10 em modelos**, por precaução.
 - **Teto de USD 5 no Fly.**
-- React dinâmico: pré-render, hidratação e Pages Functions. Sem SSR de página inteira.
+- React dinâmico: build estático, pré-render, hidratação e Pages Functions. Sem SSR de página inteira.
+- **3D agora:** nível 2 do design system no portfólio, com Three.js, caindo para nível 1 se não houver WebGL.
 - Licença MIT. Título "AI Engineer", em inglês.
 - Dados pessoais vêm de `Diego_Souza_AI_Engineer_EVT_PT.docx`, na raiz. **Esse arquivo nunca entra no Git, e o telefone nunca entra no site.** Leia com `pandoc <arquivo> -t plain --wrap=none`.
 - Pode dizer que foi construído com um harness que aplica as melhores práticas de engenharia de AI. Venda ao máximo, dentro da regra de evidência.
@@ -123,7 +124,7 @@ Guardas `accounted_guard_required` (`agents/live_groq.py`) e `live refund/approv
 
 ### W5 a W7 e W9 — produto
 
-Conforme a spec, incluindo a seção "Flow diagrams": cada projeto tem um `FlowDiagram` com layout ELK no build, SVG em React, walkthrough, cenários de falha com evidência e versão em lista. **Não use Mermaid, D2 nem React Flow no site**: a avaliação com medições está em `docs/knowledge/diagramas-no-portfolio.md`. Mermaid fica só nos READMEs, exportado da mesma fonte. `elkjs` nunca entra no bundle do navegador. Faça o flagship completo antes dos demais cases. O conteúdo atual do P07 diz "seven projects": substitua. Número de projeto só com registro `Evidence`; dado do CV só em `profile.ts`, rotulado como carreira. Republicar `colagem-ui` 0.4.0 corrige o `UNLICENSED` no tarball usado por P06 e P07. Atualize `sources.lock.json` em ambos.
+Conforme a spec, incluindo as seções "3D scene" e "Flow diagrams". **O site é React de verdade, buildado estático, e o 3D com Three.js entra nesta rodada, no W7b.** A regra "sem JavaScript" fala só de fallback, nunca limite o site por ela. Fluxos: cada projeto tem um `FlowDiagram` com layout ELK no build, SVG em React, walkthrough, cenários de falha com evidência e versão em lista. **Não use Mermaid, D2 nem React Flow no site**: a avaliação com medições está em `docs/knowledge/diagramas-no-portfolio.md`. Mermaid fica só nos READMEs, exportado da mesma fonte. `elkjs` nunca entra no bundle do navegador. Faça o flagship completo antes dos demais cases. O conteúdo atual do P07 diz "seven projects": substitua. Número de projeto só com registro `Evidence`; dado do CV só em `profile.ts`, rotulado como carreira. Republicar `colagem-ui` 0.4.0 corrige o `UNLICENSED` no tarball usado por P06 e P07. Atualize `sources.lock.json` em ambos.
 
 Copy em inglês e pt-BR, primeira pessoa, específica, sem adjetivo onde cabe número. O CV em inglês é rascunho até o dono revisar.
 
