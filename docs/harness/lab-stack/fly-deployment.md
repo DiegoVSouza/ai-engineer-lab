@@ -28,6 +28,8 @@ Using Fly's official list prices checked on 2026-10-23, the always-running machi
 
 `python scripts/stack.py fly-up` and `python scripts/stack.py fly-down` are the operator entry points; `fly-status` is read-only and `-DryRun` previews a change. All three wrap `ops/fly/deploy.ps1`, and every app name passes through the allowlist in `ops/fly/stack-apps.ps1`. See the README for the side-by-side table with the local commands.
 
+The console is published at https://supportops-lab-web.fly.dev with demo accounts and `LLM_MODE=fake`. Stop it with `python scripts/stack.py fly-down` when testing ends, because running machines cost money.
+
 ## Power state and stopped cost
 
 At the user's request, all ten Fly Machines are currently stopped, and autostart is disabled on the public APIs and MCP so outside requests cannot wake them. The endpoints stay offline until the stack is started again. Use `.\ops\fly\power.ps1 -Action Start` before a demo and `.\ops\fly\power.ps1 -Action Stop` afterward; let active jobs finish before stopping. The script starts data services and the IdP before the workers and APIs, re-enables public autostart, then disables it again when stopping.

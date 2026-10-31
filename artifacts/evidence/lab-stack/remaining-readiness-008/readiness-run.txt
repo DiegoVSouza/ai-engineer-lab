@@ -1,0 +1,12 @@
+PASS health
+PASS readiness
+PASS migrations
+PASS structured_logs
+PASS metrics
+PASS tracing
+PASS resource_limits
+PASS restart_policy
+PASS secrets
+PASS restore
+PASS rollback
+exit=0

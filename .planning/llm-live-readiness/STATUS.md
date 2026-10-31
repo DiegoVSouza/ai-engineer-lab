@@ -1,3 +1,7 @@
+## Product code complete — 2026-10-31
+
+All code and rehearsal items are closed. P05 is 0.4.5 and the console runs locally and on Fly, with browser e2e passing on both. `fly-up` completed in one run. No provider call, reservation or counter change. Verdict: not ready for real customers; open items are owner decisions in `docs/harness/lab-stack/production-readiness.md`.
+
 ## Product-first progress — 2026-10-30
 
 Queue items 1 to 5 executed. P04 phase043 gate PASS (127 tests, provider false, empty Docker diff). Fly one-command parity in lab-stack phase 003, not deployed. Console P06 runs in the root stack with real-browser e2e and axe. Production checklist in `docs/harness/lab-stack/production-readiness.md`: verdict **not ready for real customers**, eight concrete blockers. No provider call, no reservation, no counter change in this round. P05 source changed to 0.4.4, so its accepted live operations describe the earlier fingerprint.

@@ -58,7 +58,7 @@ Both sides make the same promises. Each touches only its own application: Compos
 
 `checkout` clones missing product repositories at the commits in `ops/stack/projects.lock.json` and verifies existing checkouts without changing them. Access to those Git repositories is required. The pinned commits exist locally and have not been pushed, and P06 has no remote yet, so a fresh machine cannot clone them until they are published.
 
-The root Compose application runs the P06 console, P04 and P05 APIs/workers, P03 observability, and a persistent HTTPS Keycloak server. The package gate executes the installed P00 foundation, P01 orchestrator, and P02 toolkit before P05 starts. Each product keeps its own repository; the integration uses pinned wheels and existing Dockerfiles.
+The root Compose application runs the P06 console and its metrics exporter, P04 and P05 APIs/workers, P03 observability, and a persistent HTTPS Keycloak server. The package gate executes the installed P00 foundation, P01 orchestrator, and P02 toolkit before P05 starts. Each product keeps its own repository; the integration uses pinned wheels and existing Dockerfiles.
 
 | Service | Local URL |
 | --- | --- |

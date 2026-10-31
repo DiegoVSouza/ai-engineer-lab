@@ -4,6 +4,7 @@ x-product: &product
   image: supportops-lab-platform:local
   pull_policy: never
   mem_limit: 512m
+  cpus: 1.0
   entrypoint: [python, /ops/entrypoint.py]
   volumes: &product-volumes
     - ./ops/stack:/ops:ro
@@ -24,6 +25,7 @@ x-async: &async
   image: supportops-lab-async:local
   pull_policy: never
   mem_limit: 384m
+  cpus: 0.5
   entrypoint: [python, /ops/entrypoint.py]
   volumes:
     - ./ops/stack:/ops:ro
@@ -64,6 +66,7 @@ services:
   postgres:
     image: pgvector/pgvector:0.8.7-pg16
     mem_limit: 1g
+    cpus: 2.0
     environment:
       POSTGRES_USER: lab_admin
       POSTGRES_DB: postgres
@@ -82,6 +85,7 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.8.1
     mem_limit: 1536m
+    cpus: 2.0
     entrypoint: [/bin/sh, -c]
     command:
       - . /run/lab/runtime.env; exec /opt/keycloak/bin/kc.sh start --import-realm
@@ -125,6 +129,7 @@ services:
   redis:
     image: redis@sha256:becdda6c7f4b3fb42e42fd7f120bbf5c54c4caaaf16f26da24e4563d2c1f0576
     mem_limit: 256m
+    cpus: 0.5
     command: [redis-server, --appendonly, "yes"]
     volumes: [redis-data:/data]
     healthcheck:
@@ -136,6 +141,7 @@ services:
   localstack:
     image: localstack/localstack:4.14.0
     mem_limit: 768m
+    cpus: 1.0
     tmpfs: [/var/lib/localstack]
     environment:
       SERVICES: sns
@@ -213,6 +219,7 @@ services:
     image: supportops-lab-web:local
     pull_policy: never
     mem_limit: 128m
+    cpus: 0.5
     environment:
       P05_API_URL: http://api:8000
       OIDC_ISSUER: https://localhost:${LAB_IDP_PORT:-38443}/realms/supportops
@@ -227,6 +234,14 @@ services:
       interval: 5s
       timeout: 3s
       retries: 20
+    restart: unless-stopped
+  web-metrics:
+    image: nginx/nginx-prometheus-exporter:1.5.1@sha256:9f6d963bb2b19d706d401cc3e2c3ea8de2f1c471b96a2156ca45e76f650b1625
+    mem_limit: 64m
+    cpus: 0.25
+    command: [--nginx.scrape-uri=http://web:8081/stub_status]
+    depends_on:
+      web: {condition: service_healthy}
     restart: unless-stopped
   p04-api:
     <<: *async
@@ -249,12 +264,14 @@ services:
   otel:
     image: otel/opentelemetry-collector-contrib:0.161.0
     mem_limit: 256m
+    cpus: 0.5
     command: [--config=/etc/otelcol/config.yaml]
     volumes: [./projects/p05/infra/otel.yaml:/etc/otelcol/config.yaml:ro]
     restart: unless-stopped
   jaeger:
     image: jaegertracing/jaeger:2.18.0
     mem_limit: 512m
+    cpus: 0.5
     tmpfs: ["/tmp:uid=10001"]
     healthcheck:
       test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:16686/]
@@ -266,6 +283,7 @@ services:
   prometheus:
     image: prom/prometheus:v3.14.0
     mem_limit: 512m
+    cpus: 0.5
     healthcheck:
       test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:9090/-/healthy]
       interval: 10s
@@ -281,6 +299,7 @@ services:
   grafana:
     image: grafana/grafana:12.4.11
     mem_limit: 384m
+    cpus: 0.5
     healthcheck:
       test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:3000/api/health]
       interval: 10s

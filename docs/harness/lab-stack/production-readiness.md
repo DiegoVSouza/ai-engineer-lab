@@ -1,46 +1,48 @@
 # Production readiness
 
-**Verdict: not ready for real customers.** The stack runs end to end, is observable, and restarts without data loss, locally with `LLM_MODE=fake`. The blockers below stay open. `python scripts/harness/production_readiness.py` re-checks the running stack and writes `artifacts/evidence/lab-stack/production-readiness-005/checklist.json`.
+**Verdict: code complete, not ready for real customers.** The stack runs end to end locally and on Fly with `LLM_MODE=fake`, is observable, restarts without data loss and rolls back. What remains needs owner decisions, listed below. `python scripts/harness/production_readiness.py` re-checks the running stack and writes `artifacts/evidence/lab-stack/production-readiness-005/checklist.json`.
 
 ## Checklist
 
 | Item | Result | What was proven | Evidence |
 | --- | --- | --- | --- |
-| Health checks | PASS | 12 of 14 long-running services report healthy; `otel` has no shell or HTTP client and `p04-worker` has no port. Neither has a health check | `checklist.json` |
-| Readiness | PASS | Console `/readyz` passes through P05 `/readyz`, which pings PostgreSQL and Redis. Failure path covered by P05 tests | `checklist.json`, P05 phase 032 |
+| Health checks | PASS | Every service with a health check is healthy; `otel` and `web-metrics` have no shell or HTTP client and `p04-worker` has no port | `checklist.json` |
+| Readiness | PASS | Console `/readyz` passes through P05 `/readyz`, which pings PostgreSQL and Redis | `checklist.json`, P05 phase 032 |
 | Reversible migrations | PASS | P05 and P04 up, down, up in a disposable database. Down files for 002 and 003 destroy data by nature | `scripts/harness/check_migrations.py` |
-| Structured logs | PASS local | JSON on `api`, `mcp`, `p04-api`, `web` | `checklist.json` |
-| Metrics | PASS local | Every Prometheus target up | `checklist.json` |
-| Tracing | PASS local | P05 spans in Jaeger; `stack.py check` verifies one correlated trace | `check-after-restart.txt` |
-| Resource limits | PASS local | Memory limit on all 14 services. CPU limits not set | `checklist.json` |
-| Restart policy | PASS | `unless-stopped` on all 14 services | `checklist.json` |
+| Structured logs | PASS | JSON locally on `api`, `mcp`, `p04-api`, `web`; on Fly for P05, P04 and MCP. Worker stderr lines are not JSON | `checklist.json`, `fly-json-logs.txt` |
+| Metrics | PASS local | Console, P05 API and P05 worker targets up. P04 is not scraped, and Fly has no Prometheus | `checklist.json` |
+| Tracing | PASS local | P05 spans in Jaeger, and a browser `traceparent` reaches P05 | `check.txt` |
+| Resource limits | PASS local | Memory and CPU limits on all 15 services. Values are estimates, not load-tested | `checklist.json` |
+| Restart policy | PASS | `unless-stopped` on all 15 services | `checklist.json` |
 | Secrets out of code | PASS | No key pattern in tracked files of the lab, P05, P06; `.env` ignored; no provider key in container environments | `checklist.json` |
-| Rollback | PASS for restart, INCOMPLETE for release | Real `down` and `up`: 86 foreign containers, volumes and P05 rows unchanged, `persistence` and `check` exit 0. A release rollback has never been rehearsed | `restart-cycle.json` |
+| Restore | PASS local | `p04`, `p05` and `keycloak` dumps restored into a disposable database with identical row counts per table. Fly snapshots were not restored | `scripts/harness/restore_rehearsal.py` |
+| Rollback | PASS | Local restart keeps data. On Fly the console went to the previous image and forward again, ready both ways | `restart-cycle.json`, `fly-rollback.txt` |
+
+Evidence is in `artifacts/evidence/lab-stack/production-readiness-005/` and `remaining-readiness-008/`.
 
 ## Rollback
 
 - **Local:** `git checkout` the previous commit in the affected project, then `python scripts/stack.py up`. Images are tagged `:local` and overwritten, so a rollback rebuilds. Data stays in named volumes.
-- **Fly:** `fly releases --app <app>`, then `fly deploy --app <app> --image <previous image>`. Keycloak, PostgreSQL and Redis data live in volumes with 14-day snapshots.
+- **Fly:** read the image with `fly machine list --app <app> --json`, then `fly deploy --app <app> --config fly/<dir>/fly.toml --image <previous image> --ha=false --yes`. Rehearsed on `supportops-lab-web`. Keep the previous image reference before each deploy.
 - **Schema:** stop API and worker, deploy the previous image, take a dump, then apply the down file. See `projects/p05/docs/runbook.md`.
 
-## Open items
+## Open items, all owner decisions
 
 Blockers for real customers:
 
-1. **Model quality is unknown.** `LLM_MODE=fake` everywhere. Deferred by the user until code is complete.
-2. **Fly runs demo data only.** Published for testing on 2026-10-31 with the real-browser e2e passing from outside, see lab-stack phase 006. It is a public URL with demo accounts, and a full `fly-up` from start to finish has not yet completed in one run: the first stopped at a health wait since fixed, and the rest ran through `Deploy` and `Reconcile`.
-3. **Rate limit is shared behind the console.** P05 cannot decode OIDC tokens in its middleware, so it buckets by client IP, and every console user arrives from the `web` container: 60 requests per minute for all of them. Fix: bucket by verified subject after introspection, or trust `X-Forwarded-For` from the proxy only.
-4. **Queue and broker are emulated.** LocalStack provides SNS, with ephemeral state. A production broker must replace it.
-5. **Demo identity.** Bootstrap Keycloak admin, synthetic users, and a local CA. Needs a permanent admin, real users and public certificates.
-6. **No automated backup.** Fly snapshots exist; the local stack has only manual dumps. No restore rehearsal since 2026-10-23.
-7. **Manual refund requests have no effect path.** `POST /v1/tickets/{id}/refund-approvals` creates an approval that no worker executes when approved; only the triage task does. The console says so. Fix: enqueue the effect, or remove the route from the console.
-8. **Console tokens carry every scope.** Keycloak scopes are not role-bound here, so an approver's token also has agent scopes. Separation of duties holds because P05 checks role and refuses self-approval, but least privilege does not.
+1. **Model quality is unknown.** `LLM_MODE=fake` everywhere. Deferred by the owner until code is complete.
+2. **Queue and broker are emulated.** LocalStack provides SNS, with ephemeral state.
+3. **Demo identity.** Bootstrap Keycloak admin, synthetic users on a public URL, `fly.dev` hostnames and a local CA in Compose. Needs a permanent admin, real users and a chosen domain.
+4. **No automated backup.** Fly snapshots exist, and local dumps are manual. Needs a schedule, retention and an off-site copy.
+5. **No load test.** Rate limits, CPU and memory limits are unmeasured under load, and Fly machines are the smallest size.
 
-Should fix:
+Should decide:
 
-9. Unpushed commits: `projects.lock.json` pins local commits and P06 has no remote, so `checkout` cannot clone on a fresh machine. Push needs authorization.
-10. Fly logs for P04, P05 and MCP are not JSON: `--log-config` is applied by Compose only, and `/ops` does not exist in Fly images.
-11. Prometheus does not scrape the console, and the browser sends no `traceparent`, so traces start at P05.
-12. No CPU limits; memory limits are estimates from one idle measurement, not load tests.
-13. `scripts/check_services.py` (P05's own full service gate) has not run on 0.4.4; the root `stack.py check` and browser e2e have.
-14. 5 orphan anonymous volumes remain from this phase: LocalStack and Jaeger `down` cycles, and two early runs of `check_migrations.py`. Both causes are fixed and later runs add none. Deleting them was refused by the session's permission mode, so they need the owner. The list is in `artifacts/evidence/lab-stack/production-readiness-005/orphan-volumes.json`.
+6. Push: `projects.lock.json` pins local commits and P06 has no remote, so `checkout` cannot clone on a fresh machine.
+7. Five orphan anonymous volumes from phase 005 need the owner. `tmpfs` stopped new ones. The list is in `production-readiness-005/orphan-volumes.json`.
+8. Screen reader run by a person. axe cannot replace it.
+9. Fly has no Prometheus or dashboards. Choose a metrics destination if the public deployment stays.
+
+## Known limits of the fixes
+
+The pre-authentication IP limit is ten times the subject limit, so a burst across many users can still reach 600 requests per minute per proxy IP. The API trims token scopes by role, but the token itself still lists every scope. A manual refund must be approved within the 15-minute authorization lease; later the API answers 409 and the agent requests again.

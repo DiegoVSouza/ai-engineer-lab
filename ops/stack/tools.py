@@ -114,7 +114,10 @@ def check():
         require('default-src' in client.get('http://web:8080/').headers.get('content-security-policy',''),'Console served no CSP')
         grant=client.post(BASE+'/token',data={'grant_type':'password','client_id':'supportops-web','username':'agent-a','password':CREDENTIALS['agent_a']})
         require(grant.status_code==400,'Public console client accepted the password grant')
-        print('PASS console: health, P05 proxy, CSP and PKCE-only public client',flush=True)
+        trace_id=uuid4().hex
+        traced=client.get('http://web:8080/api/v1/tickets',headers={**own,'traceparent':f'00-{trace_id}-{uuid4().hex[:16]}-01'})
+        require(traced.headers.get('x-trace-id')==trace_id,'Browser traceparent did not reach P05')
+        print('PASS console: health, P05 proxy, CSP, PKCE-only public client and browser trace propagation',flush=True)
 
         p04=client.post('http://p04-api:8000/tasks',headers={'Idempotency-Key':uuid4().hex},
                         json={'payload':{'ticket_id':'lab-stack-demo'},'steps':['triage','draft_reply']})

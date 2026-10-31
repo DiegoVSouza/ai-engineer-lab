@@ -17,14 +17,14 @@
   },
   "p04": {
     "url": "https://github.com/DiegoVSouza/supportops-async.git",
-    "commit": "186ad7af37023ab1020275a2b3d7b0cff67c22d2"
+    "commit": "4a5aa5ce3d71d0eff48bc427218c4dd3f340d3ec"
   },
   "p05": {
     "url": "https://github.com/DiegoVSouza/supportops-platform.git",
-    "commit": "f510047554e876382bfd702b4f83e1ae12ebb933"
+    "commit": "d85d8f0910acb60a49e6cc4fc19a1e745eaec075"
   },
   "p06": {
     "url": null,
-    "commit": "804f460625773be33fa6aaaa495e1d38e1974736"
+    "commit": "b79172abd707ebcb2146be2cf8d0f7caaa86abd9"
   }
 }

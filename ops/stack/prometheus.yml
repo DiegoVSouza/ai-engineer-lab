@@ -3,6 +3,8 @@ rule_files:
   - /etc/prometheus/p05-alerts.yml
   - /etc/prometheus/p03-rules/*.yml
 scrape_configs:
+  - job_name: console
+    static_configs: [{targets: ['web-metrics:9113'], labels: {synthetic: 'true'}}]
   - job_name: p05-api
     static_configs: [{targets: ['api:8000'], labels: {synthetic: 'true'}}]
   - job_name: p05-worker

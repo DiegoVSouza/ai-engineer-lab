@@ -18,13 +18,16 @@ Local e Fly têm a mesma interface: `python scripts/stack.py up` e `down`, `fly-
 - O ciclo real de `down` e `up` achou um vazamento: imagens com `VOLUME` deixam um volume anônimo órfão a cada `down`.
 - A falha Git 128 do P00 era o limite de 260 caracteres do Windows no caminho do snapshot, não um defeito de produto.
 - `--import-realm` ignora um realm existente, então o cliente do console é aplicado pela API de administração.
+- O deploy real no Fly achou o que o teste local não acha: LocalStack ouvindo só IPv4, enquanto `.internal` resolve IPv6, e apps que dormem sozinhas quebrando a espera de saúde.
+- O reembolso manual aprovado não fazia nada. O e2e mostrou ainda que retomar o agente era o desenho errado: esse job só cumpre a decisão humana.
+- O limite por IP não faz sentido atrás de proxy. O limite agora é por usuário verificado, e o de IP só protege a introspecção.
 
 ## O que ainda não está pronto
 
-O sistema não está pronto para clientes reais. A lista concreta fica em [production-readiness.md](../harness/lab-stack/production-readiness.md). Qualidade de modelo, avaliação humana, holdout e promoção seguem adiados por decisão do usuário. O console foi publicado no Fly em 2026-10-31 para teste, com dados sintéticos e contas de demonstração.
+O código está completo, mas o sistema não está pronto para clientes reais: faltam decisões de modelo, broker, identidade, backup e carga. A lista concreta fica em [production-readiness.md](../harness/lab-stack/production-readiness.md). Qualidade de modelo, avaliação humana, holdout e promoção seguem adiados por decisão do usuário. O console foi publicado no Fly em 2026-10-31 para teste, com dados sintéticos e contas de demonstração.
 
 ## Resposta de entrevista
 
-**PT:** Quando a plataforma ganhou interface, tratei o OpenAPI como fonte de verdade e gerei o cliente, então o desvio de contrato reprova o gate. Testar no navegador real contra o stack real achou um defeito de scopes que os testes unitários não pegavam, e um ciclo real de reinício achou um vazamento de volumes. Fechei com um checklist em que cada item tem comando e evidência, e o veredito honesto foi que ainda não está pronto para clientes reais, com oito bloqueios concretos.
+**PT:** Quando a plataforma ganhou interface, tratei o OpenAPI como fonte de verdade e gerei o cliente, então o desvio de contrato reprova o gate. Testar no navegador real contra o stack real achou um defeito de scopes que os testes unitários não pegavam, e um ciclo real de reinício achou um vazamento de volumes. Fechei com um checklist em que cada item tem comando e evidência, e o veredito honesto foi que ainda não está pronto para clientes reais, com bloqueios concretos que dependem de decisão do dono do produto.
 
-**EN:** When the platform gained a UI, I treated OpenAPI as the source of truth and generated the client, so contract drift fails the gate. Testing in a real browser against the real stack found a scope defect that unit tests missed, and a real restart cycle found a volume leak. I finished with a checklist where every item has a command and evidence, and the honest verdict was not ready for real customers yet, with eight concrete blockers.
+**EN:** When the platform gained a UI, I treated OpenAPI as the source of truth and generated the client, so contract drift fails the gate. Testing in a real browser against the real stack found a scope defect that unit tests missed, and a real restart cycle found a volume leak. I finished with a checklist where every item has a command and evidence, and the honest verdict was not ready for real customers yet, with concrete blockers that need owner decisions.

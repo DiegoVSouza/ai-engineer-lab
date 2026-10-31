@@ -8,6 +8,7 @@
       "p04-api": "healthy",
       "p04-worker": "no port; liveness shown by the stack check processing a task",
       "web": "healthy",
+      "web-metrics": "image has no shell or HTTP client; Prometheus scrapes it",
       "postgres": "healthy",
       "keycloak": "healthy",
       "redis": "healthy",
@@ -58,6 +59,7 @@
   "metrics": {
     "status": "PASS",
     "details": {
+      "console": "up",
       "p05-api": "up",
       "p05-worker": "up"
     }
@@ -66,9 +68,9 @@
     "status": "PASS",
     "details": {
       "services": [
-        "p05-worker",
-        "supportops-platform",
         "jaeger",
+        "supportops-platform",
+        "p05-worker",
         "p05-mcp"
       ]
     }
@@ -76,20 +78,66 @@
   "resource_limits": {
     "status": "PASS",
     "details": {
-      "api": 536870912,
-      "worker": 536870912,
-      "mcp": 536870912,
-      "p04-api": 402653184,
-      "p04-worker": 402653184,
-      "web": 134217728,
-      "postgres": 1073741824,
-      "keycloak": 1610612736,
-      "redis": 268435456,
-      "localstack": 805306368,
-      "otel": 268435456,
-      "jaeger": 536870912,
-      "prometheus": 536870912,
-      "grafana": 402653184
+      "api": {
+        "Memory": 536870912,
+        "NanoCpus": 1000000000
+      },
+      "worker": {
+        "Memory": 536870912,
+        "NanoCpus": 1000000000
+      },
+      "mcp": {
+        "Memory": 536870912,
+        "NanoCpus": 1000000000
+      },
+      "p04-api": {
+        "Memory": 402653184,
+        "NanoCpus": 500000000
+      },
+      "p04-worker": {
+        "Memory": 402653184,
+        "NanoCpus": 500000000
+      },
+      "web": {
+        "Memory": 134217728,
+        "NanoCpus": 500000000
+      },
+      "web-metrics": {
+        "Memory": 67108864,
+        "NanoCpus": 250000000
+      },
+      "postgres": {
+        "Memory": 1073741824,
+        "NanoCpus": 2000000000
+      },
+      "keycloak": {
+        "Memory": 1610612736,
+        "NanoCpus": 2000000000
+      },
+      "redis": {
+        "Memory": 268435456,
+        "NanoCpus": 500000000
+      },
+      "localstack": {
+        "Memory": 805306368,
+        "NanoCpus": 1000000000
+      },
+      "otel": {
+        "Memory": 268435456,
+        "NanoCpus": 500000000
+      },
+      "jaeger": {
+        "Memory": 536870912,
+        "NanoCpus": 500000000
+      },
+      "prometheus": {
+        "Memory": 536870912,
+        "NanoCpus": 500000000
+      },
+      "grafana": {
+        "Memory": 402653184,
+        "NanoCpus": 500000000
+      }
     }
   },
   "restart_policy": {
@@ -101,6 +149,7 @@
       "p04-api": "unless-stopped",
       "p04-worker": "unless-stopped",
       "web": "unless-stopped",
+      "web-metrics": "unless-stopped",
       "postgres": "unless-stopped",
       "keycloak": "unless-stopped",
       "redis": "unless-stopped",
@@ -115,15 +164,15 @@
     "status": "PASS",
     "details": {
       ".": {
-        "tracked_files": 801,
+        "tracked_files": 813,
         "secret_hits": []
       },
       "projects/p05": {
-        "tracked_files": 666,
+        "tracked_files": 684,
         "secret_hits": []
       },
       "projects/p06": {
-        "tracked_files": 70,
+        "tracked_files": 81,
         "secret_hits": []
       },
       "env_ignored": true,
@@ -132,6 +181,13 @@
         "worker": [],
         "web": []
       }
+    }
+  },
+  "restore": {
+    "status": "PASS",
+    "details": {
+      "exit_code": 0,
+      "output": "{\"status\": \"PASS\", \"p04\": {\"tables\": 5, \"rows\": 88, \"dump_bytes\": 11310}, \"p05\": {\"tables\": 9, \"rows\": 394, \"dump_bytes\": 45614}, \"keycloak\": {\"tables\": 101, \"rows\": 1388, \"dump_bytes\": 257187}}"
     }
   },
   "rollback": {

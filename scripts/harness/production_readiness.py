@@ -11,9 +11,10 @@ from urllib.request import urlopen
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT/'artifacts/evidence/lab-stack/production-readiness-005'
 PROJECT = 'supportops-lab'
-RUNNING = ('api', 'worker', 'mcp', 'p04-api', 'p04-worker', 'web', 'postgres', 'keycloak', 'redis',
+RUNNING = ('api', 'worker', 'mcp', 'p04-api', 'p04-worker', 'web', 'web-metrics', 'postgres', 'keycloak', 'redis',
            'localstack', 'otel', 'jaeger', 'prometheus', 'grafana')
 NO_HEALTHCHECK = {'otel': 'image has no shell or HTTP client',
+                  'web-metrics': 'image has no shell or HTTP client; Prometheus scrapes it',
                   'p04-worker': 'no port; liveness shown by the stack check processing a task'}
 JSON_LOGS = ('api', 'mcp', 'p04-api', 'web')
 SECRET = re.compile(r'gsk_[A-Za-z0-9]{20,}|hf_[A-Za-z0-9]{20,}|sk-or-[A-Za-z0-9-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY')
@@ -90,8 +91,8 @@ def tracing():
 
 
 def limits():
-    details = {service: inspect(service)['HostConfig']['Memory'] for service in RUNNING}
-    return all(details.values()), details
+    details = {service: {key: inspect(service)['HostConfig'][key] for key in ('Memory', 'NanoCpus')} for service in RUNNING}
+    return all(all(item.values()) for item in details.values()), details
 
 
 def restart():
@@ -122,6 +123,11 @@ def secrets():
     return clean and ignored and not any(environment.values()), details
 
 
+def restore():
+    code, out, err = run(sys.executable, 'scripts/harness/restore_rehearsal.py')
+    return code == 0, {'exit_code': code, 'output': (out + err).strip()[:600]}
+
+
 def rollback():
     document = ROOT/'docs/harness/lab-stack/production-readiness.md'
     text = document.read_text(encoding='utf-8') if document.exists() else ''
@@ -132,7 +138,7 @@ def rollback():
 
 CHECKS = {'health': health, 'readiness': readiness, 'migrations': migrations, 'structured_logs': logs,
           'metrics': metrics, 'tracing': tracing, 'resource_limits': limits, 'restart_policy': restart,
-          'secrets': secrets, 'rollback': rollback}
+          'secrets': secrets, 'restore': restore, 'rollback': rollback}
 
 
 def main():

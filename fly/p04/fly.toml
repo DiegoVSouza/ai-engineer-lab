@@ -5,7 +5,7 @@ primary_region = "iad"
   dockerfile = "../../projects/p04/Dockerfile"
 
 [processes]
-  app = "uvicorn supportops_async.api.runtime:app --host 0.0.0.0 --port 8000"
+  app = "uvicorn supportops_async.api.runtime:app --host 0.0.0.0 --port 8000 --log-config /app/logcfg/uvicorn-log.json"
   worker = "python -m supportops_async.worker.cli"
 
 [http_service]
@@ -36,6 +36,7 @@ primary_region = "iad"
   processes = ["worker"]
 
 [env]
+  PYTHONPATH = "/app/logcfg"
   LLM_MODE = "fake"
   AWS_REGION = "us-east-1"
   AWS_ENDPOINT_URL = "http://supportops-lab-sns.internal:4566"

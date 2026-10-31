@@ -5,7 +5,7 @@ primary_region = "iad"
   dockerfile = "../../projects/p05/Dockerfile"
 
 [processes]
-  app = "python -m uvicorn supportops_platform.api.app:app --host 0.0.0.0 --port 8000"
+  app = "python -m uvicorn supportops_platform.api.app:app --host 0.0.0.0 --port 8000 --log-config /app/logcfg/uvicorn-log.json"
   worker = "python -m supportops_platform.service_runtime"
 
 [http_service]
@@ -48,6 +48,7 @@ primary_region = "iad"
   snapshot_retention = 14
 
 [env]
+  PYTHONPATH = "/app/logcfg"
   LLM_MODE = "fake"
   P05_RUNTIME = "services"
   P05_QUEUE_NAME = "supportops-p05-tasks"

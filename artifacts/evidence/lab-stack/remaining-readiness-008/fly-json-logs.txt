@@ -1,0 +1,3 @@
+2026-10-31T04:50:00Z app[830374f76154d8] iad [info]{"time": "2026-10-31T04:50:00.488719+00:00", "level": "INFO", "logger": "uvicorn.access", "message": "172.16.7.130:3916
+2026-10-31T04:50:00Z app[78452edf349568] iad [info]{"time": "2026-10-31T04:50:00.934806+00:00", "level": "INFO", "logger": "uvicorn.access", "message": "172.19.24.33:5065
+2026-10-31T04:49:32Z app[2870421c554548] iad [info]{"time": "2026-10-31T04:49:32.231911+00:00", "level": "INFO", "logger": "mcp.server.streamable_http", "message": "Termi

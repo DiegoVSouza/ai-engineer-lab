@@ -1,0 +1,13 @@
+old=registry.fly.io/supportops-lab-web:deployment-01M681GJMNWMZK00ZKA65NDRKY
+new=registry.fly.io/supportops-lab-web:deployment-01M684FG4RYS2GJA27JZ0B1B0K
+images-differ
+Visit your newly deployed app at https://supportops-lab-web.fly.dev/
+
+rollback_deploy_exit=0
+running=registry.fly.io/supportops-lab-web:deployment-01M681GJMNWMZK00ZKA65NDRKY
+readyz_after_rollback=200
+Visit your newly deployed app at https://supportops-lab-web.fly.dev/
+
+forward_deploy_exit=0
+running=registry.fly.io/supportops-lab-web:deployment-01M684FG4RYS2GJA27JZ0B1B0K
+readyz_after_forward=200

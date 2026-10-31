@@ -15,7 +15,7 @@ Answers to section 1 of `plano-adaptacao-react-go-no-harness-kit.md`, taken from
 
 ## Gaps the plan did not foresee
 
-- The API has no way to list pending approvals, and the worker does not update `Ticket.status`. An approver would have to decide a refund without seeing the amount. P05 needs additive `GET /v1/approvals`.
+- The API has no way to list pending approvals. The worker marks a ticket `needs_approval`, but the amount is not exposed, so an approver would have to decide a refund without seeing it. P05 needs additive `GET /v1/approvals`.
 - The browser needs a public PKCE client. `--import-realm` skips an existing realm, so changing the realm file would not reach the running local volume or the deployed Fly realm; the client must be applied idempotently through the admin API.
 - `python scripts/stack.py checkout` fails on the current tree because `ops/stack/projects.lock.json` pins old commits. Tracked for production readiness.
 

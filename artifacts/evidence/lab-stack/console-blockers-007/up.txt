@@ -1,0 +1,465 @@
+ Image supportops-lab-init:local Building 
+ Image supportops-lab-platform:local Building 
+ Image supportops-lab-async:local Building 
+ Image supportops-lab-web:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.93kB 0.0s done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from Dockerfile
+#2 transferring dockerfile: 778B done
+#2 DONE 0.0s
+
+#3 [api internal] load build definition from Dockerfile
+#3 transferring dockerfile: 865B 0.0s done
+#3 DONE 0.0s
+
+#4 [p04-api internal] load build definition from Dockerfile
+#4 transferring dockerfile: 684B 0.0s done
+#4 DONE 0.0s
+
+#5 [secrets-init internal] load build definition from Dockerfile.init
+#5 transferring dockerfile: 228B 0.0s done
+#5 DONE 0.1s
+
+#6 [web internal] load metadata for docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85
+#6 DONE 0.1s
+
+#7 [web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#7 DONE 0.1s
+
+#8 [web internal] load .dockerignore
+#8 transferring context: 105B done
+#8 DONE 0.0s
+
+#9 [secrets-init internal] load metadata for docker.io/library/python:3.13.12-slim
+#9 DONE 0.1s
+
+#10 [secrets-init internal] load .dockerignore
+#10 transferring context: 2B done
+#10 DONE 0.0s
+
+#11 [api internal] load .dockerignore
+#11 transferring context: 129B 0.0s done
+#11 DONE 0.0s
+
+#12 [api internal] load build context
+#12 DONE 0.0s
+
+#13 [secrets-init internal] load build context
+#13 transferring context: 70B done
+#13 DONE 0.0s
+
+#14 [p04-api internal] load metadata for ghcr.io/astral-sh/uv:0.12.7
+#14 DONE 0.1s
+
+#15 [web stage-1 1/4] FROM docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#15 resolve docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6 0.1s done
+#15 DONE 0.1s
+
+#16 [web build 1/7] FROM docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85
+#16 resolve docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85 0.1s done
+#16 DONE 0.1s
+
+#17 [p04-api internal] load .dockerignore
+#17 transferring context: 118B 0.0s done
+#17 DONE 0.0s
+
+#18 [p04-api 1/4] FROM docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8
+#18 resolve docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8 0.1s done
+#18 DONE 0.1s
+
+#19 [web internal] load build context
+#19 transferring context: 1.31kB done
+#19 DONE 0.0s
+
+#20 [secrets-init 2/4] COPY requirements-init.lock /requirements-init.lock
+#20 CACHED
+
+#21 [secrets-init 3/4] RUN pip install --no-cache-dir -r /requirements-init.lock
+#21 CACHED
+
+#22 [secrets-init 4/4] COPY init.py /init.py
+#22 CACHED
+
+#23 [web build 5/7] COPY index.html tsconfig.json vite.config.ts ./
+#23 CACHED
+
+#24 [web stage-1 2/4] COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+#24 CACHED
+
+#25 [web build 6/7] COPY src ./src
+#25 CACHED
+
+#26 [web build 7/7] RUN npx vite build
+#26 CACHED
+
+#27 [web build 2/7] WORKDIR /app
+#27 CACHED
+
+#28 [web build 3/7] COPY package.json package-lock.json ./
+#28 CACHED
+
+#29 [web build 4/7] RUN npm ci --ignore-scripts
+#29 CACHED
+
+#30 [web stage-1 3/4] COPY nginx/config.json.template /etc/nginx/templates/config.json.template
+#30 CACHED
+
+#31 [web stage-1 4/4] COPY --from=build /app/dist /usr/share/nginx/html
+#31 CACHED
+
+#32 [p04-api internal] load build context
+#32 DONE 0.0s
+
+#12 [api internal] load build context
+#12 transferring context: 278.99kB 0.0s done
+#12 DONE 0.1s
+
+#33 [api build  2/10] WORKDIR /app
+#33 CACHED
+
+#34 [api build  3/10] RUN pip install --no-cache-dir uv==0.12.7
+#34 CACHED
+
+#35 [secrets-init] exporting to image
+#35 exporting layers done
+#35 exporting manifest sha256:4b6591e01ab2062e83c1aac4e09897e6b21ad2a6f0644a140fee3f73f0bd912e done
+#35 exporting config sha256:e5f3e3ce39af0882b99345ace1fe6c66808b87ac9e8078f572788ccd8a156e57 done
+#35 exporting attestation manifest sha256:cbf3f8c44b2efaa014d770bc4e695d992e6b1aea3e320c032b4a069caad818c3
+#35 ...
+
+#36 [p04-api uv-bin 1/1] FROM ghcr.io/astral-sh/uv:0.12.7@sha256:95f2aa1fe59274951cfe9b0cbc7972e879ff1004bc8945d130a32eb0dbd85945
+#36 resolve ghcr.io/astral-sh/uv:0.12.7@sha256:95f2aa1fe59274951cfe9b0cbc7972e879ff1004bc8945d130a32eb0dbd85945 0.1s done
+#36 DONE 0.1s
+
+#37 [api build  4/10] COPY pyproject.toml uv.lock ./
+#37 DONE 0.1s
+
+#32 [p04-api internal] load build context
+#32 transferring context: 3.47kB 0.0s done
+#32 DONE 0.0s
+
+#38 [p04-api builder 2/6] COPY --from=uv-bin /uv /uvx /bin/
+#38 CACHED
+
+#39 [p04-api builder 4/6] COPY pyproject.toml uv.lock README.md ./
+#39 CACHED
+
+#40 [p04-api builder 6/6] RUN uv sync --locked --no-dev
+#40 CACHED
+
+#41 [p04-api runtime 3/4] RUN groupadd --system --gid 10001 app && useradd --system --uid 10001 --gid app --home-dir /app app
+#41 CACHED
+
+#42 [p04-api builder 3/6] WORKDIR /app
+#42 CACHED
+
+#33 [p04-api build  2/10] WORKDIR /app
+#33 CACHED
+
+#43 [p04-api builder 5/6] COPY supportops_async ./supportops_async
+#43 CACHED
+
+#44 [p04-api runtime 4/4] COPY --from=builder --chown=app:app /app /app
+#44 CACHED
+
+#35 [secrets-init] exporting to image
+#35 exporting attestation manifest sha256:cbf3f8c44b2efaa014d770bc4e695d992e6b1aea3e320c032b4a069caad818c3 0.1s done
+#35 exporting manifest list sha256:4d8993b223ca506f90b235bd929df5b26a8f512ded76daad7912d694535b1b77 0.0s done
+#35 naming to docker.io/library/supportops-lab-init:local 0.0s done
+#35 unpacking to docker.io/library/supportops-lab-init:local 0.0s done
+#35 DONE 0.2s
+
+#45 [api build  5/10] COPY artifacts/packages ./artifacts/packages
+#45 DONE 0.2s
+
+#46 [api build  6/10] COPY migrations ./migrations
+#46 DONE 0.2s
+
+#47 [p04-api] exporting to image
+#47 exporting layers done
+#47 exporting manifest sha256:8ebfd239ff803495fcfa7de475734138a44a4ab4e00fa48063d5b3c55103404b done
+#47 exporting config sha256:214d66982ab562a8bd0ea30b60ac0ad61e3c55534bfffe7ad0eabe17b586980f done
+#47 exporting attestation manifest sha256:77dd1aee4a0bc26861c5e27697229402294bbbb8362925b49faf0c83c60499d6 0.1s done
+#47 exporting manifest list sha256:8cb6aec42122a0b53c8bb6c3056e9617656bf20193ba790c50edbac546faf006 0.1s done
+#47 naming to docker.io/library/supportops-lab-async:local 0.0s done
+#47 unpacking to docker.io/library/supportops-lab-async:local 0.0s done
+#47 DONE 0.3s
+
+#48 [api build  7/10] COPY scripts ./scripts
+#48 DONE 0.2s
+
+#49 [web] exporting to image
+#49 exporting layers done
+#49 exporting manifest sha256:0000683660c97a217e76d55b57d100c3c99c20d206c361f3b1f2db5a4093d787 0.1s done
+#49 exporting config sha256:6f8673e4ccab2eb87c28bfff3949f0242a1141f6b44c19b9523422c98bd88116 0.0s done
+#49 exporting attestation manifest sha256:f3c0985780dc84be5c986e591ca0fab94d747daabeafb8840383cf8efd09a931 0.0s done
+#49 exporting manifest list sha256:2dab4752047d7aa172b691f2d746e55c43ef26b7b8bdc24230dee5886216db14 0.0s done
+#49 naming to docker.io/library/supportops-lab-web:local done
+#49 unpacking to docker.io/library/supportops-lab-web:local 0.3s done
+#49 DONE 0.6s
+
+#50 [secrets-init] resolving provenance for metadata file
+#50 DONE 0.0s
+
+#51 [p04-api] resolving provenance for metadata file
+#51 DONE 0.1s
+
+#52 [api build  8/10] COPY supportops_platform ./supportops_platform
+#52 DONE 0.1s
+
+#53 [api build  9/10] COPY agent/prompts ./agent/prompts
+#53 DONE 0.1s
+
+#54 [web] resolving provenance for metadata file
+#54 DONE 0.0s
+
+#55 [api build 10/10] RUN if [ "false" = "true" ]; then uv sync --locked --no-dev --extra live; else uv sync --locked --no-dev; fi
+#55 0.504 Using CPython 3.13.12 interpreter at: /usr/local/bin/python3
+#55 0.505 Creating virtual environment at: .venv
+#55 0.577 Resolved 95 packages in 62ms
+#55 0.605    Building supportops-platform @ file:///app
+#55 0.767 Downloading psycopg-binary (4.2MiB)
+#55 0.769 Downloading cryptography (4.5MiB)
+#55 0.772 Downloading zstandard (5.3MiB)
+#55 0.778 Downloading pydantic-core (2.1MiB)
+#55 0.779 Downloading botocore (15.3MiB)
+#55 0.782 Downloading asyncpg (3.4MiB)
+#55 0.785 Downloading grpcio (6.8MiB)
+#55 2.268  Downloaded pydantic-core
+#55 2.773  Downloaded asyncpg
+#55 2.942  Downloaded psycopg-binary
+#55 3.051  Downloaded cryptography
+#55 3.132  Downloaded zstandard
+#55 3.343  Downloaded grpcio
+#55 3.616       Built supportops-platform @ file:///app
+#55 4.033  Downloaded botocore
+#55 4.034 Prepared 81 packages in 3.45s
+#55 4.562 Installed 86 packages in 528ms
+#55 4.562  + aiosqlite==0.22.1
+#55 4.562  + annotated-doc==0.0.5
+#55 4.562  + annotated-types==0.8.0
+#55 4.562  + anyio==4.15.1
+#55 4.562  + asyncpg==0.30.0
+#55 4.562  + attrs==26.1.0
+#55 4.563  + boto3==1.43.114
+#55 4.563  + botocore==1.43.114
+#55 4.563  + certifi==2026.7.22
+#55 4.563  + cffi==2.1.1
+#55 4.563  + charset-normalizer==3.5.2
+#55 4.563  + click==8.5.0
+#55 4.563  + cryptography==50.0.2
+#55 4.563  + distro==1.9.0
+#55 4.563  + fastapi==0.142.4
+#55 4.563  + googleapis-common-protos==1.75.5
+#55 4.563  + grpcio==1.84.0
+#55 4.563  + h11==0.16.0
+#55 4.563  + httpcore==1.0.9
+#55 4.563  + httpcore2==2.13.1
+#55 4.563  + httpx==0.28.1
+#55 4.563  + httpx2==2.13.1
+#55 4.563  + idna==3.20
+#55 4.563  + jmespath==1.1.0
+#55 4.563  + jsonpatch==1.36
+#55 4.563  + jsonpointer==3.4
+#55 4.563  + jsonschema==4.26.0
+#55 4.563  + jsonschema-specifications==2025.9.1
+#55 4.563  + langchain-core==1.6.13
+#55 4.563  + langchain-protocol==0.0.20
+#55 4.563  + langgraph==1.1.10
+#55 4.563  + langgraph-checkpoint==4.3.0
+#55 4.563  + langgraph-checkpoint-sqlite==3.1.2
+#55 4.563  + langgraph-prebuilt==1.0.13
+#55 4.563  + langgraph-sdk==0.3.15
+#55 4.563  + langsmith==0.14.12
+#55 4.563  + mcp==2.3.0
+#55 4.563  + mcp-types==2.3.0
+#55 4.563  + opentelemetry-api==1.45.1
+#55 4.563  + opentelemetry-exporter-otlp-common==0.66b1
+#55 4.563  + opentelemetry-exporter-otlp-proto-common==1.45.1
+#55 4.563  + opentelemetry-exporter-otlp-proto-grpc==1.45.1
+#55 4.563  + opentelemetry-proto==1.45.1
+#55 4.563  + opentelemetry-sdk==1.45.1
+#55 4.563  + opentelemetry-semantic-conventions==0.66b1
+#55 4.564  + orjson==3.13.0
+#55 4.564  + ormsgpack==1.13.0
+#55 4.564  + packaging==26.3
+#55 4.564  + prometheus-client==0.26.0
+#55 4.564  + protobuf==7.36.2
+#55 4.564  + psycopg==3.2.10
+#55 4.564  + psycopg-binary==3.2.10
+#55 4.564  + pycparser==3.11
+#55 4.564  + pydantic==2.14.1
+#55 4.564  + pydantic-core==2.50.1
+#55 4.564  + pyjwt==2.15.1
+#55 4.564  + python-dateutil==2.9.0.post0
+#55 4.564  + python-multipart==0.0.32
+#55 4.564  + pyyaml==6.0.3
+#55 4.564  + redis==6.4.0
+#55 4.564  + referencing==0.37.0
+#55 4.564  + requests==2.34.2
+#55 4.564  + requests-toolbelt==1.0.0
+#55 4.564  + rpds-py==2026.9.1
+#55 4.564  + s3transfer==0.19.2
+#55 4.564  + six==1.17.0
+#55 4.564  + sniffio==1.3.1
+#55 4.564  + sqlite-vec==0.1.9
+#55 4.564  + sse-starlette==3.5.0
+#55 4.564  + starlette==1.8.0
+#55 4.564  + supportops-agents==0.1.1 (from file:///app/artifacts/packages/supportops_agents-0.1.1-py3-none-any.whl)
+#55 4.564  + supportops-ai-toolkit==0.2.0 (from file:///app/artifacts/packages/supportops_ai_toolkit-0.2.0-py3-none-any.whl)
+#55 4.564  + supportops-async==0.1.4 (from file:///app/artifacts/packages/supportops_async-0.1.4-py3-none-any.whl)
+#55 4.564  + supportops-foundation==1.0.1 (from file:///app/artifacts/packages/supportops_foundation-1.0.1-py3-none-any.whl)
+#55 4.564  + supportops-obs==0.3.1 (from file:///app/artifacts/packages/supportops_obs-0.3.1-py3-none-any.whl)
+#55 4.564  + supportops-platform==0.4.5 (from file:///app)
+#55 4.564  + tenacity==9.2.1
+#55 4.564  + truststore==0.10.5
+#55 4.565  + typing-extensions==4.16.0
+#55 4.565  + typing-inspection==0.4.4
+#55 4.565  + urllib3==2.8.0
+#55 4.565  + uuid-utils==0.18.0
+#55 4.565  + uvicorn==0.46.0
+#55 4.565  + websockets==17.3
+#55 4.565  + xxhash==4.0.2
+#55 4.565  + zstandard==0.25.0
+#55 DONE 4.9s
+
+#56 [api stage-1 3/5] RUN groupadd --gid 10001 app && useradd --uid 10001 --gid app --home /app app
+#56 CACHED
+
+#57 [api stage-1 4/5] COPY --from=build --chown=app:app /app /app
+#57 DONE 2.6s
+
+#58 [api stage-1 5/5] RUN mkdir -p /app/artifacts && chown app:app /app/artifacts
+#58 DONE 0.4s
+
+#59 [api] exporting to image
+#59 exporting layers
+#59 exporting layers 4.8s done
+#59 exporting manifest sha256:404e08ef9839b767df84157999bc2993ac9aee5150f301ed63380603617dda4c 0.0s done
+#59 exporting config sha256:3155ba6ef8c080f3789c9ef92fe4a7260e182c13375428ee4136ba854b936cf7 0.0s done
+#59 exporting attestation manifest sha256:bdecf7657db2627489e4017256716d226cb94eb903dc1748ef1fdae3dbd25c71 0.0s done
+#59 exporting manifest list sha256:eee66966572e9da853acae05477a438ee66795fa684504bfa5e212d73c2ee639 0.0s done
+#59 naming to docker.io/library/supportops-lab-platform:local done
+#59 unpacking to docker.io/library/supportops-lab-platform:local
+#59 unpacking to docker.io/library/supportops-lab-platform:local 2.9s done
+#59 DONE 7.9s
+
+#60 [api] resolving provenance for metadata file
+#60 DONE 0.0s
+ Image supportops-lab-init:local Built 
+ Image supportops-lab-platform:local Built 
+ Image supportops-lab-async:local Built 
+ Image supportops-lab-web:local Built 
+ Container supportops-lab-redis-1 Running 
+ Container supportops-lab-keycloak-1 Running 
+ Container supportops-lab-localstack-1 Running 
+ Container supportops-lab-p04-api-1 Running 
+ Container supportops-lab-postgres-1 Running 
+ Container supportops-lab-jaeger-1 Running 
+ Container supportops-lab-grafana-1 Running 
+ Container supportops-lab-p04-worker-1 Running 
+ Container supportops-lab-prometheus-1 Running 
+ Container supportops-lab-otel-1 Running 
+ Container supportops-lab-mcp-1 Recreate 
+ Container supportops-lab-packages-1 Recreate 
+ Container supportops-lab-packages-1 Recreated 
+ Container supportops-lab-api-1 Recreate 
+ Container supportops-lab-mcp-1 Recreated 
+ Container supportops-lab-api-1 Recreated 
+ Container supportops-lab-web-1 Recreate 
+ Container supportops-lab-worker-1 Recreate 
+ Container supportops-lab-web-1 Recreated 
+ Container supportops-lab-worker-1 Recreated 
+ Container supportops-lab-secrets-init-1 Starting 
+ Container supportops-lab-localstack-1 Waiting 
+ Container supportops-lab-packages-1 Starting 
+ Container supportops-lab-secrets-init-1 Started 
+ Container supportops-lab-secrets-init-1 Waiting 
+ Container supportops-lab-secrets-init-1 Waiting 
+ Container supportops-lab-localstack-1 Healthy 
+ Container supportops-lab-broker-init-1 Starting 
+ Container supportops-lab-packages-1 Started 
+ Container supportops-lab-secrets-init-1 Exited 
+ Container supportops-lab-postgres-1 Waiting 
+ Container supportops-lab-secrets-init-1 Exited 
+ Container supportops-lab-broker-init-1 Started 
+ Container supportops-lab-redis-1 Waiting 
+ Container supportops-lab-broker-init-1 Waiting 
+ Container supportops-lab-postgres-1 Waiting 
+ Container supportops-lab-postgres-1 Healthy 
+ Container supportops-lab-secrets-init-1 Waiting 
+ Container supportops-lab-keycloak-1 Waiting 
+ Container supportops-lab-keycloak-1 Waiting 
+ Container supportops-lab-packages-1 Waiting 
+ Container supportops-lab-keycloak-1 Waiting 
+ Container supportops-lab-postgres-1 Waiting 
+ Container supportops-lab-redis-1 Waiting 
+ Container supportops-lab-postgres-1 Healthy 
+ Container supportops-lab-redis-1 Healthy 
+ Container supportops-lab-keycloak-1 Healthy 
+ Container supportops-lab-redis-1 Healthy 
+ Container supportops-lab-keycloak-1 Healthy 
+ Container supportops-lab-idp-clients-1 Starting 
+ Container supportops-lab-postgres-1 Healthy 
+ Container supportops-lab-keycloak-1 Healthy 
+ Container supportops-lab-secrets-init-1 Exited 
+ Container supportops-lab-mcp-1 Starting 
+ Container supportops-lab-idp-clients-1 Started 
+ Container supportops-lab-mcp-1 Started 
+ Container supportops-lab-packages-1 Exited 
+ Container supportops-lab-api-1 Starting 
+ Container supportops-lab-broker-init-1 Exited 
+ Container supportops-lab-p04-api-1 Waiting 
+ Container supportops-lab-api-1 Started 
+ Container supportops-lab-mcp-1 Waiting 
+ Container supportops-lab-api-1 Waiting 
+ Container supportops-lab-api-1 Waiting 
+ Container supportops-lab-idp-clients-1 Waiting 
+ Container supportops-lab-p04-api-1 Healthy 
+ Container supportops-lab-idp-clients-1 Exited 
+ Container supportops-lab-mcp-1 Healthy 
+ Container supportops-lab-api-1 Healthy 
+ Container supportops-lab-web-1 Starting 
+ Container supportops-lab-api-1 Healthy 
+ Container supportops-lab-worker-1 Starting 
+ Container supportops-lab-web-1 Started 
+ Container supportops-lab-worker-1 Started 
+ Container supportops-lab-p04-api-1 Waiting 
+ Container supportops-lab-localstack-1 Waiting 
+ Container supportops-lab-secrets-init-1 Waiting 
+ Container supportops-lab-packages-1 Waiting 
+ Container supportops-lab-mcp-1 Waiting 
+ Container supportops-lab-redis-1 Waiting 
+ Container supportops-lab-keycloak-1 Waiting 
+ Container supportops-lab-idp-clients-1 Waiting 
+ Container supportops-lab-otel-1 Waiting 
+ Container supportops-lab-jaeger-1 Waiting 
+ Container supportops-lab-grafana-1 Waiting 
+ Container supportops-lab-postgres-1 Waiting 
+ Container supportops-lab-broker-init-1 Waiting 
+ Container supportops-lab-p04-worker-1 Waiting 
+ Container supportops-lab-prometheus-1 Waiting 
+ Container supportops-lab-api-1 Waiting 
+ Container supportops-lab-worker-1 Waiting 
+ Container supportops-lab-web-1 Waiting 
+ Container supportops-lab-p04-api-1 Healthy 
+ Container supportops-lab-secrets-init-1 Exited 
+ Container supportops-lab-postgres-1 Healthy 
+ Container supportops-lab-packages-1 Exited 
+ Container supportops-lab-prometheus-1 Healthy 
+ Container supportops-lab-mcp-1 Healthy 
+ Container supportops-lab-jaeger-1 Healthy 
+ Container supportops-lab-broker-init-1 Exited 
+ Container supportops-lab-localstack-1 Healthy 
+ Container supportops-lab-idp-clients-1 Exited 
+ Container supportops-lab-api-1 Healthy 
+ Container supportops-lab-grafana-1 Healthy 
+ Container supportops-lab-otel-1 Healthy 
+ Container supportops-lab-keycloak-1 Healthy 
+ Container supportops-lab-p04-worker-1 Healthy 
+ Container supportops-lab-redis-1 Healthy 
+ Container supportops-lab-web-1 Healthy 
+ Container supportops-lab-worker-1 Healthy 
+exit=0

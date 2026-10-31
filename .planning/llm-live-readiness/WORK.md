@@ -4,7 +4,7 @@
 
 T4's `gossett_backend` blocker is **closed as a false positive**: the container belongs to the user's unrelated `gosset` project, counts were 102 → 102, and the identity comparator was comparing the volatile published-ports string of a crash-looping container. Fixed in `projects/p04/scripts/docker_inventory_identity.py` with regression coverage. No resource outside a proven phase namespace may still be mutated.
 
-Next product work: the open items of `docs/harness/lab-stack/production-readiness.md`. The first needs user authorization: `python scripts/stack.py fly-up`.
+Next product work: the owner decisions in `docs/harness/lab-stack/production-readiness.md`. The console is deployed on Fly for testing; stop it with `python scripts/stack.py fly-down`.
 
 ## Historical queue — phase048 checkpoint 2026-10-30
 

@@ -5,7 +5,7 @@ primary_region = "iad"
   dockerfile = "../../projects/p05/Dockerfile"
 
 [processes]
-  app = "python -m uvicorn supportops_platform.mcp.runtime:create_mcp_app --factory --host 0.0.0.0 --port 8000"
+  app = "python -m uvicorn supportops_platform.mcp.runtime:create_mcp_app --factory --host 0.0.0.0 --port 8000 --log-config /app/logcfg/uvicorn-log.json"
 
 [[services]]
   processes = ["app"]
@@ -38,6 +38,7 @@ primary_region = "iad"
   processes = ["app"]
 
 [env]
+  PYTHONPATH = "/app/logcfg"
   LLM_MODE = "fake"
   OTEL_EXPORTER_OTLP_ENDPOINT = "http://supportops-lab-jaeger.internal:4317"
   OTEL_SERVICE_NAME = "p05-mcp"
