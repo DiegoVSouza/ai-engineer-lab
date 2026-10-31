@@ -5,8 +5,7 @@ primary_region = "iad"
   dockerfile = "../../projects/p05/Dockerfile"
 
 [processes]
-  app = "python -m uvicorn supportops_platform.api.app:app --host 0.0.0.0 --port 8000 --log-config /app/logcfg/uvicorn-log.json"
-  worker = "python -m supportops_platform.service_runtime"
+  app = "python /app/logcfg/pair.py python -m supportops_platform.service_runtime :: python -m uvicorn supportops_platform.api.app:app --host 0.0.0.0 --port 8000 --log-config /app/logcfg/uvicorn-log.json"
 
 [http_service]
   internal_port = 8000
@@ -26,14 +25,8 @@ primary_region = "iad"
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
-  memory = "256mb"
+  memory = "512mb"
   processes = ["app"]
-
-[[vm]]
-  cpu_kind = "shared"
-  cpus = 1
-  memory = "256mb"
-  processes = ["worker"]
 
 [[metrics]]
   port = 8000
@@ -43,7 +36,7 @@ primary_region = "iad"
 [[mounts]]
   source = "p05_graph"
   destination = "/app/artifacts"
-  processes = ["worker"]
+  processes = ["app"]
   initial_size = "1gb"
   snapshot_retention = 14
 
@@ -52,7 +45,7 @@ primary_region = "iad"
   LLM_MODE = "fake"
   P05_RUNTIME = "services"
   P05_QUEUE_NAME = "supportops-p05-tasks"
-  OTEL_EXPORTER_OTLP_ENDPOINT = "http://supportops-lab-jaeger.internal:4317"
+  OTEL_EXPORTER_OTLP_ENDPOINT = "http://supportops-lab-jaeger.flycast:4317"
   OTEL_SERVICE_NAME = "p05-runtime"
   API_AUTH_MODE = "oidc"
   P05_METRICS_PORT = "8001"
@@ -63,4 +56,4 @@ primary_region = "iad"
 [[metrics]]
   port = 8001
   path = "/metrics"
-  processes = ["worker"]
+  processes = ["app"]

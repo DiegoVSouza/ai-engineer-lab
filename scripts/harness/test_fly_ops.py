@@ -26,9 +26,10 @@ if args[:2] == ["apps", "list"]:
     print(json.dumps([{"Name": "supportops-lab-db"}, {"Name": "someone-elses-app"}]))
 elif args[:2] == ["machine", "list"]:
     state = os.environ.get("FAKE_FLY_MACHINE_STATE", "started")
-    print(json.dumps([{"id": "m1", "state": state, "checks": [{"status": "passing"}],
-                       "config": {"metadata": {"fly_process_group": "app"},
-                                  "services": [{"autostart": True}]}}]))
+    config = {"metadata": {"fly_process_group": "app"}}
+    if not os.environ.get("FAKE_FLY_NO_SERVICES"):
+        config["services"] = [{"autostart": True}]
+    print(json.dumps([{"id": "m1", "state": state, "checks": [{"status": "passing"}], "config": config}]))
 elif args[:2] == ["volumes", "list"]:
     print(json.dumps([{"name": "pg_data", "size_gb": 10, "state": "created"}]))
 '''
@@ -141,8 +142,38 @@ class FlyOperatorScripts(unittest.TestCase):
 
     def test_autostop_apps_are_not_judged_by_machine_checks(self):
         text = POWER.read_text(encoding="utf-8")
-        for app in ("p04", "p05", "mcp", "web"):
+        for app in ("db", "redis", "idp", "sns", "jaeger", "p04", "p05", "mcp", "web"):
             self.assertIn(f'App = "supportops-lab-{app}"; Processes = @("app"); Check = $false', text)
+
+    def test_every_app_stops_at_idle_and_private_apps_stay_private(self):
+        for directory in ("postgres", "redis", "idp", "sns", "jaeger", "mcp", "p04", "p05", "web"):
+            text = (ROOT / "fly" / directory / "fly.toml").read_text(encoding="utf-8")
+            self.assertIn('auto_stop_machines = "stop"', text, directory)
+            self.assertIn("min_machines_running = 0", text, directory)
+            self.assertNotIn('"off"', text, directory)
+        for directory in ("postgres", "redis", "sns", "jaeger"):
+            text = (ROOT / "fly" / directory / "fly.toml").read_text(encoding="utf-8")
+            self.assertNotIn("handlers", text, directory)
+        names = ("supportops-lab-db", "supportops-lab-redis", "supportops-lab-sns", "supportops-lab-jaeger")
+        result = self.run_script(DEPLOY, "-Action", "Up", "-SkipSecrets")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        for name in names:
+            deploy = next(call for call in self.calls() if call[0] == "deploy" and name in call)
+            self.assertIn("--no-public-ips", deploy)
+            self.assertIn(["ips", "allocate-v6", "--private", "--app", name], self.calls())
+        self.assertFalse(any(call[:2] == ["ips", "allocate-v4"] for call in self.calls()))
+
+    def test_machines_without_services_can_be_started_and_stopped(self):
+        result = self.run_script(POWER, "-Action", "Start", FAKE_FLY_NO_SERVICES="1", FAKE_FLY_MACHINE_STATE="stopped")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        result = self.run_script(POWER, "-Action", "Stop", FAKE_FLY_NO_SERVICES="1")
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_public_autostart_is_disabled_on_down_for_every_app(self):
+        self.run_script(POWER, "-Action", "Stop")
+        updated = {call[call.index("--app") + 1] for call in self.calls() if "--autostart=false" in call}
+        self.assertIn("supportops-lab-db", updated)
+        self.assertIn("supportops-lab-idp", updated)
 
     def test_failed_fly_call_returns_non_zero_and_stops(self):
         result = self.run_script(DEPLOY, "-Action", "Up", "-SkipSecrets", FAKE_FLY_FAIL="deploy")

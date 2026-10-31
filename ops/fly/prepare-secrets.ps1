@@ -49,8 +49,8 @@ if (-not (Test-Path $secretPath)) { throw "Run with -Action Prepare before impor
 $values = Get-Content -Raw $secretPath | ConvertFrom-Json -AsHashtable
 $issuer = "https://supportops-lab-idp.fly.dev/realms/supportops"
 $introspection = "$issuer/protocol/openid-connect/token/introspect"
-$pgHost = "supportops-lab-db.internal"
-$redisHost = "supportops-lab-redis.internal"
+$pgHost = "supportops-lab-db.flycast"
+$redisHost = "supportops-lab-redis.flycast"
 $p04Dsn = "postgresql://p04:$($values.P04_DB_PASSWORD)@$pgHost`:5432/p04"
 $p05Dsn = "postgresql://p05:$($values.P05_DB_PASSWORD)@$pgHost`:5432/p05"
 $p04Redis = "redis://:$($values.REDIS_PASSWORD)@$redisHost`:6379/1"

@@ -6,7 +6,7 @@ One-command lifecycle of the SupportOps Fly stack.
 Up     Prepare secrets once, create missing stack apps and volumes, wake existing
        machines, deploy every app in dependency order, start everything and wait
        for health. Safe to repeat.
-Down   Stop every machine and disable public autostart. Volumes survive and are
+Down   Stop every machine and disable autostart. Volumes survive and are
        listed. Nothing is deleted unless -DestroyData is confirmed.
 Status Report machines and volumes per app without changing anything.
 Reconcile  Finish Up without rebuilding: start machines, apply the console OIDC
@@ -71,6 +71,12 @@ function Invoke-Stage {
       Invoke-Fly -DryRun:$DryRun -Arguments @("apps", "create", $app.Name, "--org", "personal", "--yes")
     }
   }
+  foreach ($app in ($apps | Where-Object { $_.Private })) {
+    $ips = Read-FlyJson -Arguments @("ips", "list", "--app", $app.Name, "--json") -AllowMissing
+    if (-not ($ips | Where-Object Type -eq "private_v6")) {
+      Invoke-Fly -DryRun:$DryRun -Arguments @("ips", "allocate-v6", "--private", "--app", $app.Name)
+    }
+  }
   foreach ($app in $apps) {
     if ($app.Volume) {
       $volumes = Read-FlyJson -Arguments @("volumes", "list", "--app", $app.Name, "--json") -AllowMissing
@@ -100,7 +106,9 @@ function Invoke-Deploy {
   foreach ($app in $apps) {
     $config = Join-Path $root $app.Config
     $context = Join-Path $root $app.Context
-    Invoke-Fly -DryRun:$DryRun -Arguments @("deploy", $context, "--config", $config, "--app", $app.Name, "--remote-only", "--yes", "--ha=false")
+    $arguments = @("deploy", $context, "--config", $config, "--app", $app.Name, "--remote-only", "--yes", "--ha=false")
+    if ($app.Private) { $arguments += "--no-public-ips" }
+    Invoke-Fly -DryRun:$DryRun -Arguments $arguments
     foreach ($group in $app.Processes) {
       Invoke-Fly -DryRun:$DryRun -Arguments @("scale", "count", "1", "--process-group", $group, "--app", $app.Name, "--yes")
     }
@@ -136,12 +144,13 @@ function Invoke-Probe {
   }
   if ($env:FLY_SKIP_PROBE) { return }
   $urls = @(
+    "https://supportops-lab-idp.fly.dev/realms/supportops/.well-known/openid-configuration",
     "https://supportops-lab-web.fly.dev/readyz",
     "https://supportops-lab-p05.fly.dev/readyz",
     "https://supportops-lab-p04.fly.dev/openapi.json"
   )
   foreach ($url in $urls) {
-    $deadline = [DateTime]::UtcNow.AddSeconds(120)
+    $deadline = [DateTime]::UtcNow.AddSeconds(300)
     while ($true) {
       try {
         $status = (Invoke-WebRequest -Uri $url -TimeoutSec 30 -SkipHttpErrorCheck).StatusCode

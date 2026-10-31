@@ -56,10 +56,11 @@ function Set-ProcessState {
 
   $allowMissing = $DryRun -or $ExistingOnly
   foreach ($machine in (Get-ProcessMachines -App $App -Process $Process -AllowMissing:$allowMissing)) {
-    $publicApp = $App -in @("supportops-lab-p04", "supportops-lab-p05", "supportops-lab-mcp", "supportops-lab-web") -and $Process -eq "app"
+    $publicApp = $Process -eq "app"
     $autoStart = $null
-    if ($publicApp -and @($machine.config.services).Count -gt 0) {
-      $autoStart = [bool]$machine.config.services[0].autostart
+    $services = @($machine.config.services | Where-Object { $_ })
+    if ($publicApp -and $services.Count -gt 0) {
+      $autoStart = [bool]$services[0].autostart
     }
 
     if ($machine.state -eq $State) {
@@ -133,14 +134,14 @@ function Write-StackStatus {
   }
 }
 
+# Every app stops at idle, so machine state proves nothing here. deploy.ps1 probes
+# the public URLs, which also wake the chain behind them.
 $startOrder = @(
-  @{ App = "supportops-lab-db"; Processes = @("app"); Check = $true },
-  @{ App = "supportops-lab-redis"; Processes = @("app"); Check = $true },
-  @{ App = "supportops-lab-idp"; Processes = @("app"); Check = $true },
-  @{ App = "supportops-lab-sns"; Processes = @("app"); Check = $true },
+  @{ App = "supportops-lab-db"; Processes = @("app"); Check = $false },
+  @{ App = "supportops-lab-redis"; Processes = @("app"); Check = $false },
+  @{ App = "supportops-lab-idp"; Processes = @("app"); Check = $false },
+  @{ App = "supportops-lab-sns"; Processes = @("app"); Check = $false },
   @{ App = "supportops-lab-jaeger"; Processes = @("app"); Check = $false },
-  @{ App = "supportops-lab-p04"; Processes = @("worker"); Check = $false },
-  @{ App = "supportops-lab-p05"; Processes = @("worker"); Check = $false },
   @{ App = "supportops-lab-p04"; Processes = @("app"); Check = $false },
   @{ App = "supportops-lab-p05"; Processes = @("app"); Check = $false },
   @{ App = "supportops-lab-mcp"; Processes = @("app"); Check = $false },
@@ -152,8 +153,6 @@ $stopOrder = @(
   @{ App = "supportops-lab-p04"; Processes = @("app") },
   @{ App = "supportops-lab-p05"; Processes = @("app") },
   @{ App = "supportops-lab-mcp"; Processes = @("app") },
-  @{ App = "supportops-lab-p04"; Processes = @("worker") },
-  @{ App = "supportops-lab-p05"; Processes = @("worker") },
   @{ App = "supportops-lab-idp"; Processes = @("app") },
   @{ App = "supportops-lab-sns"; Processes = @("app") },
   @{ App = "supportops-lab-jaeger"; Processes = @("app") },

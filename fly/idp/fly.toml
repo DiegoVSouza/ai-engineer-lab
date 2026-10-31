@@ -7,9 +7,9 @@ primary_region = "iad"
 [http_service]
   internal_port = 8080
   force_https = true
-  auto_stop_machines = "off"
+  auto_stop_machines = "stop"
   auto_start_machines = true
-  min_machines_running = 1
+  min_machines_running = 0
 
 [checks.keycloak-realm-ready]
   type = "http"
@@ -28,7 +28,7 @@ primary_region = "iad"
 [env]
   KC_BOOTSTRAP_ADMIN_USERNAME = "lab-admin"
   KC_DB = "postgres"
-  KC_DB_URL = "jdbc:postgresql://supportops-lab-db.internal:5432/keycloak"
+  KC_DB_URL = "jdbc:postgresql://supportops-lab-db.flycast:5432/keycloak"
   KC_DB_USERNAME = "keycloak"
   KC_HEALTH_ENABLED = "true"
   KC_HTTP_ENABLED = "true"

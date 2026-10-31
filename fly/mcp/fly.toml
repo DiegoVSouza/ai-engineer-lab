@@ -40,7 +40,7 @@ primary_region = "iad"
 [env]
   PYTHONPATH = "/app/logcfg"
   LLM_MODE = "fake"
-  OTEL_EXPORTER_OTLP_ENDPOINT = "http://supportops-lab-jaeger.internal:4317"
+  OTEL_EXPORTER_OTLP_ENDPOINT = "http://supportops-lab-jaeger.flycast:4317"
   OTEL_SERVICE_NAME = "p05-mcp"
   MCP_URL = "https://supportops-lab-mcp.fly.dev/mcp"
   MCP_ISSUER = "https://supportops-lab-mcp.fly.dev/issuer"

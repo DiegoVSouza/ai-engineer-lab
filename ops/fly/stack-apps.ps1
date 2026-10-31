@@ -6,14 +6,14 @@ $script:FlyBin = if ($env:FLY_BIN) { $env:FLY_BIN } else { "fly" }
 $script:ConfirmToken = "supportops-lab"
 
 $script:StackApps = @(
-  @{ Name = "supportops-lab-db"; Config = "fly/postgres/fly.toml"; Context = "ops/fly/postgres"; Volume = @{ Name = "pg_data"; Size = 10 }; Processes = @("app") },
-  @{ Name = "supportops-lab-redis"; Config = "fly/redis/fly.toml"; Context = "ops/fly/redis"; Volume = @{ Name = "redis_data"; Size = 1 }; Processes = @("app") },
+  @{ Name = "supportops-lab-db"; Config = "fly/postgres/fly.toml"; Context = "ops/fly/postgres"; Volume = @{ Name = "pg_data"; Size = 10 }; Processes = @("app"); Private = $true },
+  @{ Name = "supportops-lab-redis"; Config = "fly/redis/fly.toml"; Context = "ops/fly/redis"; Volume = @{ Name = "redis_data"; Size = 1 }; Processes = @("app"); Private = $true },
   @{ Name = "supportops-lab-idp"; Config = "fly/idp/fly.toml"; Context = "ops/fly/idp"; Processes = @("app") },
-  @{ Name = "supportops-lab-sns"; Config = "fly/sns/fly.toml"; Context = "ops/fly/sns"; Processes = @("app") },
-  @{ Name = "supportops-lab-jaeger"; Config = "fly/jaeger/fly.toml"; Context = "ops/fly/jaeger"; Processes = @("app") },
+  @{ Name = "supportops-lab-sns"; Config = "fly/sns/fly.toml"; Context = "ops/fly/sns"; Processes = @("app"); Private = $true },
+  @{ Name = "supportops-lab-jaeger"; Config = "fly/jaeger/fly.toml"; Context = "ops/fly/jaeger"; Processes = @("app"); Private = $true },
   @{ Name = "supportops-lab-mcp"; Config = "fly/mcp/fly.toml"; Context = "projects/p05"; Processes = @("app") },
-  @{ Name = "supportops-lab-p04"; Config = "fly/p04/fly.toml"; Context = "projects/p04"; Processes = @("app", "worker") },
-  @{ Name = "supportops-lab-p05"; Config = "fly/p05/fly.toml"; Context = "projects/p05"; Volume = @{ Name = "p05_graph"; Size = 1 }; Processes = @("app", "worker") },
+  @{ Name = "supportops-lab-p04"; Config = "fly/p04/fly.toml"; Context = "projects/p04"; Processes = @("app") },
+  @{ Name = "supportops-lab-p05"; Config = "fly/p05/fly.toml"; Context = "projects/p05"; Volume = @{ Name = "p05_graph"; Size = 1 }; Processes = @("app") },
   @{ Name = "supportops-lab-web"; Config = "fly/web/fly.toml"; Context = "projects/p06"; Processes = @("app") }
 )
 

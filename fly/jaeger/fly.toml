@@ -9,3 +9,13 @@ primary_region = "iad"
   cpus = 1
   memory = "256mb"
   processes = ["app"]
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 4317
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [[services.ports]]
+    port = 4317

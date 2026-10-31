@@ -10,7 +10,6 @@ from pathlib import Path
 import ssl
 import sys
 import time
-from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 
@@ -52,7 +51,7 @@ class Admin:
                           'username': os.environ.get('IDP_ADMIN_USER', 'lab-admin'), 'password': password})
         request = Request(self.base + '/realms/master/protocol/openid-connect/token', data=body.encode(),
                           headers={'Content-Type': 'application/x-www-form-urlencoded'})
-        with urlopen(request, context=context, timeout=15) as response:
+        with urlopen(request, context=context, timeout=30) as response:
             self.token = json.load(response)['access_token']
 
     def call(self, method, path, document=None):
@@ -96,12 +95,12 @@ def main():
     credentials_file = os.environ.get('IDP_CREDENTIALS_FILE')
     password = (json.loads(Path(credentials_file).read_text())['keycloak_admin'] if credentials_file
                 else os.environ['IDP_ADMIN_PASSWORD'])
-    deadline = time.monotonic() + 120
+    deadline = time.monotonic() + 300
     while True:
         try:
             admin = Admin(os.environ['IDP_URL'], password, context)
             break
-        except (URLError, HTTPError) as error:
+        except OSError as error:  # URLError, HTTPError and read timeouts while Keycloak boots
             if time.monotonic() > deadline:
                 print(f'Keycloak admin login failed: {error}', file=sys.stderr)
                 return 1
