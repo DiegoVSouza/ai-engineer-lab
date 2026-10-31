@@ -1,0 +1,354 @@
+...........................................................................................................................................................................................................................................................EEEEEEE........EEEEEEEE........usage: stack.py [-h]
+                {checkout,up,down,status,logs,stop,start,check,persistence,credentials,token,ca,fly-up,fly-down,fly-status}
+stack.py: error: unrecognized arguments: --volumes
+.
+======================================================================
+ERROR: test_changed_retained_reservation_is_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_changed_retained_reservation_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_closed_diagnostic_cannot_continue (test_p01_reviewed_diagnostic.DiagnosticTests.test_closed_diagnostic_cannot_continue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_diagnostic_cannot_continue (test_p01_reviewed_diagnostic.DiagnosticTests.test_failed_diagnostic_cannot_continue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_original_cannot_be_bypassed_with_a_new_case (test_p01_reviewed_diagnostic.DiagnosticTests.test_failed_original_cannot_be_bypassed_with_a_new_case)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_missing_or_modified_authority_is_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_missing_or_modified_authority_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_narrow_scope_is_finite_and_preserves_original_reserve (test_p01_reviewed_diagnostic.DiagnosticTests.test_narrow_scope_is_finite_and_preserves_original_reserve)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_other_identity_and_uncertain_replay_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_other_identity_and_uncertain_replay_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_changed_retained_reservation_is_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_changed_retained_reservation_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_closed_diagnostic_cannot_resume_with_remaining_provider_capacity (test_p04_reviewed_diagnostic.DiagnosticTests.test_closed_diagnostic_cannot_resume_with_remaining_provider_capacity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_diagnostic_cannot_continue (test_p04_reviewed_diagnostic.DiagnosticTests.test_failed_diagnostic_cannot_continue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_original_cannot_be_bypassed_with_a_new_case (test_p04_reviewed_diagnostic.DiagnosticTests.test_failed_original_cannot_be_bypassed_with_a_new_case)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_missing_or_modified_authority_is_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_missing_or_modified_authority_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_narrow_scope_is_finite_and_preserves_original_reserve (test_p04_reviewed_diagnostic.DiagnosticTests.test_narrow_scope_is_finite_and_preserves_original_reserve)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_original_step_mutation_is_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_original_step_mutation_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_other_identity_and_uncertain_replay_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_other_identity_and_uncertain_replay_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+----------------------------------------------------------------------
+Ran 283 tests in 259.468s
+
+FAILED (errors=15)
+exit=1

@@ -26,7 +26,11 @@ class DiagnosticTests(unittest.TestCase):
         for args in (("init", "-q"), ("config", "user.email", "fixture@example.invalid"),
                      ("config", "user.name", "Fixture"), ("add", AUTH), ("commit", "-qm", "test: freeze approval")):
             subprocess.run(["git", *args], cwd=self.root, check=True, capture_output=True)
-        self.account = SharedAccount(self.root, json.loads((ROOT / "shared/policies/groq-free-campaign.json").read_text()))
+        policy = json.loads((ROOT / "shared/policies/groq-free-campaign.json").read_text())
+        # This diagnostic predates the later revalidation allocation; keep the
+        # current policy and guard, and select only the historical p01 scope.
+        policy["projects"]["p01"]["requests"] = 992
+        self.account = SharedAccount(self.root, policy)
         self.account.register("p01")
         ids = ["9b174b5ca0fa40f6a0b177ec9f4f2523", "bed97cb14f7146f0845588762940e7d4"]
         for index, usage in enumerate(((235, 46), (228, 183)), 1):

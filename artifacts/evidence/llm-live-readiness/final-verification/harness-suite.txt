@@ -1,0 +1,1858 @@
+...........................................................................................................................EE.EEFE.FEFE.E.EEE.EEEFE.FEFFEEEE.E.FEE.EEFE.FEFEEE.E.EEE.EEFE.FEFFEEE.E.FEEE.EEFE.FEFFEEEE.E.FEEE.EEEFE.FEFFEEEE.E.F...........EEEEEEE........EEEEEEEE........usage: stack.py [-h]
+                {checkout,up,down,status,logs,stop,start,check,persistence,credentials,token,ca,fly-up,fly-down,fly-status}
+stack.py: error: unrecognized arguments: --volumes
+.
+======================================================================
+ERROR: test_applied_audit_before_marker_removal_stays_blocked_until_recovery (test_migrate_p01_operation.MigrationTests.test_applied_audit_before_marker_removal_stays_blocked_until_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 250, in test_applied_audit_before_marker_removal_stays_blocked_until_recovery
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_audit_is_append_only_and_registry_rollback_is_denied (test_migrate_p01_operation.MigrationTests.test_audit_is_append_only_and_registry_rollback_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 259, in test_audit_is_append_only_and_registry_rollback_is_denied
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids (test_migrate_p01_operation.MigrationTests.test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 93, in test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids
+    result = self.run_migration()
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_idempotency_preserves_later_project_registration_and_usage (test_migrate_p01_operation.MigrationTests.test_idempotency_preserves_later_project_registration_and_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 324, in test_idempotency_preserves_later_project_registration_and_usage
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_interruptions_recover_once_before_and_after_registry_replace (test_migrate_p01_operation.MigrationTests.test_interruptions_recover_once_before_and_after_registry_replace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 217, in test_interruptions_recover_once_before_and_after_registry_replace
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_missing_registered_ledger_and_corrupt_audit_fail_closed (test_migrate_p01_operation.MigrationTests.test_missing_registered_ledger_and_corrupt_audit_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 286, in test_missing_registered_ledger_and_corrupt_audit_fail_closed
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p01_logical_ledger_without_project_column_is_preserved (test_migrate_p01_operation.MigrationTests.test_p01_logical_ledger_without_project_column_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 130, in test_p01_logical_ledger_without_project_column_is_preserved
+    self.assertEqual(self.run_migration(True)["status"], "APPLIED")
+                     ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_shared_lease_contention_blocks_without_audit_writes (test_migrate_p01_operation.MigrationTests.test_shared_lease_contention_blocks_without_audit_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 305, in test_shared_lease_contention_blocks_without_audit_writes
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 417, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_operation.py", line 162, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_applied_audit_before_marker_removal_stays_blocked_until_recovery (test_migrate_p01_second_diagnostic.MigrationTests.test_applied_audit_before_marker_removal_stays_blocked_until_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 353, in test_applied_audit_before_marker_removal_stays_blocked_until_recovery
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_audit_is_append_only_and_registry_rollback_is_denied (test_migrate_p01_second_diagnostic.MigrationTests.test_audit_is_append_only_and_registry_rollback_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 362, in test_audit_is_append_only_and_registry_rollback_is_denied
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_completed_p02_operation_history_is_preserved (test_migrate_p01_second_diagnostic.MigrationTests.test_completed_p02_operation_history_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 145, in test_completed_p02_operation_history_is_preserved
+    report = self.run_migration(True)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids (test_migrate_p01_second_diagnostic.MigrationTests.test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 196, in test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids
+    result = self.run_migration()
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_exact_retained_p04_original_step_is_preserved_without_resolution (test_migrate_p01_second_diagnostic.MigrationTests.test_exact_retained_p04_original_step_is_preserved_without_resolution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 107, in test_exact_retained_p04_original_step_is_preserved_without_resolution
+    report=self.run_migration(True)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_idempotency_preserves_later_project_registration_and_usage (test_migrate_p01_second_diagnostic.MigrationTests.test_idempotency_preserves_later_project_registration_and_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 427, in test_idempotency_preserves_later_project_registration_and_usage
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_interruptions_recover_once_before_and_after_registry_replace (test_migrate_p01_second_diagnostic.MigrationTests.test_interruptions_recover_once_before_and_after_registry_replace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 320, in test_interruptions_recover_once_before_and_after_registry_replace
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_missing_registered_ledger_and_corrupt_audit_fail_closed (test_migrate_p01_second_diagnostic.MigrationTests.test_missing_registered_ledger_and_corrupt_audit_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 389, in test_missing_registered_ledger_and_corrupt_audit_fail_closed
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p01_logical_ledger_without_project_column_is_preserved (test_migrate_p01_second_diagnostic.MigrationTests.test_p01_logical_ledger_without_project_column_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 233, in test_p01_logical_ledger_without_project_column_is_preserved
+    self.assertEqual(self.run_migration(True)["status"], "APPLIED")
+                     ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p04_failure_blocks_new_identity (test_migrate_p01_second_diagnostic.MigrationTests.test_p04_failure_blocks_new_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 182, in test_p04_failure_blocks_new_identity
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p04_operation_cap_and_protected_evaluation (test_migrate_p01_second_diagnostic.MigrationTests.test_p04_operation_cap_and_protected_evaluation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 170, in test_p04_operation_cap_and_protected_evaluation
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p05_scope_cap_and_evaluation_protection (test_migrate_p01_second_diagnostic.MigrationTests.test_p05_scope_cap_and_evaluation_protection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 118, in test_p05_scope_cap_and_evaluation_protection
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_shared_lease_contention_blocks_without_audit_writes (test_migrate_p01_second_diagnostic.MigrationTests.test_shared_lease_contention_blocks_without_audit_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 408, in test_shared_lease_contention_blocks_without_audit_writes
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 454, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_second_diagnostic.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_applied_audit_before_marker_removal_stays_blocked_until_recovery (test_migrate_p02_operation.MigrationTests.test_applied_audit_before_marker_removal_stays_blocked_until_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 271, in test_applied_audit_before_marker_removal_stays_blocked_until_recovery
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_audit_is_append_only_and_registry_rollback_is_denied (test_migrate_p02_operation.MigrationTests.test_audit_is_append_only_and_registry_rollback_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 280, in test_audit_is_append_only_and_registry_rollback_is_denied
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids (test_migrate_p02_operation.MigrationTests.test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 114, in test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids
+    result = self.run_migration()
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_idempotency_preserves_later_project_registration_and_usage (test_migrate_p02_operation.MigrationTests.test_idempotency_preserves_later_project_registration_and_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 345, in test_idempotency_preserves_later_project_registration_and_usage
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_interruptions_recover_once_before_and_after_registry_replace (test_migrate_p02_operation.MigrationTests.test_interruptions_recover_once_before_and_after_registry_replace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 238, in test_interruptions_recover_once_before_and_after_registry_replace
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_missing_registered_ledger_and_corrupt_audit_fail_closed (test_migrate_p02_operation.MigrationTests.test_missing_registered_ledger_and_corrupt_audit_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 307, in test_missing_registered_ledger_and_corrupt_audit_fail_closed
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p01_logical_ledger_without_project_column_is_preserved (test_migrate_p02_operation.MigrationTests.test_p01_logical_ledger_without_project_column_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 151, in test_p01_logical_ledger_without_project_column_is_preserved
+    self.assertEqual(self.run_migration(True)["status"], "APPLIED")
+                     ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p02_failure_blocks_new_identity (test_migrate_p02_operation.MigrationTests.test_p02_failure_blocks_new_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 100, in test_p02_failure_blocks_new_identity
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p02_operation_cap_and_protected_evaluation (test_migrate_p02_operation.MigrationTests.test_p02_operation_cap_and_protected_evaluation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 88, in test_p02_operation_cap_and_protected_evaluation
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_shared_lease_contention_blocks_without_audit_writes (test_migrate_p02_operation.MigrationTests.test_shared_lease_contention_blocks_without_audit_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 326, in test_shared_lease_contention_blocks_without_audit_writes
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 416, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p02_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_applied_audit_before_marker_removal_stays_blocked_until_recovery (test_migrate_p03_operation.MigrationTests.test_applied_audit_before_marker_removal_stays_blocked_until_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 311, in test_applied_audit_before_marker_removal_stays_blocked_until_recovery
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_audit_is_append_only_and_registry_rollback_is_denied (test_migrate_p03_operation.MigrationTests.test_audit_is_append_only_and_registry_rollback_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 320, in test_audit_is_append_only_and_registry_rollback_is_denied
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_completed_p02_operation_history_is_preserved (test_migrate_p03_operation.MigrationTests.test_completed_p02_operation_history_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 103, in test_completed_p02_operation_history_is_preserved
+    report = self.run_migration(True)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids (test_migrate_p03_operation.MigrationTests.test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 154, in test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids
+    result = self.run_migration()
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_idempotency_preserves_later_project_registration_and_usage (test_migrate_p03_operation.MigrationTests.test_idempotency_preserves_later_project_registration_and_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 385, in test_idempotency_preserves_later_project_registration_and_usage
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_interruptions_recover_once_before_and_after_registry_replace (test_migrate_p03_operation.MigrationTests.test_interruptions_recover_once_before_and_after_registry_replace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 278, in test_interruptions_recover_once_before_and_after_registry_replace
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_missing_registered_ledger_and_corrupt_audit_fail_closed (test_migrate_p03_operation.MigrationTests.test_missing_registered_ledger_and_corrupt_audit_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 347, in test_missing_registered_ledger_and_corrupt_audit_fail_closed
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p01_logical_ledger_without_project_column_is_preserved (test_migrate_p03_operation.MigrationTests.test_p01_logical_ledger_without_project_column_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 191, in test_p01_logical_ledger_without_project_column_is_preserved
+    self.assertEqual(self.run_migration(True)["status"], "APPLIED")
+                     ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p03_failure_blocks_new_identity (test_migrate_p03_operation.MigrationTests.test_p03_failure_blocks_new_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 140, in test_p03_failure_blocks_new_identity
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p03_operation_cap_and_protected_evaluation (test_migrate_p03_operation.MigrationTests.test_p03_operation_cap_and_protected_evaluation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 128, in test_p03_operation_cap_and_protected_evaluation
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_shared_lease_contention_blocks_without_audit_writes (test_migrate_p03_operation.MigrationTests.test_shared_lease_contention_blocks_without_audit_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 366, in test_shared_lease_contention_blocks_without_audit_writes
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 445, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p03_operation.py", line 161, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_applied_audit_before_marker_removal_stays_blocked_until_recovery (test_migrate_service_operations.MigrationTests.test_applied_audit_before_marker_removal_stays_blocked_until_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 323, in test_applied_audit_before_marker_removal_stays_blocked_until_recovery
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_audit_is_append_only_and_registry_rollback_is_denied (test_migrate_service_operations.MigrationTests.test_audit_is_append_only_and_registry_rollback_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 332, in test_audit_is_append_only_and_registry_rollback_is_denied
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_completed_p02_operation_history_is_preserved (test_migrate_service_operations.MigrationTests.test_completed_p02_operation_history_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 115, in test_completed_p02_operation_history_is_preserved
+    report = self.run_migration(True)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids (test_migrate_service_operations.MigrationTests.test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 166, in test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids
+    result = self.run_migration()
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_idempotency_preserves_later_project_registration_and_usage (test_migrate_service_operations.MigrationTests.test_idempotency_preserves_later_project_registration_and_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 397, in test_idempotency_preserves_later_project_registration_and_usage
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_interruptions_recover_once_before_and_after_registry_replace (test_migrate_service_operations.MigrationTests.test_interruptions_recover_once_before_and_after_registry_replace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 290, in test_interruptions_recover_once_before_and_after_registry_replace
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_missing_registered_ledger_and_corrupt_audit_fail_closed (test_migrate_service_operations.MigrationTests.test_missing_registered_ledger_and_corrupt_audit_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 359, in test_missing_registered_ledger_and_corrupt_audit_fail_closed
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p01_logical_ledger_without_project_column_is_preserved (test_migrate_service_operations.MigrationTests.test_p01_logical_ledger_without_project_column_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 203, in test_p01_logical_ledger_without_project_column_is_preserved
+    self.assertEqual(self.run_migration(True)["status"], "APPLIED")
+                     ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p04_failure_blocks_new_identity (test_migrate_service_operations.MigrationTests.test_p04_failure_blocks_new_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 152, in test_p04_failure_blocks_new_identity
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p04_operation_cap_and_protected_evaluation (test_migrate_service_operations.MigrationTests.test_p04_operation_cap_and_protected_evaluation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 140, in test_p04_operation_cap_and_protected_evaluation
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p05_scope_cap_and_evaluation_protection (test_migrate_service_operations.MigrationTests.test_p05_scope_cap_and_evaluation_protection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 88, in test_p05_scope_cap_and_evaluation_protection
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_shared_lease_contention_blocks_without_audit_writes (test_migrate_service_operations.MigrationTests.test_shared_lease_contention_blocks_without_audit_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 378, in test_shared_lease_contention_blocks_without_audit_writes
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 440, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_service_operations.py", line 156, in require_inputs
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_applied_audit_before_marker_removal_stays_blocked_until_recovery (test_p01_p04_migration_regression.MigrationTests.test_applied_audit_before_marker_removal_stays_blocked_until_recovery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 358, in test_applied_audit_before_marker_removal_stays_blocked_until_recovery
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_audit_is_append_only_and_registry_rollback_is_denied (test_p01_p04_migration_regression.MigrationTests.test_audit_is_append_only_and_registry_rollback_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 367, in test_audit_is_append_only_and_registry_rollback_is_denied
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_completed_p02_operation_history_is_preserved (test_p01_p04_migration_regression.MigrationTests.test_completed_p02_operation_history_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 145, in test_completed_p02_operation_history_is_preserved
+    report = self.run_migration(True)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids (test_p01_p04_migration_regression.MigrationTests.test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 201, in test_dry_run_writes_nothing_and_apply_preserves_unknown_usage_and_uuids
+    result = self.run_migration()
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_exact_retained_p04_original_step_is_preserved_without_resolution (test_p01_p04_migration_regression.MigrationTests.test_exact_retained_p04_original_step_is_preserved_without_resolution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 107, in test_exact_retained_p04_original_step_is_preserved_without_resolution
+    report=self.run_migration(True)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_idempotency_preserves_later_project_registration_and_usage (test_p01_p04_migration_regression.MigrationTests.test_idempotency_preserves_later_project_registration_and_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 432, in test_idempotency_preserves_later_project_registration_and_usage
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_interruptions_recover_once_before_and_after_registry_replace (test_p01_p04_migration_regression.MigrationTests.test_interruptions_recover_once_before_and_after_registry_replace)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 325, in test_interruptions_recover_once_before_and_after_registry_replace
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_missing_registered_ledger_and_corrupt_audit_fail_closed (test_p01_p04_migration_regression.MigrationTests.test_missing_registered_ledger_and_corrupt_audit_fail_closed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 394, in test_missing_registered_ledger_and_corrupt_audit_fail_closed
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p01_logical_ledger_without_project_column_is_preserved (test_p01_p04_migration_regression.MigrationTests.test_p01_logical_ledger_without_project_column_is_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 238, in test_p01_logical_ledger_without_project_column_is_preserved
+    self.assertEqual(self.run_migration(True)["status"], "APPLIED")
+                     ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p04_failure_blocks_new_identity (test_p01_p04_migration_regression.MigrationTests.test_p04_failure_blocks_new_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 185, in test_p04_failure_blocks_new_identity
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p04_operation_cap_and_protected_evaluation (test_p01_p04_migration_regression.MigrationTests.test_p04_operation_cap_and_protected_evaluation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 170, in test_p04_operation_cap_and_protected_evaluation
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_p05_scope_cap_and_evaluation_protection (test_p01_p04_migration_regression.MigrationTests.test_p05_scope_cap_and_evaluation_protection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 118, in test_p05_scope_cap_and_evaluation_protection
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_shared_lease_contention_blocks_without_audit_writes (test_p01_p04_migration_regression.MigrationTests.test_shared_lease_contention_blocks_without_audit_writes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 413, in test_shared_lease_contention_blocks_without_audit_writes
+    self.run_migration(True)
+    ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 85, in run_migration
+    return migration.migrate(self.root, apply=apply)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 451, in migrate
+    before, after = require_inputs(root)
+                    ~~~~~~~~~~~~~~^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 153, in require_inputs
+    validate_p00_source_binding(blob.stdout.strip(), read_audit(root))
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\migrate_p01_p04_revalidation.py", line 107, in validate_p00_source_binding
+    raise MigrationBlocked("migration_p00_campaign_source_changed")
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+======================================================================
+ERROR: test_changed_retained_reservation_is_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_changed_retained_reservation_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_closed_diagnostic_cannot_continue (test_p01_reviewed_diagnostic.DiagnosticTests.test_closed_diagnostic_cannot_continue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_diagnostic_cannot_continue (test_p01_reviewed_diagnostic.DiagnosticTests.test_failed_diagnostic_cannot_continue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_original_cannot_be_bypassed_with_a_new_case (test_p01_reviewed_diagnostic.DiagnosticTests.test_failed_original_cannot_be_bypassed_with_a_new_case)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_missing_or_modified_authority_is_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_missing_or_modified_authority_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_narrow_scope_is_finite_and_preserves_original_reserve (test_p01_reviewed_diagnostic.DiagnosticTests.test_narrow_scope_is_finite_and_preserves_original_reserve)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_other_identity_and_uncertain_replay_denied (test_p01_reviewed_diagnostic.DiagnosticTests.test_other_identity_and_uncertain_replay_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p01", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_changed_retained_reservation_is_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_changed_retained_reservation_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_closed_diagnostic_cannot_resume_with_remaining_provider_capacity (test_p04_reviewed_diagnostic.DiagnosticTests.test_closed_diagnostic_cannot_resume_with_remaining_provider_capacity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_diagnostic_cannot_continue (test_p04_reviewed_diagnostic.DiagnosticTests.test_failed_diagnostic_cannot_continue)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_failed_original_cannot_be_bypassed_with_a_new_case (test_p04_reviewed_diagnostic.DiagnosticTests.test_failed_original_cannot_be_bypassed_with_a_new_case)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_missing_or_modified_authority_is_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_missing_or_modified_authority_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_narrow_scope_is_finite_and_preserves_original_reserve (test_p04_reviewed_diagnostic.DiagnosticTests.test_narrow_scope_is_finite_and_preserves_original_reserve)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_original_step_mutation_is_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_original_step_mutation_is_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_other_identity_and_uncertain_replay_denied (test_p04_reviewed_diagnostic.DiagnosticTests.test_other_identity_and_uncertain_replay_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p04_reviewed_diagnostic.py", line 34, in setUp
+    receipt = self.account.reserve("p04", "local-operation-v1", "fixture-local-01", 1, index, 2048, 256)
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 916, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 581, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 657, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+FAIL: test_inflight_work_blocks_migration (test_migrate_p01_operation.MigrationTests.test_inflight_work_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 188, in test_inflight_work_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_logical_reserved_event_blocks_migration (test_migrate_p01_operation.MigrationTests.test_logical_reserved_event_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 208, in test_logical_reserved_event_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_new_registry_without_audit_and_unknown_hash_are_denied (test_migrate_p01_operation.MigrationTests.test_new_registry_without_audit_and_unknown_hash_are_denied)
+----------------------------------------------------------------------
+migrate_p01_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_operation.py", line 279, in test_new_registry_without_audit_and_unknown_hash_are_denied
+    with self.assertRaisesRegex(migration.MigrationBlocked, reason):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "without_audit" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_inflight_work_blocks_migration (test_migrate_p01_second_diagnostic.MigrationTests.test_inflight_work_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 291, in test_inflight_work_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_logical_reserved_event_blocks_migration (test_migrate_p01_second_diagnostic.MigrationTests.test_logical_reserved_event_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 311, in test_logical_reserved_event_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_new_registry_without_audit_and_unknown_hash_are_denied (test_migrate_p01_second_diagnostic.MigrationTests.test_new_registry_without_audit_and_unknown_hash_are_denied)
+----------------------------------------------------------------------
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 382, in test_new_registry_without_audit_and_unknown_hash_are_denied
+    with self.assertRaisesRegex(migration.MigrationBlocked, reason):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "without_audit" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_orphan_operation_receipt_blocks_migration (test_migrate_p01_second_diagnostic.MigrationTests.test_orphan_operation_receipt_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 159, in test_orphan_operation_receipt_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "receipt_mismatch"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "receipt_mismatch" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_unknown_p02_operation_blocks_policy_transition (test_migrate_p01_second_diagnostic.MigrationTests.test_unknown_p02_operation_blocks_policy_transition)
+----------------------------------------------------------------------
+migrate_p01_second_diagnostic.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p01_second_diagnostic.py", line 165, in test_unknown_p02_operation_blocks_policy_transition
+    with self.assertRaisesRegex(migration.MigrationBlocked, "uncertain_operation"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "uncertain_operation" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_inflight_work_blocks_migration (test_migrate_p02_operation.MigrationTests.test_inflight_work_blocks_migration)
+----------------------------------------------------------------------
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 209, in test_inflight_work_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_logical_reserved_event_blocks_migration (test_migrate_p02_operation.MigrationTests.test_logical_reserved_event_blocks_migration)
+----------------------------------------------------------------------
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 229, in test_logical_reserved_event_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_new_registry_without_audit_and_unknown_hash_are_denied (test_migrate_p02_operation.MigrationTests.test_new_registry_without_audit_and_unknown_hash_are_denied)
+----------------------------------------------------------------------
+migrate_p02_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p02_operation.py", line 300, in test_new_registry_without_audit_and_unknown_hash_are_denied
+    with self.assertRaisesRegex(migration.MigrationBlocked, reason):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "without_audit" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_inflight_work_blocks_migration (test_migrate_p03_operation.MigrationTests.test_inflight_work_blocks_migration)
+----------------------------------------------------------------------
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 249, in test_inflight_work_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_logical_reserved_event_blocks_migration (test_migrate_p03_operation.MigrationTests.test_logical_reserved_event_blocks_migration)
+----------------------------------------------------------------------
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 269, in test_logical_reserved_event_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_new_registry_without_audit_and_unknown_hash_are_denied (test_migrate_p03_operation.MigrationTests.test_new_registry_without_audit_and_unknown_hash_are_denied)
+----------------------------------------------------------------------
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 340, in test_new_registry_without_audit_and_unknown_hash_are_denied
+    with self.assertRaisesRegex(migration.MigrationBlocked, reason):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "without_audit" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_orphan_operation_receipt_blocks_migration (test_migrate_p03_operation.MigrationTests.test_orphan_operation_receipt_blocks_migration)
+----------------------------------------------------------------------
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 117, in test_orphan_operation_receipt_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "receipt_mismatch"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "receipt_mismatch" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_unknown_p02_operation_blocks_policy_transition (test_migrate_p03_operation.MigrationTests.test_unknown_p02_operation_blocks_policy_transition)
+----------------------------------------------------------------------
+migrate_p03_operation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_p03_operation.py", line 123, in test_unknown_p02_operation_blocks_policy_transition
+    with self.assertRaisesRegex(migration.MigrationBlocked, "uncertain_operation"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "uncertain_operation" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_inflight_work_blocks_migration (test_migrate_service_operations.MigrationTests.test_inflight_work_blocks_migration)
+----------------------------------------------------------------------
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 261, in test_inflight_work_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_logical_reserved_event_blocks_migration (test_migrate_service_operations.MigrationTests.test_logical_reserved_event_blocks_migration)
+----------------------------------------------------------------------
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 281, in test_logical_reserved_event_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_new_registry_without_audit_and_unknown_hash_are_denied (test_migrate_service_operations.MigrationTests.test_new_registry_without_audit_and_unknown_hash_are_denied)
+----------------------------------------------------------------------
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 352, in test_new_registry_without_audit_and_unknown_hash_are_denied
+    with self.assertRaisesRegex(migration.MigrationBlocked, reason):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "without_audit" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_orphan_operation_receipt_blocks_migration (test_migrate_service_operations.MigrationTests.test_orphan_operation_receipt_blocks_migration)
+----------------------------------------------------------------------
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 129, in test_orphan_operation_receipt_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "receipt_mismatch"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "receipt_mismatch" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_unknown_p02_operation_blocks_policy_transition (test_migrate_service_operations.MigrationTests.test_unknown_p02_operation_blocks_policy_transition)
+----------------------------------------------------------------------
+migrate_service_operations.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_migrate_service_operations.py", line 135, in test_unknown_p02_operation_blocks_policy_transition
+    with self.assertRaisesRegex(migration.MigrationBlocked, "uncertain_operation"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "uncertain_operation" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_inflight_work_blocks_migration (test_p01_p04_migration_regression.MigrationTests.test_inflight_work_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 296, in test_inflight_work_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_logical_reserved_event_blocks_migration (test_p01_p04_migration_regression.MigrationTests.test_logical_reserved_event_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 316, in test_logical_reserved_event_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "inflight" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_new_registry_without_audit_and_unknown_hash_are_denied (test_p01_p04_migration_regression.MigrationTests.test_new_registry_without_audit_and_unknown_hash_are_denied)
+----------------------------------------------------------------------
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 387, in test_new_registry_without_audit_and_unknown_hash_are_denied
+    with self.assertRaisesRegex(migration.MigrationBlocked, reason):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "without_audit" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_orphan_operation_receipt_blocks_migration (test_p01_p04_migration_regression.MigrationTests.test_orphan_operation_receipt_blocks_migration)
+----------------------------------------------------------------------
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 159, in test_orphan_operation_receipt_blocks_migration
+    with self.assertRaisesRegex(migration.MigrationBlocked, "receipt_mismatch"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "receipt_mismatch" does not match "migration_p00_campaign_source_changed"
+
+======================================================================
+FAIL: test_unknown_p02_operation_blocks_policy_transition (test_p01_p04_migration_regression.MigrationTests.test_unknown_p02_operation_blocks_policy_transition)
+----------------------------------------------------------------------
+migrate_p01_p04_revalidation.MigrationBlocked: migration_p00_campaign_source_changed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_p01_p04_migration_regression.py", line 165, in test_unknown_p02_operation_blocks_policy_transition
+    with self.assertRaisesRegex(migration.MigrationBlocked, "uncertain_operation"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "uncertain_operation" does not match "migration_p00_campaign_source_changed"
+
+----------------------------------------------------------------------
+Ran 283 tests in 229.605s
+
+FAILED (failures=26, errors=82)
+exit=1
