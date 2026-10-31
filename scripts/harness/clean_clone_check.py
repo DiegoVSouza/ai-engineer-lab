@@ -36,7 +36,7 @@ def check(name: str, base: Path, timeout: int) -> dict:
         steps.append(run([shutil.which("npm") or "npm", "ci", "--ignore-scripts"], target, env, timeout))
         steps.append(run([sys.executable, "scripts/check_fast.py"], target, env, timeout))
     else:
-        steps.append(run([shutil.which("uv") or "uv", "sync", "--locked", "--all-extras"], target, env, timeout))
+        steps.append(run([shutil.which("uv") or "uv", "sync", "--locked", "--all-extras", "--all-groups"], target, env, timeout))
         steps.append(run([shutil.which("uv") or "uv", "run", "python", "scripts/check_fast.py"], target, env, timeout))
     return {"steps": steps, "passed": all(step["exit"] == 0 for step in steps)}
 
