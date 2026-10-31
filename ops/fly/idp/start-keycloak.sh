@@ -10,4 +10,4 @@ sed \
   -e "s|__APPROVER_PASSWORD__|${SUPPORTOPS_APPROVER_PASSWORD}|g" \
   /opt/keycloak/realm-template.json > "$realm_dir/supportops-realm.json"
 
-exec /opt/keycloak/bin/kc.sh start --import-realm
+exec /opt/keycloak/bin/kc.sh start --optimized --import-realm

@@ -1,0 +1,47 @@
+**********************
+PowerShell transcript start
+Start time: 20261031115535
+Username: CHODO\dvsdi
+RunAs User: CHODO\dvsdi
+Configuration Name: 
+Machine: CHODO (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -NoProfile -Command Start-Transcript -Path artifacts/evidence/fly/idp-optimized/reconcile.txt -Force | Out-Null; try { & ./ops/fly/deploy.ps1 -Action Reconcile; 'exit=' + $LASTEXITCODE } finally { Stop-Transcript | Out-Null }
+Process ID: 28312
+PSVersion: 7.6.9
+PSEdition: Core
+GitCommitId: 7.6.9
+OS: Microsoft Windows 10.0.26200
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.4
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Starting supportops-lab-db/app
+Starting supportops-lab-redis/app
+Starting supportops-lab-idp/app
+Starting supportops-lab-sns/app
+85777d4a23e348 has been started
+Waiting up to 5m0s for machine 85777d4a23e348 to reach "started"...
+Machine 85777d4a23e348 reached state "started"
+Starting supportops-lab-jaeger/app
+Starting supportops-lab-p04/app
+78452edf349568 has been started
+Waiting up to 5m0s for machine 78452edf349568 to reach "started"...
+Machine 78452edf349568 reached state "started"
+Starting supportops-lab-p05/app
+Starting supportops-lab-mcp/app
+2870421c554548 has been started
+Waiting up to 5m0s for machine 2870421c554548 to reach "started"...
+Machine 2870421c554548 reached state "started"
+Starting supportops-lab-web/app
+
+ready: https://supportops-lab-idp.fly.dev/realms/supportops/.well-known/openid-configuration
+ready: https://supportops-lab-web.fly.dev/readyz
+ready: https://supportops-lab-p05.fly.dev/readyz
+ready: https://supportops-lab-p04.fly.dev/openapi.json
+exit=0
+**********************
+PowerShell transcript end
+End time: 20261031115618
+**********************
