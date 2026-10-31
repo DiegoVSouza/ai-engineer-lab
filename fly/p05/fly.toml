@@ -4,6 +4,9 @@ primary_region = "iad"
 [build]
   dockerfile = "../../projects/p05/Dockerfile"
 
+[build.args]
+  INSTALL_LIVE = "true"
+
 [processes]
   app = "python /app/logcfg/pair.py python -m supportops_platform.service_runtime :: python -m uvicorn supportops_platform.api.app:app --host 0.0.0.0 --port 8000 --log-config /app/logcfg/uvicorn-log.json"
 
@@ -42,7 +45,8 @@ primary_region = "iad"
 
 [env]
   PYTHONPATH = "/app/logcfg"
-  LLM_MODE = "fake"
+  LLM_MODE = "live"
+  DEMO_CEILING_USD = "10"
   P05_RUNTIME = "services"
   P05_QUEUE_NAME = "supportops-p05-tasks"
   OTEL_EXPORTER_OTLP_ENDPOINT = "http://supportops-lab-jaeger.flycast:4317"
