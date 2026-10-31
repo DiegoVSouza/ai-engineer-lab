@@ -30,3 +30,11 @@ Windows clean clone, fast gate: all nine pass after the fixes. Linux was checked
 - A final `public_readiness.py` run (20 local credential values, all histories): 0 credential values, the same six known findings, no new one.
 - **Blocked, needs the owner:** `diego-portfolio-ai` (P07) history contains partial digits of the owner's phone number in commit `83c2253`, inside a test regex I wrote. HEAD no longer has it. Making that repository public as is would publish those digits. Removing them needs a history rewrite and force push on a private repository that has no other users; the harness denied that action, so it was not done.
 - **Blocked:** the harness also denied `gh repo edit --visibility public`. No repository is public. No Cloudflare project exists and nothing was deployed.
+
+## Update: published (owner's explicit instruction, 2026-10-31)
+
+- The owner asked for the phone number and a WhatsApp button on the site, and for everything to be public. The earlier "phone never published" rule is reversed (recorded in P07 `docs/harness/decisions.md`). The number is in `profile.ts` only. The CV `.docx` stays out of Git. The partial digits in P07 history are no longer a concern, so history was not rewritten.
+- All ten repositories are public: `ai-engineer-lab`, `supportops-foundation`, `supportops-agents`, `supportops-ai-toolkit`, `supportops-observability`, `supportops-async`, `supportops-platform`, `supportops-console`, `colagem-ui`, `diego-portfolio-ai`. Hosted CI was green on each before the change.
+- 54 pinned permalinks used by the site resolve (GitHub API check).
+- Cloudflare Pages project `diego-portfolio-ai` is live at https://diego-portfolio-ai.pages.dev. The P07 e2e suite passes against it (`projects/p07/artifacts/evidence/portfolio-w7/public-e2e.txt`).
+- Not done: the Fly live stack, Turnstile, the cost guard, the 3D scene. The demo page shows its empty state.
