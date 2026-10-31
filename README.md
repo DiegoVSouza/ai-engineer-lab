@@ -1,5 +1,37 @@
 # AI Engineer Lab
 
+<!-- case:start -->
+## The case
+
+- **Problem.** Coding agents write fast and claim more than they checked.
+- **Decision.** Specs before code, write paths declared per plan, gated checks, budget ledgers and saved evidence. A task is done only with a command, an exit code and saved output; a number comes only from a recorded run (`AGENTS.md`).
+- **Measured.** Nothing about delivery speed: I have no controlled comparison. What is checkable is the record: each project has its own phases, `VERIFY.md` files and evidence folders, and hosted CI runs the gates on Linux.
+- **Run it.** `python scripts/harness/verify.py`; to clone a project and run its fast gate as a stranger would, `python scripts/harness/clean_clone_check.py --base <empty-dir>`.
+- **Limits.** The lab repository ignores `projects/`; each project is its own repository. `harness-kit/` changes need their own phase and validation in two real projects.
+- **Docs.** [`AGENTS.md`](AGENTS.md), [`harness/GSD-LITE-PLUS.md`](harness/GSD-LITE-PLUS.md), [public-readiness audit](docs/harness/public-readiness.md).
+<!-- case:end -->
+
+<!-- flow:start -->
+## How it works
+
+Generated from the same data as the diagram on the portfolio site (`projects/harness/`), so the two cannot drift.
+
+```mermaid
+flowchart LR
+  intake["Intake"]
+  spec["Spec"]
+  plan["Plan"]
+  execute["Execute"]
+  verify["Verify"]
+  gate["Gate"]
+  intake --> spec
+  spec --> plan
+  plan --> execute
+  execute --> verify
+  verify --> gate
+```
+<!-- flow:end -->
+
 This repository is a factory for independent AI portfolio projects. The reusable implementation lives in [`harness-kit/`](harness-kit/); each generated directory under `projects/` owns its own Builder, Product, and Shared layers.
 
 ## Create a project
