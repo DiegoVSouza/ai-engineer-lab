@@ -1,0 +1,395 @@
+{
+  "known_secret_values_checked": 20,
+  "repositories": {
+    "lab": {
+      "blobs_scanned": 1402,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [
+        {
+          "kind": "private_key",
+          "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/botocore-1.43.114-py3-none-any.whl!botocore/data/iam/2010-05-08/examples-1.json",
+          "line": 1526,
+          "blob": "596d440f5d51"
+        },
+        {
+          "kind": "assigned_password",
+          "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/pydantic-2.14.1-py3-none-any.whl!pydantic/types.py",
+          "line": 1862,
+          "blob": "08a6c6d4911f"
+        }
+      ],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 13,
+          "sample": [
+            "artifacts/evidence/executor-reliability/attempt1-command2.json",
+            "artifacts/evidence/executor-reliability/attempt1-command3.json",
+            "artifacts/evidence/lab-stack/fly-autostop-009/fly-up-attempt3.txt",
+            "artifacts/evidence/lab-stack/fly-one-command-003/pytest-attempt1.txt",
+            "artifacts/evidence/llm-live-readiness/durable-credential-selection-022/red.txt"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 1,
+          "sample": [
+            "scripts/harness/public_readiness.py"
+          ]
+        }
+      },
+      "tracked_files": 900,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [],
+      "remote": "origin"
+    },
+    "p00": {
+      "blobs_scanned": 907,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 10,
+          "sample": [
+            "artifacts/evidence/additional-validation-039/gate-result.json",
+            "artifacts/evidence/additional-validation-040/gate-result.json",
+            "artifacts/evidence/current-policy-operation-037/check-full.json",
+            "artifacts/evidence/funded-candidate-continuation/credential-provenance-024/full.txt",
+            "artifacts/evidence/funded-candidate-continuation/critical-stop-022/red.txt"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 632,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": "origin"
+    },
+    "p01": {
+      "blobs_scanned": 667,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [
+        {
+          "kind": "assigned_password",
+          "path": "artifacts/evidence/accounted-core-boundary/red-legacy-boundary.txt",
+          "line": 104,
+          "blob": "6c8555038630"
+        }
+      ],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 5,
+          "sample": [
+            "artifacts/evidence/accounted-core-boundary/red-fixture-handles.txt",
+            "artifacts/evidence/accounted-core-boundary/red-legacy-boundary.txt",
+            "artifacts/evidence/accounted-local-live-019/reconcile-fixture-attempt1.json",
+            "artifacts/evidence/synthetic-dispatch-012/focused.txt",
+            "artifacts/evidence/synthetic-dispatch-012/red.txt"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 490,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": "origin"
+    },
+    "p02": {
+      "blobs_scanned": 344,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 10,
+          "sample": [
+            "artifacts/evidence/accounted-protocol-015/attempt1.json",
+            "artifacts/evidence/check-full.log",
+            "artifacts/evidence/fixture-retrieval-012/red.txt",
+            "artifacts/evidence/groundedness-check.log",
+            "artifacts/evidence/package-provenance.md"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 242,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": "origin"
+    },
+    "p03": {
+      "blobs_scanned": 689,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 3,
+          "sample": [
+            "artifacts/evidence/accounted-telemetry-024/focused-attempt1.json",
+            "artifacts/evidence/phase-002-integrated-red.txt",
+            "artifacts/evidence/phase-002-regression-red.txt"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 573,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": "origin"
+    },
+    "p04": {
+      "blobs_scanned": 1091,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 52,
+          "sample": [
+            "artifacts/evidence/api-worker-span-privacy-021/full/full-gate.txt",
+            "artifacts/evidence/api-worker-trace-propagation/full-gate-attempt-1.txt",
+            "artifacts/evidence/current-full-privacy-027/full-attempt1-attempt3.txt",
+            "artifacts/evidence/disable-unaccounted-live-028/checks-attempt1.json",
+            "artifacts/evidence/distinct-reviewed-operation-039/gate-commands.json"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 852,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [
+        {
+          "path": "artifacts/evidence/reentrant-reviewed-operation-042/source.tar",
+          "mb": 7.6
+        },
+        {
+          "path": "artifacts/evidence/wheelhouse-validation-036/source.tar",
+          "mb": 3.4
+        }
+      ],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": "origin"
+    },
+    "p05": {
+      "blobs_scanned": 1104,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [
+        {
+          "kind": "assigned_password",
+          "path": "scripts/check_keycloak_oidc.py",
+          "line": 25,
+          "blob": "c7ee0323fdea"
+        },
+        {
+          "kind": "assigned_password",
+          "path": "scripts/check_keycloak_oidc.py",
+          "line": 23,
+          "blob": "a506462f18b1"
+        },
+        {
+          "kind": "assigned_password",
+          "path": "scripts/check_keycloak_oidc.py",
+          "line": 16,
+          "blob": "fdfaeb2c7a5a"
+        }
+      ],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 6,
+          "sample": [
+            "artifacts/evidence/accounted-local-services-029/commands.json",
+            "artifacts/evidence/console-contract-031/pytest-attempt1.txt",
+            "artifacts/evidence/live-token-reservations/full-skip-services.txt",
+            "artifacts/evidence/phase-001-local-validation.md",
+            "artifacts/evidence/phase-009-signed-identity-red.txt"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 704,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": "origin"
+    },
+    "p06": {
+      "blobs_scanned": 173,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 0,
+          "sample": []
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 104,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": null
+    },
+    "p07": {
+      "blobs_scanned": 223,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 0,
+          "sample": []
+        },
+        "personal_email": {
+          "files": 1,
+          "sample": [
+            "src/content/profile.ts"
+          ]
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 139,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": null
+    },
+    "p08": {
+      "blobs_scanned": 143,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 0,
+          "sample": []
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 69,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": null
+    }
+  }
+}
