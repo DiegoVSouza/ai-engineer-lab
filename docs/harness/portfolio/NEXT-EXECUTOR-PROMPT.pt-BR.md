@@ -1,6 +1,6 @@
 # Prompt de execução — portfólio real do Diego (2026-10-31)
 
-> **Antes de enviar, decida uma coisa (só você pode):** marque na seção "Autorizações" o que vale nesta rodada. Por padrão, o executor faz só o trabalho local, sem push, deploy nem chamada live. Se quiser mais, troque `NÃO` por `SIM` na linha correspondente. A pergunta sobre o `newsAR` e os repositórios em destaque está na mesma seção.
+> **Pronto para enviar.** O dono autorizou todas as etapas em 2026-10-31. Só o `newsAR` e os repositórios em destaque seguem pendentes.
 
 --- INÍCIO DO PROMPT ---
 
@@ -59,14 +59,22 @@ Hoje: Wrangler autenticado com `pages (write)`, plugin Cloudflare instalado, Doc
 | Ação | Autorizado |
 | --- | --- |
 | W1b, W2, W5, W6, W7, W9: trabalho local, commits locais, testes, Docker local | **SIM** |
-| W3: push, criar repos, tornar público | NÃO |
-| W4: smoke live do P05 dentro do teto (código offline do W4 é SIM) | NÃO |
-| W8: deploy no Fly, secrets, Cloudflare, Turnstile, cost guard em produção | NÃO |
-| W10: publicar o portfólio | NÃO |
+| W3: push, criar repos `supportops-console`, `diego-portfolio-ai` e `colagem-ui`, tornar públicos os repos do lab e dos projetos P00–P08 | **SIM** |
+| W4: código offline e smoke live do P05 dentro do teto de USD 10 | **SIM** |
+| W8: deploy no Fly, secrets, Cloudflare, Turnstile, cost guard, reset de dados, rotação de senhas, migração do volume do Postgres e aposentar `supportops-lab-web` | **SIM** |
+| W10: publicar o portfólio | **SIM** |
+
+Autorização dada pelo dono em 2026-10-31 ("quero que ele faça tudo"). Ela vale nestas condições, porque um passo público não se desfaz:
+
+1. **Ordem do `PLAN.md`.** Abrir um repo só depois do W2 verde e de `public_readiness.py` sem achado novo no HEAD que vai ser publicado. Abrir um repo por vez, conferindo o CI hospedado.
+2. **Fly em live** só depois do W4 verde e com ledger, teto, abuso e cost guard do W8 ativos. Publicar o demo só depois de fechar o admin do Keycloak e rotacionar as senhas.
+3. **Operações destrutivas exigem preparo:** backup verificado antes de migrar o volume do Postgres, e destruir `supportops-lab-web` só depois do e2e público passar e do rollback ensaiado (`docs/harness/frontend-platform/rollback.md`).
+4. **As chaves** vão do `.env` para Fly secrets ou variáveis do Cloudflare, sem aparecer em comando, log ou evidência.
+5. **Anúncio não é autorizado.** Publicar não inclui postar em rede social nem contatar ninguém.
 
 Destacar o `newsAR` e outros repos públicos: **PENDENTE**. Deixe marcado como `PENDING` no conteúdo.
 
-Sem `SIM` explícito, não execute. Uma autorização vale para o que está escrito, não para o que parecer vizinho (regra 9 e seção de continuidade do `AGENTS.md`). Prepare diff e dry-run do que estiver bloqueado e siga para o próximo item autorizado.
+Execute tudo acima sem pedir nova confirmação. Uma autorização vale para o que está escrito, não para o que parecer vizinho (regra 9 e seção de continuidade do `AGENTS.md`). Se uma condição falhar, prepare diff e dry-run do que travou e siga para o próximo item independente.
 
 Permanecem sempre em vigor: nada de gastar o orçamento protegido do P00 (84 holdout, 60 confirmação), nada de chamada live sem autorização, nada de imprimir segredo, nada de `--no-verify`, nada de enfraquecer teste. Se achar um segredo: pare, relate, não publique.
 
@@ -136,8 +144,8 @@ Copy em inglês e pt-BR, primeira pessoa, específica, sem adjetivo onde cabe n�
 
 Sem evidência, é `incomplete`. Cada etapa salva comando, exit code e saída em `artifacts/`, atualiza `VERIFY.md`, `progress.md` e `feature_list.json` do projeto, e faz commit local atômico depois de revisar o diff. Atualize também `projects/p07/.planning/phases/003-real-portfolio/VERIFY.md` e `docs/harness/frontend-platform/VERIFY.md`.
 
-Pare em: três tentativas falhas na mesma falha, segredo encontrado, gasto projetado acima de um teto, ou ação sem `SIM`.
+Pare em: três tentativas falhas na mesma falha, segredo encontrado, gasto projetado acima de um teto, ou condição de autorização não cumprida.
 
-Ao terminar, relate em português ao dono: o que foi concluído com evidência, o que falhou, o que está bloqueado e por quê, e a lista exata de `SIM` necessários para a próxima rodada.
+Ao terminar, relate em português ao dono: o que foi concluído com evidência, o que falhou, o que está bloqueado e por quê, e o que depende de você, com as URLs públicas e o gasto real em cada provedor.
 
 --- FIM DO PROMPT ---
