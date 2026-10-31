@@ -38,3 +38,15 @@ Windows clean clone, fast gate: all nine pass after the fixes. Linux was checked
 - 54 pinned permalinks used by the site resolve (GitHub API check).
 - Cloudflare Pages project `diego-portfolio-ai` is live at https://diego-portfolio-ai.pages.dev. The P07 e2e suite passes against it (`projects/p07/artifacts/evidence/portfolio-w7/public-e2e.txt`).
 - Not done: the Fly live stack, Turnstile, the cost guard, the 3D scene. The demo page shows its empty state.
+
+## Update: live demo path and 3D scene (owner's authorization, 2026-10-31)
+
+- **P05 on Fly runs `LLM_MODE=live`** (`artifacts/evidence/fly/p05-live-deploy*.txt`). Four Groq keys and the ledger DSN are Fly secrets. The ledger fails closed at USD 10.
+- **Live smoke** (`artifacts/evidence/fly/p05-live-smoke.txt`): one ticket, four model calls on four different keys, model `openai/gpt-oss-20b`, 2287 input and 434 output tokens, estimated cost USD 0.000304, per-call latency 341 to 503 ms, citation `[password-reset#password-reset:0]` present. Groq reported `remaining_requests` about 997 per key in that run. These are one-run numbers, not a benchmark. Three smoke runs were made in total (one refused at retrieval before any call because the knowledge base was empty), so the model spend so far is below USD 0.002 (estimate).
+- **Knowledge base** for the demo was empty on Fly. `scripts/seed_demo_knowledge.py` (P05) seeds six original articles for tenant-a and one private note for tenant-b; the run checked there is no cross-tenant leak.
+- **Public run list:** P05 has `GET /v1/demo/runs` (numbers and identifiers only). The site's `/api/runs/latest` reads it only when the P05 machine is already started and otherwise serves the last cached run, so it never wakes the stack.
+- **Cost guard** (`projects/p07/worker/cost-guard`): scheduled Worker, every 5 minutes, estimates Fly compute from machine events, ceiling USD 5, fails closed, stops machines at the ceiling. Fly prices in it are rounded-up list prices and are `PENDING` a check against Fly's pricing page. It wrote `{"leftUsd":5,"ceilingUsd":5}` to KV on its first run.
+- **Cloudflare:** KV `DEMO_KV`, Pages variables and secrets (read-only token, per-app wake token, demo accounts) are set. Tokens expire in 90 days.
+- **3D scene (W7b):** plain Three.js 0.187.0 in a lazy chunk (130.8 KB gzip of 500), home only. Modes `3d`, `3d-static`, `2d` tested; zero console and CSP errors on the live site (`projects/p07/artifacts/evidence/portfolio-w7b/`). Not done: halftone and screen passes, `pontilhado` toggle, ghost number sync, symbol object on case pages, scene events on `/demo/`, and the FPS measurement on real devices (SCENE-005 stays `PENDING`).
+- **Blocked on the owner:** the Turnstile widget (the Cloudflare login used here has no Turnstile scope). Until `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET` exist, `/api/status` reports `startAvailable:false`.
+- Still not done: Keycloak admin exposure, demo password rotation, retiring `supportops-lab-web` (the console on Fly is kept as the demo console), `llm_steps` in the P06 UI, P05 version bump and wheel.
