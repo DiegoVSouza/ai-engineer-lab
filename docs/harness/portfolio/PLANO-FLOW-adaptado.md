@@ -23,10 +23,10 @@ Base: `PLANO_IMPLEMENTACAO_PORTFOLIO_flow.md` (na raiz do lab). Este arquivo diz
 | 0 conteúdo e estrutura | Feita (HTML sem JS em todas as rotas, contraste, teclado, WhatsApp e telefone) |
 | 0.5 cenas e fluxo | **Feita agora**: `scenes.json` + `src/scenes.test.ts` (o build falha se faltar prova, gatilho, quadro, fallback de movimento reduzido, caminho no celular ou foco) + `docs/cenas.md`. **Falta sua decisão sobre o estilhaço** (abaixo) |
 | 1 estação | Feita como caso de uso próprio (seções, índice lateral, diagrama com lista em texto). Abas não adotadas |
-| 2 superfície 2D | Camadas do nível 1 via `colagem-ui` (`Layers`). Pontilhado em CSS **não feito** |
-| 3 cena 3D | Feita: cidade, prédios com janelas, viaduto e trem, rastros, anéis de vidro, objetos-símbolo, câmera pelo scroll, qualidade adaptativa, pausa em aba oculta, perda de contexto. **Falta** o passe de pontilhado e o RGB split |
-| 4 correções do v5 | Retalhos e rastros posicionados antes de parar: **corrigido agora** (havia o bug de empilhar na origem; `data-at-origin=0` testado). Falta a região `aria-live` "Projeto 3 de 8" |
-| 5 crachá e paleta | Crachá/contato feito. **Paleta Ctrl+K não feita** |
+| 2 superfície 2D | Camadas do nível 1 via `colagem-ui` (`Layers`) + pontilhado em CSS (`.screen-dots`, só no nível 1, atrás do conteúdo). Feito |
+| 3 cena 3D | Feita: cidade, prédios com janelas, viaduto e trem, rastros, anéis de vidro, objetos-símbolo, câmera pelo scroll, qualidade adaptativa, pausa em aba oculta, perda de contexto. Passe de pontilhado **feito** (cores dos tokens como uniforms, célula `5 * dpr`, toggle e tecla `h`, escolha lembrada). Falta o RGB split e a vinheta à esquerda |
+| 4 correções do v5 | Retalhos e rastros posicionados antes de parar: **corrigido agora** (havia o bug de empilhar na origem; `data-at-origin=0` testado). Região `aria-live` "Projeto 3 de 8" **feita** |
+| 5 crachá e paleta | Crachá/contato feito. Paleta `/` e Ctrl+K **feita** (carregada em chunk próprio para caber nos 100 KB) |
 | 6 auditoria | e2e com axe e contraste em 28 rotas, dois tamanhos, CSP, sem JS, teclado: feita. Teste do olho semicerrado, Lighthouse e FPS em celular real: pendentes |
 
 ## O que foi mudado nesta rodada
@@ -40,8 +40,7 @@ Base: `PLANO_IMPLEMENTACAO_PORTFOLIO_flow.md` (na raiz do lab). Este arquivo diz
 
 1. **Estilhaço (cena S1).** Opção A: manter como está (padrão, custo zero). Opção B: ao abrir um caso, os cacos vão para os nós do diagrama daquele caso, para o efeito carregar informação (cerca de um dia de trabalho). Registrado em `docs/cenas.md`. Continuo na A até você escolher.
 2. **Abas na estação.** Mantive seções em ordem fixa. Se você quiser mesmo as quatro abas (Demo, Arquitetura, Decisões, Números), eu faço como melhoria progressiva: sem JS tudo aparece empilhado, com JS vira abas. Custo: reescrever o teste de ordem das seções.
-3. **Pontilhado.** Quer o passe de meio-tom no shader (identidade do v5, com cores lidas dos tokens e o toggle `h`)? É o maior ganho visual que falta.
 
 ## Próximos passos que não precisam de decisão
 
-Pontilhado em CSS no nível 1 e na ficha do caso; passe de pontilhado no shader com uniforms dos tokens (5.2 do plano); toggle `pontilhado` junto de qualidade e movimento; paleta de comandos (`/` ou Ctrl+K) com as rotas e o contato; região `aria-live` na troca de projeto. Depois: medição de FPS em celular real (SCENE-005), que depende de um aparelho.
+RGB split e vinheta à esquerda, só quando a seleção assenta (regra do design system). Medição de FPS em celular real (SCENE-005): depende de um aparelho. Teste do olho semicerrado e Lighthouse.
