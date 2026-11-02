@@ -59,5 +59,34 @@ class Audit(unittest.TestCase):
         self.assertEqual(audit.scan(repo, [])["blobs_scanned"], 12)
 
 
+class Allowlist(unittest.TestCase):
+    FINDINGS = [
+        {"kind": "assigned_password", "path": "scripts/check.py", "line": 25, "blob": "a1"},
+        {"kind": "assigned_password", "path": "scripts/other.py", "line": 3, "blob": "b2"},
+        {"kind": "private_key", "path": "scripts/check.py", "line": 9, "blob": "c3"},
+    ]
+
+    def test_only_an_exact_repository_path_and_kind_is_allowed(self):
+        allow = [{"repo": "p05", "path": "scripts/check.py", "kind": "assigned_password", "reason": "constant of a local test container"}]
+        kept, allowed = audit.apply_allowlist("p05", self.FINDINGS, allow)
+        self.assertEqual([f["path"] + f["kind"] for f in kept], ["scripts/other.pyassigned_password", "scripts/check.pyprivate_key"])
+        self.assertEqual(allowed[0]["reason"], "constant of a local test container")
+        self.assertEqual(allowed[0]["line"], 25)
+
+    def test_the_same_entry_does_not_apply_to_another_repository(self):
+        allow = [{"repo": "p05", "path": "scripts/check.py", "kind": "assigned_password", "reason": "test"}]
+        kept, allowed = audit.apply_allowlist("p01", self.FINDINGS, allow)
+        self.assertEqual(len(kept), 3)
+        self.assertEqual(allowed, [])
+
+    def test_an_entry_without_a_reason_is_refused(self):
+        with self.assertRaises(ValueError):
+            audit.apply_allowlist("p05", self.FINDINGS, [{"repo": "p05", "path": "scripts/check.py", "kind": "assigned_password"}])
+
+    def test_a_folder_wide_entry_is_refused(self):
+        with self.assertRaises(ValueError):
+            audit.apply_allowlist("p05", self.FINDINGS, [{"repo": "p05", "path": "scripts/", "kind": "assigned_password", "reason": "x"}])
+
+
 if __name__ == "__main__":
     unittest.main()

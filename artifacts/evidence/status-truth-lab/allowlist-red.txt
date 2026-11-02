@@ -1,0 +1,8 @@
+    kept, allowed = audit.apply_allowlist("p01", self.FINDINGS, allow)
+                    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'public_readiness' has no attribute 'apply_allowlist'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=4)

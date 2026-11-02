@@ -1,0 +1,319 @@
+{
+  "known_secret_values_checked": 10,
+  "repositories": {
+    "lab": {
+      "blobs_scanned": 1442,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [
+        {
+          "kind": "assigned_password",
+          "path": "docs/harness/portfolio/PLANO-CORRECAO-STATUS.pt-BR.md",
+          "line": 19,
+          "blob": "88082f563036"
+        }
+      ],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 16,
+          "sample": [
+            "artifacts/evidence/executor-reliability/attempt1-command2.json",
+            "artifacts/evidence/executor-reliability/attempt1-command3.json",
+            "artifacts/evidence/lab-stack/fly-autostop-009/fly-up-attempt3.txt",
+            "artifacts/evidence/lab-stack/fly-one-command-003/pytest-attempt1.txt",
+            "artifacts/evidence/llm-live-readiness/durable-credential-selection-022/red.txt"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 1,
+          "sample": [
+            "scripts/harness/public_readiness.py"
+          ]
+        }
+      },
+      "tracked_files": 920,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [],
+      "remote": "origin",
+      "allowed_findings": [
+        {
+          "kind": "private_key",
+          "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/botocore-1.43.114-py3-none-any.whl!botocore/data/iam/2010-05-08/examples-1.json",
+          "line": 1526,
+          "blob": "596d440f5d51",
+          "reason": "Third-party wheel content: an example in botocore's public IAM API documentation. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/pydantic-2.14.1-py3-none-any.whl!pydantic/types.py",
+          "line": 1862,
+          "blob": "08a6c6d4911f",
+          "reason": "Third-party wheel content: a docstring example in pydantic's public source. Triaged 2026-11-02."
+        }
+      ]
+    },
+    "p07": {
+      "blobs_scanned": 837,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 0,
+          "sample": []
+        },
+        "personal_email": {
+          "files": 1,
+          "sample": [
+            "src/content/profile.ts"
+          ]
+        },
+        "cloudflare_account": {
+          "files": 0,
+          "sample": []
+        }
+      },
+      "tracked_files": 344,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [
+        {
+          "path": "artifacts/evidence/portfolio-w11/district-0.png",
+          "mb": 1.2
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w11/district-1.png",
+          "mb": 1.3
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w11/district-2.png",
+          "mb": 1.3
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w11/district-3.png",
+          "mb": 1.2
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w11/district-4.png",
+          "mb": 1.1
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w11/district-5.png",
+          "mb": 1.1
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-0.png",
+          "mb": 1.6
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-1.png",
+          "mb": 1.7
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-2.png",
+          "mb": 1.7
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-3.png",
+          "mb": 1.6
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-4.png",
+          "mb": 1.5
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-5.png",
+          "mb": 1.5
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-6.png",
+          "mb": 1.4
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-7.png",
+          "mb": 1.3
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-8.png",
+          "mb": 1.3
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w12/stop-9.png",
+          "mb": 1.3
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w14/lighthouse-case-desktop.json",
+          "mb": 1.2
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w14/lighthouse-desktop.json",
+          "mb": 1.9
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w15/lighthouse-home-desktop.json",
+          "mb": 1.8
+        },
+        {
+          "path": "artifacts/evidence/portfolio-w7b/lighthouse-desktop-metro.json",
+          "mb": 1.0
+        }
+      ],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [
+        ".github/workflows/ci.yml"
+      ],
+      "remote": "origin",
+      "allowed_findings": [
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "f3fc8dd75716",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "f3fc8dd75716",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "bab56b716da4",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "bab56b716da4",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "50a6a7f4af4b",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "50a6a7f4af4b",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "edc9de24f3a0",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "edc9de24f3a0",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "06c86983d54c",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "06c86983d54c",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "cb3c9dc7bd6a",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "cb3c9dc7bd6a",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "328df7db5bde",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "328df7db5bde",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "dde3efda957c",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "dde3efda957c",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "eac45665fa26",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "eac45665fa26",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 10,
+          "blob": "f0b67021e116",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "e2e/v2.spec.ts",
+          "line": 11,
+          "blob": "f0b67021e116",
+          "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+        }
+      ]
+    }
+  }
+}

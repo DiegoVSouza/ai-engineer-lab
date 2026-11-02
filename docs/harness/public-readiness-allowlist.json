@@ -1,0 +1,32 @@
+[
+  {
+    "repo": "p05",
+    "path": "scripts/check_keycloak_oidc.py",
+    "kind": "assigned_password",
+    "reason": "Constants of a throwaway Keycloak container started only by docker-compose.oidc-test.yml on loopback (realm p05-local, client secret named ...-only). Triaged by reading the lines on 2026-11-02; no real credential."
+  },
+  {
+    "repo": "p01",
+    "path": "artifacts/evidence/accounted-core-boundary/red-legacy-boundary.txt",
+    "kind": "assigned_password",
+    "reason": "Captured failing-test output that prints a fixture api_key ('fixture-key') used by a mocked client. Triaged 2026-11-02; not a credential."
+  },
+  {
+    "repo": "lab",
+    "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/botocore-1.43.114-py3-none-any.whl!botocore/data/iam/2010-05-08/examples-1.json",
+    "kind": "private_key",
+    "reason": "Third-party wheel content: an example in botocore's public IAM API documentation. Triaged 2026-11-02."
+  },
+  {
+    "repo": "lab",
+    "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/pydantic-2.14.1-py3-none-any.whl!pydantic/types.py",
+    "kind": "assigned_password",
+    "reason": "Third-party wheel content: a docstring example in pydantic's public source. Triaged 2026-11-02."
+  },
+  {
+    "repo": "p07",
+    "path": "e2e/v2.spec.ts",
+    "kind": "assigned_password",
+    "reason": "Two mock demo-account passwords in old versions of this test (eleven characters each, not equal to any password the live site serves). Current head has none. Triaged 2026-11-02."
+  }
+]

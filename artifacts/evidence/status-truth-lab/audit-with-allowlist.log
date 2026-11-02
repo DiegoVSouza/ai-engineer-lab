@@ -1,0 +1,3 @@
+lab: blobs=1442 secret_findings=1 messages=0 license=True ci=0
+p07: blobs=837 secret_findings=0 messages=0 license=True ci=1
+exit=1

@@ -185,6 +185,28 @@ def tracked(repo: Path) -> dict:
     }
 
 
+ALLOWLIST_FILE = Path(__file__).resolve().parents[2] / "docs/harness/public-readiness-allowlist.json"
+
+
+def apply_allowlist(name: str, findings: list[dict], allow: list[dict]) -> tuple[list[dict], list[dict]]:
+    """Split findings into kept and allowed. An entry names one repository, one exact file and one kind, with a reason."""
+    for entry in allow:
+        if not str(entry.get("reason", "")).strip():
+            raise ValueError("an allowlist entry needs a reason")
+        path = str(entry.get("path", ""))
+        if not path or path.endswith("/") or "*" in path:
+            raise ValueError("an allowlist entry names one exact file, never a folder or a pattern")
+    kept: list[dict] = []
+    allowed: list[dict] = []
+    for finding in findings:
+        match = next((e for e in allow if e["repo"] == name and e["path"] == finding["path"] and e["kind"] == finding["kind"]), None)
+        if match is None:
+            kept.append(finding)
+        else:
+            allowed.append({**finding, "reason": match["reason"]})
+    return kept, allowed
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, default=ROOT / "artifacts/evidence/public-readiness/report.json")
@@ -197,6 +219,8 @@ def main() -> int:
         repo = REPOS[name]
         report["repositories"][name] = {**scan(repo, secrets), **tracked(repo)}
         item = report["repositories"][name]
+        allow = json.loads(ALLOWLIST_FILE.read_text(encoding="utf-8")) if ALLOWLIST_FILE.exists() else []
+        item["secret_findings"], item["allowed_findings"] = apply_allowlist(name, item["secret_findings"], allow)
         print(f"{name}: blobs={item['blobs_scanned']} secret_findings={len(item['secret_findings'])} "
               f"messages={len(item['commit_message_findings'])} license={item['license']} ci={len(item['ci_workflows'])}", flush=True)
     args.out.parent.mkdir(parents=True, exist_ok=True)
