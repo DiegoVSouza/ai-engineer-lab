@@ -1,0 +1,37 @@
+Starting supportops-lab-db/app
+897915b6697578 has been started
+Waiting up to 5m0s for machine 897915b6697578 to reach "started"...
+Machine 897915b6697578 reached state "started"
+Starting supportops-lab-redis/app
+82d69df0799d98 has been started
+Waiting up to 5m0s for machine 82d69df0799d98 to reach "started"...
+Machine 82d69df0799d98 reached state "started"
+Starting supportops-lab-idp/app
+851d7dc426de58 has been started
+Waiting up to 5m0s for machine 851d7dc426de58 to reach "started"...
+Machine 851d7dc426de58 reached state "started"
+Starting supportops-lab-sns/app
+85777d4a23e348 has been started
+Waiting up to 5m0s for machine 85777d4a23e348 to reach "started"...
+Machine 85777d4a23e348 reached state "started"
+Starting supportops-lab-jaeger/app
+83d59dfd799058 has been started
+Waiting up to 5m0s for machine 83d59dfd799058 to reach "started"...
+Machine 83d59dfd799058 reached state "started"
+Starting supportops-lab-p04/app
+78452edf349568 has been started
+Waiting up to 5m0s for machine 78452edf349568 to reach "started"...
+Machine 78452edf349568 reached state "started"
+Starting supportops-lab-p05/app
+8111936b990258 has been started
+Waiting up to 5m0s for machine 8111936b990258 to reach "started"...
+Machine 8111936b990258 reached state "started"
+Starting supportops-lab-mcp/app
+2870421c554548 has been started
+Waiting up to 5m0s for machine 2870421c554548 to reach "started"...
+Machine 2870421c554548 reached state "started"
+Starting supportops-lab-web/app
+8ed9102b21dd48 has been started
+Waiting up to 5m0s for machine 8ed9102b21dd48 to reach "started"...
+Machine 8ed9102b21dd48 reached state "started"
+elapsed_seconds=61 exit=0

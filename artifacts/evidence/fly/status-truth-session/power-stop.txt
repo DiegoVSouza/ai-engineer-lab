@@ -1,0 +1,82 @@
+Stopping supportops-lab-web/app
+Sending kill signal to machine 8ed9102b21dd48...
+8ed9102b21dd48 has been successfully stopped
+Waiting up to 2m0s for machine 8ed9102b21dd48 to reach "stopped"...
+Machine 8ed9102b21dd48 reached state "stopped"
+Updating machine 8ed9102b21dd48
+Machine 8ed9102b21dd48 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-web/machines/8ed9102b21dd48
+Stopping supportops-lab-p04/app
+Sending kill signal to machine 78452edf349568...
+78452edf349568 has been successfully stopped
+Waiting up to 2m0s for machine 78452edf349568 to reach "stopped"...
+Machine 78452edf349568 reached state "stopped"
+Updating machine 78452edf349568
+Machine 78452edf349568 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-p04/machines/78452edf349568
+Stopping supportops-lab-p05/app
+Sending kill signal to machine 8111936b990258...
+8111936b990258 has been successfully stopped
+Waiting up to 2m0s for machine 8111936b990258 to reach "stopped"...
+Machine 8111936b990258 reached state "stopped"
+Updating machine 8111936b990258
+Machine 8111936b990258 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-p05/machines/8111936b990258
+Stopping supportops-lab-mcp/app
+Updating machine 2870421c554548
+Machine 2870421c554548 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-mcp/machines/2870421c554548
+Stopping supportops-lab-idp/app
+Sending kill signal to machine 851d7dc426de58...
+851d7dc426de58 has been successfully stopped
+Waiting up to 2m0s for machine 851d7dc426de58 to reach "stopped"...
+Machine 851d7dc426de58 reached state "stopped"
+Updating machine 851d7dc426de58
+Machine 851d7dc426de58 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-idp/machines/851d7dc426de58
+Stopping supportops-lab-sns/app
+Updating machine 85777d4a23e348
+Machine 85777d4a23e348 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-sns/machines/85777d4a23e348
+Stopping supportops-lab-jaeger/app
+Sending kill signal to machine 83d59dfd799058...
+83d59dfd799058 has been successfully stopped
+Waiting up to 2m0s for machine 83d59dfd799058 to reach "stopped"...
+Machine 83d59dfd799058 reached state "stopped"
+Updating machine 83d59dfd799058
+Machine 83d59dfd799058 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-jaeger/machines/83d59dfd799058
+Stopping supportops-lab-redis/app
+Sending kill signal to machine 82d69df0799d98...
+82d69df0799d98 has been successfully stopped
+Waiting up to 2m0s for machine 82d69df0799d98 to reach "stopped"...
+Machine 82d69df0799d98 reached state "stopped"
+Updating machine 82d69df0799d98
+Machine 82d69df0799d98 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-redis/machines/82d69df0799d98
+Stopping supportops-lab-db/app
+Sending kill signal to machine 897915b6697578...
+897915b6697578 has been successfully stopped
+Waiting up to 2m0s for machine 897915b6697578 to reach "stopped"...
+Machine 897915b6697578 reached state "stopped"
+Updating machine 897915b6697578
+Machine 897915b6697578 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-db/machines/897915b6697578

@@ -1,0 +1,28 @@
+{
+  "features": [
+    {
+      "id": "harness-kit-acceptance",
+      "description": "Kit bootstrap accepted on a positive case; overwrite and a risky tool combination are rejected",
+      "status": "PASS_LOCAL",
+      "evidence": "artifacts/evidence/harness-kit/acceptance-exit-codes.json (positive 0, overwrite 1, trifecta 1); validation-exit-codes.json (0, 0)"
+    },
+    {
+      "id": "fly-stack-autostart-idle-stop",
+      "description": "Fly stack wakes on request and stops by itself when idle",
+      "status": "PASS_FLY_ONE_RUN",
+      "evidence": "artifacts/evidence/fly/autostart-acceptance.txt (wake http 200 for p04, p05, mcp); artifacts/evidence/fly/idle-acceptance/idle-probe.txt (all stopped after 671 s, wake 16 s)"
+    },
+    {
+      "id": "hosted-ci-nine-repositories",
+      "description": "Hosted CI on Linux for the lab's nine project repositories",
+      "status": "PASS_HOSTED_CI_8_OF_9; P07_HOSTED_CI_PENDING",
+      "evidence": "projects/p07/artifacts/evidence/status-truth/F1-hosted-ci.txt (P07 red on 143ef9c); F2-p07-failing-5-after-fix.txt (fix verified locally, not yet pushed)"
+    },
+    {
+      "id": "public-readiness-audit",
+      "description": "Secret, personal-data and licence audit across the lab and the nine repositories",
+      "status": "PASS_AUDIT_RUN; FINDING_TRIAGE_PENDING",
+      "evidence": "artifacts/evidence/public-readiness/audit-w3-final.json (6 secret-pattern findings and local user paths, not yet classified one by one)"
+    }
+  ]
+}
