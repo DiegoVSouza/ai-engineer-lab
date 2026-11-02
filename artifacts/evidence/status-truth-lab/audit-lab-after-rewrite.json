@@ -1,0 +1,57 @@
+{
+  "known_secret_values_checked": 10,
+  "repositories": {
+    "lab": {
+      "blobs_scanned": 1448,
+      "blobs_skipped_too_large": 0,
+      "secret_findings": [],
+      "commit_message_findings": [],
+      "personal_data": {
+        "local_user_path": {
+          "files": 16,
+          "sample": [
+            "artifacts/evidence/executor-reliability/attempt1-command2.json",
+            "artifacts/evidence/executor-reliability/attempt1-command3.json",
+            "artifacts/evidence/lab-stack/fly-autostop-009/fly-up-attempt3.txt",
+            "artifacts/evidence/lab-stack/fly-one-command-003/pytest-attempt1.txt",
+            "artifacts/evidence/llm-live-readiness/durable-credential-selection-022/red.txt"
+          ]
+        },
+        "personal_email": {
+          "files": 0,
+          "sample": []
+        },
+        "cloudflare_account": {
+          "files": 1,
+          "sample": [
+            "scripts/harness/public_readiness.py"
+          ]
+        }
+      },
+      "tracked_files": 925,
+      "suspect_names": [],
+      "state_files": [],
+      "large_files": [],
+      "license": true,
+      "readme": true,
+      "ci_workflows": [],
+      "remote": "origin",
+      "allowed_findings": [
+        {
+          "kind": "private_key",
+          "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/botocore-1.43.114-py3-none-any.whl!botocore/data/iam/2010-05-08/examples-1.json",
+          "line": 1526,
+          "blob": "596d440f5d51",
+          "reason": "Third-party wheel content: an example in botocore's public IAM API documentation. Triaged 2026-11-02."
+        },
+        {
+          "kind": "assigned_password",
+          "path": "artifacts/evidence/llm-live-readiness/additional-validation-043/wheelhouse/pydantic-2.14.1-py3-none-any.whl!pydantic/types.py",
+          "line": 1862,
+          "blob": "08a6c6d4911f",
+          "reason": "Third-party wheel content: a docstring example in pydantic's public source. Triaged 2026-11-02."
+        }
+      ]
+    }
+  }
+}

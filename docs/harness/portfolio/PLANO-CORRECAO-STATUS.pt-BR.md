@@ -19,7 +19,19 @@ Feito e com evidência:
 - **D12 (triagem):** os 4 achados de senha são constantes de teste ou mock (`CLIENT_SECRET` de um Keycloak local de teste no P05; um valor de fixture impresso numa mensagem de asserção no P01). Nenhum segredo real.
 - Stack da Fly foi acordada uma vez (61 s), usada e desligada de novo (`artifacts/evidence/fly/status-truth-session/`).
 
-Ainda aberto neste plano: ver as seções F4 a F6 abaixo. Nada foi enviado (`git push`) nem implantado nesta rodada até o fim deste bloco.
+Segundo defeito real achado pelo CI hospedado: "Back to the surface" aterrissava na estação anterior em 3D (scroll 2080, estação em 3303). Corrigido em `9ad435e` (`SceneHost.tsx`), com o gate completo verde (unit 73, e2e 50).
+
+Publicado nesta rodada (autorizado): push dos 10 repositórios, CI hospedado verde em todos (P07 vermelho em `f2efce2`, verde em `bd1d3b1`), deploy do portfólio no Pages com árvore limpa, adaptador do P05 na Fly com uma run live depois do deploy. Stack da Fly desligada ao fim.
+
+Medido: Lighthouse no site no ar, 5 execuções cada: móvel mediana de performance 83 (LCP 1985 ms, TBT 613 ms), desktop 85 (LCP 481 ms, TBT 356 ms); acessibilidade, boas práticas e SEO 100 em todas. Os números de 96 reportados antes eram uma execução sortuda.
+
+Não feito, com causa (detalhe em `projects/p07/.planning/phases/006-status-truth/VERIFY.md`):
+- Avaliação de qualidade de modelo: o P00 controla a campanha e o ledger; uma rodada paralela contornaria esse contador.
+- Rotação das senhas demo: a API admin do Keycloak está desligada na imagem pública, e as senhas são publicadas de propósito em `/api/status`. Precisa de decisão sua.
+- Teste do Turnstile de ponta a ponta: um desafio humano não é automatizável; as chaves estão ativas (`startAvailable: true`).
+- E2E público 2 de 3: a rodada 1 falhou por ruído de console (`fetch('data:,')` bloqueado pela CSP, provável script do Turnstile). Não mexi na CSP nem no teste sem decisão sua.
+- Menu cobrindo parte do rodapé no fim da página (visto em `home-3d.png` a 1280x720), índice de metrô no celular, símbolo herói nas páginas de caso, FPS em aparelho real, SCENE-005.
+- Avaliação de segurança D12: os 4 achados de senha eram constantes de teste; allowlist por arquivo exato com motivo (`docs/harness/public-readiness-allowlist.json`).
 
 ## 0. Regras que governam a execução
 

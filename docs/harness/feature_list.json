@@ -15,14 +15,14 @@
     {
       "id": "hosted-ci-nine-repositories",
       "description": "Hosted CI on Linux for the lab's nine project repositories",
-      "status": "PASS_HOSTED_CI_8_OF_9; P07_HOSTED_CI_PENDING",
-      "evidence": "projects/p07/artifacts/evidence/status-truth/F1-hosted-ci.txt (P07 red on 143ef9c); F2-p07-failing-5-after-fix.txt (fix verified locally, not yet pushed)"
+      "status": "PASS_HOSTED_CI_9_OF_9",
+      "evidence": "projects/p07/artifacts/evidence/status-truth/F6-hosted-ci-after-push.txt (eight green, P07 red on f2efce2); projects/p07/artifacts/evidence/status-truth/F7-p07-hosted-ci.txt (P07 green on bd1d3b1)"
     },
     {
       "id": "public-readiness-audit",
       "description": "Secret, personal-data and licence audit across the lab and the nine repositories",
-      "status": "PASS_AUDIT_RUN; FINDING_TRIAGE_PENDING",
-      "evidence": "artifacts/evidence/public-readiness/audit-w3-final.json (6 secret-pattern findings and local user paths, not yet classified one by one)"
+      "status": "PASS_AUDIT_RUN_TRIAGED",
+      "evidence": "artifacts/evidence/public-readiness/audit-w3-final.json (six findings read and classified as test or third-party content); artifacts/evidence/status-truth-lab/audit-with-allowlist.log (zero open findings in lab and P07 with docs/harness/public-readiness-allowlist.json)"
     }
   ]
 }
