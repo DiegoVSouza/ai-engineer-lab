@@ -28,6 +28,10 @@ Print the mutating Fly commands instead of running them.
 .PARAMETER SkipSecrets
 Skip secret preparation and import during Up or Stage.
 
+.PARAMETER SyncOidcClient
+Apply the console OIDC client through the Keycloak admin API. The public IdP image switches that API off
+(ops/fly/idp/Dockerfile), so by default Reconcile skips this step. Build the IdP once without the flag before using it.
+
 .PARAMETER DestroyData
 With Down, delete the stack apps and their volumes. Irreversible; requires
 -ConfirmDestroy supportops-lab.
@@ -47,6 +51,7 @@ param(
   [string[]]$Only = @(),
   [switch]$DryRun,
   [switch]$SkipSecrets,
+  [switch]$SyncOidcClient,
   [switch]$DestroyData,
   [string]$ConfirmDestroy = ""
 )
@@ -116,6 +121,10 @@ function Invoke-Deploy {
 }
 
 function Invoke-ClientSync {
+  if (-not $SyncOidcClient) {
+    Write-Output "skip: console OIDC client sync (the IdP admin API is off in the public image; pass -SyncOidcClient after a build without that flag)"
+    return
+  }
   if ($DryRun) {
     Write-Output "DRY-RUN python ops/stack/idp_clients.py (WEB_ORIGIN https://supportops-lab-web.fly.dev)"
     return
