@@ -3,7 +3,7 @@
 Publish the whole product: the back (Fly stack) and both fronts (Cloudflare Pages).
 
 .DESCRIPTION
-Order: back first (Fly Up: secrets, apps, volumes, deploy, health), then the console (p06) and the portfolio (p07) on Cloudflare Pages.
+Order: back first (Fly Up: secrets, apps, volumes, deploy, health; it includes the console, supportops-lab-web), then the portfolio (p07) on Cloudflare Pages.
 It only chains the two existing scripts, so their guards still apply (fixed inventory of apps and projects, no uncommitted tree).
 Dry run unless -Apply is given: a dry run builds, uploads and changes nothing. Real deploys spend money and change public URLs,
 so run it only with the owner's go.
@@ -11,7 +11,7 @@ so run it only with the owner's go.
 Authenticate first: `fly auth login` and `wrangler login` (or CLOUDFLARE_API_TOKEN). This script never logs in.
 
 .PARAMETER Target
-all (default), back, front, console or portfolio.
+all (default: back and portfolio), back, front, portfolio, or console (Pages project must exist).
 
 .PARAMETER Apply
 Really publish. Without it every step is a dry run.
@@ -42,8 +42,10 @@ $pagesDeploy = Join-Path $PSScriptRoot "pages/deploy.ps1"
 
 $doBack = $Target -in @("all", "back")
 $sites = switch ($Target) {
-  "all" { @("console", "portfolio") }
-  "front" { @("console", "portfolio") }
+  # The console already runs on Fly (supportops-lab-web) and is published by the back step; it has no Pages project.
+  # Ask for -Target console only after creating that project (ops/pages/deploy.ps1 -CreateProject).
+  "all" { @("portfolio") }
+  "front" { @("portfolio") }
   "console" { @("console") }
   "portfolio" { @("portfolio") }
   default { @() }
