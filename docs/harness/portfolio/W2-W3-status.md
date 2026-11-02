@@ -88,3 +88,15 @@ Found by looking at the live site, which the owner reported as unreadable. None 
 - **Correction to the Lighthouse note above.** The mobile numbers I reported earlier (96, TBT 110 ms) were one lucky run. Four back-to-back runs on the same pre-port build gave 73 to 77 with TBT 790 to 1,110 ms, and on the post-port build 78 and 87 with TBT 780 and 370 ms. Single Lighthouse runs on this machine vary by hundreds of milliseconds of TBT, so the Preact gain is real in size (first-load JavaScript 96.6 to 37.9 KB gzip) but the exact score is not reliable from one run.
 - **Cost of the v5 scene on desktop (A/B, two runs each, headless software GL):** performance 94 and 100, TBT 200 and 70 ms before; 81 and 83, TBT 400 and 380 ms after. The scene is built in small tasks after idle; the rest is first-frame cost under software GL. Real devices with a GPU were not measured (SCENE-005 stays `PENDING`).
 - **Not done:** the metro-line index on mobile, the symbol of each project as a hero on its case page beyond the background scene, Turnstile, the shatter option B (the owner postponed them).
+
+## Update: status truth, second round, flow modal and content review (2026-11-02)
+
+Full account in `docs/harness/portfolio/PLANO-CORRECAO-STATUS.pt-BR.md` and `projects/p07/.planning/phases/006-status-truth/VERIFY.md`. In short:
+
+- Card seals are derived from the feature lists (P07 `src/content/seal.ts`); stale labels were fixed with evidence. The deployed commit had a red hosted CI and a red local gate; the tests were brought to the current home layout, one real 3D landing bug was fixed, and hosted CI is green on all nine repositories.
+- P05 reports each settled receipt's real tokens to the P02 limits on the live path (phase 037), redeployed on Fly; the full service gate passed on 0.4.5. Keycloak-on-Fly acceptance is its own status; a third-party identity provider stays pending.
+- colagem-ui 0.4.5: a diagram node opens its explanation as a modal. P07 adopted it; P06 stays on 0.4.4.
+- Content review of every route in EN and PT: `projects/p07/docs/harness/content-review-2026-11-02.md`. The CV draft notice on Experience is for the owner.
+- Public suite: 56 passed against the deployed site. Lighthouse medians of five runs: mobile 83, desktop 85 (the earlier 96 was one lucky run).
+- Not done, with cause: model-quality evaluation (P00 owns the campaign and its budget is spent; human annotations cannot be made by an agent), demo password rotation (published on purpose, admin API off), P00 local service run (host ports held by other projects' containers), Turnstile end-to-end click and device FPS (owner).
+- `docs/harness/public-readiness-allowlist.json` lists the six triaged scan findings, each with a reason; the audit reports zero open findings.
