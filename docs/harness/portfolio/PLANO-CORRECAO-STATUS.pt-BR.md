@@ -186,3 +186,13 @@ F6 depende de F3 e dos itens [livre] de F4
 - Reescrever histórico Git (D12, D14), por causa da regra 9.
 - Qualquer número de custo ou qualidade: nenhum existe sem run, então continua `PENDING`.
 - Alteração em `harness-kit/`, que exige fase própria e validação em dois projetos.
+
+
+## Segunda rodada (2026-11-02, depois do pedido para fechar o que faltava)
+
+Feito: rodapé que não fica mais sob o menu, a linha de metrô nem os botões (teste vermelho sem o CSS); índice de estações no celular (lista que abre pela barra inferior, fecha ao escolher, no Escape e ao navegar); símbolo de cada projeto como desenho plano nas páginas de caso; lista de features do lab ampliada com itens que a evidência sustenta, incluindo duas pendências reais (34 de 188 `VERIFY.md` com caixas abertas e o script `linux_clean_check.py` sem teste); gate completo do P05 com serviços na 0.4.5 passou (214 testes, todas as camadas de serviço `PASS`), o que fecha o limite declarado no card do P06.
+
+Não feito, com causa:
+- Avaliação de qualidade de modelo: o P00 declara "No budget remains" para uma nova geração; o P05 só tem um dry-run, com gasto autorizado 0 e revisão humana `PENDING`. Anotações humanas não podem ser criadas por mim (regra do próprio P00).
+- Rotação das senhas demo: são publicadas de propósito em `/api/status`; a auditoria achou 0 valores no histórico; a API admin do Keycloak está desligada na imagem pública. Sem ganho de segurança, só risco de quebrar a demo.
+- E2E de serviços locais do P00: as portas 5432, 6379 e 4566 estavam ocupadas por contêineres de outros projetos (religados pelo Docker Desktop). Um run ali observaria os serviços errados. Desliguei o Docker Desktop depois de usar.

@@ -23,6 +23,30 @@
       "description": "Secret, personal-data and licence audit across the lab and the nine repositories",
       "status": "PASS_AUDIT_RUN_TRIAGED",
       "evidence": "artifacts/evidence/public-readiness/audit-w3-final.json (six findings read and classified as test or third-party content); artifacts/evidence/status-truth-lab/audit-with-allowlist.log (zero open findings in lab and P07 with docs/harness/public-readiness-allowlist.json)"
+    },
+    {
+      "id": "sdd-phase-triple",
+      "description": "Every phase of every project has SPEC, PLAN and VERIFY",
+      "status": "PASS_188_OF_188",
+      "evidence": "artifacts/evidence/status-truth-lab/sdd-phase-count.txt"
+    },
+    {
+      "id": "commit-message-hooks",
+      "description": "Each project repository carries a commit-msg hook that checks the commit syntax",
+      "status": "PASS_9_OF_9",
+      "evidence": "artifacts/evidence/status-truth-lab/commit-hooks.txt"
+    },
+    {
+      "id": "verify-checklists-closed",
+      "description": "Every VERIFY.md has all its boxes ticked or states why one stays open",
+      "status": "PENDING",
+      "evidence": "artifacts/evidence/status-truth-lab/sdd-phase-count.txt: 34 of 188 VERIFY.md files still have unticked boxes (the older phases were not re-opened)"
+    },
+    {
+      "id": "linux-clean-check-script",
+      "description": "scripts/harness/linux_clean_check.py runs a project's gates in a Linux container",
+      "status": "PENDING",
+      "evidence": "docs/harness/portfolio/W2-W3-status.md: the script exists and is untested; hosted CI is the Linux proof today"
     }
   ]
 }

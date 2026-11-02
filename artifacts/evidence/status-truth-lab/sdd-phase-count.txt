@@ -1,0 +1,12 @@
+command: count .planning/phases/* with SPEC.md, PLAN.md and VERIFY.md, and unticked '- [ ]' boxes in VERIFY.md (run 2026-11-02)
+p00: phases=40 complete_triple=40 verify_with_unticked_boxes=10
+p01: phases=29 complete_triple=29 verify_with_unticked_boxes=5
+p02: phases=18 complete_triple=18 verify_with_unticked_boxes=1
+p03: phases=18 complete_triple=18 verify_with_unticked_boxes=1
+p04: phases=40 complete_triple=40 verify_with_unticked_boxes=5
+p05: phases=34 complete_triple=34 verify_with_unticked_boxes=11
+p06: phases=3 complete_triple=3 verify_with_unticked_boxes=0
+p07: phases=5 complete_triple=5 verify_with_unticked_boxes=1
+p08: phases=1 complete_triple=1 verify_with_unticked_boxes=0
+total: phases=188 complete_triple=188 verify_with_unticked_boxes=34
+exit 0
