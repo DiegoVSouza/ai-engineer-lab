@@ -45,8 +45,8 @@
     {
       "id": "linux-clean-check-script",
       "description": "scripts/harness/linux_clean_check.py runs a project's gates in a Linux container",
-      "status": "PASS_P00_TO_P05_LINUX; P06_TO_P08_LOCAL_LINUX_PENDING",
-      "evidence": "artifacts/evidence/linux-clean-20261104-report.json: P00 PASS; artifacts/evidence/linux-clean-20261104-backend.json: P02, P03 and P05 PASS; artifacts/evidence/linux-clean-20261104-retry-report.json: P04 PASS; artifacts/evidence/linux-clean-20261104-p01-layout3-report.json: P01 PASS with the lab parent layout. Earlier failed attempts are preserved."
+      "status": "PASS_LINUX_FAST_9_OF_9",
+      "evidence": "artifacts/evidence/linux-clean-20261104-report.json (P00), linux-clean-20261104-backend.json (P02/P03/P05), linux-clean-20261104-retry-report.json (P04), linux-clean-20261104-p01-layout3-report.json (P01), linux-clean-20261104-frontend-report.json (P06/P08), linux-clean-20261104-p07-fixed-report.json (P07). All final clean-clone fast gates exit 0."
     }
   ]
 }

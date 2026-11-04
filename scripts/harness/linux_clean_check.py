@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TAIL = 2500
 PYTHON_IMAGE = "python:3.13-slim-bookworm"
 NODE_IMAGE = "mcr.microsoft.com/playwright:v1.64.1-noble"  # matches @playwright/test 1.64.1 in P06, P07 and P08
+NODE_FAST_IMAGE = "node:24-alpine"
 UV_VERSION = "0.12.7"
 
 
@@ -50,9 +51,9 @@ def clone(name: str, base: Path) -> dict:
     return sh(["git", "clone", "--quiet", str(source), str(target)], timeout=300)
 
 
-def docker_run(image: str, mount: Path, script: str, timeout: int, workdir: str = "/work") -> dict:
+def docker_run(image: str, mount: Path, script: str, timeout: int, workdir: str = "/work", shell: str = "bash") -> dict:
     # Mount read-write at /work; the container user owns nothing on the host beyond the scratch clone.
-    return sh(["docker", "run", "--rm", "-v", f"{mount}:/work", "-w", workdir, "-e", "LLM_MODE=fake", image, "bash", "-lc", script],
+    return sh(["docker", "run", "--rm", "-v", f"{mount}:/work", "-w", workdir, "-e", "LLM_MODE=fake", image, shell, "-lc", script],
               timeout=timeout)
 
 
@@ -82,7 +83,10 @@ def check(name: str, base: Path, timeout: int, full: bool, node_image: str) -> d
     if (target / "package.json").exists():
         gates = ["npx playwright install chrome", "python3 scripts/check_full.py"] if full else ["python3 scripts/check_fast.py"]
         # The Playwright image has Node, Python 3 and the browsers' system libraries.
-        steps.append(docker_run(node_image, target, node_script(gates), timeout))
+        if full:
+            steps.append(docker_run(node_image, target, node_script(gates), timeout))
+        else:
+            steps.append(docker_run(NODE_FAST_IMAGE, target, "apk add --no-cache python3 git && " + node_script(gates), timeout, shell="sh"))
     else:
         gates = ["uv run --locked python scripts/check_full.py"] if full else ["uv run --locked python scripts/check_fast.py"]
         if name == "p01":
