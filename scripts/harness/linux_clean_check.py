@@ -27,7 +27,8 @@ def sh(command: list[str], cwd: Path | None = None, timeout: int = 900) -> dict:
     try:
         done = subprocess.run(command, cwd=cwd, capture_output=True, text=True, errors="replace", timeout=timeout)
         return {"command": " ".join(command[:6]) + (" ..." if len(command) > 6 else ""), "exit": done.returncode,
-                "seconds": round(time.monotonic() - started), "tail": (done.stdout + done.stderr)[-TAIL:]}
+                "seconds": round(time.monotonic() - started), "stdout_tail": done.stdout[-TAIL:],
+                "stderr_tail": done.stderr[-TAIL:]}
     except subprocess.TimeoutExpired:
         return {"command": " ".join(command[:6]), "exit": "timeout", "seconds": timeout, "tail": ""}
 
@@ -35,6 +36,8 @@ def sh(command: list[str], cwd: Path | None = None, timeout: int = 900) -> dict:
 def clone(name: str, base: Path) -> dict:
     source = ROOT / "projects" / name
     target = base / name
+    if target.resolve() == base.resolve() or not target.resolve().is_relative_to(base.resolve()):
+        raise ValueError(f"scratch target escapes base: {target}")
     if target.exists():
         shutil.rmtree(target, ignore_errors=True)
     if name == "p00":
@@ -47,14 +50,14 @@ def clone(name: str, base: Path) -> dict:
     return sh(["git", "clone", "--quiet", str(source), str(target)], timeout=300)
 
 
-def docker_run(image: str, mount: Path, script: str, timeout: int) -> dict:
+def docker_run(image: str, mount: Path, script: str, timeout: int, workdir: str = "/work") -> dict:
     # Mount read-write at /work; the container user owns nothing on the host beyond the scratch clone.
-    return sh(["docker", "run", "--rm", "-v", f"{mount}:/work", "-w", "/work", "-e", "LLM_MODE=fake", image, "bash", "-lc", script],
+    return sh(["docker", "run", "--rm", "-v", f"{mount}:/work", "-w", workdir, "-e", "LLM_MODE=fake", image, "bash", "-lc", script],
               timeout=timeout)
 
 
 def python_script(gates: list[str]) -> str:
-    steps = [f"pip install --quiet uv=={UV_VERSION}", "uv sync --locked --all-extras --all-groups"] + gates
+    steps = ["apt-get update -qq", "apt-get install -y -qq git", f"pip install --quiet uv=={UV_VERSION}", "uv sync --locked --all-extras --all-groups"] + gates
     return " && ".join(steps)
 
 
@@ -63,17 +66,29 @@ def node_script(gates: list[str]) -> str:
 
 
 def check(name: str, base: Path, timeout: int, full: bool, node_image: str) -> dict:
-    steps = [clone(name, base)]
-    if steps[0]["exit"] != 0:
+    if name == "p01":
+        lab = base / "lab"
+        root_clone = sh(["git", "-c", f"safe.directory={ROOT / '.git'}", "clone", "--quiet", str(ROOT), str(lab)], timeout=300)
+        if root_clone["exit"] != 0:
+            return {"steps": [root_clone], "passed": False}
+        (lab / "projects").mkdir(exist_ok=True)
+        project_clone = sh(["git", "clone", "--quiet", str(ROOT / "projects" / name), str(lab / "projects" / name)], timeout=300)
+        steps = [root_clone, project_clone]
+    else:
+        steps = [clone(name, base)]
+    if any(step["exit"] != 0 for step in steps):
         return {"steps": steps, "passed": False}
-    target = base / name
+    target = base / "lab" / "projects" / name if name == "p01" else base / name
     if (target / "package.json").exists():
         gates = ["npx playwright install chrome", "python3 scripts/check_full.py"] if full else ["python3 scripts/check_fast.py"]
         # The Playwright image has Node, Python 3 and the browsers' system libraries.
         steps.append(docker_run(node_image, target, node_script(gates), timeout))
     else:
         gates = ["uv run --locked python scripts/check_full.py"] if full else ["uv run --locked python scripts/check_fast.py"]
-        steps.append(docker_run(PYTHON_IMAGE, target, python_script(gates), timeout))
+        if name == "p01":
+            steps.append(docker_run(PYTHON_IMAGE, base / "lab", python_script(gates), timeout, "/work/projects/p01"))
+        else:
+            steps.append(docker_run(PYTHON_IMAGE, target, python_script(gates), timeout))
     return {"steps": steps, "passed": all(step["exit"] == 0 for step in steps)}
 
 
@@ -86,6 +101,8 @@ def main() -> int:
     parser.add_argument("--node-image", default=NODE_IMAGE)
     parser.add_argument("--only", nargs="*", default=[f"p{n:02d}" for n in range(9)])
     args = parser.parse_args()
+    args.base = args.base.resolve()
+    args.out = args.out.resolve()
     args.base.mkdir(parents=True, exist_ok=True)
     report = {}
     for name in args.only:
