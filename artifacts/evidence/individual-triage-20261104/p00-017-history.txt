@@ -1,0 +1,3 @@
+624875f docs(campaign): record committed-source resume rejection
+ebd01de docs(campaign): reconcile immutable usage and allocation deficit
+d3a7f0a docs(campaign): define candidate allocation continuity

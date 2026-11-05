@@ -1,0 +1,2 @@
+f2b8786 fix(campaign): report p00 confirmation token caps
+4948e2f docs(campaign): plan p00 token reservations

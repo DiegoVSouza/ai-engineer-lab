@@ -1,0 +1,2 @@
+42fb866 feat(campaign): add durable p02 ledger
+add9eaf docs(campaign): plan p02 durable campaign ledger
