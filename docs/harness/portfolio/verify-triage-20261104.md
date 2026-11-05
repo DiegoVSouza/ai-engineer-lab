@@ -42,6 +42,8 @@ Review status: INCOMPLETE. Inventory: `artifacts/evidence/current-triage-2026110
 
 ## Saved-output reconciliation
 
+P03 scope correction: phase 026 (`ca3b3ea`) records that the Fly summary contains `database.ticket.get` / `log:exception.message`. It confirms trace presence but not value-level log privacy. Local searches found only the saved summary for that Fly readback, not the raw values; unrelated historical local traces cannot resolve that production finding. This remains an explicit privacy review dependency.
+
 The following conclusions use inspected command output, not just phase summaries. SHA-256 and outcome markers are saved in `artifacts/evidence/individual-triage-20261104/checked-output-markers.json`.
 
 - P00 004: `remediation-check-full.txt` explicitly records `scripts/check_full.py`, exit 0, PRODUCT_CHECK=PASS and OPTIONAL_SERVICE_E2E=INCOMPLETE. This supports its offline-gate item only; wheel provenance, review and contract conditions remain separate.

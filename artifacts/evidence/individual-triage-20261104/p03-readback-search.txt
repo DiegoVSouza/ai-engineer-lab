@@ -1,0 +1,1 @@
+command=rg --files projects/p03/artifacts/evidence/status-reconcile; exit_code=0
