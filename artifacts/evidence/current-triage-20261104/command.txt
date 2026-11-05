@@ -1,0 +1,1 @@
+command=python artifacts/evidence/current-triage-20261104/inventory.py; exit_code=0

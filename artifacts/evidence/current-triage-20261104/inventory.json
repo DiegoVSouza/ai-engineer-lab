@@ -1,0 +1,1821 @@
+{
+  "phase_count": 220,
+  "open_file_count": 34,
+  "open_item_count": 115,
+  "phases": [
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/001-domain-testkit/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/002-llm-modes/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/003-infrastructure/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/004-remediation-assurance/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 5,
+          "text": "- [ ] Fake/replay tests and deterministic dataset/golden-set checks pass; cassette provenance is traceable."
+        },
+        {
+          "line": 6,
+          "text": "- [ ] Local wheel and source provenance agree on version, source commit, and SHA-256."
+        },
+        {
+          "line": 7,
+          "text": "- [ ] Live budget boundary remains fail-closed under fake transport; no provider call was made."
+        },
+        {
+          "line": 8,
+          "text": "- [ ] Full fake-mode gate result is recorded with its actual exit code."
+        },
+        {
+          "line": 9,
+          "text": "- [ ] Docker/service availability is recorded separately; unavailable services are `INCOMPLETE`."
+        },
+        {
+          "line": 10,
+          "text": "- [ ] Provider quality, cost, and latency remain `PENDING` absent authorized comparable runs."
+        },
+        {
+          "line": 11,
+          "text": "- [ ] Documentation states the generic adapter's provider-side budget limitation."
+        },
+        {
+          "line": 12,
+          "text": "- [ ] Any public API change has an ADR, semver change, and consumer update before acceptance; otherwise the `1.0.1` public contract remains compatible."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/008-comment-cleanup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/009-public-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/010-harness-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/011-live-campaign-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 11,
+          "text": "- [ ] Resume/chunk reservation model does not reset cumulative caps; this preparation phase does not claim durable real-trial accounting is implemented unless separately evidenced."
+        },
+        {
+          "line": 14,
+          "text": "- [ ] Durable resume/cumulative accounting is not implemented in this preparation phase and remains a gate for the bounded runner phase."
+        },
+        {
+          "line": 15,
+          "text": "- [ ] Clean-context verification of the staged implementation remains required before phase gate acceptance."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/012-bounded-live-runner/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 7,
+          "text": "- [ ] Process-crash injection around actual provider dispatch/response and atomic ledger writes is not yet implemented; the dispatcher does not exist."
+        },
+        {
+          "line": 10,
+          "text": "- [ ] All-project launcher integration and stale-process recovery remain pending."
+        },
+        {
+          "line": 11,
+          "text": "- [ ] Groq numbered-key catalog preflight and bounded dispatch are not implemented; no provider call occurred."
+        },
+        {
+          "line": 14,
+          "text": "- [ ] Staged paths reviewed; implementation commit recorded."
+        },
+        {
+          "line": 15,
+          "text": "- [ ] Clean-context verification completed."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/013-complete-token-reservations/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 9,
+          "text": "- [ ] Staged diff is reviewed and locally committed."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/014-bounded-campaign-chunks/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 10,
+          "text": "- [ ] Independent clean-context verification remains pending."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/015-free-campaign-execution/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 14,
+          "text": "- [ ] Human review, campaign completion, promotion and independent verification remain INCOMPLETE until evidenced."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/016-development-correction-one/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 25,
+          "text": "- [ ] Baseline retained; correction round 1 and 12 × 3 development scope frozen before generation; holdout untouched."
+        },
+        {
+          "line": 26,
+          "text": "- [ ] Prompt/schema contain only global contract/policy and input, with no expected outcomes or grading facts."
+        },
+        {
+          "line": 27,
+          "text": "- [ ] All rendered requests fit unchanged caps; schema/runtime/prompt changes invalidate old provenance."
+        },
+        {
+          "line": 28,
+          "text": "- [ ] Categorical HTTP/code metadata retained without raw/private strings; unknown usage remains reserved."
+        },
+        {
+          "line": 29,
+          "text": "- [ ] Confirmation request/input/output/economic reserve cannot be consumed by current stages."
+        },
+        {
+          "line": 30,
+          "text": "- [ ] Required offline gates pass, candidate committed, then bounded development results/usage/checkpoints saved."
+        },
+        {
+          "line": 31,
+          "text": "- [ ] Human review/generalization/promotion remain INCOMPLETE; independent verification pending."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/017-candidate-continuity-allocation/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 13,
+          "text": "- [ ] No dataset, rubric, grading, holdout, privacy, or human/independent review status is changed or inferred."
+        },
+        {
+          "line": 14,
+          "text": "- [ ] Staged diff reviewed; local planning commit exists only if validation passed."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/018-private-review-interface/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 5,
+          "text": "- [ ] Server binds only to loopback and requires a per-process secret outside URLs; unauthorized callers cannot see item data or append annotations."
+        },
+        {
+          "line": 6,
+          "text": "- [ ] Reading, filtering, and navigation make no provider call and perform no external network access."
+        },
+        {
+          "line": 7,
+          "text": "- [ ] Answer store opens read-only; historical answer rows and receipts remain unchanged."
+        },
+        {
+          "line": 8,
+          "text": "- [ ] Reparse points/links, ACL owner/inheritance/grants, unexpected files, invalid UTF-8, and database errors fail closed."
+        },
+        {
+          "line": 9,
+          "text": "- [ ] All stored content is escaped; scripts, links, active HTML, and embedded instructions are inert; CSP disallows scripts and external assets."
+        },
+        {
+          "line": 10,
+          "text": "- [ ] Logs, telemetry, public evidence, and exports contain no answer, annotation, credential, or access token."
+        },
+        {
+          "line": 11,
+          "text": "- [ ] Annotation store is owner-only and append-only; every entry binds candidate/campaign/case/trial/prompt/schema/dataset/rubric and records author/time; correction and disagreement preserve prior entries."
+        },
+        {
+          "line": 12,
+          "text": "- [ ] Pilot, old development candidate, and corrected source remain distinct; missing candidate/revision provenance blocks annotation."
+        },
+        {
+          "line": 13,
+          "text": "- [ ] UI shows all critical/suspected failures and exposes pending unique-heldout stratified 20% and double-review 20% requirements without examining holdout in this phase."
+        },
+        {
+          "line": 14,
+          "text": "- [ ] Focused and complete locked P00 checks pass and sanitized commands/exits/output are saved."
+        },
+        {
+          "line": 15,
+          "text": "- [ ] User review, independent review, dataset/rubric approval, holdout, generalization, and promotion remain PENDING/INCOMPLETE."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/019-funded-candidate-continuation/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 15,
+          "text": "- [ ] Authenticated rate-limit headers or equivalent verified account limits and Free billing tier. The preflight returned no allowlisted headers; billing tier is not exposed by this endpoint and remains UNKNOWN. Do not generate while paid authorization is USD 0."
+        },
+        {
+          "line": 16,
+          "text": "- [ ] Real C2 trials and receipts reconcile batch-by-batch with no failed/uncertain replay or manifest rewrite; at most 36; reports remain candidate-specific and provisional."
+        },
+        {
+          "line": 17,
+          "text": "- [ ] Raw answers stay private and review UI requires no source modification/provider call; actual human/independent/dataset/rubric approval, holdout, generalization and promotion remain PENDING/INCOMPLETE."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/020-credential-rotation-provenance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/021-attested-free-c2-batches/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/022-critical-stop/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/023-private-review-recheck/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/024-credential-provenance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/025-safe-campaign-guidance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/026-unnumbered-provenance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/027-transport-regression/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/028-funded-replacement/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/029-contract-reconciliation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/030-local-live-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/031-accounted-local-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/032-disable-legacy-smoke/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/033-p01-envelope-reconciliation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/034-operating-allocation-reconciliation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/035-final-operating-reconciliation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/036-second-diagnostic-allocation-binding/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/037-current-policy-local-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/038-live-allocation-reconciliation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/039-additional-validation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/040-current-allocation-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/041-short-snapshot-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/042-verified-scratch-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/043-git-128-diagnostic/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/.planning/phases/044-isolated-services/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 10,
+          "text": "- [ ] Exercise PostgreSQL, Redis and LocalStack and save command output and exit codes."
+        },
+        {
+          "line": 12,
+          "text": "- [ ] Full service check remains INCOMPLETE because LocalStack cannot start without license activation. No product source changed; this phase does not repeat exhausted campaign gates."
+        }
+      ]
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/docs/harness/phases/004-groq-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/docs/harness/phases/005-groq-domain-eval/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p00",
+      "path": "projects/p00/docs/harness/phases/006-live-docker-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/001-core-orchestration/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/002-local-package/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/003-remediation-comparison/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 5,
+          "text": "- [ ] Repeated ticket with no resume key starts an isolated execution and does not reuse an old checkpoint."
+        },
+        {
+          "line": 6,
+          "text": "- [ ] Explicit resume key resumes the intended execution; ticket identity is preserved as business data."
+        },
+        {
+          "line": 7,
+          "text": "- [ ] Shared fake-mode runner contract tests pass for supported adapters."
+        },
+        {
+          "line": 8,
+          "text": "- [ ] Versioned P00 golden set is exercised across all eligible adapters; results include per-case outcomes and unsupported semantics."
+        },
+        {
+          "line": 9,
+          "text": "- [ ] Report distinguishes framework-native orchestration from generic wrappers across fan-out, retries, checkpoints, HITL, state, and observability."
+        },
+        {
+          "line": 10,
+          "text": "- [ ] Installed P00 wheel version, source commit, and SHA-256 are recorded; local doubles are labeled and their consumer paths are explicit."
+        },
+        {
+          "line": 11,
+          "text": "- [ ] Full fake-mode gate result is recorded with actual exit code; any missing required gate is `INCOMPLETE`."
+        },
+        {
+          "line": 12,
+          "text": "- [ ] Accuracy, tokens, cost, latency, and model evaluation remain `PENDING` absent comparable authorized real-model runs."
+        },
+        {
+          "line": 13,
+          "text": "- [ ] Any public contract change has an ADR, package version change, and consumer update."
+        }
+      ]
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/004-live-groq-eval/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/004-public-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/005-harness-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/005-live-code-cleanup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/006-live-docker-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/007-live-campaign-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 14,
+          "text": "- [ ] Durable cumulative ledger/resume and serialized campaign lease remain gates for the bounded-runner phase."
+        },
+        {
+          "line": 15,
+          "text": "- [ ] Independent dataset/rubric review and clean-context phase verification remain outstanding."
+        },
+        {
+          "line": 16,
+          "text": "- [ ] Final staged-path/secrets review is pending commit preparation."
+        }
+      ]
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/008-bounded-campaign-ledger/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 12,
+          "text": "- [ ] Independent clean-context review performed; unresolved items remain explicitly `INCOMPLETE`."
+        }
+      ]
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/009-accounted-core-boundary/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 16,
+          "text": "- [ ] Actual Core workflow crosses the guarded adapter for each worker and respects serial order, early escalation and the four-call maximum."
+        },
+        {
+          "line": 17,
+          "text": "- [ ] Duplicate/out-of-order/fifth worker calls are rejected; any uncertain, denied, interrupted, failed or invalid outcome permanently stops the current workflow and cannot replay."
+        },
+        {
+          "line": 18,
+          "text": "- [ ] Legacy direct keys, SDK completion, credential loading and catalog calls fail closed before network; normal CLI uses the guarded boundary or explicitly reports missing allocation."
+        },
+        {
+          "line": 19,
+          "text": "- [ ] Shared transport subprocess uses project p01, protocol v1, UTF-8, finite timeout, sanitized errors, exact case/trial/call indexes and no retry/key handling in the parent."
+        },
+        {
+          "line": 20,
+          "text": "- [ ] Complete payload bound matches root normalization/framing and original 2,048/256 caps; all expected labels/rubric/required facts are excluded from prompts."
+        },
+        {
+          "line": 21,
+          "text": "- [ ] Diagnostic status/code/reason are typed/allowlisted; raw responses/errors/reasoning/keys do not reach logs or public artifacts."
+        },
+        {
+          "line": 22,
+          "text": "- [ ] Manifest remains disabled; no provider session, credential read, registry registration, ledger migration or real call occurs."
+        },
+        {
+          "line": 23,
+          "text": "- [ ] Locked focused and full gates pass, including all existing fake/ledger tests and six framework comparisons; output and exit codes are saved."
+        },
+        {
+          "line": 24,
+          "text": "- [ ] Staged diff and secret scan reviewed; implementation commit recorded. No sibling source imported and no Docker stack changed."
+        },
+        {
+          "line": 25,
+          "text": "- [ ] Durable full campaign dispatch/allocation/provenance/resume, actual free preflight, human/dataset/rubric/independent review, heldout quality/generalization and promotion remain INCOMPLETE/PENDING."
+        }
+      ]
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/010-core-tool-safety/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 12,
+          "text": "- [ ] Real KB/billing sources and retrieval are unavailable. The concrete read-only tool/source proposal is in `docs/knowledge/core-tool-safety.md`; external effects remain disabled."
+        }
+      ]
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/011-real-tool-source-contract/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/012-synthetic-dispatch/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/013-dispatch-process-recovery/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/014-core-fixture-dispatch/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/015-transport-regression/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/016-accounted-fixture-dispatch/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/017-workflow-reservation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/018-synthetic-operation-controller/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/019-accounted-local-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/020-reviewed-recovery-proposal/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/021-reviewed-diagnostic-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/022-second-diagnostic-decision/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/023-second-reviewed-diagnostic/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/024-strict-worker-schema/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/025-reviewed-revalidation-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/026-revalidation-lock-guard/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p01",
+      "path": "projects/p01/.planning/phases/027-distinct-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/001-production-toolkit/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/002-remediation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/003-live-free-model-eval/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/003-public-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/004-groq-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/004-harness-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/005-groq-eval-remediation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/006-four-key-live-allowlist/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/007-live-docker-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/008-live-campaign-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/009-bounded-campaign-ledger/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 12,
+          "text": "- [ ] Staged paths/diff are reviewed and locally committed; clean-context verifier review is separately recorded."
+        }
+      ]
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/010-retrieval-provenance-injection-boundary/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/011-retrieval-misses-and-interrupts/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/012-fixture-retrieval-boundary/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/013-disable-unaccounted-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/014-grounded-fixture-boundary/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/015-accounted-protocol/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p02",
+      "path": "projects/p02/.planning/phases/016-accounted-local-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/001-observability/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/002-remediation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/010-public-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/011-harness-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/012-live-campaign-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/013-bounded-campaign-ledger/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 13,
+          "text": "- [ ] Independent clean-context phase verification is recorded separately."
+        }
+      ]
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/014-content-safe-exporter-failures/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/015-isolated-service-recheck/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/016-safe-full-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/017-span-status-privacy/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/018-candidate-service-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/019-bounded-observability-read-retry/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/020-read-endpoint-diagnostics/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/021-current-service-recheck/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/022-disable-unaccounted-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/023-service-availability-recheck/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/024-accounted-telemetry/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/.planning/phases/025-accounted-local-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/docs/harness/phases/008/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/docs/harness/phases/009/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/docs/harness/phases/010-live-llm-observability/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/docs/harness/phases/011-live-code-cleanup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p03",
+      "path": "projects/p03/docs/harness/phases/012-live-docker-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/001-api-store/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/002-broker-worker/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 6,
+          "text": "- [ ] SQS/SNS contract passes against LocalStack or remains INCOMPLETE with command evidence."
+        }
+      ]
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/003-durability/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/004-infrastructure/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 4,
+          "text": "- [ ] Docker image builds as non-root; no image push occurs. Build remains INCOMPLETE because the Docker daemon is unavailable."
+        },
+        {
+          "line": 5,
+          "text": "- [ ] Terraform validate/plan completes without cloud credentials, otherwise INCOMPLETE. Terraform CLI and provider lock are unavailable."
+        }
+      ]
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/005-fastapi-compat/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/006-lease-service-remediation/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 17,
+          "text": "- [ ] 2: INCOMPLETE — service availability and run pending."
+        },
+        {
+          "line": 19,
+          "text": "- [ ] 4: INCOMPLETE — Docker daemon unavailable; image build not run."
+        },
+        {
+          "line": 20,
+          "text": "- [ ] 5: INCOMPLETE — Terraform CLI unavailable; validate/plan not run."
+        },
+        {
+          "line": 21,
+          "text": "- [ ] 6: INCOMPLETE — full gate exit 2 because required service/runtime/IaC gates are unavailable."
+        },
+        {
+          "line": 22,
+          "text": "- [ ] 7: INCOMPLETE — docs/state reconciliation pending."
+        }
+      ]
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/007-localstack-init-fix/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 16,
+          "text": "- [ ] 6 INCOMPLETE: long-step lease renewal, crash recovery, retries, and DLQ have not been exercised as a service-backed failure scenario; unit/local tests remain separate."
+        },
+        {
+          "line": 17,
+          "text": "- [ ] 7 PENDING: live model quality/cost are not measured."
+        }
+      ]
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/008-comment-cleanup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/009-public-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/010-harness-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/011-live-campaign-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/012-bounded-campaign-ledger/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 12,
+          "text": "- [ ] Staged diff is reviewed and committed locally; clean-context review remains separately recorded."
+        }
+      ]
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/016-api-worker-trace-propagation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/017-isolated-service-scenarios/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/018-safe-full-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/019-api-worker-otlp-export/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/020-existing-tracer-provider/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/021-api-worker-span-status-privacy/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/022-current-service-scenarios/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/023-local-terraform-network/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/024-offline-provider/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/025-offline-full-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/026-otlp-wire-privacy/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/027-current-full-privacy-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/028-disable-unaccounted-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/029-accounted-worker-boundary/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/030-accounted-local-service/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/031-reviewed-separate-diagnostic/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/032-root-migration-revalidation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/033-inventory-identity-revalidation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/034-offline-build-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/035-credential-discovery/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/036-wheelhouse-validation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/037-safe-credential-preflight/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/038-current-manifest-binding/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/039-distinct-reviewed-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/040-reentrant-migration-check/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/041-reentrant-reviewed-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/042-replacement-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/.planning/phases/043-root-snapshot-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/008/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/009/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/010/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/011/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/012-redis-streams/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/013-live-llm-workflow/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/014-live-code-cleanup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p04",
+      "path": "projects/p04/docs/harness/phases/015-live-docker-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/001-integration-skeleton/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 3,
+          "text": "- [ ] Health endpoint and contract doubles pass unit tests."
+        },
+        {
+          "line": 4,
+          "text": "- [ ] Each installed local package metadata row contains version, source commit, and artifact SHA-256."
+        },
+        {
+          "line": 5,
+          "text": "- [ ] No source imports resolve outside this repository."
+        },
+        {
+          "line": 6,
+          "text": "- [ ] A missing/unapproved artifact is labeled INCOMPLETE, never PASS."
+        },
+        {
+          "line": 7,
+          "text": "- [ ] Save commands, exit codes, and outputs in `artifacts/evidence/`."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/002-rag-mcp/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 10,
+          "text": "- [ ] Embedding-backed retrieval, replay cassettes, and network MCP authentication/interoperability — INCOMPLETE; lexical and in-memory adapters only."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/003-api-auth-async/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 7,
+          "text": "- [ ] PostgreSQL and SQS service-backed recovery/idempotency — INCOMPLETE; local SQLite/in-memory broker tests are doubles."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/004-quality-security/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 7,
+          "text": "- [ ] Deliberately degraded fake-response regression threshold — PENDING; no quality gate for degraded agent output is implemented."
+        },
+        {
+          "line": 8,
+          "text": "- [ ] Real-provider degraded-output evaluation — PENDING; no paid provider or replay cassette was authorized/provided."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/005-observability-benchmark/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 5,
+          "text": "- [ ] One trace spans API → durable queue → worker → agent → LLM → tool → PostgreSQL with real adapters — INCOMPLETE; queue and database are local doubles and fake agent only."
+        },
+        {
+          "line": 6,
+          "text": "- [ ] Replay configurations and benchmark runs — PENDING; no traceable cassette or benchmark run is present."
+        },
+        {
+          "line": 7,
+          "text": "- [ ] Latency/cost/quality metrics — PENDING; no real execution exists and fake numbers are not model metrics."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/006-docs-release/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 8,
+          "text": "- [ ] Release tag — PENDING because service-backed async and network MCP gates remain INCOMPLETE; no publish/push occurred."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/007-platform-remediation/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 19,
+          "text": "- [ ] 3: INCOMPLETE — service-backed E2E pending."
+        },
+        {
+          "line": 20,
+          "text": "- [ ] 4: INCOMPLETE — deterministic fake embedding, hybrid retrieval and pgvector SQL/migration contracts pass locally; PostgreSQL/pgvector service acceptance is pending."
+        },
+        {
+          "line": 21,
+          "text": "- [ ] 5: INCOMPLETE — MCP 2.3.0 bearer verification and tenant isolation pass over Streamable HTTP with in-process ASGI; TCP service/identity-provider acceptance is pending."
+        },
+        {
+          "line": 22,
+          "text": "- [ ] 6: INCOMPLETE — adversarial/degraded full gate pending."
+        },
+        {
+          "line": 23,
+          "text": "- [ ] 7: INCOMPLETE — integrated trace/dashboard run pending."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/011-comment-cleanup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/012-public-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/013-harness-readme/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/014-isolated-service-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/015-api-oidc/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/016-authorization-lease/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/017-live-campaign-preparation/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 5,
+          "text": "- [ ] Exactly 120 unique semantic cases exist: 36 development / 84 sealed holdout; all required families have at least three cases and 72/48 language counts are correct."
+        },
+        {
+          "line": 7,
+          "text": "- [ ] Graders reject fabricated/irrelevant citations, unsupported answers, injection bypass, tenant leaks, cross-tenant tool calls, expired access, duplicate effects and refund execution."
+        },
+        {
+          "line": 13,
+          "text": "- [ ] No holdout-informed fix is presented as generalized without fresh unique confirmation; no human review is claimed without provenance."
+        },
+        {
+          "line": 14,
+          "text": "- [ ] No customer data, real refund/message, public deployment, or secret appears in artifacts; staged paths stay within plan ownership."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/018-docker-restart-recovery/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 10,
+          "text": "- [ ] Independent clean-context verification completed. This remains PENDING; local repair and executed acceptance checks passed."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/019-bounded-campaign-ledger/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 13,
+          "text": "- [ ] Independent clean-context verification remains separately recorded."
+        }
+      ]
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/020-complete-token-reservations/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/021-locked-local-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/022-worker-failure-privacy/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/023-service-failure-privacy/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/024-failure-trace-export/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/025-span-status-privacy/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/026-disable-unaccounted-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/027-accounted-identity-boundary/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/028-accounted-http-worker-wiring/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/029-accounted-local-services/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/030-current-policy-operation/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/031-console-contract/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/032-readiness/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/033-console-blockers/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/034-json-logs/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/035-cors/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/036-demo-live/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/.planning/phases/037-toolkit-limits/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/008/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/009/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/010/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/011/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/014/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/015/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/016/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/017-redis-queue/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/018-live-rag-agent/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/019-live-code-cleanup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p05",
+      "path": "projects/p05/docs/harness/phases/020-live-docker-acceptance/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p06",
+      "path": "projects/p06/.planning/phases/001-console/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p06",
+      "path": "projects/p06/.planning/phases/002-blockers/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p06",
+      "path": "projects/p06/.planning/phases/003-colagem-ui/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p07",
+      "path": "projects/p07/.planning/phases/001-portfolio/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p07",
+      "path": "projects/p07/.planning/phases/003-real-portfolio/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p07",
+      "path": "projects/p07/.planning/phases/004-guided-flow/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p07",
+      "path": "projects/p07/.planning/phases/005-city-journey/VERIFY.md",
+      "missing": [],
+      "open_items": [
+        {
+          "line": 3,
+          "text": "- [ ] `npx tsc --noEmit`, `npm run lint`, `npx vitest run`, `python scripts/check_fast.py` exit 0"
+        },
+        {
+          "line": 4,
+          "text": "- [ ] `npm run budget` PASS (route under 100 KB gzip, scene chunk under 500 KB)"
+        },
+        {
+          "line": 5,
+          "text": "- [ ] `canvas[data-draws]` at most 100 on the first frame on the home"
+        },
+        {
+          "line": 6,
+          "text": "- [ ] Screenshot of each of the six districts at rest; the content panel readable (opaque), the city visible between menu and panel"
+        },
+        {
+          "line": 7,
+          "text": "- [ ] Mid-flight screenshot: the camera swings; at a stop `data-travel` is about 0"
+        },
+        {
+          "line": 8,
+          "text": "- [ ] Menu: click, number keys, arrows and `j`/`k` reach each district; reduced motion jumps at once"
+        },
+        {
+          "line": 9,
+          "text": "- [ ] Reduced motion: no swing, no events, static frame"
+        },
+        {
+          "line": 10,
+          "text": "- [ ] No WebGL, portrait and simple version keep the content and a working menu or bar"
+        },
+        {
+          "line": 11,
+          "text": "- [ ] Full Playwright suite in Edge passes; axe clean at 1000 and 360 px"
+        },
+        {
+          "line": 12,
+          "text": "- [ ] Models load (`data-landmarks`, `data-vehicle-kinds`, `data-stations`), no fallback warning"
+        }
+      ]
+    },
+    {
+      "project": "p07",
+      "path": "projects/p07/.planning/phases/006-status-truth/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p07",
+      "path": "projects/p07/.planning/phases/007-linux-fast-gate/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p07",
+      "path": "projects/p07/.planning/phases/008-footer-markup/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p08",
+      "path": "projects/p08/.planning/phases/001-colagem-ui/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p08",
+      "path": "projects/p08/.planning/phases/002-flow-detail-modal/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    },
+    {
+      "project": "p08",
+      "path": "projects/p08/.planning/phases/003-scope-clarification/VERIFY.md",
+      "missing": [],
+      "open_items": []
+    }
+  ]
+}
