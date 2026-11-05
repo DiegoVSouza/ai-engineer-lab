@@ -1,0 +1,1 @@
+command=count individual project-phase table rows; exit_code=0; rows=34
