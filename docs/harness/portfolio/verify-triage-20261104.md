@@ -42,6 +42,8 @@ Review status: INCOMPLETE. Inventory: `artifacts/evidence/current-triage-2026110
 
 ## Saved-output reconciliation
 
+The six Linux report files named in the acceptance inventory were parsed directly. Final successful fast-gate records exist for every project P00–P08. Earlier P01/P04 backend failures and the P07 frontend failure remain preserved; they are not rewritten as successes. `artifacts/evidence/individual-triage-20261104/linux-report-reconciliation.json` records each report, project, recorded exit sequence and report SHA-256. These historical clean-clone fast gates do not establish current full services, model quality or human acceptance; later local changes have their own phase evidence.
+
 P03 scope correction: phase 026 (`ca3b3ea`) records that the Fly summary contains `database.ticket.get` / `log:exception.message`. It confirms trace presence but not value-level log privacy. Local searches found only the saved summary for that Fly readback, not the raw values; unrelated historical local traces cannot resolve that production finding. This remains an explicit privacy review dependency.
 
 The following conclusions use inspected command output, not just phase summaries. SHA-256 and outcome markers are saved in `artifacts/evidence/individual-triage-20261104/checked-output-markers.json`.

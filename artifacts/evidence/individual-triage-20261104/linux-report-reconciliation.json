@@ -1,0 +1,133 @@
+[
+  {
+    "report": "linux-clean-20261104-report.json",
+    "project": "p00",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "BC6E70875A74579C743E90BB6E9391C186BEC44B67381365EBFEE9C1654A7992"
+  },
+  {
+    "report": "linux-clean-20261104-backend.json",
+    "project": "p01",
+    "passed": false,
+    "exits": [
+      0,
+      1
+    ],
+    "sha256": "10A724E37B89CDC1AB54E8BCF07C2D5F5384A97605148ADA1036C9CBCD5AFBDA"
+  },
+  {
+    "report": "linux-clean-20261104-backend.json",
+    "project": "p02",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "10A724E37B89CDC1AB54E8BCF07C2D5F5384A97605148ADA1036C9CBCD5AFBDA"
+  },
+  {
+    "report": "linux-clean-20261104-backend.json",
+    "project": "p03",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "10A724E37B89CDC1AB54E8BCF07C2D5F5384A97605148ADA1036C9CBCD5AFBDA"
+  },
+  {
+    "report": "linux-clean-20261104-backend.json",
+    "project": "p04",
+    "passed": false,
+    "exits": [
+      0,
+      1
+    ],
+    "sha256": "10A724E37B89CDC1AB54E8BCF07C2D5F5384A97605148ADA1036C9CBCD5AFBDA"
+  },
+  {
+    "report": "linux-clean-20261104-backend.json",
+    "project": "p05",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "10A724E37B89CDC1AB54E8BCF07C2D5F5384A97605148ADA1036C9CBCD5AFBDA"
+  },
+  {
+    "report": "linux-clean-20261104-retry-report.json",
+    "project": "p01",
+    "passed": false,
+    "exits": [
+      0,
+      1
+    ],
+    "sha256": "B4CB367F2AB9EEBEAE59122298FC7383805C142DC1E81BF4B326B935F9152A82"
+  },
+  {
+    "report": "linux-clean-20261104-retry-report.json",
+    "project": "p04",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "B4CB367F2AB9EEBEAE59122298FC7383805C142DC1E81BF4B326B935F9152A82"
+  },
+  {
+    "report": "linux-clean-20261104-p01-layout3-report.json",
+    "project": "p01",
+    "passed": true,
+    "exits": [
+      0,
+      0,
+      0
+    ],
+    "sha256": "A122052A85BEA3EBF9F121D78FFD0A5DEF216001781488661D6447A4332520C3"
+  },
+  {
+    "report": "linux-clean-20261104-frontend-report.json",
+    "project": "p06",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "1D811A21860F6B5B0EC6A3D00534D2EA76AC0AE1DF54C6C305D9F0CD1FC2B03D"
+  },
+  {
+    "report": "linux-clean-20261104-frontend-report.json",
+    "project": "p07",
+    "passed": false,
+    "exits": [
+      0,
+      1
+    ],
+    "sha256": "1D811A21860F6B5B0EC6A3D00534D2EA76AC0AE1DF54C6C305D9F0CD1FC2B03D"
+  },
+  {
+    "report": "linux-clean-20261104-frontend-report.json",
+    "project": "p08",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "1D811A21860F6B5B0EC6A3D00534D2EA76AC0AE1DF54C6C305D9F0CD1FC2B03D"
+  },
+  {
+    "report": "linux-clean-20261104-p07-fixed-report.json",
+    "project": "p07",
+    "passed": true,
+    "exits": [
+      0,
+      0
+    ],
+    "sha256": "806EB71F87950391CBC5726ED18C1F426B4F1FAF5EDCE460939953DF5763FB1E"
+  }
+]

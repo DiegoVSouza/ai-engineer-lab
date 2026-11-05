@@ -1,0 +1,1 @@
+command=parse six saved Linux report JSON files and collect project passed flags, step exit codes and SHA256; exit_code=0
