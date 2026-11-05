@@ -40,4 +40,14 @@ Review status: INCOMPLETE. Inventory: `artifacts/evidence/current-triage-2026110
 | P05 019-bounded-campaign-ledger | Independent review pending. | The recorded 127-test offline gate omitted services; it does not provide independent sign-off or promotion. |
 | P07 005-city-journey | Historical scene checks require later evidence mapping. | Current phase 008 full local gate exits 0 with 60 browser tests, including navigation, reduced motion, models and axe. Match its test output to each original criterion; screenshots and owner visual acceptance remain distinct. Physical-device FPS remains pending in the feature list. |
 
-No new model call, human annotation, promotion, or historical acceptance was performed by this review. All 34 inventoried open files now have a document-level disposition; supporting output reconciliation remains incomplete where explicitly stated above.
+## Saved-output reconciliation
+
+The following conclusions use inspected command output, not just phase summaries. SHA-256 and outcome markers are saved in `artifacts/evidence/individual-triage-20261104/checked-output-markers.json`.
+
+- P00 004: `remediation-check-full.txt` explicitly records `scripts/check_full.py`, exit 0, PRODUCT_CHECK=PASS and OPTIONAL_SERVICE_E2E=INCOMPLETE. This supports its offline-gate item only; wheel provenance, review and contract conditions remain separate.
+- P01 003: `status-reconcile/unittest-fake.txt` records 119 tests, OK and exit_code=0. This is later fake unit/contract evidence, not a six-runner model-quality result or proof of all historical release/provenance conditions.
+- P04 004/006: `phase-007-docker-demo.txt` records API and worker UID 10001 with command exits 0; `phase-010-full-gate.txt` explicitly records `uv run --locked python scripts/check_full.py`, exit 0, image build and a Terraform plan (6 add, 0 change, 0 destroy). Later local build/full-gate coverage is evidenced. No apply or original clean-context review is inferred.
+- P04 006/007: `phase-008-service-scenarios.txt` records the scenario command and exit_code=0: long step 31.7 seconds with no competing claim, duplicate delivery with one effect, and retry exhaustion with one DLQ message. These later scenarios cover the listed long-step/duplicate/retry/DLQ behaviors. Broader crash boundaries and SNS contract coverage remain subject to their specific logs.
+- P05 007: `status-reconcile/check-full-with-services-0.4.5.txt` ends with authorized local fake-mode acceptance PASS and exit=0, while explicitly retaining semantic/model cost/latency as PENDING. This provides later local service-gate evidence; third-party identity, real semantic quality and human review remain pending.
+
+No new model call, human annotation, promotion, or historical acceptance was performed by this review. All 34 inventoried open files have a document-level disposition; supporting output reconciliation remains incomplete where explicitly stated above.

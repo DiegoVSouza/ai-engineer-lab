@@ -1,0 +1,83 @@
+[
+  {
+    "path": "projects/p00/artifacts/evidence/remediation-check-full.txt",
+    "sha256": "14120C6AC0E80F63637BBCC79AF4DD6D05B50A08640BD60682AEE0AA0D117F71",
+    "markers": [
+      "EXIT_CODE=0",
+      "EXIT_CODE=0",
+      "EXIT_CODE=0",
+      "EXIT_CODE=0",
+      "EXIT_CODE=0",
+      "EXIT_CODE=0",
+      "EXIT_CODE=0",
+      "Exit code: 0"
+    ]
+  },
+  {
+    "path": "projects/p01/artifacts/evidence/status-reconcile/unittest-fake.txt",
+    "sha256": "14869952B0F57CAD821A57319AA7E6BF6E953FA906AD1AFB136F853DAF16C2F2",
+    "markers": [
+      "Ran 119 tests in 26.694s\r",
+      "exit_code=0"
+    ]
+  },
+  {
+    "path": "projects/p04/artifacts/evidence/phase-008-service-scenarios.txt",
+    "sha256": "96D042E5C0F5B70CE8FA7BABC82068A1FA4BA75770FB9D9C3D7CC2FDFD3766FB",
+    "markers": [
+      "exit_code=0\r",
+      "long_step: PASS elapsed_seconds=31.7 competing_claim=False task_status=done attempts=1 effect_persisted=true\r",
+      "duplicate_delivery: PASS task_status=done claims=1 one_effect_record=true\r",
+      "retry_dlq: PASS task_status=failed attempts=3 dlq_messages=1\r"
+    ]
+  },
+  {
+    "path": "projects/p04/artifacts/evidence/phase-010-full-gate.txt",
+    "sha256": "B04E72C2EC0173F352A4D4C3666C717C255953001D690918EBE64B0F7CBBC254",
+    "markers": [
+      "python -m compileall -q supportops_async scripts: exit=0\r",
+      "uv lock --check: exit=0\r",
+      "python scripts/verify_artifact_lock.py: exit=0\r",
+      "long_step: PASS elapsed_seconds=31.7 competing_claim=False task_status=done attempts=1 effect_persisted=true\r",
+      "duplicate_delivery: PASS task_status=done claims=1 one_effect_record=true\r",
+      "retry_dlq: PASS task_status=failed attempts=3 dlq_messages=1\r",
+      "check-full: PASS\r",
+      "Command: uv run --locked python scripts/check_full.py; Exit code: 0\r"
+    ]
+  },
+  {
+    "path": "projects/p05/artifacts/evidence/status-reconcile/check-full-with-services-0.4.5.txt",
+    "sha256": "7BA542B827D0043739D2BA56DABE7869221AAC35E0C06CBF4B0DA36C74446832",
+    "markers": [
+      "exit_code=0; expected=0\r",
+      "exit_code=0; expected=0\r",
+      "exit_code=0; expected=0\r",
+      "exit_code=0; expected=0\r",
+      "exit_code=0; expected=0\r",
+      "exit_code=0; expected=0\r",
+      "{\"fixture_only\": true, \"model_quality\": \"PENDING\", \"total\": 10, \"decision_accuracy\": 1.0, \"tool_call_accuracy\": 1.0, \"groundedness\": 1.0, \"escalation_accuracy\": 1.0, \"failures\": []}\r",
+      "{\"fixture_only\": true, \"model_quality\": \"PENDING\", \"total\": 10, \"decision_accuracy\": 0.0, \"tool_call_accuracy\": 1.0, \"groundedness\": 0.0, \"escalation_accuracy\": 1.0, \"failures\": [\"control-0: decision, groundedness\", \"control-1: decision, groundedness\", \"control-2: decision, groundedness\", \"control-3: decision, groundedness\", \"control-4: decision, groundedness\", \"control-5: decision, groundedness\", \"control-6: decision, groundedness\", \"control-7: decision, groundedness\", \"control-8: decision, groundedness\", \"control-9: decision, groundedness\"]}\r",
+      "exit_code=0; expected=0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "Exit code: 0\r",
+      "  \"semantic_quality\": \"PENDING\",\r",
+      "Exit code: 0\r",
+      "semantic/model cost/latency evaluation: PENDING; no traceable cassette or authorized model run\r",
+      "check-full: PASS (authorized local fake-mode acceptance)\r",
+      "exit=0"
+    ]
+  }
+]

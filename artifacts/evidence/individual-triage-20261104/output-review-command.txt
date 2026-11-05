@@ -1,0 +1,1 @@
+command=read saved gate outputs and record SHA256 and outcome markers; exit_code=0
