@@ -1,0 +1,1 @@
+command=python -m json.tool docs/harness/feature_list.json; exit_code=0

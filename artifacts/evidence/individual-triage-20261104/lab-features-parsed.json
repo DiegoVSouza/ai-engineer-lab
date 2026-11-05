@@ -1,0 +1,52 @@
+{
+    "features": [
+        {
+            "id": "harness-kit-acceptance",
+            "description": "Kit bootstrap accepted on a positive case; overwrite and a risky tool combination are rejected",
+            "status": "PASS_LOCAL",
+            "evidence": "artifacts/evidence/harness-kit/acceptance-exit-codes.json (positive 0, overwrite 1, trifecta 1); validation-exit-codes.json (0, 0)"
+        },
+        {
+            "id": "fly-stack-autostart-idle-stop",
+            "description": "Fly stack wakes on request and stops by itself when idle",
+            "status": "PASS_FLY_ONE_RUN",
+            "evidence": "artifacts/evidence/fly/autostart-acceptance.txt (wake http 200 for p04, p05, mcp); artifacts/evidence/fly/idle-acceptance/idle-probe.txt (all stopped after 671 s, wake 16 s)"
+        },
+        {
+            "id": "hosted-ci-nine-repositories",
+            "description": "Hosted CI on Linux for the lab's nine project repositories",
+            "status": "PASS_HOSTED_CI_9_OF_9",
+            "evidence": "projects/p07/artifacts/evidence/status-truth/F6-hosted-ci-after-push.txt (eight green, P07 red on f2efce2); projects/p07/artifacts/evidence/status-truth/F7-p07-hosted-ci.txt (P07 green on bd1d3b1)"
+        },
+        {
+            "id": "public-readiness-audit",
+            "description": "Secret, personal-data and licence audit across the lab and the nine repositories",
+            "status": "PASS_AUDIT_RUN_TRIAGED",
+            "evidence": "artifacts/evidence/public-readiness/audit-w3-final.json (six findings read and classified as test or third-party content); artifacts/evidence/status-truth-lab/audit-with-allowlist.log (zero open findings in lab and P07 with docs/harness/public-readiness-allowlist.json)"
+        },
+        {
+            "id": "sdd-phase-triple",
+            "description": "Every phase of every project has SPEC, PLAN and VERIFY",
+            "status": "PASS_INVENTORIED_220_OF_220_20261104",
+            "evidence": "artifacts/evidence/current-triage-20261104/inventory.json; artifacts/evidence/individual-triage-20261104/triples.txt. Snapshot covers P00-P08 phase VERIFY files and their SPEC/PLAN companions; later phase creation requires a new inventory."
+        },
+        {
+            "id": "commit-message-hooks",
+            "description": "Each project repository carries a commit-msg hook that checks the commit syntax",
+            "status": "PASS_9_OF_9",
+            "evidence": "artifacts/evidence/status-truth-lab/commit-hooks.txt"
+        },
+        {
+            "id": "verify-checklists-closed",
+            "description": "Every VERIFY.md has all its boxes ticked or states why one stays open",
+            "status": "TRIAGED_34_FILES; EVIDENCE_AND_INDEPENDENT_REVIEW_PENDING",
+            "evidence": "docs/harness/portfolio/verify-triage-20261104.md; inventory.json under artifacts/evidence/current-triage-20261104/: 34 of 220 files, 115 unchecked items. All 34 have individual dispositions; unresolved evidence and independent reviews remain explicit. Historical boxes are preserved."
+        },
+        {
+            "id": "linux-clean-check-script",
+            "description": "scripts/harness/linux_clean_check.py runs a project's gates in a Linux container",
+            "status": "PASS_LINUX_FAST_9_OF_9",
+            "evidence": "artifacts/evidence/linux-clean-20261104-report.json (P00), linux-clean-20261104-backend.json (P02/P03/P05), linux-clean-20261104-retry-report.json (P04), linux-clean-20261104-p01-layout3-report.json (P01), linux-clean-20261104-frontend-report.json (P06/P08), linux-clean-20261104-p07-fixed-report.json (P07). All final clean-clone fast gates exit 0."
+        }
+    ]
+}

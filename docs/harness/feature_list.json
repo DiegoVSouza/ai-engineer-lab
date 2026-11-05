@@ -27,8 +27,8 @@
     {
       "id": "sdd-phase-triple",
       "description": "Every phase of every project has SPEC, PLAN and VERIFY",
-      "status": "PASS_188_OF_188",
-      "evidence": "artifacts/evidence/status-truth-lab/sdd-phase-count.txt"
+      "status": "PASS_INVENTORIED_220_OF_220_20261104",
+      "evidence": "artifacts/evidence/current-triage-20261104/inventory.json; artifacts/evidence/individual-triage-20261104/triples.txt. Snapshot covers P00-P08 phase VERIFY files and their SPEC/PLAN companions; later phase creation requires a new inventory."
     },
     {
       "id": "commit-message-hooks",
@@ -39,8 +39,8 @@
     {
       "id": "verify-checklists-closed",
       "description": "Every VERIFY.md has all its boxes ticked or states why one stays open",
-      "status": "PENDING",
-      "evidence": "artifacts/evidence/status-truth-lab/sdd-phase-count.txt: 34 of 188 VERIFY.md files still have unticked boxes (the older phases were not re-opened)"
+      "status": "TRIAGED_34_FILES; EVIDENCE_AND_INDEPENDENT_REVIEW_PENDING",
+      "evidence": "docs/harness/portfolio/verify-triage-20261104.md; inventory.json under artifacts/evidence/current-triage-20261104/: 34 of 220 files, 115 unchecked items. All 34 have individual dispositions; unresolved evidence and independent reviews remain explicit. Historical boxes are preserved."
     },
     {
       "id": "linux-clean-check-script",
