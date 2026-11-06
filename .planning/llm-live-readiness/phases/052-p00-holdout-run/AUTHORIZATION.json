@@ -1,0 +1,20 @@
+{
+  "authorization_id": "p00-holdout-run-v1",
+  "authority": "explicit_user_reply",
+  "project": "p00",
+  "stage": "holdout",
+  "campaign": "free-holdout-c1",
+  "max_calls": 84,
+  "trials_per_case": 3,
+  "single_use": true,
+  "authorized_paid_spend_usd": "0.00",
+  "owner_total_loss_cap_usd": "5.00",
+  "policy_requests": 301,
+  "independent_review": "WAIVED_BY_OWNER",
+  "owner_reply": "faz o mais honesto (the owner was offered: run the holdout once with the few-shot prompt)",
+  "note": "One run only. No prompt, dataset, rubric or schema edit after viewing results counts as the same holdout; a changed candidate needs fresh confirmation.",
+  "prompt_sha256": "b21508d4efbb0ca4b999d4da17bb9998f59c37465b8f276fa4e660568863cfb5",
+  "schema_sha256": "e2fdc1f0a0c8a0cda002d6ac24b0bee46ecaf255ecacab6947df60111f24a829",
+  "dataset_sha256": "e26e643cf3e1def6ebc2c01687d765506c1401e26d557f81157f97c17827d5ff",
+  "rubric_sha256": "332af885b2390991631b33cdd340c0579bff584539f065460ec7b76debf713b6"
+}

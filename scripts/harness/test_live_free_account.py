@@ -144,6 +144,28 @@ class AccountTests(unittest.TestCase):
         with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
             self.reserve(account, campaign="free-dev-c5", case="dev-1")
 
+    def test_holdout_is_reachable_only_through_a_matching_single_use_authorization(self):
+        self.policy["projects"]["p00"]["requests"] = 301
+        account = self.account()
+        with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
+            self.reserve(account, campaign="free-holdout-c1", case="h-0")
+        phase = self.root / ".planning/llm-live-readiness/phases/052-p00-holdout-run"
+        phase.mkdir(parents=True)
+        good = {
+            "authorization_id": "p00-holdout-run-v1", "authority": "explicit_user_reply", "project": "p00",
+            "stage": "holdout", "max_calls": 84, "single_use": True, "authorized_paid_spend_usd": "0.00",
+            "policy_requests": 301, "campaign": "free-holdout-c1",
+        }
+        for tweak in ({"max_calls": 85}, {"policy_requests": 255}, {"single_use": False}, {"campaign": "free-dev-c5x"}):
+            (phase / "AUTHORIZATION.json").write_text(json.dumps({**good, **tweak}))
+            with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
+                self.reserve(account, campaign=tweak.get("campaign", "free-holdout-c1"), case="h-0")
+        (phase / "AUTHORIZATION.json").write_text(json.dumps(good))
+        attempt = self.reserve(account, campaign="free-holdout-c1", case="h-0")
+        account.complete("p00", attempt, input_tokens=80, output_tokens=20)
+        with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
+            self.reserve(account, campaign="free-holdout-c2", case="h-0")
+
     def test_metadata_parent_timeout_is_single_attempt_and_sanitized(self):
         import subprocess
         from unittest.mock import patch

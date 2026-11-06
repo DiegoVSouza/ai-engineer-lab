@@ -84,3 +84,7 @@ Authorization ID: `p00-dev-envelope-c4-v1`. After the stopped `free-dev-c3` batc
 ## Few-shot envelope for free-dev-c5 — 2026-11-06
 
 Authorization ID: `p00-dev-envelope-c5-v1`. After `free-dev-c4` consumed its 36 trials (21 passes), the owner replied "arruma a contradicao e faz few shots tambem". Under the standing phase 049 authority (free keys up to provider limits, owner total-loss cap USD 5.00, independent review waived) this applies +36 P00/global calls, +73,728 input, +9,216 output and USD 0.0082944 economic estimate through a validated migration, funding one pass of `free-dev-c5` with the few-shot prompt and the rubric lookup rule. Paid authorization stays 0.00; holdout (84) and confirmation (60) stay protected; promotion stays PENDING. Exact record: `phases/051-dev-envelope-c5/AUTHORIZATION.json`.
+
+## P00 holdout run, single use — 2026-11-06
+
+Authorization ID: `p00-holdout-run-v1`. After the development passes (original 27/36, concrete-issue 21/36, few-shot 25/36) the owner replied "faz o mais honesto" to the proposal of running the protected holdout once with the few-shot candidate. This opens exactly the 84 reserved holdout calls (28 cases x 3 trials) as campaign `free-holdout-c1`, bound to the sha256 of the prompt, schema, dataset and rubric. Paid authorization stays 0.00 (owner total-loss cap USD 5.00); the 60 confirmation calls stay protected; independent review remains waived by the owner; promotion stays PENDING. Exact record: `phases/052-p00-holdout-run/AUTHORIZATION.json`.
