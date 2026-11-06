@@ -36,6 +36,9 @@ FEEDBACK = {
 }
 
 
+# P00 policy request totals that fund exactly one development campaign (phases 049, 050).
+P00_FUNDED_CAMPAIGNS = {255: "free-dev-c3", 265: "free-dev-c4"}
+
 class AccountBlocked(RuntimeError):
     """A sanitized fail-closed reason, never a provider/credential exception."""
 
@@ -576,10 +579,11 @@ class SharedAccount:
             operation = [row for row in p00 if row["campaign"] == campaign]
             if len(p00) >= 75 or len(operation) >= 10:
                 raise AccountBlocked("operational_allocation_exhausted")
-        if project == "p00" and self.policy["projects"]["p00"]["requests"] == 255:
-            # Plus-36 envelope: only the retained ten-call operation and the one funded
-            # development pass may spend; holdout and confirmation stay unreachable here.
-            limits = {"local-live-operation-v1": 10, "free-dev-c3": 36}
+        funded = P00_FUNDED_CAMPAIGNS.get(self.policy["projects"]["p00"]["requests"])
+        if project == "p00" and funded is not None:
+            # Envelope with a funded development pass: only the retained ten-call operation
+            # and that one campaign may spend; holdout and confirmation stay unreachable here.
+            limits = {"local-live-operation-v1": 10, funded: 36}
             if campaign not in limits:
                 raise AccountBlocked("protected_p00_allocation")
             operation = [
@@ -648,7 +652,7 @@ class SharedAccount:
                 "estimated_cost_usd": cost,
             },
         )
-        if project == "p00" and self.policy["projects"]["p00"]["requests"] in {219, 255}:
+        if project == "p00" and self.policy["projects"]["p00"]["requests"] in {219, *P00_FUNDED_CAMPAIGNS}:
             if any(row["event"] == "completed" and row["status"] != "ok" for row in operation):
                 raise AccountBlocked("prior_operational_failure_requires_review")
         if project == "p01" and self.policy["projects"]["p01"]["requests"] in {992, 996}:
