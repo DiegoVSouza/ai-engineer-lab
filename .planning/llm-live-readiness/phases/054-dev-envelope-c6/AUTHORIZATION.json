@@ -1,0 +1,19 @@
+{
+  "authorization_id": "p00-dev-envelope-c6-v1",
+  "authority": "explicit_user_reply",
+  "project": "p00",
+  "additional_calls": 192,
+  "additional_input_tokens": 393216,
+  "additional_output_tokens": 49152,
+  "additional_economic_estimate_usd": "0.0442368",
+  "authorized_paid_spend_usd": "0.00",
+  "free_only": true,
+  "owner_total_loss_cap_usd": "5.00",
+  "condition": "validated_owning_migration_phase",
+  "other_project_caps_changed": false,
+  "confirmation_changed": false,
+  "independent_review": "WAIVED_BY_OWNER",
+  "promotion": "PENDING",
+  "budget_reply": "faz 1,3,4,5 nao usa o modelo maior (code-decided tool, a larger fresh dataset, a prompt with more room and examples, and the 60 confirmation calls as the final measurement)",
+  "standing_authority": "phase 049: free keys up to provider limits, owner total-loss cap USD 5.00"
+}

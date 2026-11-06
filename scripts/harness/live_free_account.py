@@ -36,8 +36,14 @@ FEEDBACK = {
 }
 
 
+DEV_CALLS = {"free-dev-c6": 192}  # live-v3: 64 development cases x 3 trials
 # P00 policy request totals that fund exactly one development campaign (phases 049, 050).
-P00_FUNDED_CAMPAIGNS = {255: "free-dev-c3", 265: "free-dev-c4", 301: "free-dev-c5"}
+P00_FUNDED_CAMPAIGNS = {
+    255: "free-dev-c3",
+    265: "free-dev-c4",
+    301: "free-dev-c5",
+    493: "free-dev-c6",
+}
 
 class AccountBlocked(RuntimeError):
     """A sanitized fail-closed reason, never a provider/credential exception."""
@@ -547,18 +553,18 @@ class SharedAccount:
         return cost
 
     def _holdout_campaign(self):
-        """Single-use owner authorization for the 84 protected P00 holdout calls, or None."""
-        name = ".planning/llm-live-readiness/phases/052-p00-holdout-run/AUTHORIZATION.json"
+        """Single-use owner authorization for the 60 protected P00 confirmation calls, or None."""
+        name = ".planning/llm-live-readiness/phases/053-p00-final-run/AUTHORIZATION.json"
         try:
             auth = json.loads((self.root / name).read_text(encoding="utf-8"))
         except (OSError, ValueError):
             return None
         expected = {
-            "authorization_id": "p00-holdout-run-v1",
+            "authorization_id": "p00-final-run-v1",
             "authority": "explicit_user_reply",
             "project": "p00",
             "stage": "holdout",
-            "max_calls": 84,
+            "max_calls": 60,
             "single_use": True,
             "authorized_paid_spend_usd": "0.00",
             "policy_requests": self.policy["projects"]["p00"]["requests"],
@@ -568,7 +574,7 @@ class SharedAccount:
             not isinstance(auth, dict)
             or any(auth.get(key) != value for key, value in expected.items())
             or not isinstance(campaign, str)
-            or not re.fullmatch(r"free-holdout-[a-z0-9]{1,20}", campaign)
+            or not re.fullmatch(r"free-final-[a-z0-9]{1,20}", campaign)
         ):
             return None
         return campaign
@@ -610,10 +616,10 @@ class SharedAccount:
         if project == "p00" and funded is not None:
             # Envelope with a funded development pass: only the retained ten-call operation
             # and that one campaign may spend; holdout and confirmation stay unreachable here.
-            limits = {"local-live-operation-v1": 10, funded: 36}
+            limits = {"local-live-operation-v1": 10, funded: DEV_CALLS.get(funded, 36)}
             holdout = self._holdout_campaign()
             if holdout is not None:
-                limits[holdout] = 84
+                limits[holdout] = 60
             if campaign not in limits:
                 raise AccountBlocked("protected_p00_allocation")
             operation = [

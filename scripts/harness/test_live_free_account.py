@@ -144,27 +144,58 @@ class AccountTests(unittest.TestCase):
         with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
             self.reserve(account, campaign="free-dev-c5", case="dev-1")
 
-    def test_holdout_is_reachable_only_through_a_matching_single_use_authorization(self):
-        self.policy["projects"]["p00"]["requests"] = 301
+    def test_c6_v3_dev_envelope_funds_only_the_dev_campaign_and_keeps_holdout_protected(self):
+        self.policy["projects"]["p00"]["requests"] = 493
+        account = self.account()
+        for index in range(192):
+            attempt = self.reserve(account, campaign="free-dev-c6", case=f"dev-{index}")
+            account.complete("p00", attempt, input_tokens=80, output_tokens=20)
+            if index % 20 == 19:
+                self.now[0] += 61
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, campaign="free-dev-c6", case="dev-extra")
+        for blocked in ("free-dev-c5", "free-dev-c4", "free-dev-c3", "free-dev-c2r1", "holdout-v1", "confirmation-v1", "unallocated"):
+            with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
+                self.reserve(account, campaign=blocked, case="other")
+
+    def test_c6_v3_dev_envelope_keeps_the_ten_call_operation_cap(self):
+        self.policy["projects"]["p00"]["requests"] = 493
+        account = self.account()
+        for index in range(10):
+            attempt = self.reserve(account, campaign="local-live-operation-v1", case=f"op-{index}")
+            account.complete("p00", attempt, input_tokens=80, output_tokens=20)
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, campaign="local-live-operation-v1", case="op-extra")
+
+    def test_c6_v3_dev_failed_dev_attempt_requires_review_before_the_next_call(self):
+        self.policy["projects"]["p00"]["requests"] = 493
+        account = self.account()
+        attempt = self.reserve(account, campaign="free-dev-c6", case="dev-0")
+        account.complete("p00", attempt, status="transport_error")
+        with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
+            self.reserve(account, campaign="free-dev-c6", case="dev-1")
+
+    def test_final_split_is_reachable_only_through_a_matching_single_use_authorization(self):
+        self.policy["projects"]["p00"]["requests"] = 493
         account = self.account()
         with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
-            self.reserve(account, campaign="free-holdout-c1", case="h-0")
-        phase = self.root / ".planning/llm-live-readiness/phases/052-p00-holdout-run"
+            self.reserve(account, campaign="free-final-c1", case="h-0")
+        phase = self.root / ".planning/llm-live-readiness/phases/053-p00-final-run"
         phase.mkdir(parents=True)
         good = {
-            "authorization_id": "p00-holdout-run-v1", "authority": "explicit_user_reply", "project": "p00",
-            "stage": "holdout", "max_calls": 84, "single_use": True, "authorized_paid_spend_usd": "0.00",
-            "policy_requests": 301, "campaign": "free-holdout-c1",
+            "authorization_id": "p00-final-run-v1", "authority": "explicit_user_reply", "project": "p00",
+            "stage": "holdout", "max_calls": 60, "single_use": True, "authorized_paid_spend_usd": "0.00",
+            "policy_requests": 493, "campaign": "free-final-c1",
         }
-        for tweak in ({"max_calls": 85}, {"policy_requests": 255}, {"single_use": False}, {"campaign": "free-dev-c5x"}):
+        for tweak in ({"max_calls": 61}, {"policy_requests": 301}, {"single_use": False}, {"campaign": "free-dev-c6x"}):
             (phase / "AUTHORIZATION.json").write_text(json.dumps({**good, **tweak}))
             with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
-                self.reserve(account, campaign=tweak.get("campaign", "free-holdout-c1"), case="h-0")
+                self.reserve(account, campaign=tweak.get("campaign", "free-final-c1"), case="h-0")
         (phase / "AUTHORIZATION.json").write_text(json.dumps(good))
-        attempt = self.reserve(account, campaign="free-holdout-c1", case="h-0")
+        attempt = self.reserve(account, campaign="free-final-c1", case="h-0")
         account.complete("p00", attempt, input_tokens=80, output_tokens=20)
         with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
-            self.reserve(account, campaign="free-holdout-c2", case="h-0")
+            self.reserve(account, campaign="free-final-c2", case="h-0")
 
     def test_metadata_parent_timeout_is_single_attempt_and_sanitized(self):
         import subprocess
