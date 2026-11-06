@@ -72,3 +72,7 @@ The user explicitly answered “Autorizar diagnóstico separado de P04”. Exact
 ## Explicit second P01 diagnostic - 2026-10-29
 
 User approved Autorizar uma segunda operacao separada. Exact UTF-8 decision and finite authority: phases/038-p01-second-diagnostic/AUTHORIZATION.json. Preserve original and first diagnostic INCOMPLETE/all eight calls. One new distinct workflow maxfour calls, through tested +4/8192/1024/USD0.0009216 economic-estimate migration, paidUSD0. No original replay/replacement/release or human-quality/holdout/promotion approval.
+
+## Development envelope plus 36 and review waiver — 2026-11-06
+
+Authorization ID: `p00-dev-envelope-plus36-v1`. The owner replied that the free keys may be used up to the provider limits with a hard maximum of USD 5.00 for everything, and later asked to remove the independent-reviewer requirement. Applied as +36 P00/global calls, +73,728 input, +9,216 output and USD 0.0082944 economic estimate through a validated owning migration (phase 049). `authorized_paid_spend_usd` stays 0.00 because the keys are on the free plan; USD 5.00 is the owner total-loss ceiling and a stop condition, not an expected spend. Holdout (84) and confirmation (60) stay protected. Independent review is WAIVED_BY_OWNER for dataset/rubric: owner approval is recorded as such and is not independent verification. Promotion and public claims of validated quality remain PENDING. Exact record: `phases/049-dev-envelope-plus36/AUTHORIZATION.json`.

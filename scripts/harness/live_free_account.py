@@ -576,6 +576,17 @@ class SharedAccount:
             operation = [row for row in p00 if row["campaign"] == campaign]
             if len(p00) >= 75 or len(operation) >= 10:
                 raise AccountBlocked("operational_allocation_exhausted")
+        if project == "p00" and self.policy["projects"]["p00"]["requests"] == 255:
+            # Plus-36 envelope: only the retained ten-call operation and the one funded
+            # development pass may spend; holdout and confirmation stay unreachable here.
+            limits = {"local-live-operation-v1": 10, "free-dev-c3": 36}
+            if campaign not in limits:
+                raise AccountBlocked("protected_p00_allocation")
+            operation = [
+                row for row in rows if row["project"] == "p00" and row["campaign"] == campaign
+            ]
+            if len(operation) >= limits[campaign]:
+                raise AccountBlocked("operational_allocation_exhausted")
         expanded = {"p01": 1000, "p04": 747}
         if project in expanded and self.policy["projects"][project]["requests"] == expanded[project]:
             self._reviewed_revalidation(
@@ -637,7 +648,7 @@ class SharedAccount:
                 "estimated_cost_usd": cost,
             },
         )
-        if project == "p00" and self.policy["projects"]["p00"]["requests"] == 219:
+        if project == "p00" and self.policy["projects"]["p00"]["requests"] in {219, 255}:
             if any(row["event"] == "completed" and row["status"] != "ok" for row in operation):
                 raise AccountBlocked("prior_operational_failure_requires_review")
         if project == "p01" and self.policy["projects"]["p01"]["requests"] in {992, 996}:

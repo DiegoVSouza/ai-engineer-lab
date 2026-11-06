@@ -1,0 +1,1 @@
+{"status": "PASS_EXACT_DELTA", "old_sha": "f8428a8da06fd551e6a41d3d009db69d1d31c620eda68ef21a02ff1dbcc32cdf", "new_sha": "3d40c8185cb651aaef0efa96fbb4392dc80500ac0c8cccd144c3a6866c9b9740", "provider_accessed": false, "credentials_read": false}
