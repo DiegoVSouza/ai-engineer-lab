@@ -313,7 +313,7 @@ def validate_logical_history(rows):
         "reserved_cost_usd",
     )
     for row in rows:
-        key = tuple(row[field] for field in keys)
+        key = tuple(row.get(field) for field in keys)  # older ledgers have no project column
         if row["event"] == "reserved":
             if key in latest:
                 raise MigrationBlocked("migration_logical_history_invalid")

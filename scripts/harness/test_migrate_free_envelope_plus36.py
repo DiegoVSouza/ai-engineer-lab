@@ -177,6 +177,13 @@ class MigrationTests(unittest.TestCase):
         with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
             self.run_migration(True)
 
+    def test_logical_history_accepts_ledgers_without_a_project_column(self):
+        fields = {"reserved_calls": 1, "reserved_input_tokens": 1, "reserved_output_tokens": 1, "reserved_cost_usd": "0"}
+        base = {"campaign_id": "c", "case_id": "k", "trial": 1, **fields}
+        migration.validate_logical_history([{**base, "event": "reserved"}, {**base, "event": "completed"}])
+        with self.assertRaisesRegex(migration.MigrationBlocked, "inflight"):
+            migration.validate_logical_history([{**base, "event": "reserved"}])
+
     def test_logical_reserved_event_blocks_migration(self):
         path = self.root / "projects/p00/artifacts/evals/live/ledger.sqlite"
         path.parent.mkdir(parents=True, exist_ok=True)
