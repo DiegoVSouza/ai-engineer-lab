@@ -36,7 +36,7 @@ FEEDBACK = {
 }
 
 
-DEV_CALLS = {"free-dev-c6": 192, "free-dev-c7": 192}  # live-v3: 64 development cases x 3 trials
+DEV_CALLS = {"free-dev-c6": 192, "free-dev-c7": 192, "free-dev-c8": 192}  # live-v3: 64 development cases x 3 trials
 # P00 policy request totals that fund exactly one development campaign (phases 049, 050).
 P00_FUNDED_CAMPAIGNS = {
     255: "free-dev-c3",
@@ -44,6 +44,7 @@ P00_FUNDED_CAMPAIGNS = {
     301: "free-dev-c5",
     493: "free-dev-c6",
     685: "free-dev-c7",
+    755: "free-dev-c8",
 }
 
 class AccountBlocked(RuntimeError):

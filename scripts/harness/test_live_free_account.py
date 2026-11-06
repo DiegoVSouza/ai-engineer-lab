@@ -206,6 +206,37 @@ class AccountTests(unittest.TestCase):
         with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
             self.reserve(account, campaign="free-dev-c7", case="dev-1")
 
+    def test_c8_v3_dev_envelope_funds_only_the_dev_campaign_and_keeps_holdout_protected(self):
+        self.policy["projects"]["p00"]["requests"] = 755
+        account = self.account()
+        for index in range(192):
+            attempt = self.reserve(account, campaign="free-dev-c8", case=f"dev-{index}")
+            account.complete("p00", attempt, input_tokens=80, output_tokens=20)
+            if index % 20 == 19:
+                self.now[0] += 61
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, campaign="free-dev-c8", case="dev-extra")
+        for blocked in ("free-dev-c7", "free-dev-c6", "free-dev-c5", "free-dev-c2r1", "holdout-v1", "confirmation-v1", "unallocated"):
+            with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
+                self.reserve(account, campaign=blocked, case="other")
+
+    def test_c8_v3_dev_envelope_keeps_the_ten_call_operation_cap(self):
+        self.policy["projects"]["p00"]["requests"] = 755
+        account = self.account()
+        for index in range(10):
+            attempt = self.reserve(account, campaign="local-live-operation-v1", case=f"op-{index}")
+            account.complete("p00", attempt, input_tokens=80, output_tokens=20)
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, campaign="local-live-operation-v1", case="op-extra")
+
+    def test_c8_v3_dev_failed_dev_attempt_requires_review_before_the_next_call(self):
+        self.policy["projects"]["p00"]["requests"] = 755
+        account = self.account()
+        attempt = self.reserve(account, campaign="free-dev-c8", case="dev-0")
+        account.complete("p00", attempt, status="transport_error")
+        with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
+            self.reserve(account, campaign="free-dev-c8", case="dev-1")
+
     def test_final_split_is_reachable_only_through_a_matching_single_use_authorization(self):
         self.policy["projects"]["p00"]["requests"] = 493
         account = self.account()
