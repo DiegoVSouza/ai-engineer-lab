@@ -11,3 +11,7 @@ Pre-apply evidence:
 - 12 tests in `projects/p00/tests/test_live_campaign_preparation.py` need the applied state (policy and registry hash must match) and are re-run after apply.
 
 Budget interpretation: `authorized_paid_spend_usd` stays 0.00 (free-plan keys); USD 5.00 is an owner total-loss ceiling recorded in AUTHORIZATION.json. Independent review is WAIVED_BY_OWNER, not independently verified.
+
+APPLIED/PASS (2026-11-06): committed-source dry-run returned READY_FOR_APPROVED_MIGRATION; `--apply` exited 0 (APPLIED), a second run returned ALREADY_APPLIED. Registry policy hash is now 3d40c818...; the six project UUIDs and the usage totals (90 requests, one unknown attempt) are unchanged. Evidence: `artifacts/evidence/llm-live-readiness/envelope-plus36/` (dry-run.json, apply.json, post-apply.json). Follow-up fix: the clone read `row["project"]` from logical ledgers that have no such column; now `row.get`, with a regression test.
+
+Consumption: P00 full fake gate PASS, catalog preflight PASS (0 generation calls), then `free-dev-c3` batch 1 ran 10 of the 36 funded trials: 0 passes, all `request_info` (prompt regression, see projects/p00/docs/harness/failures.md). Not resumed; 26 funded trials unused and stuck behind the frozen manifest. A further pass needs a new, separately authorized envelope. No quality claim.
