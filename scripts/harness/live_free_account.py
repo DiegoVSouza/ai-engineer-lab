@@ -37,7 +37,7 @@ FEEDBACK = {
 
 
 # P00 policy request totals that fund exactly one development campaign (phases 049, 050).
-P00_FUNDED_CAMPAIGNS = {255: "free-dev-c3", 265: "free-dev-c4"}
+P00_FUNDED_CAMPAIGNS = {255: "free-dev-c3", 265: "free-dev-c4", 301: "free-dev-c5"}
 
 class AccountBlocked(RuntimeError):
     """A sanitized fail-closed reason, never a provider/credential exception."""

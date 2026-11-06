@@ -80,3 +80,7 @@ Authorization ID: `p00-dev-envelope-plus36-v1`. The owner replied that the free 
 ## Replacement envelope for free-dev-c4 — 2026-11-06
 
 Authorization ID: `p00-dev-envelope-c4-v1`. After the stopped `free-dev-c3` batch (10 of 36 trials, prompt regression), the owner replied "roda oque precisa ai" to the proposal of a second pass. Under the standing phase 049 authority (free keys up to provider limits, owner total-loss cap USD 5.00, independent review waived by the owner) this applies +10 P00/global calls, +20,480 input, +2,560 output and USD 0.002304 economic estimate through a validated migration, so `free-dev-c4` has 36 trials. Paid authorization stays 0.00; holdout (84) and confirmation (60) stay protected; promotion stays PENDING. Exact record: `phases/050-dev-envelope-c4/AUTHORIZATION.json`.
+
+## Few-shot envelope for free-dev-c5 — 2026-11-06
+
+Authorization ID: `p00-dev-envelope-c5-v1`. After `free-dev-c4` consumed its 36 trials (21 passes), the owner replied "arruma a contradicao e faz few shots tambem". Under the standing phase 049 authority (free keys up to provider limits, owner total-loss cap USD 5.00, independent review waived) this applies +36 P00/global calls, +73,728 input, +9,216 output and USD 0.0082944 economic estimate through a validated migration, funding one pass of `free-dev-c5` with the few-shot prompt and the rubric lookup rule. Paid authorization stays 0.00; holdout (84) and confirmation (60) stay protected; promotion stays PENDING. Exact record: `phases/051-dev-envelope-c5/AUTHORIZATION.json`.
