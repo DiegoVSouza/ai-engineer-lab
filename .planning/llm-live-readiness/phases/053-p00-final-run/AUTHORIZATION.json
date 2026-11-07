@@ -1,0 +1,21 @@
+{
+  "authorization_id": "p00-final-run-v1",
+  "authority": "explicit_user_reply",
+  "project": "p00",
+  "stage": "holdout",
+  "campaign": "free-final-c1",
+  "max_calls": 60,
+  "trials_per_case": 3,
+  "single_use": true,
+  "authorized_paid_spend_usd": "0.00",
+  "owner_total_loss_cap_usd": "5.00",
+  "policy_requests": 755,
+  "independent_review": "WAIVED_BY_OWNER",
+  "owner_reply": "pode rodar a final",
+  "note": "One run only. Editing the prompt, schema, dataset or rubric after this file is written closes the final split.",
+  "prompt_sha256": "fdb229419ca684d3eb63d1d956253ec71c27dcb32f97394332c7b69ccce53a1a",
+  "schema_sha256": "87223219fc9e67fcc77abfddc1b6be883c1c54a31632b5cf237c8874daede7f8",
+  "dataset_sha256": "6e23d694ac7e61fd093f80ebb1f635609b64b3d86fe2e8ed983e242f75468361",
+  "rubric_sha256": "21969b3b987dbefe2311186eecb0dcb808644781e5b1cca27f9700fff7441917",
+  "director_sha256": "69c21a34f9451da814fee3beef44804c35710ddbc9633ec529d67ceebef6e9b5"
+}
