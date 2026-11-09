@@ -1,0 +1,8 @@
+
+  ✓  1 e2e\console.spec.ts:25:1 › agent and approver complete a refund, and tenants stay apart (1.1m)
+  ✓  2 e2e\console.spec.ts:74:1 › a manual refund runs after approval, with the requested amount (14.8s)
+  ✓  3 e2e\console.spec.ts:104:1 › narrow screen keeps the console usable (5.2s)
+  -  4 e2e\renewal.spec.ts:4:1 › the session renews itself before the access token expires
+
+  1 skipped
+  3 passed (1.5m)

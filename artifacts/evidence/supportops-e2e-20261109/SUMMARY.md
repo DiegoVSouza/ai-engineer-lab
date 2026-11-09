@@ -18,3 +18,7 @@ local 55/55 (`probe-local-run4.txt`), Fly 55/55 (`probe-fly-run6.txt`), stricter
    The earlier 90 s figure was with a warm CPU, so the slow case looks like shared-CPU throttling after repeated boots; not proven.
 
 The stack is left started (autostart on), so idle machines stop and wake on request.
+5. E2E STALE, fixed: the ticket form moved into a disclosure in p06 `de9abcb` (2026-11-02) and `e2e/console.spec.ts` was never updated, so the
+   rebuilt local console timed out on a hidden field (`local-run2.txt`). The spec now opens the disclosure; local passes (`local-run3.txt`).
+6. PROD STALE, fixed: the Fly web app predated `de9abcb`, so prod still served the old ticket form instead of the one-click demo.
+   Redeployed (`fly-deploy-web.txt`): Fly and local now serve the same asset hashes, and the e2e passes on Fly (`fly-run5-new-ui.txt`).
