@@ -60,3 +60,12 @@ The following conclusions use inspected command output, not just phase summaries
 - P01 007 has planning `4b47c11` and implementation `2c64eac`; P02 009 has planning `add9eaf` and implementation `42fb866`; P04 012 has planning `d344d08` and implementation `8694e0d`. Saved path-specific histories are in `artifacts/evidence/individual-triage-20261104/*-history.txt`. Independent review remains pending.
 
 No new model call, human annotation, promotion, or historical acceptance was performed by this review. All 34 inventoried open files have a document-level disposition; supporting output reconciliation remains incomplete where explicitly stated above.
+
+## Addendum, 2026-11-09
+
+This triage describes the state on 2026-11-04 and its dispositions are unchanged. Two later facts affect how to read the P00 rows:
+
+- P00 live evaluation moved on: the single-use final split ran on 2026-11-07 and measured 54/60 = 90.0% (`projects/p00/artifacts/evidence/summaries/free-final-c1.json`, `docs/harness/failures.md`). The `live-model-evaluation` feature now reads `FINAL_SPLIT_MEASURED; REVIEW_AND_PROMOTION_PENDING`. The open P00 boxes that wait for review stay open: the owner waived the independent reviewer (`WAIVED_BY_OWNER`), which is owner approval and not independent verification.
+- P00 044-isolated-services: the LocalStack blocker was removed by replacing the image with `motoserver/moto:5.2.5`; the isolated check passed (`artifacts/evidence/moto-services-046/result.json`). The original LocalStack-specific contract text is not re-verified by this.
+
+No box in this triage was closed by these changes. The summary counts above (220 files, 34 open, 115 items) are from the 2026-11-04 inventory and were not regenerated.

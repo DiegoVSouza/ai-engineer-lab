@@ -18,3 +18,18 @@ This is a review packet, not authorization to execute external actions or spend.
 | Independent verifier | Review the historical contracts that explicitly reserve unchecked boxes for independent sign-off. | The per-file map is verify-triage-20261104.md. Implementer test output alone does not provide that sign-off. |
 
 Before an authorized execution, prepare its own bounded phase and preserve the current source fingerprint, ledgers and immutable artifacts. No secrets should be supplied in this document or committed logs.
+
+## Addendum, 2026-11-09: changes after the 2026-11-04 packet
+
+The table above is kept as written on 2026-11-04. These items changed afterwards; sources are the P00 `docs/harness/decisions.md` and `failures.md`, and the P07 `docs/harness/decisions.md`.
+
+| Row above | Status on 2026-11-09 |
+| --- | --- |
+| P00 dataset/rubric reviewers (cases 025, 026, 037) | Owner decided on 2026-11-06: 025 and 026 keep their expected outcomes; 037 became `request_info` with no tool (dataset `live-v2`). Rule: no identifier means no lookup. |
+| P00 budget owner | Free Groq keys up to provider limits with a hard owner cap of USD 5.00 in total. `authorized_paid_spend_usd` stays 0.00. The protected holdout was consumed on 2026-11-06 (29/84 = 34.5%, older dataset). The 60 confirmation calls were consumed on 2026-11-07 as a single-use final run: 54/60 = 90.0% (Wilson 95% 0.799 to 0.953), campaign `free-final-c1`. No further tuning on that split; a changed candidate needs fresh cases. |
+| P00 reviewers (independence) | Independent reviewer requirement waived by the owner (`WAIVED_BY_OWNER`). This is owner approval, not independent verification; the review items stay open as `REVIEW_AND_PROMOTION_PENDING`. |
+| P00 local service owner (LocalStack) | LocalStack replaced by `motoserver/moto:5.2.5` (no token). The isolated moto check passed (`artifacts/evidence/moto-services-046/result.json`). The feature `local-services-and-hosted-ci` still reads `LOCAL_SERVICE_E2E_PENDING` until a full local service e2e is recorded. |
+| P07 screen-reader review | No human screen-reader tester is available. `projects/p07/scripts/a11y-reader.mjs` runs an automated pass (Playwright + Edge: accessibility tree, headings, landmarks, tab order, axe). It is reported as automated review only; the human review stays `PENDING`. |
+| P07 CV approval | CV text approved by the owner. The site-versus-CV claim diff is not done yet (deferred by the owner). |
+
+Still open and unchanged: P01 corpus and six-runner comparison, P02 external RAG and refusal, P03 and P04 privacy and production acceptance, P05 third-party IdP, Turnstile start flow, device FPS, and independent sign-off on historical contracts.
