@@ -1,0 +1,7 @@
+    Error Context: test-results\console-a-manual-refund-ru-32eb0-l-with-the-requested-amount\error-context.md
+
+  2 failed
+    e2e\console.spec.ts:25:1 › agent and approver complete a refund, and tenants stay apart ────────
+    e2e\console.spec.ts:73:1 › a manual refund runs after approval, with the requested amount ──────
+  1 skipped
+  1 passed (12.2m)

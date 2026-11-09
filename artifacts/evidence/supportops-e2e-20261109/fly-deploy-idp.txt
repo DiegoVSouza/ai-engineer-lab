@@ -1,0 +1,98 @@
+==> Verifying app config
+--> Verified app config
+Validating C:\estudo\Golpe\lab\fly\idp\fly.toml
+[32m✓[0m Configuration is valid
+==> Building image
+Waiting for depot builder...
+
+==> Building image with Depot
+--> ]8;;build: ]8;;
+#1 [internal] load build definition from Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 749B 0.2s
+#1 transferring dockerfile: 749B 0.2s done
+#1 DONE 0.2s
+
+#2 [internal] load metadata for quay.io/keycloak/keycloak:26.8.1
+#2 DONE 0.6s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B 0.1s done
+#3 DONE 0.1s
+
+#4 [1/5] FROM quay.io/keycloak/keycloak:26.8.1@sha256:3f3c5f8e03c614774b4bd9173b88391fefa4153bfc010d8012d59ad825377332
+#4 resolve quay.io/keycloak/keycloak:26.8.1@sha256:3f3c5f8e03c614774b4bd9173b88391fefa4153bfc010d8012d59ad825377332 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 5.25kB 0.3s done
+#5 DONE 0.3s
+
+#6 [4/5] RUN chmod 0755 /opt/keycloak/start-keycloak.sh
+#6 CACHED
+
+#7 [2/5] COPY --chown=keycloak:keycloak realm-template.json /opt/keycloak/realm-template.json
+#7 CACHED
+
+#8 [3/5] COPY --chown=keycloak:keycloak start-keycloak.sh /opt/keycloak/start-keycloak.sh
+#8 CACHED
+
+#9 [5/5] RUN /opt/keycloak/bin/kc.sh build --db=postgres --health-enabled=true --features-disabled=admin,admin-api
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 exporting manifest sha256:6bb2782afe3c7e72d5d16dfc548d26f240b24fa7ec8c085b5d204df7c104715b done
+#10 exporting config sha256:ebabeaf0d9a0188d3afdb754c42b9a6a9ad79eb6f51dcc64b79729123e53100f done
+#10 pushing layers for registry.fly.io/supportops-lab-idp:deployment-01M70YWJN3P62NK8WSAY7WSECB@sha256:6bb2782afe3c7e72d5d16dfc548d26f240b24fa7ec8c085b5d204df7c104715b
+#10 pushing layer sha256:ebabeaf0d9a0188d3afdb754c42b9a6a9ad79eb6f51dcc64b79729123e53100f
+#10 pushing layer sha256:97ac7e5902f468c24fb3b18821d1882c2bee6a3027c30cffe98ad6debb44936b
+#10 pushing layer sha256:cee73ac4ddd822c9b4de6a9b0ee1e9e06f7516e7cb725d57df9e66110ae57415
+#10 pushing layer sha256:54c2d9b1d66e0c4a24d8b8510abb83e633985c6d18c130af40e2fb2be7eb37c7
+#10 pushing layer sha256:2c1ce468d9f3d941396801f6e3afc8921466650dd05430fe644cd3537713d27f
+#10 pushing layer sha256:6eaafca5979ede35ebef28d6f86f79cabfbfb034b83eae2cf04340fa3c160ade
+#10 pushing layer sha256:b4e2c63183eba99dc16ee9cc17de19a507fc82d720b43911141edfa363ff9430
+#10 pushing layer sha256:3bff147ac9a464bb60ea09d50ef251be90d6da92feec1ec9c554fc923c91ace3
+#10 pushing layer sha256:accc1216f8c9aaead804e30525440350ef28389bbdf1b8a55d6f09da5b781358
+#10 pushing layer sha256:2c1ce468d9f3d941396801f6e3afc8921466650dd05430fe644cd3537713d27f 0.3s done
+#10 pushing layer sha256:6eaafca5979ede35ebef28d6f86f79cabfbfb034b83eae2cf04340fa3c160ade 0.4s done
+#10 pushing layer sha256:b4e2c63183eba99dc16ee9cc17de19a507fc82d720b43911141edfa363ff9430 0.5s done
+#10 pushing layer sha256:cee73ac4ddd822c9b4de6a9b0ee1e9e06f7516e7cb725d57df9e66110ae57415 0.7s done
+#10 pushing layer sha256:ebabeaf0d9a0188d3afdb754c42b9a6a9ad79eb6f51dcc64b79729123e53100f 0.7s done
+#10 pushing layer sha256:54c2d9b1d66e0c4a24d8b8510abb83e633985c6d18c130af40e2fb2be7eb37c7 0.8s done
+#10 pushing layer sha256:3bff147ac9a464bb60ea09d50ef251be90d6da92feec1ec9c554fc923c91ace3 0.7s done
+#10 pushing layer sha256:accc1216f8c9aaead804e30525440350ef28389bbdf1b8a55d6f09da5b781358 0.7s done
+#10 pushing layers for registry.fly.io/supportops-lab-idp:deployment-01M70YWJN3P62NK8WSAY7WSECB@sha256:6bb2782afe3c7e72d5d16dfc548d26f240b24fa7ec8c085b5d204df7c104715b 1.9s done
+#10 pushing layer sha256:97ac7e5902f468c24fb3b18821d1882c2bee6a3027c30cffe98ad6debb44936b 1.9s done
+#10 pushing manifest for registry.fly.io/supportops-lab-idp:deployment-01M70YWJN3P62NK8WSAY7WSECB@sha256:6bb2782afe3c7e72d5d16dfc548d26f240b24fa7ec8c085b5d204df7c104715b
+#10 pushing manifest for registry.fly.io/supportops-lab-idp:deployment-01M70YWJN3P62NK8WSAY7WSECB@sha256:6bb2782afe3c7e72d5d16dfc548d26f240b24fa7ec8c085b5d204df7c104715b 0.2s done
+#10 DONE 2.2s
+--> ]8;;Build Summary: ]8;;
+[38;5;252m--> Building image done[0m
+image: registry.fly.io/supportops-lab-idp:deployment-01M70YWJN3P62NK8WSAY7WSECB
+
+Watch your deployment at https://fly.io/apps/supportops-lab-idp/monitoring
+
+image size: 247 MB
+Updating existing machines in 'supportops-lab-idp' with rolling strategy
+> Acquiring lease for 851d7dc426de58
+> Acquired lease for 851d7dc426de58
+> Updating machine config for 851d7dc426de58
+> Updating 851d7dc426de58 [app]
+> Updated machine config for 851d7dc426de58
+> Waiting for machine 851d7dc426de58 to reach a good state
+> Machine 851d7dc426de58 reached started state
+> Running smoke checks on machine 851d7dc426de58
+> Running machine checks on machine 851d7dc426de58
+> Checking health of machine 851d7dc426de58
+✔ Machine 851d7dc426de58 is now in a good state
+> Clearing lease for 851d7dc426de58
+✔ Cleared lease for 851d7dc426de58
+Checking DNS configuration for supportops-lab-idp.fly.dev
+✓ DNS configuration verified
+
+Visit your newly deployed app at https://supportops-lab-idp.fly.dev/
+
+App already scaled to desired state. No need for changes

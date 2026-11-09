@@ -37,6 +37,14 @@ def tok(user):
 def H(t): return {"Authorization": f"Bearer {t}"}
 
 t0 = time.time()
+if target == "fly":  # a stopped Keycloak answers 503 for 60 to 90 s; wake it and say how long it took
+    w = time.time()
+    while time.time() - w < 240:
+        try:
+            if c.get(TOKEN.split("/protocol")[0] + "/.well-known/openid-configuration").status_code == 200: break
+        except httpx.HTTPError: pass
+        time.sleep(5)
+    print(f"   idp ready after {time.time()-w:.0f}s")
 rec("healthz", c.get(API + "/healthz").status_code, 200)
 rec("no token list", c.get(API + "/v1/tickets").status_code, 401)
 rec("garbage token", c.get(API + "/v1/tickets", headers=H("garbage")).status_code, 401)
@@ -74,7 +82,7 @@ rf = lambda amt, who=a, t=None, k=None: c.post(API + f"/v1/tickets/{t or tid}/re
 rec("refund without idempotency key", c.post(API + f"/v1/tickets/{tid}/refund-approvals", headers=H(a), json={"amount_cents": 100}).status_code, {400, 422})
 rec("refund key 129 chars", rf(100, k="k"*129).status_code, {400, 422})
 for name, amt, want in [("refund zero", 0, 422), ("refund negative", -5, 422), ("refund over cap", 5001, 422), ("refund float", 12.5, 422),
-                        ("refund string", "12", {202, 422}), ("refund null", None, 422)]:
+                        ("refund string", "12", 422), ("refund null", None, 422)]:
     rec(name, rf(amt).status_code, want)
 rec("refund other tenant", rf(100, b).status_code, {403, 404})
 rec("refund missing ticket", rf(100, a, str(uuid.uuid4()), uuid.uuid4().hex).status_code, {403, 404})
@@ -87,7 +95,7 @@ print("   approvals for ticket:", len(aps), [x["state"] for x in aps])
 if aps:
     aid = aps[0]["id"]
     rec("agent decides own approval", c.post(API + f"/v1/approvals/{aid}/decision", headers=H(a), json={"decision": "approved"}).status_code, 403)
-    rec("bad decision value", c.post(API + f"/v1/approvals/{aid}/decision", headers=H(ap), json={"decision": "maybe"}).status_code, {400, 409, 422})
+    rec("bad decision value", c.post(API + f"/v1/approvals/{aid}/decision", headers=H(ap), json={"decision": "maybe"}).status_code, 422)
     rec("decision missing approval", c.post(API + f"/v1/approvals/{uuid.uuid4()}/decision", headers=H(ap), json={"decision": "approved"}).status_code, {403, 404})
     d1 = c.post(API + f"/v1/approvals/{aid}/decision", headers=H(ap), json={"decision": "approved"}); rec("approve", d1.status_code, 200)
     d2 = c.post(API + f"/v1/approvals/{aid}/decision", headers=H(ap), json={"decision": "approved"}); rec("approve twice", d2.status_code, {200, 409})
