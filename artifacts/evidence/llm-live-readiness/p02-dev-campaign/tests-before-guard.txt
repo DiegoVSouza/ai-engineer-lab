@@ -1,0 +1,5 @@
+# new P02 guard tests against the unchanged guard (expected red)
+----------------------------------------------------------------------
+Ran 4 tests in 3.241s
+
+FAILED (errors=3)

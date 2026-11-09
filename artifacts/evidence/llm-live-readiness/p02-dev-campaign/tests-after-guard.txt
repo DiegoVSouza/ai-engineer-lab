@@ -1,0 +1,5 @@
+# full root live tests after the guard
+----------------------------------------------------------------------
+Ran 87 tests in 63.800s
+
+OK

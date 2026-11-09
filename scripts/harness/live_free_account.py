@@ -645,10 +645,11 @@ class SharedAccount:
             if len(operation_p01) >= (6 if campaign in {"local-diagnostic-v1", "local-diagnostic-2-v1"} else 8):
                 raise AccountBlocked("operational_allocation_exhausted")
         if project == "p02" and self.policy["projects"]["p02"]["requests"] == 310:
-            if campaign != "local-operation-v1":
+            p02_campaigns = self._p02_campaigns()
+            if campaign not in p02_campaigns and campaign != "local-operation-v1":
                 raise AccountBlocked("protected_p02_allocation")
             operation_p02 = [row for row in rows if row["project"] == "p02" and row["campaign"] == campaign]
-            if len(operation_p02) >= 4:
+            if len(operation_p02) >= p02_campaigns.get(campaign, 4):
                 raise AccountBlocked("operational_allocation_exhausted")
             if any(row["event"] == "completed" and row["status"] != "ok" for row in operation_p02):
                 raise AccountBlocked("prior_operational_failure_requires_review")
@@ -703,11 +704,29 @@ class SharedAccount:
         return rows
 
     P05_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/057-p05-live-campaign/AUTHORIZATION.json"
+    P02_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/058-p02-live-campaign/AUTHORIZATION.json"
+
+    def _authorized_campaign(self, project, name, expected):
+        """One development campaign admitted by a committed, unmodified owner authorization, else none."""
+        try:
+            auth = json.loads((self.root / name).read_text(encoding="utf-8"))
+            if not isinstance(auth, dict) or any(auth.get(key) != value for key, value in expected.items()):
+                return {}
+            if self.policy["projects"][project]["requests"] != expected["policy_requests"]:
+                return {}
+            for command in (
+                ["git", "ls-files", "--error-unmatch", "--", name],
+                ["git", "diff", "--quiet", "HEAD", "--", name],
+            ):
+                if subprocess.run(command, cwd=self.root, capture_output=True, timeout=10).returncode:
+                    return {}
+        except (OSError, ValueError, subprocess.SubprocessError):
+            return {}
+        return {expected["campaign"]: expected["max_attempts"]}
 
     def _p05_campaigns(self):
         """Development campaign of P05 admitted by a committed, unmodified owner authorization, else none."""
-        name = self.P05_CAMPAIGN_AUTHORIZATION
-        expected = {
+        return self._authorized_campaign("p05", self.P05_CAMPAIGN_AUTHORIZATION, {
             "authorization_id": "p05-live-campaign-057-v1",
             "authority": "explicit_user_reply",
             "project": "p05",
@@ -721,22 +740,25 @@ class SharedAccount:
             "independent_review": "WAIVED_BY_OWNER",
             "holdout_funded": False,
             "confirmation_funded": False,
-        }
-        try:
-            auth = json.loads((self.root / name).read_text(encoding="utf-8"))
-            if not isinstance(auth, dict) or any(auth.get(key) != value for key, value in expected.items()):
-                return {}
-            if self.policy["projects"]["p05"]["requests"] != expected["policy_requests"]:
-                return {}
-            for command in (
-                ["git", "ls-files", "--error-unmatch", "--", name],
-                ["git", "diff", "--quiet", "HEAD", "--", name],
-            ):
-                if subprocess.run(command, cwd=self.root, capture_output=True, timeout=10).returncode:
-                    return {}
-        except (OSError, ValueError, subprocess.SubprocessError):
-            return {}
-        return {expected["campaign"]: expected["max_attempts"]}
+        })
+
+    def _p02_campaigns(self):
+        """Development campaign of P02 admitted by a committed, unmodified owner authorization, else none."""
+        return self._authorized_campaign("p02", self.P02_CAMPAIGN_AUTHORIZATION, {
+            "authorization_id": "p02-live-campaign-058-v1",
+            "authority": "explicit_user_reply",
+            "project": "p02",
+            "campaign": "p02-dev-v1",
+            "split": "development",
+            "max_attempts": 24,
+            "trials_per_case": 1,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 310,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": False,
+            "confirmation_funded": False,
+        })
 
     def _reviewed_revalidation(
         self, rows, project, campaign, case_id, trial, call_index, reservation
