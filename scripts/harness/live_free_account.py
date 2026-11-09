@@ -662,12 +662,16 @@ class SharedAccount:
                 raise AccountBlocked("prior_operational_failure_requires_review")
         service_operations = {"p04": (744, 6), "p05": (1712, 8)}
         if project in service_operations and self.policy["projects"][project]["requests"] == service_operations[project][0]:
+            p05_campaigns = self._p05_campaigns() if project == "p05" else {}
             if project == "p04" and campaign == "local-diagnostic-v1":
                 self._reviewed_p04_diagnostic(rows, case_id, trial)
+            elif campaign in p05_campaigns:
+                pass
             elif campaign != "local-operation-v1":
                 raise AccountBlocked("protected_" + project + "_allocation")
             service_rows = [row for row in rows if row["project"] == project and row["campaign"] in ({"local-operation-v1", "local-diagnostic-v1"} if project == "p04" else {campaign})]
-            if len(service_rows) >= (4 if project == "p04" and campaign == "local-diagnostic-v1" else service_operations[project][1]):
+            service_limit = p05_campaigns.get(campaign, service_operations[project][1])
+            if len(service_rows) >= (4 if project == "p04" and campaign == "local-diagnostic-v1" else service_limit):
                 raise AccountBlocked("operational_allocation_exhausted")
             if any(row["event"] == "completed" and row["status"] != "ok" for row in service_rows):
                 raise AccountBlocked("prior_operational_failure_requires_review")
@@ -697,6 +701,42 @@ class SharedAccount:
             if any(row["event"] == "completed" and row["status"] != "ok" for row in operation_p01):
                 raise AccountBlocked("prior_operational_failure_requires_review")
         return rows
+
+    P05_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/057-p05-live-campaign/AUTHORIZATION.json"
+
+    def _p05_campaigns(self):
+        """Development campaign of P05 admitted by a committed, unmodified owner authorization, else none."""
+        name = self.P05_CAMPAIGN_AUTHORIZATION
+        expected = {
+            "authorization_id": "p05-live-campaign-057-v1",
+            "authority": "explicit_user_reply",
+            "project": "p05",
+            "campaign": "p05-dev-v1",
+            "split": "development",
+            "max_attempts": 64,
+            "trials_per_case": 1,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 1712,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": False,
+            "confirmation_funded": False,
+        }
+        try:
+            auth = json.loads((self.root / name).read_text(encoding="utf-8"))
+            if not isinstance(auth, dict) or any(auth.get(key) != value for key, value in expected.items()):
+                return {}
+            if self.policy["projects"]["p05"]["requests"] != expected["policy_requests"]:
+                return {}
+            for command in (
+                ["git", "ls-files", "--error-unmatch", "--", name],
+                ["git", "diff", "--quiet", "HEAD", "--", name],
+            ):
+                if subprocess.run(command, cwd=self.root, capture_output=True, timeout=10).returncode:
+                    return {}
+        except (OSError, ValueError, subprocess.SubprocessError):
+            return {}
+        return {expected["campaign"]: expected["max_attempts"]}
 
     def _reviewed_revalidation(
         self, rows, project, campaign, case_id, trial, call_index, reservation

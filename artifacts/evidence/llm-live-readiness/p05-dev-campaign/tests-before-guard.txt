@@ -1,0 +1,6 @@
+live_free_account.AccountBlocked: protected_p05_allocation
+
+----------------------------------------------------------------------
+Ran 4 tests in 3.677s
+
+FAILED (errors=3)
