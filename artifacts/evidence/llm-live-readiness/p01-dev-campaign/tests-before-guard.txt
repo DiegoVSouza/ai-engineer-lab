@@ -1,0 +1,83 @@
+E.EE.
+======================================================================
+ERROR: test_p01_authorization_edited_after_commit_closes_the_campaign (test_live_free_account.AccountTests.test_p01_authorization_edited_after_commit_closes_the_campaign)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 482, in test_p01_authorization_edited_after_commit_closes_the_campaign
+    attempt = self.reserve(account, "p01", campaign="p01-dev-v1")
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 632, in reserve
+    return account.reserve(project, campaign, case, 1, call, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 1031, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 634, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 772, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_p01_campaign_stops_after_a_failed_attempt_and_other_names_stay_protected (test_live_free_account.AccountTests.test_p01_campaign_stops_after_a_failed_attempt_and_other_names_stay_protected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 488, in test_p01_campaign_stops_after_a_failed_attempt_and_other_names_stay_protected
+    attempt = self.reserve(account, "p01", case="case-1", campaign="p01-dev-v1")
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 632, in reserve
+    return account.reserve(project, campaign, case, 1, call, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 1031, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 634, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 772, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+======================================================================
+ERROR: test_p01_development_campaign_is_admitted_only_by_a_committed_exact_authorization (test_live_free_account.AccountTests.test_p01_development_campaign_is_admitted_only_by_a_committed_exact_authorization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 468, in test_p01_development_campaign_is_admitted_only_by_a_committed_exact_authorization
+    attempt = self.reserve(account, "p01", case=f"case-{index // 4}", campaign="p01-dev-v1", call=index % 4 + 1)
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 632, in reserve
+    return account.reserve(project, campaign, case, 1, call, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 1031, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 634, in _approve
+    self._reviewed_revalidation(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        rows, project, campaign, case_id, trial, call_index, reservation
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 772, in _reviewed_revalidation
+    raise AccountBlocked("reviewed_revalidation_scope_required")
+live_free_account.AccountBlocked: reviewed_revalidation_scope_required
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.119s
+
+FAILED (errors=3)

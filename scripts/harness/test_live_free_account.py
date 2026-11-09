@@ -426,6 +426,88 @@ class AccountTests(unittest.TestCase):
         with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
             self.reserve(account, "p00", campaign="p02-dev-v1")
 
+    P01_AUTH = ".planning/llm-live-readiness/phases/059-p01-live-campaign/AUTHORIZATION.json"
+    P01_GOOD = {
+        "authorization_id": "p01-live-campaign-059-v1", "authority": "explicit_user_reply", "project": "p01",
+        "campaign": "p01-dev-v1", "split": "development", "max_attempts": 76, "trials_per_case": 1,
+        "authorized_paid_spend_usd": "0.00", "owner_total_loss_cap_usd": "5.00", "policy_requests": 1000,
+        "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
+    }
+
+    def commit_p01_authorization(self, payload):
+        path = self.root / self.P01_AUTH
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload))
+        if not (self.root / ".git").exists():
+            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "--", self.P01_AUTH], cwd=self.root, check=True)
+        subprocess.run(
+            ["git", "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", "authorization"],
+            cwd=self.root, check=True,
+        )
+
+    def p01_account(self):
+        self.policy["projects"]["p01"]["requests"] = 1000
+        account = self.account()
+        account.register("p01")
+        return account
+
+    def test_p01_development_campaign_is_admitted_only_by_a_committed_exact_authorization(self):
+        account = self.p01_account()
+        blocked = "reviewed_revalidation_scope_required"
+        with self.assertRaisesRegex(AccountBlocked, blocked):
+            self.reserve(account, "p01", campaign="p01-dev-v1")
+        for tweak in ({"max_attempts": 77}, {"split": "holdout"}, {"holdout_funded": True},
+                      {"confirmation_funded": True}, {"authorized_paid_spend_usd": "0.01"},
+                      {"policy_requests": 992}, {"campaign": "p01-dev-v2"}):
+            self.commit_p01_authorization({**self.P01_GOOD, **tweak})
+            with self.assertRaisesRegex(AccountBlocked, blocked):
+                self.reserve(account, "p01", campaign="p01-dev-v1")
+        self.commit_p01_authorization(self.P01_GOOD)
+        for index in range(76):
+            attempt = self.reserve(account, "p01", case=f"case-{index // 4}", campaign="p01-dev-v1", call=index % 4 + 1)
+            account.complete("p01", attempt, input_tokens=80, output_tokens=20)
+            if index % 20 == 19:
+                self.now[0] += 61
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, "p01", case="case-extra", campaign="p01-dev-v1")
+
+    def test_p01_authorization_edited_after_commit_closes_the_campaign(self):
+        account = self.p01_account()
+        self.commit_p01_authorization(self.P01_GOOD)
+        (self.root / self.P01_AUTH).write_text(json.dumps({**self.P01_GOOD, "max_attempts": 760}))
+        with self.assertRaisesRegex(AccountBlocked, "reviewed_revalidation_scope_required"):
+            self.reserve(account, "p01", campaign="p01-dev-v1")
+        (self.root / self.P01_AUTH).write_text(json.dumps(self.P01_GOOD))
+        attempt = self.reserve(account, "p01", campaign="p01-dev-v1")
+        account.complete("p01", attempt, input_tokens=80, output_tokens=20)
+
+    def test_p01_campaign_stops_after_a_failed_attempt_and_other_names_stay_protected(self):
+        account = self.p01_account()
+        self.commit_p01_authorization(self.P01_GOOD)
+        attempt = self.reserve(account, "p01", case="case-1", campaign="p01-dev-v1")
+        account.complete("p01", attempt, status="transport_error")
+        with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
+            self.reserve(account, "p01", case="case-2", campaign="p01-dev-v1")
+        for name in ("p01-dev-v2", "p01-holdout-v1", "p01-confirmation-v1", "local-operation-v1", "unallocated"):
+            with self.assertRaisesRegex(AccountBlocked, "reviewed_revalidation_scope_required"):
+                self.reserve(account, "p01", case="case-3", campaign=name)
+
+    def test_p01_authorization_keeps_the_reviewed_scope_and_does_not_change_other_projects(self):
+        self.policy["projects"]["p04"]["requests"] = 744
+        self.policy["projects"]["p05"]["requests"] = 1712
+        self.policy["projects"]["p00"]["requests"] = 219
+        self.policy["projects"]["p02"]["requests"] = 310
+        account = self.p01_account()
+        account.register("p04")
+        account.register("p05")
+        account.register("p02")
+        self.commit_p01_authorization(self.P01_GOOD)
+        for project, protected in (("p04", "protected_p04_allocation"), ("p05", "protected_p05_allocation"),
+                                   ("p00", "protected_p00_allocation"), ("p02", "protected_p02_allocation")):
+            with self.assertRaisesRegex(AccountBlocked, protected):
+                self.reserve(account, project, campaign="p01-dev-v1")
+
     def test_metadata_parent_timeout_is_single_attempt_and_sanitized(self):
         import subprocess
         from unittest.mock import patch
@@ -544,10 +626,10 @@ class AccountTests(unittest.TestCase):
                 sum(caps[field] for caps in POLICY["projects"].values()),
             )
 
-    def reserve(self, account, project="p00", case="case-1", campaign="baseline"):
+    def reserve(self, account, project="p00", case="case-1", campaign="baseline", call=1):
         if project == "p00" and campaign == "baseline" and account.policy["projects"]["p00"]["requests"] == 219:
             campaign = "local-live-operation-v1"
-        return account.reserve(project, campaign, case, 1, 1, 100, 50)
+        return account.reserve(project, campaign, case, 1, call, 100, 50)
 
     def test_switching_project_campaign_and_process_does_not_reset_caps(self):
         self.policy["campaign_caps"]["requests"] = 1

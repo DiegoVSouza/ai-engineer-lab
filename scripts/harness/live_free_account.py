@@ -630,7 +630,18 @@ class SharedAccount:
             if len(operation) >= limits[campaign]:
                 raise AccountBlocked("operational_allocation_exhausted")
         expanded = {"p01": 1000, "p04": 747}
-        if project in expanded and self.policy["projects"][project]["requests"] == expanded[project]:
+        p01_campaigns = (
+            self._p01_campaigns()
+            if project == "p01" and self.policy["projects"]["p01"]["requests"] == expanded["p01"]
+            else {}
+        )
+        if p01_campaigns and campaign in p01_campaigns:
+            operation_p01 = [row for row in rows if row["project"] == "p01" and row["campaign"] == campaign]
+            if len(operation_p01) >= p01_campaigns[campaign]:
+                raise AccountBlocked("operational_allocation_exhausted")
+            if any(row["event"] == "completed" and row["status"] != "ok" for row in operation_p01):
+                raise AccountBlocked("prior_operational_failure_requires_review")
+        elif project in expanded and self.policy["projects"][project]["requests"] == expanded[project]:
             self._reviewed_revalidation(
                 rows, project, campaign, case_id, trial, call_index, reservation
             )
@@ -705,6 +716,7 @@ class SharedAccount:
 
     P05_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/057-p05-live-campaign/AUTHORIZATION.json"
     P02_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/058-p02-live-campaign/AUTHORIZATION.json"
+    P01_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/059-p01-live-campaign/AUTHORIZATION.json"
 
     def _authorized_campaign(self, project, name, expected):
         """One development campaign admitted by a committed, unmodified owner authorization, else none."""
@@ -737,6 +749,24 @@ class SharedAccount:
             "authorized_paid_spend_usd": "0.00",
             "owner_total_loss_cap_usd": "5.00",
             "policy_requests": 1712,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": False,
+            "confirmation_funded": False,
+        })
+
+    def _p01_campaigns(self):
+        """Development campaign of P01 admitted by a committed, unmodified owner authorization, else none."""
+        return self._authorized_campaign("p01", self.P01_CAMPAIGN_AUTHORIZATION, {
+            "authorization_id": "p01-live-campaign-059-v1",
+            "authority": "explicit_user_reply",
+            "project": "p01",
+            "campaign": "p01-dev-v1",
+            "split": "development",
+            "max_attempts": 76,
+            "trials_per_case": 1,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 1000,
             "independent_review": "WAIVED_BY_OWNER",
             "holdout_funded": False,
             "confirmation_funded": False,
