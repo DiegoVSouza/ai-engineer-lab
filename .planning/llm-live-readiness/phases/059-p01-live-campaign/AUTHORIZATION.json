@@ -1,0 +1,24 @@
+{
+  "authorization_id": "p01-live-campaign-059-v1",
+  "authority": "explicit_user_reply",
+  "project": "p01",
+  "campaign": "p01-dev-v1",
+  "split": "development",
+  "max_attempts": 76,
+  "trials_per_case": 1,
+  "authorized_paid_spend_usd": "0.00",
+  "owner_total_loss_cap_usd": "5.00",
+  "policy_requests": 1000,
+  "independent_review": "WAIVED_BY_OWNER",
+  "holdout_funded": false,
+  "confirmation_funded": false,
+  "owner_reply_date": "2026-11-09",
+  "owner_replies": [
+    "pode usar os modelos da groq tem as env ai documentada",
+    "faz a 1 mesmo"
+  ],
+  "on_hold": ["third_party_idp", "device_fps"],
+  "model": "openai/gpt-oss-20b",
+  "free_window": {"tokens_per_day": 200000, "tokens_per_minute": 8000},
+  "note": "Core supervisor/worker only, development split only, 18 cases, one trial per case, four provider calls per trial. The five framework runners stay fake/replay. Corpus expectations and grader are assistant-authored; human review is PENDING."
+}
