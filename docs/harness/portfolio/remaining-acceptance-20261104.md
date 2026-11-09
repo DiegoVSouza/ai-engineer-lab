@@ -33,3 +33,14 @@ The table above is kept as written on 2026-11-04. These items changed afterwards
 | P07 CV approval | CV text approved by the owner. The site-versus-CV claim diff is not done yet (deferred by the owner). |
 
 Still open and unchanged: P01 corpus and six-runner comparison, P02 external RAG and refusal, P03 and P04 privacy and production acceptance, P05 third-party IdP, Turnstile start flow, device FPS, and independent sign-off on historical contracts.
+
+## Addendum 2, 2026-11-09: owner decisions of the day
+
+Owner reply (verbatim, PT): "pode usar os modelos da groq tem as env ai documentada, o idp terceiro deixa on hold, pode subir no docker e no fly, o fps no celular deixa on hold".
+
+| Subject | Decision | Limits that stay in force |
+| --- | --- | --- |
+| Groq models | Authorized for the remaining model-quality evaluations (P01, P02, P05) using the keys already documented in the lab `.env` (`GROQ_API_KEY*`, `GROQ_MODEL`; names only, never values). | Free keys up to provider limits, hard owner total-loss cap USD 5.00 (decision of 2026-11-06), `authorized_paid_spend_usd` 0.00, root free-account ledger and the shared daily token window. Each campaign still needs its own bounded phase, a frozen candidate and an envelope migration. The consumed P00 final split is not reusable. |
+| Third-party IdP (P05) | ON HOLD. Features `auth-tenant-scope`, `mcp-trusted-principal`, `network-mcp-auth`, `product-end-to-end-orchestration`, `durable-authorization-snapshot`, `mcp-external-token-introspection` keep `THIRD_PARTY_IDP_PENDING` or `INCOMPLETE_EXTERNAL_IDENTITY`. | Keycloak on Fly is not a third-party IdP. |
+| Docker and Fly | Authorized to start the local Docker stack and wake the Fly stack for acceptance runs (P03, P04, P05, P00 local services). | Wake, use and power down again; record commands, exit codes and saved output. No new paid resources, no DNS or public-facing changes beyond the existing apps. |
+| Device FPS (P07) | ON HOLD. `portfolio-3d-scene` keeps `DEVICE_FPS_PENDING`. | No FPS number without a named physical device. |
