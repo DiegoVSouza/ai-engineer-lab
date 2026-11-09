@@ -1,0 +1,64 @@
+command=uv run --locked python scripts/check_full.py
+start=2026-11-09T09:16:54-03:00
+test_failure_keeps_receipt_and_private_structural_metadata_without_values (test_strict_worker_schema.StrictSchemaTests.test_failure_keeps_receipt_and_private_structural_metadata_without_values) ... ok
+test_local_semantic_and_schema_rejections_remain_strict (test_strict_worker_schema.StrictSchemaTests.test_local_semantic_and_schema_rejections_remain_strict) ... ok
+test_schema_weakenings_are_rejected_before_dispatch (test_strict_worker_schema.StrictSchemaTests.test_schema_weakenings_are_rejected_before_dispatch) ... ok
+test_completed_receipt_prevents_duplicate_dispatch (test_synthetic_dispatch.SyntheticDispatchTests.test_completed_receipt_prevents_duplicate_dispatch) ... ok
+test_concurrent_duplicate_is_not_dispatched_twice (test_synthetic_dispatch.SyntheticDispatchTests.test_concurrent_duplicate_is_not_dispatched_twice) ... ok
+test_interruption_blocks_restart_without_replay (test_synthetic_dispatch.SyntheticDispatchTests.test_interruption_blocks_restart_without_replay) ... ok
+test_invalid_plans_never_call_adapter (test_synthetic_dispatch.SyntheticDispatchTests.test_invalid_plans_never_call_adapter) ... ok
+test_process_death_after_reservation_cannot_replay (test_synthetic_dispatch.SyntheticDispatchTests.test_process_death_after_reservation_cannot_replay) ... ok
+
+----------------------------------------------------------------------
+Ran 119 tests in 52.621s
+
+OK
+
+
+
+command=C:\estudo\Golpe\lab\projects\p01\.venv\Scripts\python.exe -m supportops_agents.comparison --output artifacts/runs/latest
+exit_code=0
+{
+  "run_kind": "p00_golden_contract_comparison",
+  "runners": [
+    [
+      "core",
+      "EXECUTED"
+    ],
+    [
+      "langgraph",
+      "EXECUTED"
+    ],
+    [
+      "crewai",
+      "EXECUTED"
+    ],
+    [
+      "autogen",
+      "EXECUTED"
+    ],
+    [
+      "semantic_kernel",
+      "EXECUTED"
+    ],
+    [
+      "llamaindex",
+      "EXECUTED"
+    ]
+  ]
+}
+
+
+command=C:\estudo\Golpe\lab\projects\p01\.venv\Scripts\python.exe -m supportops_agents.demo
+exit_code=0
+Ticket: demo-001 - Duplicate charge
+Action: respond (approved)
+Response: We found the duplicate charge and will review it.
+Steps: 4; tokens/cost: PENDING (fake mode)
+
+
+command=check comparison JSON, sources lock, and required documentation
+exit_code=0
+6 runner identities found; metrics remain PENDING
+exit=0
+end=2026-11-09T09:18:19-03:00

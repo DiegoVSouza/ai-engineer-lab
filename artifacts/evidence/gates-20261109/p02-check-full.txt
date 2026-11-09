@@ -1,0 +1,64 @@
+command=uv run --locked python scripts/check_full.py
+start=2026-11-09T09:18:19-03:00
+test_assessment_is_structurally_validated (test_live_groq_eval.LiveGroqTests.test_assessment_is_structurally_validated) ... ok
+test_completed_domain_mismatch_is_not_a_retryable_provider_error (test_live_groq_eval.LiveGroqTests.test_completed_domain_mismatch_is_not_a_retryable_provider_error) ... ok
+test_configured_keys_are_deduplicated_without_identifiers (test_live_groq_eval.LiveGroqTests.test_configured_keys_are_deduplicated_without_identifiers) ... ok
+test_gpt_oss_request_uses_low_reasoning_with_an_explicit_completion_cap (test_live_groq_eval.LiveGroqTests.test_gpt_oss_request_uses_low_reasoning_with_an_explicit_completion_cap) ... ok
+test_mode_is_explicit_in_cli_contract (test_live_groq_eval.LiveGroqTests.test_mode_is_explicit_in_cli_contract) ... ok
+test_model_catalog_requires_requested_model (test_live_groq_eval.LiveGroqTests.test_model_catalog_requires_requested_model) ... ok
+test_nonretryable_error_does_not_rotate (test_live_groq_eval.LiveGroqTests.test_nonretryable_error_does_not_rotate) ... ok
+test_only_retryable_errors_rotate_and_exhaust_once (test_live_groq_eval.LiveGroqTests.test_only_retryable_errors_rotate_and_exhaust_once) ... ok
+test_prompt_explains_read_only_lookup_vs_refund_action (test_live_groq_eval.LiveGroqTests.test_prompt_explains_read_only_lookup_vs_refund_action) ... ok
+test_rate_limit_rotates_once_after_retry_after (test_live_groq_eval.LiveGroqTests.test_rate_limit_rotates_once_after_retry_after) ... ok
+test_retry_after_is_bounded_and_invalid_values_use_backoff (test_live_groq_eval.LiveGroqTests.test_retry_after_is_bounded_and_invalid_values_use_backoff) ... ok
+test_root_env_loader_reads_without_logging_values (test_live_groq_eval.LiveGroqTests.test_root_env_loader_reads_without_logging_values) ... ok
+test_default_fake_mode_stops_before_manifest_or_credentials (test_local_operation.LocalOperationTests.test_default_fake_mode_stops_before_manifest_or_credentials) ... ok
+test_manifest_binds_actual_committed_source (test_local_operation.LocalOperationTests.test_manifest_binds_actual_committed_source) ... ok
+test_missing_manifest_is_categorical (test_local_operation.LocalOperationTests.test_missing_manifest_is_categorical) ... ok
+test_reservation_precedes_startup_and_uncertainty_stops_new_id (test_local_operation.LocalOperationTests.test_reservation_precedes_startup_and_uncertainty_stops_new_id) ... ok
+test_ambiguous_timeout_never_retries_side_effect (test_tools.ToolContractTests.test_ambiguous_timeout_never_retries_side_effect) ... ok
+test_execution_limits_are_enforced_by_tool_call_path (test_tools.ToolContractTests.test_execution_limits_are_enforced_by_tool_call_path) ... ok
+test_input_shape_and_refund_bounds (test_tools.ToolContractTests.test_input_shape_and_refund_bounds) ... ok
+test_json_number_boundaries_reject_booleans_and_non_finite_values (test_tools.ToolContractTests.test_json_number_boundaries_reject_booleans_and_non_finite_values) ... ok
+test_process_interruptions_propagate_without_tool_retry (test_tools.ToolContractTests.test_process_interruptions_propagate_without_tool_retry) ... ok
+test_registry_and_sample_tool_success (test_tools.ToolContractTests.test_registry_and_sample_tool_success) ... ok
+test_retrieved_instruction_is_data_and_screened_before_use (test_tools.ToolContractTests.test_retrieved_instruction_is_data_and_screened_before_use) ... ok
+test_retry_transient_but_fail_fatal (test_tools.ToolContractTests.test_retry_transient_but_fail_fatal) ... ok
+test_timeout_and_invalid_configuration (test_tools.ToolContractTests.test_timeout_and_invalid_configuration) ... ok
+test_unknown_invoice_and_output_validation (test_tools.ToolContractTests.test_unknown_invoice_and_output_validation) ... ok
+test_zero_overlap_search_returns_no_attributed_sources (test_tools.ToolContractTests.test_zero_overlap_search_returns_no_attributed_sources) ... ok
+
+----------------------------------------------------------------------
+Ran 82 tests in 2.960s
+
+OK
+{"status": "INCOMPLETE", "reason": "accounted_guard_required", "provider_accessed": false, "credentials_read": false}
+{"status": "INCOMPLETE", "reason": "accounted_guard_required", "provider_accessed": false, "credentials_read": false}
+[unit] exit_code=0
+
+[eval] C:\estudo\Golpe\lab\projects\p02\.venv\Scripts\python.exe -m supportops_toolkit.evals.runner
+{
+  "mode": "fake",
+  "total": 10,
+  "decision_accuracy": 1.0,
+  "tool_call_accuracy": 1.0,
+  "groundedness": 1.0,
+  "escalation_accuracy": 1.0,
+  "failures": [],
+  "regression": "PASS",
+  "quality_claim": "fixture-only; not a model measurement"
+}
+[eval] exit_code=0
+
+[adversarial] C:\estudo\Golpe\lab\projects\p02\.venv\Scripts\python.exe -m supportops_toolkit.adversarial
+{
+  "total": 35,
+  "blocked": 35,
+  "block_rate": 1.0,
+  "misses": []
+}
+[adversarial] exit_code=0
+
+check-full: PASS; failures=[]
+exit=0
+end=2026-11-09T09:18:24-03:00

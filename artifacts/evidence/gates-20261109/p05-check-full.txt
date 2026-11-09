@@ -1,0 +1,64 @@
+command=uv run --locked python scripts/check_full.py
+start=2026-11-09T09:26:26-03:00
+interpretation=fixture coverage only; not LLM quality
+
+$ C:\estudo\Golpe\lab\projects\p05\.venv\Scripts\python.exe scripts/export_openapi.py --check
+layer=OpenAPI
+exit_code=0; expected=0
+OpenAPI contract: PASS (v1 compatibility paths, HTTP bearer, package schema 0.4.5)
+
+$ C:\estudo\Golpe\lab\projects\p05\.venv\Scripts\python.exe scripts/verify_packages.py
+layer=package provenance
+exit_code=0; expected=0
+  version=1.0.1 sha256=DF4292756676D02490A908B609B8F9474F35F3C5F56131809F3E4A83659B4795 source_commit=607b7603bd40728ffa58745badac0ffd10c70090
+P00 foundation: READY
+  version=0.1.1 sha256=DD77E9B91F2D9BA7AC84178BBB557E0EA50BDE954554A528B4632DEC18DDB51F source_commit=4c70b1ea3e23606dfe60ffae77567417de53a3f7
+P01 orchestration: READY
+  version=0.2.0 sha256=7126517F9C64202B034B8A067DEDF29E1313BB3139F15A984E93660654EB4D10 source_commit=b4966c54fa3feda3ff1eae36ee872e5c407a4102
+P02 toolkit: READY
+  version=0.3.1 sha256=82B3A79AACD0AC4FAA1082087C0237487264B2A6497D9B77B79C1D6BB86F66A8 source_commit=e191f17d4649f40d6dea7057d3b52729dbbb1389
+P03 observability: READY
+  version=0.1.4 sha256=FEFB871993591CABE7F9BABA132E9F430DDBD65DD730C6789E22DC86D4D87C3F source_commit=f4b5df828b397e7ecbb9fa87c0ef77485d829dca
+P04 async: READY
+Package integration gate: PASS
+
+$ C:\estudo\Golpe\lab\projects\p05\.venv\Scripts\python.exe scripts/check_quality.py
+layer=fake control evaluation
+exit_code=0; expected=0
+{"fixture_only": true, "model_quality": "PENDING", "total": 10, "decision_accuracy": 1.0, "tool_call_accuracy": 1.0, "groundedness": 1.0, "escalation_accuracy": 1.0, "failures": []}
+
+$ C:\estudo\Golpe\lab\projects\p05\.venv\Scripts\python.exe scripts/check_quality.py --degraded
+layer=negative regression rejection
+exit_code=1; expected=1
+{"fixture_only": true, "model_quality": "PENDING", "total": 10, "decision_accuracy": 0.0, "tool_call_accuracy": 1.0, "groundedness": 0.0, "escalation_accuracy": 1.0, "failures": ["control-0: decision, groundedness", "control-1: decision, groundedness", "control-2: decision, groundedness", "control-3: decision, groundedness", "control-4: decision, groundedness", "control-5: decision, groundedness", "control-6: decision, groundedness", "control-7: decision, groundedness", "control-8: decision, groundedness", "control-9: decision, groundedness"]}
+quality gate: FAIL evaluation regression exceeds 0.000: decision_accuracy: drop=1.000, groundedness: drop=1.000
+
+$ C:\estudo\Golpe\lab\projects\p05\.venv\Scripts\python.exe scripts/check_services.py
+layer=service integration/E2E/crash recovery
+exit_code=2; expected=0
+Command: docker compose -p p05-remediation-009 -f docker-compose.services.yml config --quiet
+Exit code: 0
+
+Command: docker compose -p p05-remediation-009 -f docker-compose.services.yml build api
+Exit code: 0
+service-E2E: INCOMPLETE; TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+Exception in thread Thread-5 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 1615, in _readerthread
+    buffer.append(fh.read())
+                  ~~~~~~~^^
+  File "C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 2346: character maps to <undefined>
+
+semantic/model cost/latency evaluation: PENDING; no traceable cassette or authorized model run
+check-full: INCOMPLETE; service integration/E2E/crash recovery
+exit=2
+end=2026-11-09T09:27:36-03:00

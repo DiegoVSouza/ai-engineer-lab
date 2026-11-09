@@ -1,0 +1,5 @@
+command=uv run --locked python scripts/check_full.py
+start=2026-11-09T09:18:24-03:00
+check-full: PASS; failures=0; incomplete=0
+exit=0
+end=2026-11-09T09:26:24-03:00

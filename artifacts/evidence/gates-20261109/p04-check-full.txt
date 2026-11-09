@@ -1,0 +1,64 @@
+command=uv run --locked python scripts/check_full.py (rerun after removing stale ignored artifacts/evidence/.pytest-tmp from 2026-10-27)
+start=2026-11-09T09:31:04-03:00
+#15 2.189  Downloaded psycopg-binary
+#15 3.638  Downloaded botocore
+#15 3.775       Built supportops-async @ file:///app
+#15 3.779 Prepared 37 packages in 3.14s
+#15 4.419 Installed 37 packages in 639ms
+#15 4.419  + annotated-doc==0.0.5
+#15 4.419  + annotated-types==0.8.0
+#15 4.419  + anyio==4.15.1
+#15 4.419  + boto3==1.43.114
+#15 4.419  + botocore==1.43.114
+#15 4.419  + certifi==2026.7.22
+#15 4.419  + charset-normalizer==3.5.2
+#15 4.419  + click==8.5.0
+#15 4.419  + fastapi==0.142.4
+#15 4.419  + googleapis-common-protos==1.76.0
+#15 4.419  + h11==0.16.0
+#15 4.419  + idna==3.20
+#15 4.419  + jmespath==1.1.0
+#15 4.419  + opentelemetry-api==1.45.1
+#15 4.419  + opentelemetry-exporter-http-transport==0.66b1
+#15 4.419  + opentelemetry-exporter-otlp-common==0.66b1
+#15 4.419  + opentelemetry-exporter-otlp-proto-common==1.45.1
+#15 4.419  + opentelemetry-exporter-otlp-proto-http==1.45.1
+#15 4.419  + opentelemetry-proto==1.45.1
+#15 4.419  + opentelemetry-sdk==1.45.1
+#15 4.419  + opentelemetry-semantic-conventions==0.66b1
+#15 4.419  + protobuf==7.36.2
+#15 4.419  + psycopg==3.2.10
+#15 4.419  + psycopg-binary==3.2.10
+#15 4.419  + pydantic==2.14.1
+#15 4.419  + pydantic-core==2.50.1
+#15 4.419  + python-dateutil==2.9.0.post0
+#15 4.419  + redis==6.4.0
+#15 4.419  + requests==2.34.2
+#15 4.419  + s3transfer==0.19.2
+#15 4.419  + six==1.17.0
+#15 4.420  + starlette==1.8.0
+#15 4.420  + supportops-async==0.1.4 (from file:///app)
+#15 4.420  + typing-extensions==4.16.0
+#15 4.420  + typing-inspection==0.4.4
+#15 4.420  + urllib3==2.8.0
+#15 4.420  + uvicorn==0.46.0
+#15 DONE 4.7s
+
+#16 [runtime 4/4] COPY --from=builder --chown=app:app /app /app
+#16 DONE 2.0s
+
+#17 exporting to image
+#17 exporting layers
+#17 exporting layers 3.0s done
+#17 exporting manifest sha256:f182f74a066a022ecaa4b57e17deb05e4aa063c2ab3257717ac05272e72f4eda 0.0s done
+#17 exporting config sha256:720b42bcc25d4c8b69d0086c89a419a09482d1519458b2345b8000d84ef3300d 0.0s done
+#17 exporting attestation manifest sha256:48d7a25604f715998b11f7d5defbe43fd54263e1b24eaa9b6f01fdbf50bf8a2e 0.0s done
+#17 exporting manifest list sha256:2273b1a9f5a7c19fc7565d7bb854c5f7ea177fe0d9bb65a9145b91750ea36401
+#17 exporting manifest list sha256:2273b1a9f5a7c19fc7565d7bb854c5f7ea177fe0d9bb65a9145b91750ea36401 0.0s done
+#17 naming to docker.io/library/supportops-async:local-check done
+#17 unpacking to docker.io/library/supportops-async:local-check
+#17 unpacking to docker.io/library/supportops-async:local-check 2.4s done
+#17 DONE 5.6s
+check-full: INCOMPLETE explicit Terraform workspace/mirror/config/network/endpoint required
+exit=2
+end=2026-11-09T09:31:41-03:00
