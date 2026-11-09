@@ -1,0 +1,46 @@
+##### db
+[2m2026-11-09T17:57:53Z[0m app[897915b6697578] [32miad[0m [[34minfo[0m]2026-11-09T17:57:53.750843625 [01M70QB64DPTMZ03BSS4NBZD0E:main] Running Firecracker v1.14.4
+[2m2026-11-09T17:57:54Z[0m app[897915b6697578] [32miad[0m [[34minfo[0m][33m WARN[0m could not enable checksum offload 0x15 on eth0: an unhandled error occurred: EOPNOTSUPP: Operation not supported on transport endpoint
+[2m2026-11-09T17:57:54Z[0m app[897915b6697578] [32miad[0m [[34minfo[0m]/dev/vdc: clean, 2503/655360 files, 88456/2617344 blocks
+##### redis
+[2m2026-11-09T17:58:01Z[0m app[82d69df0799d98] [32miad[0m [[34minfo[0m][33m WARN[0m could not enable checksum offload 0x15 on eth0: an unhandled error occurred: EOPNOTSUPP: Operation not supported on transport endpoint
+[2m2026-11-09T17:58:01Z[0m app[82d69df0799d98] [32miad[0m [[34minfo[0m]604:C 09 Nov 2026 17:58:01.771 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can al
+##### idp
+[2m2026-11-09T17:58:34Z[0m app[851d7dc426de58] [32miad[0m [[34minfo[0m]2026-11-09 17:58:34,507 INFO  [io.smallrye.health] (vert.x-eventloop-thread-0) SRHCK01001: Reporting health down status: {"status":"DOWN","checks":[{"name":"Graceful Shutdown","status
+##### sns
+[2m2026-11-09T17:58:15Z[0m app[85777d4a23e348] [32miad[0m [[34minfo[0m]2026-11-09T17:58:15.175095277 [01M70QBVTNJGJG9TFKTXA7FMBQ:main] Listening on API socket ("/fc.sock").
+[2m2026-11-09T17:58:15Z[0m app[85777d4a23e348] [32miad[0m [[34minfo[0m][33m WARN[0m could not enable checksum offload 0x15 on eth0: an unhandled error occurred: EOPNOTSUPP: Operation not supported on transport endpoint
+[2m2026-11-09T17:58:15Z[0m runner[85777d4a23e348] [32miad[0m [[34minfo[0m]Machine created and started in 1.507s
+[2m2026-11-09T17:58:16Z[0m health[85777d4a23e348] [32miad[0m [[31merror[0m]Health check 'localstack-ready' on port 4566 has failed. Your app is not responding properly.
+##### jaeger
+[2m2026-11-09T17:58:22Z[0m app[83d59dfd799058] [32miad[0m [[34minfo[0m][33m WARN[0m could not enable checksum offload 0x15 on eth0: an unhandled error occurred: EOPNOTSUPP: Operation not supported on transport endpoint
+[2m2026-11-09T17:58:23Z[0m app[83d59dfd799058] [32miad[0m [[34minfo[0m]2026-11-09T17:58:23.921Z	info	zpagesextension@v0.152.0/zpagesextension.go:94	Starting zPages extension	{"resource": {"service.instance.id": "7b1f8902-40da-4705-93fa-ee471b78a365", "se
+##### p04
+[2m2026-11-09T17:58:28Z[0m app[78452edf349568] [32miad[0m [[34minfo[0m][33m WARN[0m could not enable checksum offload 0x15 on eth0: an unhandled error occurred: EOPNOTSUPP: Operation not supported on transport endpoint
+[2m2026-11-09T17:58:28Z[0m health[78452edf349568] [32miad[0m [[31merror[0m]Health check 'servicecheck-00-http-8000' on port 8000 has failed. Your app is not responding properly. Services exposed on ports [80, 443] will have intermittent failures until th
+[2m2026-11-09T17:58:33Z[0m app[78452edf349568] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:33.028168+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Started server process [605]"}
+[2m2026-11-09T17:58:33Z[0m app[78452edf349568] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:33.029160+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Waiting for application startup."}
+[2m2026-11-09T17:58:33Z[0m app[78452edf349568] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:33.031044+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Application startup complete."}
+[2m2026-11-09T17:58:33Z[0m app[78452edf349568] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:33.031396+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)"}
+##### p05
+[2m2026-11-09T17:58:43Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:43.422336+00:00", "level": "WARNING", "logger": "fastapi", "message": "FastAPI automatic telemetry configuration failed: Automatic OpenTelemetry export requ
+[2m2026-11-09T17:58:43Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:43.422769+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Application startup complete."}
+[2m2026-11-09T17:58:43Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:43.423162+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)"}
+[2m2026-11-09T17:59:19Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:59:19.501319+00:00", "level": "INFO", "logger": "httpx2", "message": "HTTP Request: POST https://supportops-lab-idp.fly.dev/realms/supportops/protocol/openid-c
+[2m2026-11-09T17:59:44Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:59:44.351672+00:00", "level": "INFO", "logger": "uvicorn.access", "message": "172.16.22.170:35192 - \"GET /v1/tickets/cef4290a-3f63-4eaa-93ea-776c5546e344 HTTP
+[2m2026-11-09T17:59:45Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:59:45.226694+00:00", "level": "INFO", "logger": "uvicorn.access", "message": "172.16.22.170:35206 - \"POST /v1/tickets/cef4290a-3f63-4eaa-93ea-776c5546e344/ref
+[2m2026-11-09T17:59:45Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:59:45.505386+00:00", "level": "INFO", "logger": "httpx2", "message": "HTTP Request: POST https://supportops-lab-idp.fly.dev/realms/supportops/protocol/openid-c
+[2m2026-11-09T17:59:52Z[0m app[8111936b990258] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:59:52.690604+00:00", "level": "INFO", "logger": "uvicorn.access", "message": "172.16.22.170:61010 - \"GET /v1/tickets/cef4290a-3f63-4eaa-93ea-776c5546e344 HTTP
+##### mcp
+[2m2026-11-09T17:58:42Z[0m app[2870421c554548] [32miad[0m [[34minfo[0m]2026-11-09T17:58:42.274263509 [01M70QCPRX3RHK14PQ18JN67A6:fc_api] API server started.
+[2m2026-11-09T17:58:42Z[0m app[2870421c554548] [32miad[0m [[34minfo[0m][33m WARN[0m could not enable checksum offload 0x15 on eth0: an unhandled error occurred: EOPNOTSUPP: Operation not supported on transport endpoint
+[2m2026-11-09T17:58:45Z[0m app[2870421c554548] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:45.453430+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Started server process [597]"}
+[2m2026-11-09T17:58:45Z[0m app[2870421c554548] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:45.454140+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Waiting for application startup."}
+[2m2026-11-09T17:58:45Z[0m app[2870421c554548] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:45.454831+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Application startup complete."}
+[2m2026-11-09T17:58:45Z[0m app[2870421c554548] [32miad[0m [[34minfo[0m]{"time": "2026-11-09T17:58:45.455815+00:00", "level": "INFO", "logger": "uvicorn.error", "message": "Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)"}
+##### web
+[2m2026-11-09T17:59:29Z[0m app[8ed9102b21dd48] [32miad[0m [[34minfo[0m]{"time":"2026-11-09T17:59:29+00:00","method":"GET","path":"/v1/tickets","status":200,"bytes":1509,"duration":0.134,"upstream_duration":"0.134"}
+[2m2026-11-09T17:59:43Z[0m app[8ed9102b21dd48] [32miad[0m [[34minfo[0m]{"time":"2026-11-09T17:59:43+00:00","method":"GET","path":"/v1/tickets","status":200,"bytes":1508,"duration":0.128,"upstream_duration":"0.128"}
+[2m2026-11-09T17:59:44Z[0m app[8ed9102b21dd48] [32miad[0m [[34minfo[0m]{"time":"2026-11-09T17:59:44+00:00","method":"GET","path":"/v1/tickets/cef4290a-3f63-4eaa-93ea-776c5546e344","status":200,"bytes":201,"duration":0.112,"upstream_duration":"0.111"}
+[2m2026-11-09T17:59:45Z[0m app[8ed9102b21dd48] [32miad[0m [[34minfo[0m]{"time":"2026-11-09T17:59:45+00:00","method":"POST","path":"/v1/tickets/cef4290a-3f63-4eaa-93ea-776c5546e344/refund-approvals","status":202,"bytes":133,"duration":0.137,"upstream_dura
+[2m2026-11-09T17:59:52Z[0m app[8ed9102b21dd48] [32miad[0m [[34minfo[0m]{"time":"2026-11-09T17:59:52+00:00","method":"GET","path":"/v1/tickets/cef4290a-3f63-4eaa-93ea-776c5546e344","status":200,"bytes":201,"duration":0.117,"upstream_duration":"0.117"}

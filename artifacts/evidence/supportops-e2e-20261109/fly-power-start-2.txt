@@ -1,0 +1,81 @@
+Starting supportops-lab-db/app
+Updating machine 897915b6697578
+Machine 897915b6697578 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-db/machines/897915b6697578
+897915b6697578 has been started
+Waiting up to 5m0s for machine 897915b6697578 to reach "started"...
+Machine 897915b6697578 reached state "started"
+Starting supportops-lab-redis/app
+Updating machine 82d69df0799d98
+Machine 82d69df0799d98 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-redis/machines/82d69df0799d98
+82d69df0799d98 has been started
+Waiting up to 5m0s for machine 82d69df0799d98 to reach "started"...
+Machine 82d69df0799d98 reached state "started"
+Starting supportops-lab-idp/app
+Updating machine 851d7dc426de58
+Machine 851d7dc426de58 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-idp/machines/851d7dc426de58
+851d7dc426de58 has been started
+Waiting up to 5m0s for machine 851d7dc426de58 to reach "started"...
+Machine 851d7dc426de58 reached state "started"
+Starting supportops-lab-sns/app
+Updating machine 85777d4a23e348
+Machine 85777d4a23e348 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-sns/machines/85777d4a23e348
+85777d4a23e348 has been started
+Waiting up to 5m0s for machine 85777d4a23e348 to reach "started"...
+Machine 85777d4a23e348 reached state "started"
+Starting supportops-lab-jaeger/app
+Updating machine 83d59dfd799058
+Machine 83d59dfd799058 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-jaeger/machines/83d59dfd799058
+83d59dfd799058 has been started
+Waiting up to 5m0s for machine 83d59dfd799058 to reach "started"...
+Machine 83d59dfd799058 reached state "started"
+Starting supportops-lab-p04/app
+Updating machine 78452edf349568
+Machine 78452edf349568 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-p04/machines/78452edf349568
+78452edf349568 has been started
+Waiting up to 5m0s for machine 78452edf349568 to reach "started"...
+Machine 78452edf349568 reached state "started"
+Starting supportops-lab-p05/app
+Updating machine 8111936b990258
+Machine 8111936b990258 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-p05/machines/8111936b990258
+8111936b990258 has been started
+Waiting up to 5m0s for machine 8111936b990258 to reach "started"...
+Machine 8111936b990258 reached state "started"
+Starting supportops-lab-mcp/app
+Updating machine 2870421c554548
+Machine 2870421c554548 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-mcp/machines/2870421c554548
+2870421c554548 has been started
+Waiting up to 5m0s for machine 2870421c554548 to reach "started"...
+Machine 2870421c554548 reached state "started"
+Starting supportops-lab-web/app
+Updating machine 8ed9102b21dd48
+Machine 8ed9102b21dd48 updated successfully!
+
+Monitor machine status here:
+https://fly.io/apps/supportops-lab-web/machines/8ed9102b21dd48
+8ed9102b21dd48 has been started
+Waiting up to 5m0s for machine 8ed9102b21dd48 to reach "started"...
+Machine 8ed9102b21dd48 reached state "started"
