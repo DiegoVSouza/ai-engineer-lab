@@ -33,5 +33,5 @@ Fonte: `projects/p00/artifacts/evidence/summaries/free-final-c1.json` e `project
 - Split final inédito, uso único (2026-11-07): 54/60 = **90,0%** (Wilson 95%: 79,9% a 95,3%); 18 de 20 casos acertaram as 3 tentativas; 0 falhas críticas. Escalações 6/12, respostas 36/36, pedidos de detalhe 12/12.
 - Desenvolvimento (64 casos x 3): 157/192 (81,8%) só o prompt; 182/192 (94,8%) com o director, **in-sample**.
 - Holdout lacrado antigo (dataset anterior, prompt few-shot): 29/84 (34,5%); não comparável.
-- Limites: 20 casos e dataset sintético escrito pelo assistente; revisão independente dispensada pelo dono (`WAIVED_BY_OWNER`), isso não é verificação independente. Revisão e promoção seguem pendentes.
+- Limites: 20 casos e dataset sintético escrito pelo assistente; revisão independente dispensada pelo dono (`WAIVED_BY_OWNER`), isso não é verificação independente. A revisão humana foi feita pelo dono em 2026-11-09 (atestado do dono, `OWNER_REVIEWED`).
 - `PENDING`: tamanho do dataset em outras versões, tempo do CI, e2e de serviços locais completo.
