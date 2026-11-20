@@ -341,6 +341,74 @@ class AccountTests(unittest.TestCase):
         with self.assertRaisesRegex(AccountBlocked, "protected_p00_allocation"):
             self.reserve(account, "p00", campaign="p05-dev-v1")
 
+    P05_DIAG_AUTH = ".planning/llm-live-readiness/phases/060-p05-diagnostic-campaign/AUTHORIZATION.json"
+    P05_DIAG_GOOD = {
+        "authorization_id": "p05-diagnostic-campaign-060-v1", "authority": "explicit_user_reply", "project": "p05",
+        "campaign": "p05-diag-v1", "split": "development", "max_attempts": 8, "trials_per_case": 1,
+        "authorized_paid_spend_usd": "0.00", "owner_total_loss_cap_usd": "5.00", "policy_requests": 1712,
+        "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
+    }
+    P05_HOLDOUT_AUTH = ".planning/llm-live-readiness/phases/061-p05-holdout-campaign/AUTHORIZATION.json"
+    P05_HOLDOUT_GOOD = {
+        "authorization_id": "p05-holdout-campaign-061-v1", "authority": "explicit_user_reply", "project": "p05",
+        "campaign": "p05-holdout-v1", "split": "holdout", "max_attempts": 156, "trials_per_case": 1, "single_use": True,
+        "authorized_paid_spend_usd": "0.00", "owner_total_loss_cap_usd": "5.00", "policy_requests": 1712,
+        "independent_review": "WAIVED_BY_OWNER", "holdout_funded": True, "confirmation_funded": False,
+    }
+
+    def commit_authorization(self, relative, payload):
+        path = self.root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(payload))
+        if not (self.root / ".git").exists():
+            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "--", relative], cwd=self.root, check=True)
+        subprocess.run(
+            ["git", "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", "authorization"],
+            cwd=self.root, check=True,
+        )
+
+    def test_p05_diagnostic_campaign_is_admitted_only_by_its_own_exact_authorization(self):
+        account = self.p05_account()
+        blocked = "protected_p05_allocation"
+        self.commit_p05_authorization(self.P05_GOOD)
+        with self.assertRaisesRegex(AccountBlocked, blocked):
+            self.reserve(account, "p05", campaign="p05-diag-v1")
+        for tweak in ({"max_attempts": 9}, {"split": "holdout"}, {"holdout_funded": True},
+                      {"authorized_paid_spend_usd": "0.01"}, {"campaign": "p05-diag-v2"}):
+            self.commit_authorization(self.P05_DIAG_AUTH, {**self.P05_DIAG_GOOD, **tweak})
+            with self.assertRaisesRegex(AccountBlocked, blocked):
+                self.reserve(account, "p05", campaign="p05-diag-v1")
+        self.commit_authorization(self.P05_DIAG_AUTH, self.P05_DIAG_GOOD)
+        for index in range(8):
+            attempt = self.reserve(account, "p05", case=f"case-{index}", campaign="p05-diag-v1")
+            account.complete("p05", attempt, input_tokens=80, output_tokens=20)
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, "p05", case="case-extra", campaign="p05-diag-v1")
+        attempt = self.reserve(account, "p05", case="dev-0", campaign="p05-dev-v1")
+        account.complete("p05", attempt, input_tokens=80, output_tokens=20)
+
+    def test_p05_holdout_campaign_needs_its_own_single_use_authorization_and_never_opens_by_the_dev_one(self):
+        account = self.p05_account()
+        blocked = "protected_p05_allocation"
+        self.commit_p05_authorization(self.P05_GOOD)
+        self.commit_authorization(self.P05_DIAG_AUTH, self.P05_DIAG_GOOD)
+        with self.assertRaisesRegex(AccountBlocked, blocked):
+            self.reserve(account, "p05", campaign="p05-holdout-v1")
+        for tweak in ({"max_attempts": 157}, {"split": "development"}, {"holdout_funded": False}, {"single_use": False},
+                      {"confirmation_funded": True}, {"campaign": "p05-holdout-v2"}):
+            self.commit_authorization(self.P05_HOLDOUT_AUTH, {**self.P05_HOLDOUT_GOOD, **tweak})
+            with self.assertRaisesRegex(AccountBlocked, blocked):
+                self.reserve(account, "p05", campaign="p05-holdout-v1")
+        self.commit_authorization(self.P05_HOLDOUT_AUTH, self.P05_HOLDOUT_GOOD)
+        for index in range(156):
+            attempt = self.reserve(account, "p05", case=f"h-{index}", campaign="p05-holdout-v1")
+            account.complete("p05", attempt, input_tokens=80, output_tokens=20)
+            if index % 20 == 19:
+                self.now[0] += 61
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, "p05", case="h-extra", campaign="p05-holdout-v1")
+
     P02_AUTH = ".planning/llm-live-readiness/phases/058-p02-live-campaign/AUTHORIZATION.json"
     P02_GOOD = {
         "authorization_id": "p02-live-campaign-058-v1", "authority": "explicit_user_reply", "project": "p02",

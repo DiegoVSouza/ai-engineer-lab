@@ -1,0 +1,24 @@
+{
+  "authorization_id": "p05-diagnostic-campaign-060-v1",
+  "authority": "explicit_user_reply",
+  "project": "p05",
+  "campaign": "p05-diag-v1",
+  "split": "development",
+  "max_attempts": 8,
+  "trials_per_case": 1,
+  "authorized_paid_spend_usd": "0.00",
+  "owner_total_loss_cap_usd": "5.00",
+  "policy_requests": 1712,
+  "independent_review": "WAIVED_BY_OWNER",
+  "holdout_funded": false,
+  "confirmation_funded": false,
+  "owner_reply_date": "2026-11-20",
+  "owner_replies": [
+    "2: diminui os testes para caber nos limites do groq e lembra de rotacionar as chaves que tem para aumentar o limite",
+    "pode fazer em loop ai, deixa tudo pronto",
+    "faz"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "free_window": {"tokens_per_day": 200000, "tokens_per_minute": 8000},
+  "note": "Diagnostic of the provider cause on two development cases that stopped on worker_contract (citation_correctness-02, prompt_injection-01). Not a quality measurement. Up to four provider calls per trial."
+}

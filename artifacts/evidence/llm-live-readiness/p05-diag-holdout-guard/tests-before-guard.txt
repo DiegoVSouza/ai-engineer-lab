@@ -1,0 +1,43 @@
+....................................................EE.......................................
+======================================================================
+ERROR: test_p05_diagnostic_campaign_is_admitted_only_by_its_own_exact_authorization (test_live_free_account.AccountTests.test_p05_diagnostic_campaign_is_admitted_only_by_its_own_exact_authorization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 384, in test_p05_diagnostic_campaign_is_admitted_only_by_its_own_exact_authorization
+    attempt = self.reserve(account, "p05", case=f"case-{index}", campaign="p05-diag-v1")
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 700, in reserve
+    return account.reserve(project, campaign, case, 1, call, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 1061, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 683, in _approve
+    raise AccountBlocked("protected_" + project + "_allocation")
+live_free_account.AccountBlocked: protected_p05_allocation
+
+======================================================================
+ERROR: test_p05_holdout_campaign_needs_its_own_single_use_authorization_and_never_opens_by_the_dev_one (test_live_free_account.AccountTests.test_p05_holdout_campaign_needs_its_own_single_use_authorization_and_never_opens_by_the_dev_one)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 405, in test_p05_holdout_campaign_needs_its_own_single_use_authorization_and_never_opens_by_the_dev_one
+    attempt = self.reserve(account, "p05", case=f"h-{index}", campaign="p05-holdout-v1")
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 700, in reserve
+    return account.reserve(project, campaign, case, 1, call, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 1061, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 683, in _approve
+    raise AccountBlocked("protected_" + project + "_allocation")
+live_free_account.AccountBlocked: protected_p05_allocation
+
+----------------------------------------------------------------------
+Ran 93 tests in 45.697s
+
+FAILED (errors=2)

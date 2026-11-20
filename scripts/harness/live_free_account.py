@@ -717,6 +717,8 @@ class SharedAccount:
     P05_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/057-p05-live-campaign/AUTHORIZATION.json"
     P02_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/058-p02-live-campaign/AUTHORIZATION.json"
     P01_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/059-p01-live-campaign/AUTHORIZATION.json"
+    P05_DIAGNOSTIC_AUTHORIZATION = ".planning/llm-live-readiness/phases/060-p05-diagnostic-campaign/AUTHORIZATION.json"
+    P05_HOLDOUT_AUTHORIZATION = ".planning/llm-live-readiness/phases/061-p05-holdout-campaign/AUTHORIZATION.json"
 
     def _authorized_campaign(self, project, name, expected):
         """One development campaign admitted by a committed, unmodified owner authorization, else none."""
@@ -737,6 +739,42 @@ class SharedAccount:
         return {expected["campaign"]: expected["max_attempts"]}
 
     def _p05_campaigns(self):
+        """P05 campaigns, each admitted by its own committed, unmodified owner authorization. Others stay protected."""
+        admitted = self._p05_development_campaign()
+        admitted.update(self._authorized_campaign("p05", self.P05_DIAGNOSTIC_AUTHORIZATION, {
+            "authorization_id": "p05-diagnostic-campaign-060-v1",
+            "authority": "explicit_user_reply",
+            "project": "p05",
+            "campaign": "p05-diag-v1",
+            "split": "development",
+            "max_attempts": 8,
+            "trials_per_case": 1,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 1712,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": False,
+            "confirmation_funded": False,
+        }))
+        admitted.update(self._authorized_campaign("p05", self.P05_HOLDOUT_AUTHORIZATION, {
+            "authorization_id": "p05-holdout-campaign-061-v1",
+            "authority": "explicit_user_reply",
+            "project": "p05",
+            "campaign": "p05-holdout-v1",
+            "split": "holdout",
+            "max_attempts": 156,
+            "trials_per_case": 1,
+            "single_use": True,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 1712,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": True,
+            "confirmation_funded": False,
+        }))
+        return admitted
+
+    def _p05_development_campaign(self):
         """Development campaign of P05 admitted by a committed, unmodified owner authorization, else none."""
         return self._authorized_campaign("p05", self.P05_CAMPAIGN_AUTHORIZATION, {
             "authorization_id": "p05-live-campaign-057-v1",
