@@ -1,0 +1,3 @@
+cold chain healthz 502 40.343048s
+cold chain healthz 200 15.582067s
+cold chain healthz 200 0.388172s

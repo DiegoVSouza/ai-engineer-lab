@@ -1,0 +1,135 @@
+Validating C:\estudo\Golpe\lab\fly\web\fly.toml
+[32m✓[0m Configuration is valid
+==> Verifying app config
+--> Verified app config
+==> Building image
+Waiting for depot builder...
+
+==> Building image with Depot
+--> ]8;;build: ]8;;
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 804B 0.2s
+#1 transferring dockerfile: 804B 0.2s done
+#1 DONE 0.2s
+
+#2 [internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85
+#3 DONE 0.2s
+
+#2 [internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#2 DONE 0.7s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 105B 0.2s
+#4 transferring context: 105B 0.2s done
+#4 DONE 0.2s
+
+#5 [build 1/8] FROM docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85
+#5 resolve docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85 done
+#5 DONE 0.0s
+
+#6 [stage-1 1/4] FROM docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#6 resolve docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6 done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 4.31kB 0.2s done
+#7 DONE 0.2s
+
+#8 [build 6/8] COPY index.html tsconfig.json vite.config.ts ./
+#8 CACHED
+
+#9 [build 2/8] WORKDIR /app
+#9 CACHED
+
+#10 [build 5/8] RUN npm ci --ignore-scripts
+#10 CACHED
+
+#11 [build 7/8] COPY src ./src
+#11 CACHED
+
+#12 [build 3/8] COPY package.json package-lock.json ./
+#12 CACHED
+
+#13 [build 4/8] COPY vendor ./vendor
+#13 CACHED
+
+#6 [stage-1 1/4] FROM docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#6 CACHED
+
+#14 [build 8/8] RUN npx vite build
+#14 CACHED
+
+#15 [stage-1 2/4] COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+#15 DONE 0.0s
+
+#16 [stage-1 3/4] COPY nginx/config.json.template /etc/nginx/templates/config.json.template
+#16 DONE 0.0s
+
+#17 [stage-1 4/4] COPY --from=build /app/dist /usr/share/nginx/html
+#17 DONE 0.0s
+
+#18 exporting to image
+#18 exporting layers 0.1s done
+#18 exporting manifest sha256:97b615a37e59bf0f622b23d0442f04e5a7ff3036d2df7c752e21f267bc139503 done
+#18 exporting config sha256:d0be199a918a5d89d33ff44f6119ae08724e5d630277869683eb083afe36c854 done
+#18 pushing layers for registry.fly.io/supportops-lab-web:deployment-01M7WNTR69V41M03QRPHNRT7EH@sha256:97b615a37e59bf0f622b23d0442f04e5a7ff3036d2df7c752e21f267bc139503
+#18 pushing layer sha256:d0be199a918a5d89d33ff44f6119ae08724e5d630277869683eb083afe36c854
+#18 pushing layer sha256:7b69035efbcb963d19a7c614b6b92536f2d53ad46b02530aa8b5dba6c9cf3ea7
+#18 pushing layer sha256:44e5243b97add99d4944cad432819d015305532fc968f59a25d2d2eb7c82362b
+#18 pushing layer sha256:cf9efbd317e95cff771ddc0192216f1415e2d85ffe6912a04cb064d3f5c43125
+#18 pushing layer sha256:0288df6a6ad035ef7058e9d8661b4bb7c11fa94ed6d43eec81da9d80a6cf9eb6
+#18 pushing layer sha256:a35176530681b141789f73d805b50ae3f40ccb3895fda984faa3c48502ae2781
+#18 pushing layer sha256:4b0509c947003be1323a5a38977845d73b4980e37144df3290035d51059ccb48
+#18 pushing layer sha256:b5e70a4f74038b4b2c370625ae4e7d607d94f0694803e79e10a0a6c7f576c4e6
+#18 pushing layer sha256:8ab637fc72ed54c87677c98af3d9afa3bae1d9bd8bc921a42c1ccc8338323f4f
+#18 pushing layer sha256:bb7f9d8c259d2e0b9002157a3ea23b8247a946c8900889b37f7d4ed0578a0d2f
+#18 pushing layer sha256:70eb83dc55112f5c763f669094cc9019f900b51cb5b45431e4988e133d4de852
+#18 pushing layer sha256:fbe859c3515ebe47cd07b936f96779b8883fe9385a2aff8d55ff210488c99e8f
+#18 pushing layer sha256:c990964f6e0197ed3a19d05117917fcb2337c66c2f956633b69fb6df884da060
+#18 pushing layer sha256:a35176530681b141789f73d805b50ae3f40ccb3895fda984faa3c48502ae2781 0.2s done
+#18 pushing layer sha256:4b0509c947003be1323a5a38977845d73b4980e37144df3290035d51059ccb48 0.7s done
+#18 pushing layer sha256:44e5243b97add99d4944cad432819d015305532fc968f59a25d2d2eb7c82362b 0.7s done
+#18 pushing layer sha256:cf9efbd317e95cff771ddc0192216f1415e2d85ffe6912a04cb064d3f5c43125 0.7s done
+#18 pushing layer sha256:0288df6a6ad035ef7058e9d8661b4bb7c11fa94ed6d43eec81da9d80a6cf9eb6 0.7s done
+#18 pushing layer sha256:b5e70a4f74038b4b2c370625ae4e7d607d94f0694803e79e10a0a6c7f576c4e6 0.7s done
+#18 pushing layer sha256:8ab637fc72ed54c87677c98af3d9afa3bae1d9bd8bc921a42c1ccc8338323f4f 0.7s done
+#18 pushing layer sha256:bb7f9d8c259d2e0b9002157a3ea23b8247a946c8900889b37f7d4ed0578a0d2f 0.7s done
+#18 pushing layer sha256:70eb83dc55112f5c763f669094cc9019f900b51cb5b45431e4988e133d4de852 0.7s done
+#18 pushing layer sha256:d0be199a918a5d89d33ff44f6119ae08724e5d630277869683eb083afe36c854 1.2s done
+#18 pushing layer sha256:c990964f6e0197ed3a19d05117917fcb2337c66c2f956633b69fb6df884da060 1.3s done
+#18 pushing layer sha256:fbe859c3515ebe47cd07b936f96779b8883fe9385a2aff8d55ff210488c99e8f 1.4s done
+#18 pushing layers for registry.fly.io/supportops-lab-web:deployment-01M7WNTR69V41M03QRPHNRT7EH@sha256:97b615a37e59bf0f622b23d0442f04e5a7ff3036d2df7c752e21f267bc139503 1.7s done
+#18 pushing layer sha256:7b69035efbcb963d19a7c614b6b92536f2d53ad46b02530aa8b5dba6c9cf3ea7 1.7s done
+#18 pushing manifest for registry.fly.io/supportops-lab-web:deployment-01M7WNTR69V41M03QRPHNRT7EH@sha256:97b615a37e59bf0f622b23d0442f04e5a7ff3036d2df7c752e21f267bc139503
+#18 pushing manifest for registry.fly.io/supportops-lab-web:deployment-01M7WNTR69V41M03QRPHNRT7EH@sha256:97b615a37e59bf0f622b23d0442f04e5a7ff3036d2df7c752e21f267bc139503 0.0s done
+#18 DONE 1.8s
+--> ]8;;Build Summary: ]8;;
+[38;5;252m--> Building image done[0m
+image: registry.fly.io/supportops-lab-web:deployment-01M7WNTR69V41M03QRPHNRT7EH
+
+Watch your deployment at https://fly.io/apps/supportops-lab-web/monitoring
+
+image size: 21 MB
+Updating existing machines in 'supportops-lab-web' with rolling strategy
+> Acquiring lease for 8ed9102b21dd48
+> Acquired lease for 8ed9102b21dd48
+> Updating machine config for 8ed9102b21dd48
+> Updating 8ed9102b21dd48 [app]
+> Updated machine config for 8ed9102b21dd48
+> Waiting for machine 8ed9102b21dd48 to reach a good state
+> Machine 8ed9102b21dd48 reached started state
+> Running smoke checks on machine 8ed9102b21dd48
+> Running machine checks on machine 8ed9102b21dd48
+> Checking health of machine 8ed9102b21dd48
+✔ Machine 8ed9102b21dd48 is now in a good state
+> Clearing lease for 8ed9102b21dd48
+✔ Cleared lease for 8ed9102b21dd48
+Checking DNS configuration for supportops-lab-web.fly.dev
+✓ DNS configuration verified
+
+Visit your newly deployed app at https://supportops-lab-web.fly.dev/
+
+App already scaled to desired state. No need for changes

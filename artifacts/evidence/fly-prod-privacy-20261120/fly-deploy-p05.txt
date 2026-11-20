@@ -1,0 +1,231 @@
+Validating C:\estudo\Golpe\lab\fly\p05\fly.toml
+[32m✓[0m Configuration is valid
+==> Verifying app config
+--> Verified app config
+==> Building image
+Waiting for depot builder...
+
+==> Building image with Depot
+--> ]8;;build: ]8;;
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 893B 0.2s
+#1 transferring dockerfile: 893B 0.2s done
+#1 DONE 0.2s
+
+#2 [internal] load metadata for docker.io/library/python:3.13.12-slim
+#2 DONE 0.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 129B 0.2s done
+#3 DONE 0.2s
+
+#4 [build  1/11] FROM docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8
+#4 resolve docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8 done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.33MB 0.8s done
+#5 DONE 0.8s
+
+#6 [build  2/11] WORKDIR /app
+#6 CACHED
+
+#7 [build  3/11] RUN pip install --no-cache-dir uv==0.12.7
+#7 CACHED
+
+#8 [build  5/11] COPY artifacts/packages ./artifacts/packages
+#8 CACHED
+
+#9 [build  4/11] COPY pyproject.toml uv.lock ./
+#9 CACHED
+
+#10 [build  6/11] COPY migrations ./migrations
+#10 CACHED
+
+#11 [build  7/11] COPY scripts ./scripts
+#11 CACHED
+
+#12 [build  8/11] COPY supportops_platform ./supportops_platform
+#12 DONE 0.0s
+
+#13 [build  9/11] COPY agent/prompts ./agent/prompts
+#13 DONE 0.0s
+
+#14 [build 10/11] COPY infra/logging ./logcfg
+#14 DONE 0.0s
+
+#15 [build 11/11] RUN if [ "true" = "true" ]; then uv sync --locked --no-dev --extra live; else uv sync --locked --no-dev; fi
+#15 0.277 Using CPython 3.13.12 interpreter at: /usr/local/bin/python3
+#15 0.277 Creating virtual environment at: .venv
+#15 0.315 Resolved 95 packages in 32ms
+#15 0.331    Building supportops-platform @ file:///app
+#15 0.517 Downloading cryptography (4.5MiB)
+#15 0.519 Downloading psycopg-binary (4.2MiB)
+#15 0.519 Downloading asyncpg (3.4MiB)
+#15 0.519 Downloading grpcio (6.8MiB)
+#15 0.520 Downloading botocore (15.3MiB)
+#15 0.520 Downloading pydantic-core (2.1MiB)
+#15 0.520 Downloading zstandard (5.3MiB)
+#15 1.004  Downloaded pydantic-core
+#15 1.158  Downloaded zstandard
+#15 1.162  Downloaded psycopg-binary
+#15 1.167  Downloaded asyncpg
+#15 1.194  Downloaded grpcio
+#15 1.209  Downloaded cryptography
+#15 1.610  Downloaded botocore
+#15 1.675       Built supportops-platform @ file:///app
+#15 1.678 Prepared 82 packages in 1.35s
+#15 1.778 Installed 87 packages in 99ms
+#15 1.778  + aiosqlite==0.22.1
+#15 1.778  + annotated-doc==0.0.5
+#15 1.778  + annotated-types==0.8.0
+#15 1.778  + anyio==4.15.1
+#15 1.778  + asyncpg==0.30.0
+#15 1.778  + attrs==26.1.0
+#15 1.778  + boto3==1.43.114
+#15 1.778  + botocore==1.43.114
+#15 1.778  + certifi==2026.7.22
+#15 1.778  + cffi==2.1.1
+#15 1.778  + charset-normalizer==3.5.2
+#15 1.778  + click==8.5.0
+#15 1.778  + cryptography==50.0.2
+#15 1.778  + distro==1.9.0
+#15 1.778  + fastapi==0.142.4
+#15 1.778  + googleapis-common-protos==1.75.5
+#15 1.778  + groq==1.7.0
+#15 1.778  + grpcio==1.84.0
+#15 1.778  + h11==0.16.0
+#15 1.778  + httpcore==1.0.9
+#15 1.778  + httpcore2==2.13.1
+#15 1.778  + httpx==0.28.1
+#15 1.779  + httpx2==2.13.1
+#15 1.779  + idna==3.20
+#15 1.779  + jmespath==1.1.0
+#15 1.779  + jsonpatch==1.36
+#15 1.779  + jsonpointer==3.4
+#15 1.779  + jsonschema==4.26.0
+#15 1.779  + jsonschema-specifications==2025.9.1
+#15 1.779  + langchain-core==1.6.13
+#15 1.779  + langchain-protocol==0.0.20
+#15 1.779  + langgraph==1.1.10
+#15 1.779  + langgraph-checkpoint==4.3.0
+#15 1.779  + langgraph-checkpoint-sqlite==3.1.2
+#15 1.779  + langgraph-prebuilt==1.0.13
+#15 1.779  + langgraph-sdk==0.3.15
+#15 1.779  + langsmith==0.14.12
+#15 1.779  + mcp==2.3.0
+#15 1.779  + mcp-types==2.3.0
+#15 1.779  + opentelemetry-api==1.45.1
+#15 1.779  + opentelemetry-exporter-otlp-common==0.66b1
+#15 1.779  + opentelemetry-exporter-otlp-proto-common==1.45.1
+#15 1.779  + opentelemetry-exporter-otlp-proto-grpc==1.45.1
+#15 1.779  + opentelemetry-proto==1.45.1
+#15 1.779  + opentelemetry-sdk==1.45.1
+#15 1.779  + opentelemetry-semantic-conventions==0.66b1
+#15 1.779  + orjson==3.13.0
+#15 1.779  + ormsgpack==1.13.0
+#15 1.779  + packaging==26.3
+#15 1.779  + prometheus-client==0.26.0
+#15 1.779  + protobuf==7.36.2
+#15 1.779  + psycopg==3.2.10
+#15 1.779  + psycopg-binary==3.2.10
+#15 1.779  + pycparser==3.11
+#15 1.779  + pydantic==2.14.1
+#15 1.779  + pydantic-core==2.50.1
+#15 1.782  + pyjwt==2.15.1
+#15 1.782  + python-dateutil==2.9.0.post0
+#15 1.782  + python-multipart==0.0.32
+#15 1.782  + pyyaml==6.0.3
+#15 1.782  + redis==6.4.0
+#15 1.782  + referencing==0.37.0
+#15 1.782  + requests==2.34.2
+#15 1.782  + requests-toolbelt==1.0.0
+#15 1.782  + rpds-py==2026.9.1
+#15 1.782  + s3transfer==0.19.2
+#15 1.782  + six==1.17.0
+#15 1.782  + sniffio==1.3.1
+#15 1.782  + sqlite-vec==0.1.9
+#15 1.782  + sse-starlette==3.5.0
+#15 1.782  + starlette==1.8.0
+#15 1.782  + supportops-agents==0.1.1 (from file:///app/artifacts/packages/supportops_agents-0.1.1-py3-none-any.whl)
+#15 1.782  + supportops-ai-toolkit==0.2.0 (from file:///app/artifacts/packages/supportops_ai_toolkit-0.2.0-py3-none-any.whl)
+#15 1.782  + supportops-async==0.1.4 (from file:///app/artifacts/packages/supportops_async-0.1.4-py3-none-any.whl)
+#15 1.782  + supportops-foundation==1.0.1 (from file:///app/artifacts/packages/supportops_foundation-1.0.1-py3-none-any.whl)
+#15 1.782  + supportops-obs==0.3.1 (from file:///app/artifacts/packages/supportops_obs-0.3.1-py3-none-any.whl)
+#15 1.782  + supportops-platform==0.4.5 (from file:///app)
+#15 1.782  + tenacity==9.2.1
+#15 1.782  + truststore==0.10.5
+#15 1.782  + typing-extensions==4.16.0
+#15 1.782  + typing-inspection==0.4.4
+#15 1.782  + urllib3==2.8.0
+#15 1.782  + uuid-utils==0.18.0
+#15 1.782  + uvicorn==0.46.0
+#15 1.782  + websockets==17.3
+#15 1.782  + xxhash==4.0.2
+#15 1.782  + zstandard==0.25.0
+#15 DONE 3.5s
+
+#16 [stage-1 3/5] RUN groupadd --gid 10001 app && useradd --uid 10001 --gid app --home /app app
+#16 CACHED
+
+#17 [stage-1 4/5] COPY --from=build --chown=app:app /app /app
+#17 DONE 2.5s
+
+#18 [stage-1 5/5] RUN mkdir -p /app/artifacts && chown app:app /app/artifacts
+#18 DONE 0.2s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 3.2s done
+#19 exporting manifest sha256:6cab2e02694bb27313a9675b30f003eb09739cf8443e2f72f21140959f555bc2 done
+#19 exporting config sha256:190f91f5ca9ee7e7e171ad579091e98133bd6f24c915ace80d7b97b0e50d7eca done
+#19 pushing layers for registry.fly.io/supportops-lab-p05:deployment-01M7WP18CE0S9YGBX1MXTCQGKE@sha256:6cab2e02694bb27313a9675b30f003eb09739cf8443e2f72f21140959f555bc2
+#19 pushing layer sha256:190f91f5ca9ee7e7e171ad579091e98133bd6f24c915ace80d7b97b0e50d7eca
+#19 pushing layer sha256:2c1ce468d9f3d941396801f6e3afc8921466650dd05430fe644cd3537713d27f
+#19 pushing layer sha256:93d6b9e86d4ce5c7713459e98479cb7b488f7eeb3d13032748f26d3bfb507908
+#19 pushing layer sha256:ff878daad1244bf8c62884bc61683d049d2b56b48ac415ba220254072b89b0f7
+#19 pushing layer sha256:b2f0265eb970c5da05b2ca00e2f0685522430fdfb1b9a08867afa8b48a7e1c8b
+#19 pushing layer sha256:023b0eecc2210c5fab2ac7844db4d3f3b73c22dade3893e2762fff1cad414966
+#19 pushing layer sha256:66a4cfdf532db93640cb7f208fef190c21cbd1782087cc46fa14bc37269e2c80
+#19 pushing layer sha256:74a593dc39ed7b714b299936f6f2dafaa1969e3acd7954cc28ac0a89dfbeade3
+#19 pushing layer sha256:f7c664c0c3b3f1643aaee929c85c7a61b037a3459d1aed9ae4a0bc7c6e6c96ad
+#19 pushing layer sha256:93d6b9e86d4ce5c7713459e98479cb7b488f7eeb3d13032748f26d3bfb507908 0.5s done
+#19 pushing layer sha256:2c1ce468d9f3d941396801f6e3afc8921466650dd05430fe644cd3537713d27f 0.5s done
+#19 pushing layer sha256:ff878daad1244bf8c62884bc61683d049d2b56b48ac415ba220254072b89b0f7 0.7s done
+#19 pushing layer sha256:190f91f5ca9ee7e7e171ad579091e98133bd6f24c915ace80d7b97b0e50d7eca 0.7s done
+#19 pushing layer sha256:b2f0265eb970c5da05b2ca00e2f0685522430fdfb1b9a08867afa8b48a7e1c8b 0.7s done
+#19 pushing layer sha256:66a4cfdf532db93640cb7f208fef190c21cbd1782087cc46fa14bc37269e2c80 0.8s done
+#19 pushing layer sha256:74a593dc39ed7b714b299936f6f2dafaa1969e3acd7954cc28ac0a89dfbeade3 0.7s done
+#19 pushing layer sha256:023b0eecc2210c5fab2ac7844db4d3f3b73c22dade3893e2762fff1cad414966 1.5s done
+#19 pushing layers for registry.fly.io/supportops-lab-p05:deployment-01M7WP18CE0S9YGBX1MXTCQGKE@sha256:6cab2e02694bb27313a9675b30f003eb09739cf8443e2f72f21140959f555bc2 4.0s done
+#19 pushing layer sha256:f7c664c0c3b3f1643aaee929c85c7a61b037a3459d1aed9ae4a0bc7c6e6c96ad 4.0s done
+#19 pushing manifest for registry.fly.io/supportops-lab-p05:deployment-01M7WP18CE0S9YGBX1MXTCQGKE@sha256:6cab2e02694bb27313a9675b30f003eb09739cf8443e2f72f21140959f555bc2
+#19 pushing manifest for registry.fly.io/supportops-lab-p05:deployment-01M7WP18CE0S9YGBX1MXTCQGKE@sha256:6cab2e02694bb27313a9675b30f003eb09739cf8443e2f72f21140959f555bc2 0.8s done
+#19 DONE 8.0s
+--> ]8;;Build Summary: ]8;;
+[38;5;252m--> Building image done[0m
+image: registry.fly.io/supportops-lab-p05:deployment-01M7WP18CE0S9YGBX1MXTCQGKE
+
+Watch your deployment at https://fly.io/apps/supportops-lab-p05/monitoring
+
+image size: 87 MB
+Updating existing machines in 'supportops-lab-p05' with rolling strategy
+> Acquiring lease for 8111936b990258
+> Acquired lease for 8111936b990258
+> Updating machine config for 8111936b990258
+> Updating 8111936b990258 [app]
+> Updated machine config for 8111936b990258
+> Waiting for machine 8111936b990258 to reach a good state
+> Machine 8111936b990258 reached started state
+> Running smoke checks on machine 8111936b990258
+> Running machine checks on machine 8111936b990258
+> Checking health of machine 8111936b990258
+✔ Machine 8111936b990258 is now in a good state
+> Clearing lease for 8111936b990258
+✔ Cleared lease for 8111936b990258
+Checking DNS configuration for supportops-lab-p05.fly.dev
+✓ DNS configuration verified
+
+Visit your newly deployed app at https://supportops-lab-p05.fly.dev/
+
+App already scaled to desired state. No need for changes

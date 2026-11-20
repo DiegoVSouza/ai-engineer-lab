@@ -1,0 +1,64 @@
+   idp ready after 21s
+ok   healthz: got 200 want 200
+ok   no token list: got 401 want 401
+ok   garbage token: got 401 want 401
+ok   token agent-a: got 200 want 200
+ok   token agent-b: got 200 want 200
+ok   token approver-a: got 200 want 200
+ok   tampered payload: got 401 want 401
+ok   alg none: got 401 want 401
+ok   list as agent: got 200 want 200
+ok   create ticket: got 201 want 201
+ok   missing field: got 422 want 422
+ok   empty subject: got 422 want 422
+ok   subject 201 chars: got 422 want 422
+ok   body 10001 chars: got 422 want 422
+ok   wrong type: got 422 want 422
+ok   extra field: got 201 want {201, 422}
+ok   not json: got 422 want 422
+ok   no body: got 422 want 422
+ok   huge body 2MB: got 413 want {413, 422}
+ok   injection in subject: got 201 want 201
+ok   unicode body: got 422 want {201, 422}
+ok   get own ticket: got 200 want 200
+ok   other tenant get: got 404 want {403, 404}
+ok   missing ticket: got 404 want 404
+ok   non-uuid id: got 404 want {404, 422}
+ok   path traversal id: got 404 want {400, 404, 422}
+ok   other tenant listing excludes: got True want True
+ok   agent lists approvals: got 403 want 403
+ok   approver lists approvals: got 200 want 200
+ok   refund without idempotency key: got 422 want {400, 422}
+ok   refund key 129 chars: got 422 want {400, 422}
+ok   refund zero: got 422 want 422
+ok   refund negative: got 422 want 422
+ok   refund over cap: got 422 want 422
+ok   refund float: got 422 want 422
+ok   refund string: got 422 want 422
+ok   refund null: got 422 want 422
+ok   refund other tenant: got 403 want {403, 404}
+ok   refund missing ticket: got 403 want {403, 404}
+ok   refund ok: got 202 want 202
+ok   refund duplicate same key: got 202 want {409, 202}
+ok   refund second key: got 202 want {409, 202}
+   duplicate returns same id: True
+   approvals for ticket: 2 ['pending', 'pending']
+ok   agent decides own approval: got 403 want 403
+ok   bad decision value: got 422 want 422
+ok   decision missing approval: got 403 want {403, 404}
+ok   approve: got 200 want 200
+ok   approve twice: got 409 want {200, 409}
+ok   flip decision after approve: got 409 want {400, 409, 422}
+   final approval states: ['pending']
+ok   task missing ticket: got 404 want {202, 404, 422}
+ok   task create: got 202 want 202
+   task final: needs_approval attempts 1 error None
+ok   task terminal: got True want True
+ok   task other tenant: got 404 want {403, 404}
+ok   demo runs public: got 200 want {200, 401, 404}
+ok   method not allowed: got 405 want {404, 405}
+ok   unknown route: got 404 want 404
+   CORS evil origin allow: None
+   headers: {'referrer-policy': 'no-referrer', 'content-security-policy': "default-src 'none'; script-src 'self'; style-src 'self'; fon", 'x-content-type-options': 'nosniff'}
+
+55/55 expectations met in 58s

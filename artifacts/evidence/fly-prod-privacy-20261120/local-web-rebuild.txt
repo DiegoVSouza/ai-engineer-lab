@@ -1,0 +1,270 @@
+ Image supportops-lab-platform:local Building 
+ Image supportops-lab-web:local Building 
+ Image supportops-lab-init:local Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.46kB 0.0s done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile
+#2 transferring dockerfile: 893B 0.0s done
+#2 DONE 0.1s
+
+#3 [web internal] load build definition from Dockerfile
+#3 transferring dockerfile: 804B 0.0s done
+#3 DONE 0.1s
+
+#4 [secrets-init internal] load build definition from Dockerfile.init
+#4 transferring dockerfile: 228B 0.0s done
+#4 DONE 0.1s
+
+#5 [secrets-init internal] load metadata for docker.io/library/python:3.13.12-slim
+#5 DONE 0.0s
+
+#6 [secrets-init internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [api internal] load .dockerignore
+#7 transferring context: 129B done
+#7 DONE 0.1s
+
+#8 [api 1/4] FROM docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8
+#8 resolve docker.io/library/python:3.13.12-slim@sha256:f1927c75e81efd1e091dbd64b6c0ecaa5630b38635a3d1c04034ac636e1f94c8 0.0s done
+#8 DONE 0.0s
+
+#9 [secrets-init internal] load build context
+#9 transferring context: 9.70kB 0.0s done
+#9 DONE 0.1s
+
+#10 [secrets-init 2/4] COPY requirements-init.lock /requirements-init.lock
+#10 CACHED
+
+#11 [secrets-init 3/4] RUN pip install --no-cache-dir -r /requirements-init.lock
+#11 CACHED
+
+#12 [secrets-init 4/4] COPY init.py /init.py
+#12 CACHED
+
+#13 [secrets-init] exporting to image
+#13 exporting layers done
+#13 exporting manifest sha256:7a03a820e8993acd0e9c4c860de0d73f53c3f26765d53d665a18c78596da39a2 done
+#13 exporting config sha256:8362da116030c35649f6bdb7af586f8c5f4868d7d5b62577c5d175096eabf6b8 done
+#13 exporting attestation manifest sha256:fae013e28d8cee4b1eec69a378e52d1a7df208399a7dd383323700d4e6a6811d 0.0s done
+#13 exporting manifest list sha256:2e0a5a7007bfed635dd7e93ab1f4850b18f37300b310a7a9cccdc94d5c532a65 0.0s done
+#13 naming to docker.io/library/supportops-lab-init:local
+#13 naming to docker.io/library/supportops-lab-init:local done
+#13 unpacking to docker.io/library/supportops-lab-init:local 0.0s done
+#13 DONE 0.1s
+
+#14 [api internal] load build context
+#14 transferring context: 1.32MB 0.4s done
+#14 DONE 0.4s
+
+#15 [secrets-init] resolving provenance for metadata file
+#15 DONE 0.0s
+
+#16 [web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#16 ...
+
+#17 [api stage-1 4/5] COPY --from=build --chown=app:app /app /app
+#17 CACHED
+
+#18 [api build  3/11] RUN pip install --no-cache-dir uv==0.12.7
+#18 CACHED
+
+#19 [api build  6/11] COPY migrations ./migrations
+#19 CACHED
+
+#20 [api build  2/11] WORKDIR /app
+#20 CACHED
+
+#21 [api build  5/11] COPY artifacts/packages ./artifacts/packages
+#21 CACHED
+
+#22 [api build 10/11] COPY infra/logging ./logcfg
+#22 CACHED
+
+#23 [api stage-1 3/5] RUN groupadd --gid 10001 app && useradd --uid 10001 --gid app --home /app app
+#23 CACHED
+
+#24 [api build  4/11] COPY pyproject.toml uv.lock ./
+#24 CACHED
+
+#25 [api build 11/11] RUN if [ "false" = "true" ]; then uv sync --locked --no-dev --extra live; else uv sync --locked --no-dev; fi
+#25 CACHED
+
+#26 [api build  7/11] COPY scripts ./scripts
+#26 CACHED
+
+#27 [api build  8/11] COPY supportops_platform ./supportops_platform
+#27 CACHED
+
+#28 [api build  9/11] COPY agent/prompts ./agent/prompts
+#28 CACHED
+
+#29 [api stage-1 5/5] RUN mkdir -p /app/artifacts && chown app:app /app/artifacts
+#29 CACHED
+
+#30 [api] exporting to image
+#30 exporting layers done
+#30 exporting manifest sha256:6de84a99ac8b23b1330a890a3275fe2bfa814bbc2064af3d32cfdd5a1430f449 done
+#30 exporting config sha256:c32052253bdb4f8b552b56a616f4d1e02811cfa9a7133a38695bf04ffed8ba70 done
+#30 exporting attestation manifest sha256:35a0ecdb9a94942872480f6f35ab2bd9e3c0683f0db2ab4877eb68d7c3e7d95b 0.0s done
+#30 exporting manifest list sha256:ecb3d1f01d994cf043463794281320a9aa6c29430c720be0f0fc8368bf3c59a8 0.0s done
+#30 naming to docker.io/library/supportops-lab-platform:local done
+#30 unpacking to docker.io/library/supportops-lab-platform:local done
+#30 DONE 0.1s
+
+#31 [web internal] load metadata for docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85
+#31 DONE 0.9s
+
+#16 [web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#16 DONE 0.9s
+
+#32 [api] resolving provenance for metadata file
+#32 DONE 0.0s
+
+#33 [web internal] load .dockerignore
+#33 transferring context: 105B 0.0s done
+#33 DONE 0.1s
+
+#34 [web internal] load build context
+#34 DONE 0.0s
+
+#35 [web stage-1 1/4] FROM docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#35 resolve docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6 0.0s done
+#35 DONE 0.0s
+
+#36 [web build 1/8] FROM docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85
+#36 resolve docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85
+#36 resolve docker.io/library/node:24-alpine@sha256:8a32c8cf649a49915a66e81e7a609223c708d0adabf288ee3f4077d765542f85 0.0s done
+#36 DONE 0.0s
+
+#34 [web internal] load build context
+#34 transferring context: 257.25kB 0.1s done
+#34 DONE 0.2s
+
+#37 [web build 5/8] RUN npm ci --ignore-scripts
+#37 CACHED
+
+#38 [web build 2/8] WORKDIR /app
+#38 CACHED
+
+#39 [web build 4/8] COPY vendor ./vendor
+#39 CACHED
+
+#40 [web build 3/8] COPY package.json package-lock.json ./
+#40 CACHED
+
+#41 [web build 6/8] COPY index.html tsconfig.json vite.config.ts ./
+#41 CACHED
+
+#35 [web stage-1 1/4] FROM docker.io/nginxinc/nginx-unprivileged:1.29-alpine@sha256:0c79d56aee561a1d81c63f00eee5fb5fe29279560cdc55e91425133104c7fbe6
+#35 CACHED
+
+#42 [web build 7/8] COPY src ./src
+#42 DONE 0.1s
+
+#43 [web stage-1 2/4] COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+#43 DONE 0.1s
+
+#44 [web stage-1 3/4] COPY nginx/config.json.template /etc/nginx/templates/config.json.template
+#44 DONE 0.1s
+
+#45 [web build 8/8] RUN npx vite build
+#45 1.599 vite v8.3.5 building client environment for production...
+#45 1.619 transforming...
+#45 1.738 ✓ 37 modules transformed.
+#45 1.832 rendering chunks...
+#45 1.890 computing gzip size...
+#45 1.896 dist/index.html                                                      0.59 kB │ gzip:  0.35 kB
+#45 1.896 dist/assets/playfair-display-vietnamese-900-normal-wtaM1xIw.woff2    5.71 kB
+#45 1.896 dist/assets/anton-vietnamese-400-normal-2FfR1wHA.woff                6.82 kB
+#45 1.896 dist/assets/playfair-display-vietnamese-900-normal-dpsjWZtQ.woff     7.13 kB
+#45 1.896 dist/assets/anton-vietnamese-400-normal-CkBxLiRJ.woff2               8.68 kB
+#45 1.896 dist/assets/courier-prime-latin-ext-400-normal-CKOCNFvK.woff         9.04 kB
+#45 1.896 dist/assets/courier-prime-latin-ext-700-normal-BIFoAzHx.woff         9.28 kB
+#45 1.896 dist/assets/playfair-display-cyrillic-900-normal-C8kZZFQC.woff2     11.86 kB
+#45 1.896 dist/assets/playfair-display-latin-ext-900-normal-wdRhZY-D.woff2    12.65 kB
+#45 1.896 dist/assets/courier-prime-latin-ext-400-normal-B-EsvyE4.woff2       12.73 kB
+#45 1.896 dist/assets/courier-prime-latin-ext-700-normal-ByMJlNdM.woff2       12.92 kB
+#45 1.896 dist/assets/playfair-display-cyrillic-900-normal-sDNg_-Xm.woff      14.20 kB
+#45 1.896 dist/assets/courier-prime-latin-400-normal-BAlbUm6l.woff            14.38 kB
+#45 1.896 dist/assets/courier-prime-latin-700-normal-CVvp4Sof.woff            14.67 kB
+#45 1.896 dist/assets/anton-latin-400-normal-AUNGEG_V.woff                    15.63 kB
+#45 1.896 dist/assets/playfair-display-latin-ext-900-normal-Dl6M2jFN.woff     16.23 kB
+#45 1.896 dist/assets/anton-latin-400-normal-Byf51wtH.woff2                   18.61 kB
+#45 1.896 dist/assets/courier-prime-latin-400-normal-BbyBr73r.woff2           18.64 kB
+#45 1.896 dist/assets/courier-prime-latin-700-normal-D1YCjmaD.woff2           19.34 kB
+#45 1.896 dist/assets/playfair-display-latin-900-normal-oSb7_CWx.woff2        22.37 kB
+#45 1.896 dist/assets/special-elite-latin-ext-400-normal-ChcxYnmu.woff2       25.19 kB
+#45 1.896 dist/assets/playfair-display-latin-900-normal-DypQvTWf.woff         27.39 kB
+#45 1.896 dist/assets/anton-latin-ext-400-normal-BMODBQc6.woff                28.07 kB
+#45 1.896 dist/assets/special-elite-latin-ext-400-normal-CaJZjSVf.woff        29.99 kB
+#45 1.896 dist/assets/anton-latin-ext-400-normal-SyiqE2Jt.woff2               31.35 kB
+#45 1.896 dist/assets/special-elite-latin-400-normal-YjDd9tmf.woff2           53.29 kB
+#45 1.896 dist/assets/special-elite-latin-400-normal-BtSRmyJ6.woff            63.41 kB
+#45 1.896 dist/assets/index-C-ReAmZ3.css                                      28.64 kB │ gzip:  6.51 kB
+#45 1.896 dist/assets/index-Bb06E2eV.js                                      326.73 kB │ gzip: 98.15 kB
+#45 1.896 
+#45 1.897 ✓ built in 296ms
+#45 1.933 npm notice
+#45 1.933 npm notice New major version of npm available! 11.19.1 -> 12.2.3
+#45 1.933 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#45 1.933 npm notice To update run: npm install -g npm@12.2.3
+#45 1.933 npm notice
+#45 DONE 2.0s
+
+#46 [web stage-1 4/4] COPY --from=build /app/dist /usr/share/nginx/html
+#46 DONE 0.1s
+
+#47 [web] exporting to image
+#47 exporting layers 0.2s done
+#47 exporting manifest sha256:5c1c737700d7133e3100f4059880058ee3e28e4200a4aacdcbcf1b8c461a0086 0.0s done
+#47 exporting config sha256:4035ba2fac76294757e48e277f62c39d0fa4b9bedbd66b7a365b40a2a745a624 0.0s done
+#47 exporting attestation manifest sha256:6ef2db802d08311774dcf4733b5b997a3df4ff1bc001bc544a167aeab54aabf7 0.0s done
+#47 exporting manifest list sha256:06b4bf776e3793045e266c003c0d88843aaf54f5677bd842cd8772c5f536cf47 0.0s done
+#47 naming to docker.io/library/supportops-lab-web:local done
+#47 unpacking to docker.io/library/supportops-lab-web:local 0.1s done
+#47 DONE 0.4s
+
+#48 [web] resolving provenance for metadata file
+#48 DONE 0.0s
+ Image supportops-lab-web:local Built 
+ Image supportops-lab-init:local Built 
+ Image supportops-lab-platform:local Built 
+ Container supportops-lab-redis-1 Running 
+ Container supportops-lab-api-1 Running 
+ Container supportops-lab-keycloak-1 Running 
+ Container supportops-lab-postgres-1 Recreate 
+ Container supportops-lab-web-1 Recreate 
+ Container supportops-lab-web-1 Recreated 
+ Container supportops-lab-postgres-1 Recreated 
+ Container supportops-lab-packages-1 Starting 
+ Container supportops-lab-secrets-init-1 Starting 
+ Container supportops-lab-packages-1 Started 
+ Container supportops-lab-secrets-init-1 Started 
+ Container supportops-lab-secrets-init-1 Waiting 
+ Container supportops-lab-secrets-init-1 Exited 
+ Container supportops-lab-postgres-1 Starting 
+ Container supportops-lab-postgres-1 Started 
+ Container supportops-lab-postgres-1 Waiting 
+ Container supportops-lab-postgres-1 Healthy 
+ Container supportops-lab-keycloak-1 Waiting 
+ Container supportops-lab-postgres-1 Waiting 
+ Container supportops-lab-redis-1 Waiting 
+ Container supportops-lab-keycloak-1 Waiting 
+ Container supportops-lab-packages-1 Waiting 
+ Container supportops-lab-keycloak-1 Healthy 
+ Container supportops-lab-redis-1 Healthy 
+ Container supportops-lab-idp-clients-1 Starting 
+ Container supportops-lab-keycloak-1 Healthy 
+ Container supportops-lab-postgres-1 Healthy 
+ Container supportops-lab-packages-1 Exited 
+ Container supportops-lab-idp-clients-1 Started 
+ Container supportops-lab-idp-clients-1 Waiting 
+ Container supportops-lab-api-1 Waiting 
+ Container supportops-lab-api-1 Healthy 
+ Container supportops-lab-idp-clients-1 Exited 
+ Container supportops-lab-web-1 Starting 
+ Container supportops-lab-web-1 Started 

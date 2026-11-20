@@ -1,0 +1,3 @@
+cycle 1 healthz 200 15.388823s
+cycle 2 healthz 200 14.963794s
+cycle 3 healthz 200 15.436182s

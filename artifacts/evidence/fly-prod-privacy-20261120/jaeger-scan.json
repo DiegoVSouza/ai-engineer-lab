@@ -1,0 +1,120 @@
+{
+ "services": {
+  "p05-runtime": {
+   "traces": 338,
+   "spans": 871,
+   "top_operations": [
+    [
+     "api.request",
+     169
+    ],
+    [
+     "fastapi.dependencies",
+     157
+    ],
+    [
+     "fastapi.endpoint",
+     121
+    ],
+    [
+     "fastapi.serialization",
+     67
+    ],
+    [
+     "database.ticket.get",
+     48
+    ],
+    [
+     "GET /healthz",
+     28
+    ],
+    [
+     "GET /metrics",
+     26
+    ],
+    [
+     "POST /v1/tickets/{ticket_id}/refund-approvals",
+     26
+    ]
+   ]
+  },
+  "p05-mcp": {
+   "traces": 2,
+   "spans": 116,
+   "top_operations": [
+    [
+     "mcp.request",
+     24
+    ],
+    [
+     "database.ticket.get",
+     10
+    ],
+    [
+     "llm.inference",
+     8
+    ],
+    [
+     "MCP send initialize",
+     6
+    ],
+    [
+     "MCP send tools/list",
+     6
+    ],
+    [
+     "initialize",
+     6
+    ],
+    [
+     "notifications/initialized",
+     6
+    ],
+    [
+     "tools/list",
+     6
+    ]
+   ]
+  }
+ },
+ "hits": [],
+ "keys": {
+  "otel.scope.name": 987,
+  "otel.scope.version": 520,
+  "code.function.name": 351,
+  "span.kind": 987,
+  "http.request.method": 340,
+  "llm.mode": 171,
+  "http.response.status_code": 169,
+  "http.route": 163,
+  "network.protocol.version": 169,
+  "server.address": 169,
+  "server.port": 169,
+  "url.path": 169,
+  "url.scheme": 169,
+  "supportops.operation.kind": 104,
+  "otel.status_code": 36,
+  "error": 36,
+  "otel.status_description": 36,
+  "supportops.llm.cost_usd": 16,
+  "supportops.llm.input_tokens": 16,
+  "supportops.llm.latency_seconds": 16,
+  "supportops.llm.model": 16,
+  "supportops.llm.output_tokens": 16,
+  "supportops.llm.provider": 16,
+  "supportops.llm.success": 16,
+  "jsonrpc.request.id": 72,
+  "mcp.method.name": 84,
+  "mcp.protocol.version": 48,
+  "gen_ai.operation.name": 12,
+  "gen_ai.tool.name": 12
+ },
+ "log_keys": {
+  "event": 72,
+  "exception.escaped": 72,
+  "exception.message": 72,
+  "exception.stacktrace": 72,
+  "exception.type": 72
+ },
+ "exception_message_values": 0
+}
