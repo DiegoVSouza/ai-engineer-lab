@@ -1,0 +1,5 @@
+
+> lab-portfolio@0.1.0 evidence:check
+> node scripts/evidence.mjs check
+
+evidence: PASS (23 records)

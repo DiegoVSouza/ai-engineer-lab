@@ -1,0 +1,5 @@
+
+> lab-portfolio@0.1.0 flow:check
+> node scripts/flows.mjs check
+
+flows: PASS (9 flows, paths checked at the pins)

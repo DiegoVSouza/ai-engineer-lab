@@ -1,0 +1,5 @@
+
+> lab-portfolio@0.1.0 budget
+> node scripts/budget.mjs
+
+budget: PASS (worst route /projects/foundation/index.html: 68.4 KB gzip of 100 KB; scene chunk 173.6 KB of 500 KB)
