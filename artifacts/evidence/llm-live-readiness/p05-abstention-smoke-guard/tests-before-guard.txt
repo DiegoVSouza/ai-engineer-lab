@@ -1,0 +1,24 @@
+E
+======================================================================
+ERROR: test_p05_abstention_smoke_is_admitted_only_by_its_own_exact_authorization (test_live_free_account.AccountTests.test_p05_abstention_smoke_is_admitted_only_by_its_own_exact_authorization)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 436, in test_p05_abstention_smoke_is_admitted_only_by_its_own_exact_authorization
+    attempt = self.reserve(account, "p05", case=f"case-{index}", campaign="p05-diag-v3")
+  File "C:\estudo\Golpe\lab\scripts\harness\test_live_free_account.py", line 752, in reserve
+    return account.reserve(project, campaign, case, 1, call, 100, 50)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 1115, in reserve
+    rows = self._approve(
+        project,
+    ...<7 lines>...
+        reservation=True,
+    )
+  File "C:\estudo\Golpe\lab\scripts\harness\live_free_account.py", line 683, in _approve
+    raise AccountBlocked("protected_" + project + "_allocation")
+live_free_account.AccountBlocked: protected_p05_allocation
+
+----------------------------------------------------------------------
+Ran 1 test in 0.665s
+
+FAILED (errors=1)

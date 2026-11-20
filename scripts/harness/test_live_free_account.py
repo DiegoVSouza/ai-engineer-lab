@@ -414,6 +414,32 @@ class AccountTests(unittest.TestCase):
         with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
             self.reserve(account, "p05", case="case-extra", campaign="p05-diag-v2")
 
+    P05_ABSTAIN_AUTH = ".planning/llm-live-readiness/phases/063-p05-abstention-smoke/AUTHORIZATION.json"
+    P05_ABSTAIN_GOOD = {
+        "authorization_id": "p05-abstention-smoke-063-v1", "authority": "explicit_user_reply", "project": "p05",
+        "campaign": "p05-diag-v3", "split": "development", "max_attempts": 16, "trials_per_case": 1,
+        "authorized_paid_spend_usd": "0.00", "owner_total_loss_cap_usd": "5.00", "policy_requests": 1712,
+        "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
+    }
+
+    def test_p05_abstention_smoke_is_admitted_only_by_its_own_exact_authorization(self):
+        account = self.p05_account()
+        blocked = "protected_p05_allocation"
+        with self.assertRaisesRegex(AccountBlocked, blocked):
+            self.reserve(account, "p05", campaign="p05-diag-v3")
+        for tweak in ({"max_attempts": 17}, {"split": "holdout"}, {"holdout_funded": True}, {"campaign": "p05-diag-v4"}):
+            self.commit_authorization(self.P05_ABSTAIN_AUTH, {**self.P05_ABSTAIN_GOOD, **tweak})
+            with self.assertRaisesRegex(AccountBlocked, blocked):
+                self.reserve(account, "p05", campaign="p05-diag-v3")
+        self.commit_authorization(self.P05_ABSTAIN_AUTH, self.P05_ABSTAIN_GOOD)
+        for index in range(16):
+            attempt = self.reserve(account, "p05", case=f"case-{index}", campaign="p05-diag-v3")
+            account.complete("p05", attempt, input_tokens=80, output_tokens=20)
+            if index % 20 == 19:
+                self.now[0] += 61
+        with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
+            self.reserve(account, "p05", case="case-extra", campaign="p05-diag-v3")
+
     def test_p05_holdout_campaign_needs_its_own_single_use_authorization_and_never_opens_by_the_dev_one(self):
         account = self.p05_account()
         blocked = "protected_p05_allocation"
