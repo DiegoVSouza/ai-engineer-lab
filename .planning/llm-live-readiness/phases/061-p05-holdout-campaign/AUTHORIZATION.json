@@ -1,0 +1,23 @@
+{
+  "authorization_id": "p05-holdout-campaign-061-v1",
+  "authority": "explicit_user_reply",
+  "project": "p05",
+  "campaign": "p05-holdout-v1",
+  "split": "holdout",
+  "max_attempts": 156,
+  "trials_per_case": 1,
+  "single_use": true,
+  "authorized_paid_spend_usd": "0.00",
+  "owner_total_loss_cap_usd": "5.00",
+  "policy_requests": 1712,
+  "independent_review": "WAIVED_BY_OWNER",
+  "holdout_funded": true,
+  "confirmation_funded": false,
+  "owner_reply_date": "2026-11-23",
+  "owner_replies": [
+    "pode fazer o holdout agora, e confirma se ta funcionando tudo em prod"
+  ],
+  "model": "openai/gpt-oss-20b",
+  "free_window": {"tokens_per_day": 200000, "tokens_per_minute": 8000},
+  "note": "Single-use P05 holdout (39 model cases, 156 calls) with candidate a65ba51. Run in parts if the daily window requires."
+}
