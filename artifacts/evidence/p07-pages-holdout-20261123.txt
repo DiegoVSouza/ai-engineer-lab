@@ -1,0 +1,11 @@
+Working directory: projects/p07
+Command: npx wrangler pages deploy dist --project-name diego-portfolio-ai --branch main
+Exit code: 0
+Output: Wrangler 4.105.0; uploaded 44 files; deployment complete: https://37226e93.diego-portfolio-ai.pages.dev
+Note: Wrangler reported a dirty working tree because browser tests rewrote tracked screenshots; the deployed dist was built by the passing gate.
+
+Commands: Invoke-WebRequest -Uri 'https://37226e93.diego-portfolio-ai.pages.dev/' -UseBasicParsing | Select-Object StatusCode
+          Invoke-WebRequest -Uri 'https://37226e93.diego-portfolio-ai.pages.dev/pt/' -UseBasicParsing | Select-Object StatusCode
+          Invoke-WebRequest -Uri 'https://supportops-lab-web.fly.dev/healthz' -UseBasicParsing | Select-Object StatusCode
+Exit codes: 0, 0, 0
+Output: HTTP 200, 200, 200 respectively.
