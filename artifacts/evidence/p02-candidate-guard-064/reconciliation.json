@@ -1,0 +1,51 @@
+{
+  "provider_events": [
+    [
+      "local-operation-v1",
+      "completed",
+      "ok",
+      1
+    ],
+    [
+      "local-operation-v1",
+      "reserved",
+      null,
+      1
+    ],
+    [
+      "p02-dev-v1",
+      "completed",
+      "ok",
+      24
+    ],
+    [
+      "p02-dev-v1",
+      "reserved",
+      null,
+      24
+    ]
+  ],
+  "logical_events": [
+    [
+      "p02-dev-v1",
+      "completed",
+      "graded",
+      24
+    ],
+    [
+      "p02-dev-v1",
+      "reserved",
+      null,
+      24
+    ]
+  ],
+  "development_reserved": 24,
+  "development_limit": 72,
+  "v1_reserved": 24,
+  "v1_ok": 24,
+  "v1_logical_graded": 24,
+  "provider_accessed": false,
+  "credentials_read": false,
+  "case_reservations_match": true,
+  "status": "PASS"
+}

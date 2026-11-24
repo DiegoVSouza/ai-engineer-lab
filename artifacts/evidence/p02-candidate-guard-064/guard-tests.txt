@@ -1,0 +1,8 @@
+command=C:\Users\dvsdi\AppData\Local\Programs\Python\Python313\python.exe scripts/harness/test_live_free_account.py
+working_directory=lab
+exit_code=0
+.......................................................................
+----------------------------------------------------------------------
+Ran 71 tests in 125.664s
+
+OK

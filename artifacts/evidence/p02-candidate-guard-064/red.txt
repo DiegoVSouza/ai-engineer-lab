@@ -1,0 +1,4 @@
+Working directory: lab
+Command: python scripts/harness/test_live_free_account.py AccountTests.test_p02_candidate_requires_untampered_authorization_and_stops_after_error AccountTests.test_p02_development_limit_counts_prior_campaigns_and_reservations
+Exit code: 1
+Output: Ran 2 tests; FAILED (errors=2). The candidate campaign remained protected and the cumulative development limit method did not exist.

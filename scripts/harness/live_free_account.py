@@ -659,6 +659,8 @@ class SharedAccount:
             p02_campaigns = self._p02_campaigns()
             if campaign not in p02_campaigns and campaign != "local-operation-v1":
                 raise AccountBlocked("protected_p02_allocation")
+            if campaign.startswith("p02-dev-"):
+                self._check_p02_development_capacity(rows)
             operation_p02 = [row for row in rows if row["project"] == "p02" and row["campaign"] == campaign]
             if len(operation_p02) >= p02_campaigns.get(campaign, 4):
                 raise AccountBlocked("operational_allocation_exhausted")
@@ -716,6 +718,7 @@ class SharedAccount:
 
     P05_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/057-p05-live-campaign/AUTHORIZATION.json"
     P02_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/058-p02-live-campaign/AUTHORIZATION.json"
+    P02_CANDIDATE_AUTHORIZATION = ".planning/llm-live-readiness/phases/064-p02-candidate-development/AUTHORIZATION.json"
     P01_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/059-p01-live-campaign/AUTHORIZATION.json"
     P05_DIAGNOSTIC_AUTHORIZATION = ".planning/llm-live-readiness/phases/060-p05-diagnostic-campaign/AUTHORIZATION.json"
     P05_SMOKE_AUTHORIZATION = ".planning/llm-live-readiness/phases/062-p05-candidate-smoke/AUTHORIZATION.json"
@@ -843,8 +846,8 @@ class SharedAccount:
         })
 
     def _p02_campaigns(self):
-        """Development campaign of P02 admitted by a committed, unmodified owner authorization, else none."""
-        return self._authorized_campaign("p02", self.P02_CAMPAIGN_AUTHORIZATION, {
+        """P02 development campaigns require separate committed authorizations."""
+        admitted = self._authorized_campaign("p02", self.P02_CAMPAIGN_AUTHORIZATION, {
             "authorization_id": "p02-live-campaign-058-v1",
             "authority": "explicit_user_reply",
             "project": "p02",
@@ -859,6 +862,28 @@ class SharedAccount:
             "holdout_funded": False,
             "confirmation_funded": False,
         })
+        admitted.update(self._authorized_campaign("p02", self.P02_CANDIDATE_AUTHORIZATION, {
+            "authorization_id": "p02-candidate-development-064-v1",
+            "authority": "explicit_user_reply",
+            "project": "p02",
+            "campaign": "p02-dev-v2",
+            "split": "development",
+            "max_attempts": 24,
+            "trials_per_case": 1,
+            "development_max_attempts": 72,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 310,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": False,
+            "confirmation_funded": False,
+        }))
+        return admitted
+
+    def _check_p02_development_capacity(self, rows):
+        used = sum(row["project"] == "p02" and row["campaign"].startswith("p02-dev-") for row in rows)
+        if used >= 72:
+            raise AccountBlocked("p02_development_allocation_exhausted")
 
     def _reviewed_revalidation(
         self, rows, project, campaign, case_id, trial, call_index, reservation
