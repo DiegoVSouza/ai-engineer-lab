@@ -719,6 +719,7 @@ class SharedAccount:
     P05_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/057-p05-live-campaign/AUTHORIZATION.json"
     P02_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/058-p02-live-campaign/AUTHORIZATION.json"
     P02_CANDIDATE_AUTHORIZATION = ".planning/llm-live-readiness/phases/064-p02-candidate-development/AUTHORIZATION.json"
+    P02_V3_AUTHORIZATION = ".planning/llm-live-readiness/phases/065-p02-candidate-v3/AUTHORIZATION.json"
     P01_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/059-p01-live-campaign/AUTHORIZATION.json"
     P05_DIAGNOSTIC_AUTHORIZATION = ".planning/llm-live-readiness/phases/060-p05-diagnostic-campaign/AUTHORIZATION.json"
     P05_SMOKE_AUTHORIZATION = ".planning/llm-live-readiness/phases/062-p05-candidate-smoke/AUTHORIZATION.json"
@@ -867,6 +868,22 @@ class SharedAccount:
             "authority": "explicit_user_reply",
             "project": "p02",
             "campaign": "p02-dev-v2",
+            "split": "development",
+            "max_attempts": 24,
+            "trials_per_case": 1,
+            "development_max_attempts": 72,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 310,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": False,
+            "confirmation_funded": False,
+        }))
+        admitted.update(self._authorized_campaign("p02", self.P02_V3_AUTHORIZATION, {
+            "authorization_id": "p02-candidate-v3-065-v1",
+            "authority": "explicit_user_reply",
+            "project": "p02",
+            "campaign": "p02-dev-v3",
             "split": "development",
             "max_attempts": 24,
             "trials_per_case": 1,

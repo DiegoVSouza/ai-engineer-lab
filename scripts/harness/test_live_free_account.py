@@ -493,6 +493,15 @@ class AccountTests(unittest.TestCase):
         "policy_requests": 310, "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
     }
 
+    P02_V3_AUTH = ".planning/llm-live-readiness/phases/065-p02-candidate-v3/AUTHORIZATION.json"
+    P02_V3_GOOD = {
+        "authorization_id": "p02-candidate-v3-065-v1", "authority": "explicit_user_reply", "project": "p02",
+        "campaign": "p02-dev-v3", "split": "development", "max_attempts": 24, "trials_per_case": 1,
+        "development_max_attempts": 72, "authorized_paid_spend_usd": "0.00", "owner_total_loss_cap_usd": "5.00",
+        "policy_requests": 310, "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
+        "owner_replies": ["pode fazer em loop ai, deixa tudo pronto"],
+    }
+
     def commit_p02_v2_authorization(self, payload):
         path = self.root / self.P02_V2_AUTH
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -515,6 +524,29 @@ class AccountTests(unittest.TestCase):
         account.complete("p02", attempt, status="transport_error")
         with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
             self.reserve(account, "p02", case="next", campaign="p02-dev-v2")
+
+    def test_p02_v3_requires_own_committed_authorization_and_cumulative_cap(self):
+        account = self.p02_account()
+        with self.assertRaisesRegex(AccountBlocked, "protected_p02_allocation"):
+            self.reserve(account, "p02", campaign="p02-dev-v3")
+        path = self.root / self.P02_V3_AUTH
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(self.P02_V3_GOOD))
+        if not (self.root / ".git").exists():
+            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "--", self.P02_V3_AUTH], cwd=self.root, check=True)
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", "v3 authorization"], cwd=self.root, check=True)
+        attempt = self.reserve(account, "p02", case="case-1", campaign="p02-dev-v3")
+        account.complete("p02", attempt, input_tokens=10, output_tokens=5)
+        failed = self.reserve(account, "p02", case="case-2", campaign="p02-dev-v3")
+        account.complete("p02", failed, status="transport_error")
+        with self.assertRaisesRegex(AccountBlocked, "prior_operational_failure_requires_review"):
+            self.reserve(account, "p02", case="case-3", campaign="p02-dev-v3")
+        rows = [{"project": "p02", "campaign": "p02-dev-v1", "event": "reserved"}] * 24
+        rows += [{"project": "p02", "campaign": "p02-dev-v2", "event": "reserved"}] * 24
+        rows += [{"project": "p02", "campaign": "p02-dev-v3", "event": "reserved"}] * 24
+        with self.assertRaisesRegex(AccountBlocked, "p02_development_allocation_exhausted"):
+            account._check_p02_development_capacity(rows)
 
     def test_p02_development_limit_counts_prior_campaigns_and_reservations(self):
         account = self.p02_account()
