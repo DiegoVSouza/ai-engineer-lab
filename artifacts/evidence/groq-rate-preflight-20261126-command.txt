@@ -1,0 +1,5 @@
+Command: python scripts/harness/live_free_account.py --catalog-preflight
+Exit code: 0 (`groq-rate-preflight-20261126-exit-code.txt`)
+Output: `groq-rate-preflight-20261126.txt`
+Scope: read-only GET of the authenticated model catalog for up to five configured credentials; no chat completion/generation calls. The report confirms model access for all five selected credentials but has no rate-limit headers and does not verify billing tier or remaining daily tokens.
+Current provider guidance: https://console.groq.com/docs/rate-limits (model limit tables are general; exact organization limits require authenticated limits or response headers).
