@@ -1,0 +1,18 @@
+{
+  "authorization_id": "p01-framework-smoke-067-v1",
+  "authority": "explicit_user_reply",
+  "decision": "Construir também os adaptadores dos outros runners; pode fazer os dois; faz isso",
+  "project": "p01",
+  "campaign": "p01-framework-smoke-v1",
+  "split": "development",
+  "max_attempts": 20,
+  "trials_per_case": 1,
+  "authorized_paid_spend_usd": "0.00",
+  "owner_total_loss_cap_usd": "5.00",
+  "policy_requests": 1000,
+  "independent_review": "WAIVED_BY_OWNER",
+  "holdout_funded": false,
+  "confirmation_funded": false,
+  "no_replay": true,
+  "scope_note": "Five new framework development trials, one per non-Core runner, at most four provider requests each; 20 requests total maximum."
+}

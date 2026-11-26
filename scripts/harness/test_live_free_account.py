@@ -502,6 +502,35 @@ class AccountTests(unittest.TestCase):
         "owner_replies": ["pode fazer em loop ai, deixa tudo pronto"],
     }
 
+    P02_SMOKE_AUTH = ".planning/llm-live-readiness/phases/066-p02-development-smoke/AUTHORIZATION.json"
+    P02_SMOKE_GOOD = {
+        "authorization_id": "p02-development-smoke-066-v1", "authority": "explicit_user_reply",
+        "project": "p02", "campaign": "p02-dev-v4-smoke", "split": "development",
+        "max_attempts": 4, "trials_per_case": 1, "development_max_attempts": 76,
+        "authorized_paid_spend_usd": "0.00", "owner_total_loss_cap_usd": "5.00",
+        "policy_requests": 310, "independent_review": "WAIVED_BY_OWNER",
+        "holdout_funded": False, "confirmation_funded": False,
+    }
+
+    def test_p02_smoke_is_exactly_four_incremental_calls_after_existing_development_cap(self):
+        account = self.p02_account()
+        with self.assertRaisesRegex(AccountBlocked, "protected_p02_allocation"):
+            self.reserve(account, "p02", campaign="p02-dev-v4-smoke")
+        path = self.root / self.P02_SMOKE_AUTH
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(self.P02_SMOKE_GOOD))
+        if not (self.root / ".git").exists():
+            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "--", self.P02_SMOKE_AUTH], cwd=self.root, check=True)
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", "smoke authorization"], cwd=self.root, check=True)
+        self.assertEqual(account._p02_campaigns().get("p02-dev-v4-smoke"), 4)
+        rows = [{"project": "p02", "campaign": f"p02-dev-v{i}", "event": "completed"} for i in (1, 2, 3) for _ in range(24)]
+        for _ in range(4):
+            account._check_p02_development_capacity(rows, "p02-dev-v4-smoke")
+            rows.append({"project": "p02", "campaign": "p02-dev-v4-smoke", "event": "completed"})
+        with self.assertRaisesRegex(AccountBlocked, "p02_development_allocation_exhausted"):
+            account._check_p02_development_capacity(rows, "p02-dev-v4-smoke")
+
     def commit_p02_v2_authorization(self, payload):
         path = self.root / self.P02_V2_AUTH
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -546,15 +575,15 @@ class AccountTests(unittest.TestCase):
         rows += [{"project": "p02", "campaign": "p02-dev-v2", "event": "reserved"}] * 24
         rows += [{"project": "p02", "campaign": "p02-dev-v3", "event": "reserved"}] * 24
         with self.assertRaisesRegex(AccountBlocked, "p02_development_allocation_exhausted"):
-            account._check_p02_development_capacity(rows)
+            account._check_p02_development_capacity(rows, "p02-dev-v3")
 
     def test_p02_development_limit_counts_prior_campaigns_and_reservations(self):
         account = self.p02_account()
         rows = [{"project": "p02", "campaign": "p02-dev-v1", "event": "completed"}] * 24
         rows += [{"project": "p02", "campaign": "p02-dev-v2", "event": "reserved"}] * 48
         with self.assertRaisesRegex(AccountBlocked, "p02_development_allocation_exhausted"):
-            account._check_p02_development_capacity(rows)
-        account._check_p02_development_capacity(rows[:-1])
+            account._check_p02_development_capacity(rows, "p02-dev-v3")
+        account._check_p02_development_capacity(rows[:-1], "p02-dev-v3")
 
     def test_p02_candidate_has_24_attempt_cap_and_no_holdout_access(self):
         account = self.p02_account()
@@ -639,6 +668,14 @@ class AccountTests(unittest.TestCase):
         "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
     }
 
+    P01_FRAMEWORK_AUTH = ".planning/llm-live-readiness/phases/067-p01-framework-smoke/AUTHORIZATION.json"
+    P01_FRAMEWORK_GOOD = {
+        "authorization_id": "p01-framework-smoke-067-v1", "authority": "explicit_user_reply", "project": "p01",
+        "campaign": "p01-framework-smoke-v1", "split": "development", "max_attempts": 20, "trials_per_case": 1,
+        "authorized_paid_spend_usd": "0.00", "owner_total_loss_cap_usd": "5.00", "policy_requests": 1000,
+        "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
+    }
+
     def commit_p01_authorization(self, payload):
         path = self.root / self.P01_AUTH
         path.parent.mkdir(parents=True, exist_ok=True)
@@ -676,6 +713,21 @@ class AccountTests(unittest.TestCase):
                 self.now[0] += 61
         with self.assertRaisesRegex(AccountBlocked, "operational_allocation_exhausted"):
             self.reserve(account, "p01", case="case-extra", campaign="p01-dev-v1")
+
+    def test_p01_framework_smoke_requires_its_exact_committed_twenty_call_authorization(self):
+        account = self.p01_account()
+        with self.assertRaisesRegex(AccountBlocked, "reviewed_revalidation_scope_required"):
+            self.reserve(account, "p01", campaign="p01-framework-smoke-v1")
+        path = self.root / self.P01_FRAMEWORK_AUTH
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(self.P01_FRAMEWORK_GOOD))
+        if not (self.root / ".git").exists():
+            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "--", self.P01_FRAMEWORK_AUTH], cwd=self.root, check=True)
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", "framework authorization"], cwd=self.root, check=True)
+        self.assertEqual(account._p01_campaigns().get("p01-framework-smoke-v1"), 20)
+        path.write_text(json.dumps({**self.P01_FRAMEWORK_GOOD, "max_attempts": 21}))
+        self.assertNotIn("p01-framework-smoke-v1", account._p01_campaigns())
 
     def test_p01_authorization_edited_after_commit_closes_the_campaign(self):
         account = self.p01_account()

@@ -1,0 +1,20 @@
+{
+  "authorization_id": "p02-development-smoke-066-v1",
+  "authority": "explicit_user_reply",
+  "decision": "pode fazer os dois",
+  "project": "p02",
+  "campaign": "p02-dev-v4-smoke",
+  "split": "development",
+  "max_attempts": 4,
+  "trials_per_case": 1,
+  "development_max_attempts": 76,
+  "authorized_paid_spend_usd": "0.00",
+  "owner_total_loss_cap_usd": "5.00",
+  "policy_requests": 310,
+  "independent_review": "WAIVED_BY_OWNER",
+  "holdout_funded": false,
+  "confirmation_funded": false,
+  "no_replay": true,
+  "campaigns_superseded": [],
+  "scope_note": "Four new development trials only, one provider call each; no holdout or confirmation."
+}
