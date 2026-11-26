@@ -685,6 +685,32 @@ class AccountTests(unittest.TestCase):
         "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
     }
 
+    P01_FRAMEWORK_V3_AUTH = ".planning/llm-live-readiness/phases/069-p01-framework-smoke-completion/AUTHORIZATION.json"
+    P01_FRAMEWORK_V3_GOOD = {
+        "authorization_id": "p01-framework-smoke-completion-069-v1", "authority": "explicit_user_reply_continuation",
+        "project": "p01", "campaign": "p01-framework-smoke-v3", "split": "development",
+        "max_attempts": 16, "trials_per_case": 1, "authorized_paid_spend_usd": "0.00",
+        "owner_total_loss_cap_usd": "5.00", "policy_requests": 1000,
+        "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
+    }
+
+    def test_p01_smoke_completion_authorizes_only_remaining_calls_under_original_ceiling(self):
+        account = self.p01_account()
+        path = self.root / self.P01_FRAMEWORK_V3_AUTH
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(self.P01_FRAMEWORK_V3_GOOD))
+        if not (self.root / ".git").exists():
+            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "--", self.P01_FRAMEWORK_V3_AUTH], cwd=self.root, check=True)
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", "completion authorization"], cwd=self.root, check=True)
+        self.assertEqual(account._p01_campaigns().get("p01-framework-smoke-v3"), 16)
+        rows = [{"project": "p01", "campaign": "p01-framework-smoke-v2"}] * 4
+        for _ in range(16):
+            account._check_p01_framework_smoke_capacity(rows)
+            rows.append({"project": "p01", "campaign": "p01-framework-smoke-v3"})
+        with self.assertRaisesRegex(AccountBlocked, "p01_framework_smoke_allocation_exhausted"):
+            account._check_p01_framework_smoke_capacity(rows)
+
     def test_p01_smoke_recovery_preserves_the_twenty_call_budget_across_campaign_ids(self):
         account = self.p01_account()
         path = self.root / self.P01_FRAMEWORK_V2_AUTH
