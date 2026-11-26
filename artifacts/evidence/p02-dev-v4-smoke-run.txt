@@ -1,0 +1,1 @@
+command=LLM_MODE=live uv run --extra live python scripts/run_live_campaign.py --campaign p02-dev-v4-smoke --execute-free; exit_code=0; output={"status":"INCOMPLETE","ran":4,"remaining":20,"provenance":"live","passed":3,"trials":4}
