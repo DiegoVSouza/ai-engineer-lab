@@ -636,6 +636,8 @@ class SharedAccount:
             else {}
         )
         if p01_campaigns and campaign in p01_campaigns:
+            if campaign.startswith("p01-framework-smoke-"):
+                self._check_p01_framework_smoke_capacity(rows)
             operation_p01 = [row for row in rows if row["project"] == "p01" and row["campaign"] == campaign]
             if len(operation_p01) >= p01_campaigns[campaign]:
                 raise AccountBlocked("operational_allocation_exhausted")
@@ -723,6 +725,7 @@ class SharedAccount:
     P02_SMOKE_AUTHORIZATION = ".planning/llm-live-readiness/phases/066-p02-development-smoke/AUTHORIZATION.json"
     P01_CAMPAIGN_AUTHORIZATION = ".planning/llm-live-readiness/phases/059-p01-live-campaign/AUTHORIZATION.json"
     P01_FRAMEWORK_SMOKE_AUTHORIZATION = ".planning/llm-live-readiness/phases/067-p01-framework-smoke/AUTHORIZATION.json"
+    P01_FRAMEWORK_SMOKE_V2_AUTHORIZATION = ".planning/llm-live-readiness/phases/068-p01-framework-smoke-recovery/AUTHORIZATION.json"
     P05_DIAGNOSTIC_AUTHORIZATION = ".planning/llm-live-readiness/phases/060-p05-diagnostic-campaign/AUTHORIZATION.json"
     P05_SMOKE_AUTHORIZATION = ".planning/llm-live-readiness/phases/062-p05-candidate-smoke/AUTHORIZATION.json"
     P05_ABSTENTION_AUTHORIZATION = ".planning/llm-live-readiness/phases/063-p05-abstention-smoke/AUTHORIZATION.json"
@@ -862,6 +865,21 @@ class SharedAccount:
             "holdout_funded": False,
             "confirmation_funded": False,
         }))
+        admitted.update(self._authorized_campaign("p01", self.P01_FRAMEWORK_SMOKE_V2_AUTHORIZATION, {
+            "authorization_id": "p01-framework-smoke-recovery-068-v1",
+            "authority": "explicit_user_reply_continuation",
+            "project": "p01",
+            "campaign": "p01-framework-smoke-v2",
+            "split": "development",
+            "max_attempts": 20,
+            "trials_per_case": 1,
+            "authorized_paid_spend_usd": "0.00",
+            "owner_total_loss_cap_usd": "5.00",
+            "policy_requests": 1000,
+            "independent_review": "WAIVED_BY_OWNER",
+            "holdout_funded": False,
+            "confirmation_funded": False,
+        }))
         return admitted
 
     def _p02_campaigns(self):
@@ -936,6 +954,14 @@ class SharedAccount:
         limit = 76 if campaign == "p02-dev-v4-smoke" and self._p02_campaigns().get(campaign) == 4 else 72
         if used >= limit:
             raise AccountBlocked("p02_development_allocation_exhausted")
+
+    def _check_p01_framework_smoke_capacity(self, rows):
+        used = sum(
+            row["project"] == "p01" and row["campaign"].startswith("p01-framework-smoke-")
+            for row in rows
+        )
+        if used >= 20:
+            raise AccountBlocked("p01_framework_smoke_allocation_exhausted")
 
     def _reviewed_revalidation(
         self, rows, project, campaign, case_id, trial, call_index, reservation

@@ -1,0 +1,1 @@
+command=python -m pytest scripts/harness/test_live_free_account.py -q; exit_code=0; result=75 passed, 3 subtests passed in 103.67s

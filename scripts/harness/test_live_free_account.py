@@ -676,6 +676,31 @@ class AccountTests(unittest.TestCase):
         "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
     }
 
+    P01_FRAMEWORK_V2_AUTH = ".planning/llm-live-readiness/phases/068-p01-framework-smoke-recovery/AUTHORIZATION.json"
+    P01_FRAMEWORK_V2_GOOD = {
+        "authorization_id": "p01-framework-smoke-recovery-068-v1", "authority": "explicit_user_reply_continuation",
+        "project": "p01", "campaign": "p01-framework-smoke-v2", "split": "development",
+        "max_attempts": 20, "trials_per_case": 1, "authorized_paid_spend_usd": "0.00",
+        "owner_total_loss_cap_usd": "5.00", "policy_requests": 1000,
+        "independent_review": "WAIVED_BY_OWNER", "holdout_funded": False, "confirmation_funded": False,
+    }
+
+    def test_p01_smoke_recovery_preserves_the_twenty_call_budget_across_campaign_ids(self):
+        account = self.p01_account()
+        path = self.root / self.P01_FRAMEWORK_V2_AUTH
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(self.P01_FRAMEWORK_V2_GOOD))
+        if not (self.root / ".git").exists():
+            subprocess.run(["git", "init", "-q"], cwd=self.root, check=True)
+        subprocess.run(["git", "add", "--", self.P01_FRAMEWORK_V2_AUTH], cwd=self.root, check=True)
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", "recovery authorization"], cwd=self.root, check=True)
+        self.assertEqual(account._p01_campaigns().get("p01-framework-smoke-v2"), 20)
+        prior = [{"project": "p01", "campaign": "p01-framework-smoke-v1"}] * 19
+        account._check_p01_framework_smoke_capacity(prior)
+        prior.append({"project": "p01", "campaign": "p01-framework-smoke-v1"})
+        with self.assertRaisesRegex(AccountBlocked, "p01_framework_smoke_allocation_exhausted"):
+            account._check_p01_framework_smoke_capacity(prior)
+
     def commit_p01_authorization(self, payload):
         path = self.root / self.P01_AUTH
         path.parent.mkdir(parents=True, exist_ok=True)
